@@ -1,5 +1,6 @@
 Package: QualtricsInR
 Type: Package
+Date: 2019-05-01
 Title: Wrapper for Qualtrics v3 API references
 Version: 0.1.0
 Authors@R: c(
