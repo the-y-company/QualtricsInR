@@ -19,5 +19,5 @@ create_user_api_token creates a users api token
 }
 \examples{
 \dontrun{create_erasing_request("ddd@hotmail.com")}
-\dontrun{create_erasing_request(c("person1@theemail.com", "person1@theemail.com"),TRUE)}
+\dontrun{create_erasing_request(c("person1@themail.com", "person1@theemail.com"),TRUE)}
 }

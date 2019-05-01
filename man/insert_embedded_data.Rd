@@ -9,7 +9,7 @@ insert_embedded_data(survey_id, list_fields)
 \arguments{
 \item{survey_id}{The survey ID of the survey you want to insert embedded data fields into.}
 
-\item{list_fields}{A JSON object - list of emebedded data fields}
+\item{list_fields}{A list of list}
 }
 \description{
 Insert embedded data fields into a survey

@@ -299,7 +299,7 @@ delete_survey <- function(survey_id) {
 #' Insert embedded data fields into a survey
 #'
 #' @param survey_id The survey ID of the survey you want to insert embedded data fields into.
-#' @param list_fields A JSON object - list of emebedded data fields
+#' @param list_fields A list of list
 #'
 #' @examples
 #' \dontrun{insert_embedded_data("SV_012345678901234", "sss")}
