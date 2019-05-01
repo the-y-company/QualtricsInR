@@ -1,0 +1,135 @@
+#' Authenticate
+#'
+#' Generate a Qualtrics token valid for an hour.
+#'
+#' @param api_token Your client id and generated token.
+#' @param id,secret Your client id and secret.
+#' @param data_center Your data center id, if \code{NULL} then the functions attempts to
+#' get it from \code{\link{set_qualtrics_opts}}.
+#' @param cache Whether to set the token as option (\code{\link{set_qualtrics_opts}})
+#' and cache the results to file.
+#'
+#' @details Obtains a bearer token valid for an hour and saved it to the working
+#' directory in a hidden file named \code{qualtrics-oauth}. Note that this token
+#' will be automatically loaded in future sessions, and refreshed if needed.
+#'
+#' @section Functions:
+#' \itemize{
+#'   \item{\code{qualtrics_auth}: Authenticate.}
+#'   \item{\code{load_oauth}: Load locally saved token.}
+#'   \item{\code{refresh_oauth}: Refresh locally saved token.}
+#'   \item{\code{set_qualtrics_opts}: Set \code{token} and \code{data_center} options.}
+#' }
+#'
+#' @return if \code{cache} is \code{FALSE} then returns an object of class \code{quatrics_token}.
+#'
+#' @examples
+#' \dontrun{
+#'   # OAUth 2.0
+#'   qualtrics_auth("xXxX0x0X0xxX0", "xXxX0x0X0xxX0", "data.center")
+#' 
+#'   # Set token and data_center options
+#'   set_qualtrics_opts("xXxX0x0X0xxX0xXxX0x0X0xxX0", "myCenter.eu")
+#' }
+#'
+#' @rdname oauth
+#' @export
+qualtrics_auth <- function(id, secret, data_center = NULL, cache = TRUE){
+
+  if(missing(id) || missing(secret))
+    stop("missing id or secret", call. = FALSE)
+
+  # if data_center not passed, attempts to fetch from general options
+  if(is.null(data_center))
+    data_center <- .get_data_center()
+
+  if(is.null(data_center))
+    stop("missing data_center", call. = FALSE)
+
+  # get token
+  resp <- httr::POST(
+    sprintf("https://%s.qualtrics.com/oauth2/token", data_center),
+    httr::authenticate(
+      id, secret
+    ),
+    body = list(
+      grant_type = "client_credentials"
+    ),
+    encode = "form"
+  )
+
+  httr::stop_for_status(resp) # stop if error
+
+  token <- httr::content(resp)
+
+  # append extra variables needed for refresh
+  extras <- list(
+    time = Sys.time(),
+    secret = secret,
+    id = id,
+    data_center = data_center,
+    url = sprintf("https://%s.qualtrics.com", data_center)
+  )
+  token <- append(token, extras)
+
+  # store options while we're at it
+  options(QUALTRICS_BASE_URL = extras$url)
+  options(QUALTRICS_TOKEN_TIMEOUT = extras$time + token$expires_in)
+  options(QUALTRICS_API_TOKEN = token$access_token)
+
+  # if cache TRUE encrypt and save
+  if(isTRUE(cache)){
+    token <- .encrypt(token)
+    save(token, file = ".qualtrics-oauth")
+    cat(crayon::green(cli::symbol$tick), "Token successfully saved\n")
+  } else {
+    .construct_oauth(token)
+  }
+
+}
+
+#' @rdname oauth
+#' @export
+load_oauth <- function(){
+  .check_token_file() # check if file exists
+  token <- .get_token_file()
+
+  # construct for method to hide sensitive credentials on print
+  .construct_oauth(token)
+}
+
+#' @rdname oauth
+#' @export
+refresh_oauth <- function(){
+  token <- load_oauth()
+  token <- .decrypt(token)
+
+  # simply rerun auth with cache = TRUE to re-save/overwrite current file
+  qualtrics_auth(token$id, token$secret, token$data_center, cache = TRUE)
+}
+
+#' @rdname oauth
+#' @export
+set_qualtrics_opts <- function(api_token, data_center = NULL){
+
+  if(missing(api_token))
+    stop("missing token", call. = FALSE)
+
+  if(is.null(data_center))
+    warning("No data_center provided", call. = FALSE)
+
+  # Added in the event that data_center is not required by API
+  if(!is.null(data_center))
+    data_center <- sprintf("%s.", data_center)
+  else
+    data_center <- ""
+
+  url <- sprintf("https://%squaltrics.com", data_center)
+  options(
+    QUALTRICS_TOKEN_TIMEOUT = NULL, # set to null to avoid token clash
+    QUALTRICS_BASE_URL = url,
+    QUALTRICS_API_TOKEN = api_token,
+    QUALTRICS_DATA_CENTER = data_center
+  )
+
+}

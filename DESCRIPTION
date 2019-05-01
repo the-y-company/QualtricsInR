@@ -1,0 +1,24 @@
+Package: QualtricsInR
+Type: Package
+Title: Wrapper for Qualtrics v3 API references
+Version: 0.1.0
+Authors@R: c(
+    person("Pierre", "Souter", email = "pierre.saouter@weforum.org", role = "cre"),
+    person("Jean-Philippe", "Coen", email = "jean-philippe.coene@weforum.org", role = "aut"))
+Description: The QualtricsInR package is an exhaustive wrapper for the v3 API references.
+Depends: R (>= 3.4.0)
+Encoding: UTF-8
+LazyData: true
+Imports:
+  httr (>= 1.3.1),
+  dplyr,
+  purrr,
+  magrittr,
+  readr,
+	stringr,
+	jsonlite,
+	methods,
+	cli,
+	crayon
+RoxygenNote: 6.1.1
+License: MIT + file LICENSE
