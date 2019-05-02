@@ -3,12 +3,11 @@ url: https://elegant-thompson-2276b4.netlify.com/
 template:
   params:
     bootswatch: flatly
+
 navbar:
   title: "QualtricsInR"
   type: inverse
   left:
-    - icon: fa-github
-      href: https://github.com/ppssphysics/QualtricsInR
     - text: "Guide"
       menu:
         - text: "Admin Level Functions"
