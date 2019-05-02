@@ -36,3 +36,4 @@ get_erasing_request <- function(request_id) {
   return(getcnt)
 
 }
+
