@@ -23,3 +23,8 @@ Imports:
 	crayon
 RoxygenNote: 6.1.1
 License: MIT + file LICENSE
+VignetteBuilder: knitr
+BugReports: https://github.com/ppssphysics/QualtricsInR/issues
+Suggests: 
+    knitr,
+    rmarkdown

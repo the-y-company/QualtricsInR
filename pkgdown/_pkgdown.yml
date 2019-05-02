@@ -12,6 +12,9 @@ navbar:
     - text: "Guide"
       menu:
         - text: "Admin Level Functions"
-          href: articles/funcs-admin.html
+          href: articles/admin.html
         - text: "Manipulate Surveys"
-          href: articles/funcs-surveys.html
+          href: articles/surveys.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/ppssphysics/QualtricsInR

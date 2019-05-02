@@ -1,5 +1,6 @@
 ---
 title: "Admin Calls"
+author: "Pierre Saouter"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -20,9 +21,9 @@ This document describes API calls reserved to users with administration level ri
 
 ## Retrieve organization account information 
 
-Gets general information about an organization, also called brand. See the documentation to retrieve your organization id. ((here)[https://api.qualtrics.com/reference#get-brand-info]).
+Gets general information about an organization, also called brand. See the documentation to retrieve your organization id.
 
-```{r}
+```
 library(QualtricsInR)
 get_organization()
 ```
@@ -33,21 +34,21 @@ You can create a new divisions. Only mandatory paremter is the name of the new d
 user ids (see get_users()) to possess admin rights for this division. Finally, you can define the divisions permissions,
 otherwise default permissions will be set. The call returns the id of the created division.
 
-```{r}
+```
 div_id <- create_division("New_Division", list("UR_1234567890AbCdE"))
 ```
 
 You can then retrieve or update a given division. The best way to figure the permissions you have accessible for the first call
 is to retrieve an exisiting division from Qualtrics and study the json reply below.
 
-```{r}
+```
 json_rep <- get_division("DV_1234567890AbCdE")
 update_division("DV_1234567890AbCdE", name = "New_Name")
 ```
 
 ## Manage user groups
 
-```{r}
+```
 df <- list_groups()
 ```
 
@@ -56,7 +57,6 @@ df <- list_groups()
 A useful function is to list all users. This request cam take time for large organizations where the query needs to loop through
 all paginations available.
 
-```{r}
+```
 df <- list_users()
 ```
-
