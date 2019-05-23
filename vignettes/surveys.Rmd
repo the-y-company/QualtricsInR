@@ -1,10 +1,10 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Surveys"
+author: "Pierre Saouter"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Surveys}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -36,9 +36,7 @@ You can easily retrieve the full list of surveys available in your account:
 my_surveys <- list_surveys()
 ```
 
-This allows you to easily search for the survey_id of the survey of interest in order to interact with the object remotely.
-
-For example, you can copy a survey within your account or to another account:
+This allows you to easily search for the survey_id of the survey of interest in order to interact with the object remotely. For example, you can copy a survey within your account or to another account:
 
 ``` r
 # Copy a survey in your own account
@@ -48,7 +46,7 @@ copy_survey(my_surveys[1], "New_Copy",user_id)
 ```
 
 You might not want to copy a survey into another person's account but would rather share the project defining a specific set
-of permissions. By default, without any specification, your project will be shared with all permissions disabled. You can easily decide which permissions to enable by providing an array of numbers indicating the permissions you want to enable. The available options are listed below:
+of permissions. By default, without any specification, your project will be shared with all permissions disabled. You can decide which permissions to enable by providing an array of numbers indicating the permissions you want to enable. The available options are listed below:
 
 ``` r
 "1"="copySurveyQuestions"
@@ -78,20 +76,17 @@ of permissions. By default, without any specification, your project will be shar
 "25"="viewPersonalData"
 ```
 
-For example, to share the survey with only distribution rights enabled, you could use the following call:
+As an example, to share the survey with only distribution rights enabled, you run the following call:
 
 ``` r
 share_survey(my_surveys[1], user_id, 15)
 ```
 
-Previous calls are overridden by any new permissions setting so you must make sure to set every permission each time. To add permissions to visualize the data, do:
+Previous calls are overridden by any new permissions setting so you must set every permission each time. To add permissions to visualize the data, do:
 
 ``` r
+# enable permissions for distribution and data visualisation
 share_survey(my_surveys[1], user_id, c(15,23))
-```
-
-If you want to remove the permission to visualize data but keep the distribution right:
-
-``` r
+# remove permission to visualize the data
 share_survey(my_surveys[1], user_id, c(15))
 ```

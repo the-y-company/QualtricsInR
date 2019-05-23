@@ -6,7 +6,7 @@ template:
 
 navbar:
   title: "QualtricsInR"
-  type: inverse
+  type: standard
   left:
     - text: "Guide"
       menu:
@@ -14,6 +14,8 @@ navbar:
           href: articles/admin.html
         - text: "Manipulate Surveys"
           href: articles/surveys.html
+        - text: "Data Privacy"
+          href: articles/admin-data-privacy.html
   right:
     - icon: fa-github fa-lg
       href: https://github.com/ppssphysics/QualtricsInR

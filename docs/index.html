@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="container template-home">
-      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-standard navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -49,6 +49,9 @@
     </li>
     <li>
       <a href="articles/surveys.html">Manipulate Surveys</a>
+    </li>
+    <li>
+      <a href="articles/admin-data-privacy.html">Data Privacy</a>
     </li>
   </ul>
 </li>
@@ -143,83 +146,6 @@ data &lt;-<span class="st"> </span><span class="kw"><a href="reference/bulk-down
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ask an export for all responses after April 1st, 2016 and before April 25 2016</span>
 <span class="kw"><a href="reference/get_survey_responses.html">get_survey_responses</a></span>(surveyId, <span class="dt">startDate=</span><span class="st">"2016-04-01T07:31:43Z"</span>, <span class="dt">endDate=</span><span class="st">"2016-04-25T07:31:43Z"</span>)</code></pre></div>
 <p>where the dates specifications followm the ISO 8601 standard YYYY-MM-DD (more information <a href="https://api.qualtrics.com/docs/dates-and-times">here</a>). There are many more options you can set to retrieve your data. All options xan be found in the corresponding <a href="https://api.qualtrics.com/reference/create-response-export-new">API reference page</a>.</p>
-</div>
-<div id="manipulating-survey-objects" class="section level2">
-<h2 class="hasAnchor">
-<a href="#manipulating-survey-objects" class="anchor"></a>Manipulating Survey Objects</h2>
-<p>Using the Qualtrics API, you can peform a number of manipulations of survey objects in your Qualtrics account. You can check all available actions at the Qualtrics API reference webpage <a href="https://api.qualtrics.com/reference/get-brand-info">here</a>. We provide below a brief descriptions of a non exhaustive list of actions available in the package for the manipulation of surveys:</p>
-<ul>
-<li>List surveys</li>
-<li>Retrieving a survey</li>
-<li>Updating a survey</li>
-<li>Deleting a survey</li>
-<li>Importing a survey</li>
-<li>Copying a survey within an account and to other accounts</li>
-<li>Sharing a survey with other accounts</li>
-</ul>
-<div id="listing-surveys-in-account" class="section level3">
-<h3 class="hasAnchor">
-<a href="#listing-surveys-in-account" class="anchor"></a>Listing surveys in Account</h3>
-<p>You can easily retrieve the full list of surveys available in your account:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_surveys &lt;-<span class="st"> </span><span class="kw"><a href="reference/list_surveys.html">list_surveys</a></span>()</code></pre></div>
-<p>This allows you to easily search for the survey_id of the survey of interest in order to interact with the object remotely.</p>
-<p>For example, you can copy a survey within your account or to another account:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Copy a survey in your own account</span>
-<span class="kw"><a href="reference/copy_survey.html">copy_survey</a></span>(my_surveys[<span class="dv">1</span>], <span class="st">"New_Copy"</span>)
-<span class="co"># Copy a survey to another user's account</span>
-<span class="kw"><a href="reference/copy_survey.html">copy_survey</a></span>(my_surveys[<span class="dv">1</span>], <span class="st">"New_Copy"</span>,user_id)</code></pre></div>
-<p>You might not want to copy a survey into another person’s account but would rather share the project defining a specific set of permissions. By default, without any specification, your project will be shared with all permissions disabled. You can easily decide which permissions to enable by providing an array of numbers indicating the permissions you want to enable. The available options are listed below:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">"1"</span>=<span class="st">"copySurveyQuestions"</span>
-<span class="st">"2"</span>=<span class="st">"editSurveyFlow"</span>
-<span class="st">"3"</span>=<span class="st">"useBlocks"</span>
-<span class="st">"4"</span>=<span class="st">"useSkipLogic"</span>
-<span class="st">"5"</span>=<span class="st">"useConjoint"</span>
-<span class="st">"6"</span>=<span class="st">"useTriggers"</span>
-<span class="st">"7"</span>=<span class="st">"useQuotas"</span>
-<span class="st">"8"</span>=<span class="st">"setSurveyOptions"</span>
-<span class="st">"9"</span>=<span class="st">"editQuestions"</span>
-<span class="st">"10"</span>=<span class="st">"deleteSurveyQuestions"</span>
-<span class="st">"11"</span>=<span class="st">"editSurveys"</span>
-<span class="st">"12"</span>=<span class="st">"activateSurveys"</span>
-<span class="st">"13"</span>=<span class="st">"deactivateSurveys"</span>
-<span class="st">"14"</span>=<span class="st">"copySurveys"</span>
-<span class="st">"15"</span>=<span class="st">"distributeSurveys"</span>
-<span class="st">"16"</span>=<span class="st">"deleteSurveys"</span>
-<span class="st">"17"</span>=<span class="st">"translateSurveys"</span>
-<span class="st">"18"</span>=<span class="st">"editSurveyResponses"</span>
-<span class="st">"19"</span>=<span class="st">"createResponseSets"</span>
-<span class="st">"20"</span>=<span class="st">"viewResponseId"</span>
-<span class="st">"21"</span>=<span class="st">"useCrossTabs"</span>
-<span class="st">"22"</span>=<span class="st">"downloadSurveyResults"</span>
-<span class="st">"23"</span>=<span class="st">"viewSurveyResults"</span>
-<span class="st">"24"</span>=<span class="st">"filterSurveyResults"</span>
-<span class="st">"25"</span>=<span class="st">"viewPersonalData"</span></code></pre></div>
-<p>For example, to share the survey with only distribution rights enabled, you could use the following call:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="dv">15</span>)</code></pre></div>
-<p>Previous calls are overridden by any new permissions setting so you must make sure to set every permission each time. To add permissions to visualize the data, do:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>,<span class="dv">23</span>))</code></pre></div>
-<p>If you want to remove the permission to visualize data but keep the distribution right:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>))</code></pre></div>
-</div>
-</div>
-<div id="brand-administration" class="section level2">
-<h2 class="hasAnchor">
-<a href="#brand-administration" class="anchor"></a>Brand Administration</h2>
-<p>If you are a brand administrator, you can leverage the Qualtrics API to manage your organization’s Qualtrics’ account. This can be extremely useful for creating, setting and updating user permissions. You can only use the functions described below if you possess brand adminstrator permissions.</p>
-<p>A non-exhaustive list of actions you can automate are:</p>
-<ul>
-<li>Get overall information about your Qualtrics’ organizations account</li>
-<li>Manage groups</li>
-<li>Manage users</li>
-</ul>
-<p>For example, retrieve all users and their account information using the simple function below. If you have a large organization with thousands of accounts, this query can take time.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/list_users.html">list_users</a></span>()</code></pre></div>
-<p>In the context of the recent GDPR regulation, one important set of functions provided by the Qualtrics API are the data privacy functions. You can:</p>
-<ul>
-<li>Create an erasing request (will erase all data matching an email)</li>
-<li>List your erasing requests</li>
-<li>Retrieve a given erasing request</li>
-</ul>
 </div>
 </div>
   </div>

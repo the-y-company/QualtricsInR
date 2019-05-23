@@ -1,0 +1,16 @@
+---
+title: "Data Privacy"
+author: "Pierre Saouter"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Data Privacy}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+In the context of the recent GDPR regulation, one important set of functions provided by the 
+Qualtrics API are the data privacy functions. You can:
+* Create an erasing request (will erase all data matching an email)
+* List your erasing requests
+* Retrieve a given erasing request

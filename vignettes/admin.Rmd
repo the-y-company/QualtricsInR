@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 library(QualtricsInR)
 ```
 
-This document describes API calls reserved to users with administration level rights on their organization account.
+This document describes wrapper functions for API calls reserved to users with administration level rights to their organization account.
 
 ## Retrieve organization account information 
 
-Gets general information about an organization, also called brand. See the documentation to retrieve your organization id.
+Gets general information about an organization (or brand). See the documentation to retrieve your organization id.
 
 ```
 library(QualtricsInR)
@@ -30,15 +30,15 @@ get_organization()
 
 ## Create a new division
 
-You can create a new divisions. Only mandatory paremter is the name of the new division. You can also pass a list of 
-user ids (see get_users()) to possess admin rights for this division. Finally, you can define the divisions permissions,
+You can create a new division at the organization level. The only mandatory paremeter is the name of the new division. You can also pass a list of 
+user ids (see get_users()) with admin rights for this division. Finally, you can define the divisions permissions,
 otherwise default permissions will be set. The call returns the id of the created division.
 
 ```
 div_id <- create_division("New_Division", list("UR_1234567890AbCdE"))
 ```
 
-You can then retrieve or update a given division. The best way to figure the permissions you have accessible for the first call
+You can retrieve or update a given division. The best way to figure out the permissions you have accessible for the first call
 is to retrieve an exisiting division from Qualtrics and study the json reply below.
 
 ```
@@ -54,7 +54,7 @@ df <- list_groups()
 
 ## Manage users
 
-A useful function is to list all users. This request cam take time for large organizations where the query needs to loop through
+A useful function is to list all users. This request can take time for large organizations as the query will loop through
 all paginations available.
 
 ```
