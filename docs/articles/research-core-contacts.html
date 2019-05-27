@@ -139,8 +139,15 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(QualtricsInR)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; No token, setup with set_qualtrics_opts and qualtrics_auth.</span></a></code></pre></div>
+<pre><code>#&gt; No token, setup with set_qualtrics_opts and qualtrics_auth.</code></pre>
+<p>QualtricsInR provide useful functions to manage contacts in Qualtrics. For an organisation dealing with multiple weekly surveys and hundreds of thousands of target respondents, automating contact management is useful and also key to guarantee the highest integrity of the data.</p>
+<p>You can list all mailing lists available in your account and upon retrieving the id of the mailing list of interest, retrieve that list, update it or delete it.</p>
+<pre><code>lst_contatcs &lt;- list_mailinglists()
+get_mailinglist(lst_contacts$ID[1])</code></pre>
+<p>In terms of updating a mailing list, what can be done is update the Library Idm in which the mailing is to be found, the name of the mailing list and its category.</p>
+<pre><code><a href="../reference/update_mailinglist.html">update_mailinglist(lst_contacts$ID[1], "UR_0Ndiodj3iudXLSs", "NewName")</a></code></pre>
+<p>You can create a new mailing list by providing the library id under which to create it and its name.</p>
+<pre><code><a href="../reference/create_mailinglist.html">create_mailinglist("UR_0Ndiodj3iudXLSs", "NewName")</a></code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

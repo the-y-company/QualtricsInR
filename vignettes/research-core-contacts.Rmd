@@ -14,6 +14,27 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, echo=FALSE}
 library(QualtricsInR)
+```
+
+QualtricsInR provide useful functions to manage contacts in Qualtrics. For an organisation dealing with multiple weekly surveys and hundreds of thousands of target respondents, automating contact management is useful and also key to guarantee the highest integrity of the data.
+
+You can list all mailing lists available in your account and upon retrieving the id of the mailing list of interest, retrieve that list, update it or delete it.
+
+```
+lst_contatcs <- list_mailinglists()
+get_mailinglist(lst_contacts$ID[1])
+```
+
+In terms of updating a mailing list, what can be done is update the Library Idm in which the mailing is to be found, the name of the mailing list and its category.
+
+```
+update_mailinglist(lst_contacts$ID[1], "UR_0Ndiodj3iudXLSs", "NewName")
+```
+
+You can create a new mailing list by providing the library id under which to create it and its name.
+
+```
+create_mailinglist("UR_0Ndiodj3iudXLSs", "NewName")
 ```

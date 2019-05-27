@@ -1,6 +1,6 @@
 # QualtricsInR
 
-The QualtricsInR package provides a general wraper for the Qualtrics v3 API references. The package is built accross the main API calls to manipulate survey objects and responses, as well as general admnistration functions and access to library items.
+The QualtricsInR package provides a general wrapper for the Qualtrics v3 API references. The package is built accross the main API calls to manipulate survey objects and responses, as well as general admnistration functions and access to library items.
 
 The package was created in order to address the need of large scale surveys at the World Economic Forum where the use of the API allowed the automate many time consuming processes and ensure robust execution processes.
 
@@ -9,11 +9,11 @@ The package was created in order to address the need of large scale surveys at t
 - [Example](#example)
 - [What's missing](#what-is-missing)
 
-There are other important R packages available to automate different aspects of survey manipulation in Qualtrics. The [qualtRics](https://github.com/ropensci/qualtRics) R package implements the retrieval of survey data using the Qualtrics API and is currently the only package on CRAN that offers such functionality, and is included in the official Qualtrics API documentation.
+There are other important R packages available to automate different aspects of survey manipulation in Qualtrics. The [qualtRics](https://github.com/ropensci/qualtRics) R package implements the retrieval of survey data using the Qualtrics API and is currently the only package on CRAN that offers such functionality.
 
-Other related packages available trhough Github. [Jason Bryer's](https://github.com/jbryer/qualtrics) R package to work with the previous version of the Qualtrics API. [QualtricsTools](https://github.com/emmamorgan-tufts/QualtricsTools/) creates automatic reports in shiny and [qsurvey](https://github.com/jamesdunham/qsurvey), by James Dunham, focuses on testing and review of surveys before fielding, as well as the analysis of responses afterward.
+Other related packages are available through Github. [Jason Bryer's](https://github.com/jbryer/qualtrics) R package to work with the previous version of the Qualtrics API. [QualtricsTools](https://github.com/emmamorgan-tufts/QualtricsTools/) creates automatic reports in shiny and [qsurvey](https://github.com/jamesdunham/qsurvey), by James Dunham, focuses on testing and review of surveys before fielding, as well as the analysis of responses afterward.
 
-**The [QualtricsInR](https://github.com/ppssphysics/QualtricsInR) package is an effort to provide in one package wrappers for all API references provided by Qualtrics.**
+**The QualtricsInR package is an effort to provide in one package wrapper functions for all [API v3 references](https://api.qualtrics.com/reference) provided by Qualtrics.**
 
 ## Installation
 

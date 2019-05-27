@@ -7,6 +7,23 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+There is a vast number of distribution related operations you can automate through the Qualtrics API. In this package, we provide the following functions:
+
+- `create_distribution`
+- `create_reminder_distribution`
+- `create_thankyou_distribution`
+- `list_distributions`
+- `get_distribution`
+- `generate_distributionlink`
+- `list_distributionlinks`
+- `send_email_tomailinglist`
+- `delete_distribution`
+- `create_sms_distribution`
+- `get_sms_distribution`
+- `delete_sms_distribution`
+- `list_sms_distributions`
+
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -16,4 +33,15 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(QualtricsInR)
+```
+
+## Standard use cases
+
+The first important note to mention is that if you are only looking into distributing your survey through a unique public link, you simply need to retrieve the survey id and build the standard URL. For example, if your survey id is *SV_abpmKbFCC9hNLzD*, the publically accessible link for thge survey is https://data_center_id.qualtrics.com/jfe/form/SV_abpmKbFCC9hNLzD where *data_center_id* can be found in your organisation's identification parameters (see [official documentation](https://api.qualtrics.com/v3/docs/api-general-instructions)).
+
+Traditionally, you will send your survey to a predefined list of target respondents for which you create a conact list in Qualtrics. For scheduling such a call through the API
+
+```
+# Create a new distribution for a given survey id
+dist_id <- create_distribution("")
 ```

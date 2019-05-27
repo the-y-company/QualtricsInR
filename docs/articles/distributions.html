@@ -139,11 +139,42 @@
 
     
     
+<p>There is a vast number of distribution related operations you can automate through the Qualtrics API. In this package, we provide the following functions:</p>
+<ul>
+<li><code>create_distribution</code></li>
+<li><code>create_reminder_distribution</code></li>
+<li><code>create_thankyou_distribution</code></li>
+<li><code>list_distributions</code></li>
+<li><code>get_distribution</code></li>
+<li><code>generate_distributionlink</code></li>
+<li><code>list_distributionlinks</code></li>
+<li><code>send_email_tomailinglist</code></li>
+<li><code>delete_distribution</code></li>
+<li><code>create_sms_distribution</code></li>
+<li><code>get_sms_distribution</code></li>
+<li><code>delete_sms_distribution</code></li>
+<li><code>list_sms_distributions</code></li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(QualtricsInR)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; No token, setup with set_qualtrics_opts and qualtrics_auth.</span></a></code></pre></div>
+<div id="standard-use-cases" class="section level2">
+<h2 class="hasAnchor">
+<a href="#standard-use-cases" class="anchor"></a>Standard use cases</h2>
+<p>The first important note to mention is that if you are only looking into distributing your survey through a unique public link, you simply need to retrieve the survey id and build the standard URL. For example, if your survey id is <em>SV_abpmKbFCC9hNLzD</em>, the publically accessible link for thge survey is <a href="https://data_center_id.qualtrics.com/jfe/form/SV_abpmKbFCC9hNLzD" class="uri">https://data_center_id.qualtrics.com/jfe/form/SV_abpmKbFCC9hNLzD</a> where <em>data_center_id</em> can be found in your organisation’s identification parameters (see <a href="https://api.qualtrics.com/v3/docs/api-general-instructions">official documentation</a>).</p>
+<p>Traditionally, you will send your survey to a predefined list of target respondents for which you create a conact list in Qualtrics. For scheduling such a call through the API</p>
+<pre><code># Create a new distribution for a given survey id
+dist_id &lt;- create_distribution("")</code></pre>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#standard-use-cases">Standard use cases</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
