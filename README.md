@@ -1,14 +1,19 @@
 # QualtricsInR
 
-The QualtricsInR package provides a general wraper for the Qualtrics v3 API references. The package is built accross the main API calls to manipulate survey objects and responses.
+The QualtricsInR package provides a general wraper for the Qualtrics v3 API references. The package is built accross the main API calls to manipulate survey objects and responses, as well as general admnistration functions and access to library items.
 
 The package was created in order to address the need of large scale surveys at the World Economic Forum where the use of the API allowed the automate many time consuming processes and ensure robust execution processes.
 
 - [Installation](#installation)
 - [Authenticatication](#authentication)
-- [Retrieving Survey Responses](#retrieving-survey-responses)
-- [Manipulating Survey Objects](#manipulating-survey-objects)
-- [Brand Administration](#brand-sdministration)
+- [Example](#example)
+- [What's missing](#what-is-missing)
+
+There are other important R packages available to automate different aspects of survey manipulation in Qualtrics. The [qualtRics](https://github.com/ropensci/qualtRics) R package implements the retrieval of survey data using the Qualtrics API and is currently the only package on CRAN that offers such functionality, and is included in the official Qualtrics API documentation.
+
+Other related packages available trhough Github. [Jason Bryer's](https://github.com/jbryer/qualtrics) R package to work with the previous version of the Qualtrics API. [QualtricsTools](https://github.com/emmamorgan-tufts/QualtricsTools/) creates automatic reports in shiny and [qsurvey](https://github.com/jamesdunham/qsurvey), by James Dunham, focuses on testing and review of surveys before fielding, as well as the analysis of responses afterward.
+
+**The [QualtricsInR](https://github.com/ppssphysics/QualtricsInR) package is an effort to provide in one package wrappers for all API references provided by Qualtrics.**
 
 ## Installation
 
@@ -20,9 +25,11 @@ The package will eventually become public.
 devtools::install_github('ppssphysics/QualtricsInR', auth_token='key')
 ```
 
+We expect to submit the package to CRAN.
+
 ## Authentication
 
-Two ways are provided to set-up your Qualtrics credentials:
+We provide two authentication methods to set-up your Qualtrics credentials:
 
 1. Using a plain Token
 2. Using the OAuth 2.0
@@ -39,7 +46,7 @@ need your data center id. You can then set your authentication credentials with 
 set_qualtrics_opts(api_token = "xXxxX0X0x", data_center_id = "my.center")
 ```
 
-If you use this methods, you will have set your credentials for every new session.
+If you use this method, you will have set your credentials for every new session.
 
 ### Setting-up an OAuth Client Manager
 
@@ -55,44 +62,7 @@ qualtrics_auth(id = "xXxxX0X0x", secret = "xXxxX0X0x", data_center = "my.center"
 
 This will authenticate you, returning a bearer token valid for an hour, saving the _encrypted_ credentials in a `.qualtrics-oauth` file, which will be automatically loaded in all subsequent sessions and automatically refreshed if need be. You should therefore only find the need to run `qualtrics_auth` once.
 
-## Retrieving Survey Responses
-
-The package offers the possiblity to retrieve survey responses. However, the API does not allow
-to fetch the data directly but requieres to send a export creation request to download the data (more information
-can be found [here](https://api.qualtrics.com/docs/getting-survey-responses-new)). QualtricsInR automates
-running through the various steps.
-
-``` r
-# export survey as json file
-get_survey_responses(surveyId)
-# export survey as csv file (can also be tsv) and save in local directory ./Data/
-get_survey_responses(surveyId, format="csv", saveDir="./Data")
-```
-
-Internally, when using `get_survey_responses`, QualtricsInR has 1) request the data from Qualtrics, 2) wait while the data is being prepared, 3) download the data. It may therefore be more efficient, if downloading responses from multiple surveys to 1) request the downloads 2) then download the prepared files.
+### Example
 
 
-```r
-# get multiple survey at once.
-ids <- c(1,2,3)
-
-# request downloads
-requests <- request_downloads(ids)
-
-# Which request was successful?
-is_it <- is_success(requests, TRUE)
-
-# download data
-data <- download_requested(requests)
-```
-
-By default, the above queries return the full export of responses. There is however a limit of 1.8GB for
-exports after which you will need to split your exports using the availble options.
-
-``` r
-# ask an export for all responses after April 1st, 2016 and before April 25 2016
-get_survey_responses(surveyId, startDate="2016-04-01T07:31:43Z", endDate="2016-04-25T07:31:43Z")
-```
-
-where the dates specifications followm the ISO 8601 standard YYYY-MM-DD (more information [here](https://api.qualtrics.com/docs/dates-and-times)). There are many more options you can set to retrieve your data. All options xan be found in the corresponding [API reference page](https://api.qualtrics.com/reference/create-response-export-new).
-
+### What is missing

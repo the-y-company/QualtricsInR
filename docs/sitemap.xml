@@ -19,7 +19,7 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_division.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_erasing_request.html</loc>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_erasure_request.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_group.html</loc>
@@ -97,7 +97,7 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_division.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_erasing_request.html</loc>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_erasure_request.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_group.html</loc>
@@ -160,7 +160,7 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_distributions.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_erasing_requests.html</loc>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_erasure_requests.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_groups.html</loc>
@@ -245,6 +245,24 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//articles/admin.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/distributions.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/graphic-library.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/message-library.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/research-core-contacts.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-response-exports.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-response-imports.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//articles/surveys.html</loc>

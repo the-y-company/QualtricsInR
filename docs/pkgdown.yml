@@ -1,9 +1,15 @@
-pandoc: 1.19.2.1
+pandoc: 2.3.1
 pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
   admin-data-privacy: admin-data-privacy.html
   admin: admin.html
+  distributions: distributions.html
+  graphic-library: graphic-library.html
+  message-library: message-library.html
+  research-core-contacts: research-core-contacts.html
+  survey-response-exports: survey-response-exports.html
+  survey-response-imports: survey-response-imports.html
   surveys: surveys.html
 urls:
   reference: https://elegant-thompson-2276b4.netlify.com//reference

@@ -17,7 +17,9 @@ knitr::opts_chunk$set(
 library(QualtricsInR)
 ```
 
-This document describes wrapper functions for API calls reserved to users with administration level rights to their organization account.
+This document describes wrapper functions for API calls allowing to retrieve and manipulate organisation account level information such as groups, divisions and users.
+
+**To use this call you must be a Qualtrics brand administrator.**
 
 ## Retrieve organization account information 
 

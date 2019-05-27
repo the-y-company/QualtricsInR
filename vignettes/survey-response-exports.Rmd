@@ -1,0 +1,63 @@
+---
+title: "Response Exports"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Response Exports}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(QualtricsInR)
+```
+
+As already mentioned, other public packages provide the possibility to export survey responses. We provide such functionality in QualtricsInR for consistency. The export methods provided by the package (QualtRics)[https://github.com/ropensci/qualtRics] are howerver robuts and proof tested by hundreds of users.
+
+One additional functionality we provide in QualtricsInR that can useful for large scale projects is a method to download multiple surveys.
+
+## Retrieving Survey Responses
+
+You can export the responses from your survey using the `get_survey_responses` function. A number of optional parameters can be provided to customize your query and its response. Be aware that any dowbload that exceeds 1.8 GB will need to be split in several exports using several time range intervals for the answers.
+
+```
+# export survey as json file
+get_survey_responses(surveyId)
+# export survey as csv file (can also be tsv) and save in local directory ./Data/
+get_survey_responses(surveyId, format="csv", saveDir="./Data")
+```
+
+## Retrieving multiple surveys
+
+Internally, when using `get_survey_responses`, QualtricsInR has 1) request the data from Qualtrics, 2) wait while the data is being prepared, 3) download the data (more information can be found [here](https://api.qualtrics.com/docs/getting-survey-responses-new)). It may therefore be more efficient, if downloading responses from multiple surveys to 1) request the downloads 2) then download the prepared files.
+
+```
+# get multiple survey at once.
+ids <- c(1,2,3)
+
+# request downloads
+requests <- request_downloads(ids)
+
+# Which request was successful?
+is_it <- is_success(requests, TRUE)
+
+# download data
+data <- download_requested(requests)
+```
+
+By default, the above queries return the full export of responses. There is however a limit of 1.8GB for
+exports after which you will need to split your exports using the availble options.
+
+``` r
+# ask an export for all responses after April 1st, 2016 and before April 25 2016
+get_survey_responses(surveyId, startDate="2016-04-01T07:31:43Z", endDate="2016-04-25T07:31:43Z")
+```
+
+where the dates specifications followm the ISO 8601 standard YYYY-MM-DD (more information [here](https://api.qualtrics.com/docs/dates-and-times)). There are many more options you can set to retrieve your data. All options xan be found in the corresponding [API reference page](https://api.qualtrics.com/reference/create-response-export-new).
+

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Surveys • QualtricsInR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="container template-article">
-      <header><div class="navbar navbar-standard navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -39,16 +39,70 @@
       <ul class="nav navbar-nav">
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Guide
+    Surveys
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/admin.html">Admin Level Functions</a>
+      <a href="../articles/surveys.html">Manipulate Surveys</a>
     </li>
     <li>
-      <a href="../articles/surveys.html">Manipulate Surveys</a>
+      <a href="../articles/survey-response-exports.html">Exporting Responses</a>
+    </li>
+    <li>
+      <a href="../articles/survey-response-imports.html">Importing Responses</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Distribution
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/distributions.html">Survey Distributions</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Contacts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Libraries
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/graphic-library.html">Graphics</a>
+    </li>
+    <li>
+      <a href="../articles/message-library.html">Messages</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Administrator
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/admin.html">Account Administration</a>
     </li>
     <li>
       <a href="../articles/admin-data-privacy.html">Data Privacy</a>
@@ -78,7 +132,7 @@
       <h1>Surveys</h1>
                         <h4 class="author">Pierre Saouter</h4>
             
-            <h4 class="date">2019-05-23</h4>
+            <h4 class="date">2019-05-27</h4>
       
       
       <div class="hidden name"><code>surveys.Rmd</code></div>
@@ -104,45 +158,45 @@
 <h3 class="hasAnchor">
 <a href="#listing-surveys-in-account" class="anchor"></a>Listing surveys in Account</h3>
 <p>You can easily retrieve the full list of surveys available in your account:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_surveys &lt;-<span class="st"> </span><span class="kw"><a href="../reference/list_surveys.html">list_surveys</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">my_surveys &lt;-<span class="st"> </span><span class="kw"><a href="../reference/list_surveys.html">list_surveys</a></span>()</a></code></pre></div>
 <p>This allows you to easily search for the survey_id of the survey of interest in order to interact with the object remotely. For example, you can copy a survey within your account or to another account:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Copy a survey in your own account</span>
-<span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(my_surveys[<span class="dv">1</span>], <span class="st">"New_Copy"</span>)
-<span class="co"># Copy a survey to another user's account</span>
-<span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(my_surveys[<span class="dv">1</span>], <span class="st">"New_Copy"</span>,user_id)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Copy a survey in your own account</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(my_surveys[<span class="dv">1</span>], <span class="st">"New_Copy"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># Copy a survey to another user's account</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(my_surveys[<span class="dv">1</span>], <span class="st">"New_Copy"</span>,user_id)</a></code></pre></div>
 <p>You might not want to copy a survey into another person’s account but would rather share the project defining a specific set of permissions. By default, without any specification, your project will be shared with all permissions disabled. You can decide which permissions to enable by providing an array of numbers indicating the permissions you want to enable. The available options are listed below:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">"1"</span>=<span class="st">"copySurveyQuestions"</span>
-<span class="st">"2"</span>=<span class="st">"editSurveyFlow"</span>
-<span class="st">"3"</span>=<span class="st">"useBlocks"</span>
-<span class="st">"4"</span>=<span class="st">"useSkipLogic"</span>
-<span class="st">"5"</span>=<span class="st">"useConjoint"</span>
-<span class="st">"6"</span>=<span class="st">"useTriggers"</span>
-<span class="st">"7"</span>=<span class="st">"useQuotas"</span>
-<span class="st">"8"</span>=<span class="st">"setSurveyOptions"</span>
-<span class="st">"9"</span>=<span class="st">"editQuestions"</span>
-<span class="st">"10"</span>=<span class="st">"deleteSurveyQuestions"</span>
-<span class="st">"11"</span>=<span class="st">"editSurveys"</span>
-<span class="st">"12"</span>=<span class="st">"activateSurveys"</span>
-<span class="st">"13"</span>=<span class="st">"deactivateSurveys"</span>
-<span class="st">"14"</span>=<span class="st">"copySurveys"</span>
-<span class="st">"15"</span>=<span class="st">"distributeSurveys"</span>
-<span class="st">"16"</span>=<span class="st">"deleteSurveys"</span>
-<span class="st">"17"</span>=<span class="st">"translateSurveys"</span>
-<span class="st">"18"</span>=<span class="st">"editSurveyResponses"</span>
-<span class="st">"19"</span>=<span class="st">"createResponseSets"</span>
-<span class="st">"20"</span>=<span class="st">"viewResponseId"</span>
-<span class="st">"21"</span>=<span class="st">"useCrossTabs"</span>
-<span class="st">"22"</span>=<span class="st">"downloadSurveyResults"</span>
-<span class="st">"23"</span>=<span class="st">"viewSurveyResults"</span>
-<span class="st">"24"</span>=<span class="st">"filterSurveyResults"</span>
-<span class="st">"25"</span>=<span class="st">"viewPersonalData"</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="st">"1"</span>=<span class="st">"copySurveyQuestions"</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">"2"</span>=<span class="st">"editSurveyFlow"</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">"3"</span>=<span class="st">"useBlocks"</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">"4"</span>=<span class="st">"useSkipLogic"</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">"5"</span>=<span class="st">"useConjoint"</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">"6"</span>=<span class="st">"useTriggers"</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">"7"</span>=<span class="st">"useQuotas"</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">"8"</span>=<span class="st">"setSurveyOptions"</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">"9"</span>=<span class="st">"editQuestions"</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">"10"</span>=<span class="st">"deleteSurveyQuestions"</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">"11"</span>=<span class="st">"editSurveys"</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">"12"</span>=<span class="st">"activateSurveys"</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="st">"13"</span>=<span class="st">"deactivateSurveys"</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">"14"</span>=<span class="st">"copySurveys"</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">"15"</span>=<span class="st">"distributeSurveys"</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">"16"</span>=<span class="st">"deleteSurveys"</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="st">"17"</span>=<span class="st">"translateSurveys"</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="st">"18"</span>=<span class="st">"editSurveyResponses"</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="st">"19"</span>=<span class="st">"createResponseSets"</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="st">"20"</span>=<span class="st">"viewResponseId"</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="st">"21"</span>=<span class="st">"useCrossTabs"</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="st">"22"</span>=<span class="st">"downloadSurveyResults"</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="st">"23"</span>=<span class="st">"viewSurveyResults"</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="st">"24"</span>=<span class="st">"filterSurveyResults"</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">"25"</span>=<span class="st">"viewPersonalData"</span></a></code></pre></div>
 <p>As an example, to share the survey with only distribution rights enabled, you run the following call:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="dv">15</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="dv">15</span>)</a></code></pre></div>
 <p>Previous calls are overridden by any new permissions setting so you must set every permission each time. To add permissions to visualize the data, do:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># enable permissions for distribution and data visualisation</span>
-<span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>,<span class="dv">23</span>))
-<span class="co"># remove permission to visualize the data</span>
-<span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>))</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># enable permissions for distribution and data visualisation</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>,<span class="dv">23</span>))</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># remove permission to visualize the data</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>))</a></code></pre></div>
 </div>
 </div>
   </div>

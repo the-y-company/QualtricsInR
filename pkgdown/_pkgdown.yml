@@ -2,18 +2,37 @@ url: https://elegant-thompson-2276b4.netlify.com/
 
 template:
   params:
-    bootswatch: flatly
+    bootswatch: lumen
 
 navbar:
   title: "QualtricsInR"
-  type: standard
   left:
-    - text: "Guide"
+    - text: "Surveys"
       menu:
-        - text: "Admin Level Functions"
-          href: articles/admin.html
         - text: "Manipulate Surveys"
           href: articles/surveys.html
+        - text: "Exporting Responses"
+          href: articles/survey-response-exports.html
+        - text: "Importing Responses"
+          href: articles/survey-response-imports.html
+    - text: "Distribution"
+      menu:
+        - text: "Survey Distributions"
+          href: articles/distributions.html
+    - text: "Contacts"
+      menu:
+        - text: "Mailing Lists"
+          href: articles/research-core-contacts.html
+    - text: "Libraries"
+      menu:
+        - text: "Graphics"
+          href: articles/graphic-library.html
+        - text: "Messages"
+          href: articles/message-library.html
+    - text: "Administrator"
+      menu:
+        - text: "Account Administration"
+          href: articles/admin.html
         - text: "Data Privacy"
           href: articles/admin-data-privacy.html
   right:

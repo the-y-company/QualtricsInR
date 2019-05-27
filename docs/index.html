@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wrapper for Qualtrics v3 API references • QualtricsInR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="container template-home">
-      <header><div class="navbar navbar-standard navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -39,16 +39,70 @@
       <ul class="nav navbar-nav">
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Guide
+    Surveys
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/admin.html">Admin Level Functions</a>
+      <a href="articles/surveys.html">Manipulate Surveys</a>
     </li>
     <li>
-      <a href="articles/surveys.html">Manipulate Surveys</a>
+      <a href="articles/survey-response-exports.html">Exporting Responses</a>
+    </li>
+    <li>
+      <a href="articles/survey-response-imports.html">Importing Responses</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Distribution
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/distributions.html">Survey Distributions</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Contacts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/research-core-contacts.html">Mailing Lists</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Libraries
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/graphic-library.html">Graphics</a>
+    </li>
+    <li>
+      <a href="articles/message-library.html">Messages</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Administrator
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/admin.html">Account Administration</a>
     </li>
     <li>
       <a href="articles/admin-data-privacy.html">Data Privacy</a>
@@ -77,26 +131,29 @@
 <div id="qualtricsinr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#qualtricsinr" class="anchor"></a>QualtricsInR</h1></div>
-<p>The QualtricsInR package provides a general wraper for the Qualtrics v3 API references. The package is built accross the main API calls to manipulate survey objects and responses.</p>
+<p>The QualtricsInR package provides a general wraper for the Qualtrics v3 API references. The package is built accross the main API calls to manipulate survey objects and responses, as well as general admnistration functions and access to library items.</p>
 <p>The package was created in order to address the need of large scale surveys at the World Economic Forum where the use of the API allowed the automate many time consuming processes and ensure robust execution processes.</p>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#authentication">Authenticatication</a></li>
-<li><a href="#retrieving-survey-responses">Retrieving Survey Responses</a></li>
-<li><a href="#manipulating-survey-objects">Manipulating Survey Objects</a></li>
-<li><a href="#brand-sdministration">Brand Administration</a></li>
+<li><a href="#example">Example</a></li>
+<li><a href="#what-is-missing">What’s missing</a></li>
 </ul>
+<p>There are other important R packages available to automate different aspects of survey manipulation in Qualtrics. The <a href="https://github.com/ropensci/qualtRics">qualtRics</a> R package implements the retrieval of survey data using the Qualtrics API and is currently the only package on CRAN that offers such functionality, and is included in the official Qualtrics API documentation.</p>
+<p>Other related packages available trhough Github. <a href="https://github.com/jbryer/qualtrics">Jason Bryer’s</a> R package to work with the previous version of the Qualtrics API. <a href="https://github.com/emmamorgan-tufts/QualtricsTools/">QualtricsTools</a> creates automatic reports in shiny and <a href="https://github.com/jamesdunham/qsurvey">qsurvey</a>, by James Dunham, focuses on testing and review of surveys before fielding, as well as the analysis of responses afterward.</p>
+<p><strong>The <a href="https://github.com/ppssphysics/QualtricsInR">QualtricsInR</a> package is an effort to provide in one package wrappers for all API references provided by Qualtrics.</strong></p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install QualtricsInR from github using the devtools package. However, since the package is hosted on a private GitHub repository, you will need to use an authentication key (ask <a href="mailto:pierre.saouter@weforum.org">pierre.saouter@weforum.org</a> for a key).</p>
+<p>You can install QualtricsInR from github using the devtools package. However, since the package is hosted on a private GitHub repository, you will need to use an authentication key (ask <a href="mailto:pierre.saouter@weforum.org" class="email">pierre.saouter@weforum.org</a> for a key).</p>
 <p>The package will eventually become public.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">'ppssphysics/QualtricsInR'</span>, <span class="dt">auth_token=</span><span class="st">'key'</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">'ppssphysics/QualtricsInR'</span>, <span class="dt">auth_token=</span><span class="st">'key'</span>)</a></code></pre></div>
+<p>We expect to submit the package to CRAN.</p>
 </div>
 <div id="authentication" class="section level2">
 <h2 class="hasAnchor">
 <a href="#authentication" class="anchor"></a>Authentication</h2>
-<p>Two ways are provided to set-up your Qualtrics credentials:</p>
+<p>We provide two authentication methods to set-up your Qualtrics credentials:</p>
 <ol>
 <li>Using a plain Token</li>
 <li>Using the OAuth 2.0</li>
@@ -106,8 +163,8 @@
 <h3 class="hasAnchor">
 <a href="#setting-a-plain-text-api-token" class="anchor"></a>Setting a plain text API Token</h3>
 <p>You can set options for user authentication in your Qualtrics account by generating a new API token. You will also need your data center id. You can then set your authentication credentials with <code>set_qualtrics_opts</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="dt">api_token =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">data_center_id =</span> <span class="st">"my.center"</span>)</code></pre></div>
-<p>If you use this methods, you will have set your credentials for every new session.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="dt">api_token =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">data_center_id =</span> <span class="st">"my.center"</span>)</a></code></pre></div>
+<p>If you use this method, you will have set your credentials for every new session.</p>
 </div>
 <div id="setting-up-an-oauth-client-manager" class="section level3">
 <h3 class="hasAnchor">
@@ -118,34 +175,17 @@
 <li>Create an OAuth application</li>
 <li>Use the client id, client secret, and data center id in <code>qualtrics_auth</code>, as below.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/oauth.html">qualtrics_auth</a></span>(<span class="dt">id =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">secret =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">data_center =</span> <span class="st">"my.center"</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/oauth.html">qualtrics_auth</a></span>(<span class="dt">id =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">secret =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">data_center =</span> <span class="st">"my.center"</span>)</a></code></pre></div>
 <p>This will authenticate you, returning a bearer token valid for an hour, saving the <em>encrypted</em> credentials in a <code>.qualtrics-oauth</code> file, which will be automatically loaded in all subsequent sessions and automatically refreshed if need be. You should therefore only find the need to run <code>qualtrics_auth</code> once.</p>
 </div>
+<div id="example" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example" class="anchor"></a>Example</h3>
 </div>
-<div id="retrieving-survey-responses" class="section level2">
-<h2 class="hasAnchor">
-<a href="#retrieving-survey-responses" class="anchor"></a>Retrieving Survey Responses</h2>
-<p>The package offers the possiblity to retrieve survey responses. However, the API does not allow to fetch the data directly but requieres to send a export creation request to download the data (more information can be found <a href="https://api.qualtrics.com/docs/getting-survey-responses-new">here</a>). QualtricsInR automates running through the various steps.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># export survey as json file</span>
-<span class="kw"><a href="reference/get_survey_responses.html">get_survey_responses</a></span>(surveyId)
-<span class="co"># export survey as csv file (can also be tsv) and save in local directory ./Data/</span>
-<span class="kw"><a href="reference/get_survey_responses.html">get_survey_responses</a></span>(surveyId, <span class="dt">format=</span><span class="st">"csv"</span>, <span class="dt">saveDir=</span><span class="st">"./Data"</span>)</code></pre></div>
-<p>Internally, when using <code>get_survey_responses</code>, QualtricsInR has 1) request the data from Qualtrics, 2) wait while the data is being prepared, 3) download the data. It may therefore be more efficient, if downloading responses from multiple surveys to 1) request the downloads 2) then download the prepared files.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get multiple survey at once.</span>
-ids &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
-
-<span class="co"># request downloads</span>
-requests &lt;-<span class="st"> </span><span class="kw"><a href="reference/bulk-download.html">request_downloads</a></span>(ids)
-
-<span class="co"># Which request was successful?</span>
-is_it &lt;-<span class="st"> </span><span class="kw"><a href="reference/is_success.html">is_success</a></span>(requests, <span class="ot">TRUE</span>)
-
-<span class="co"># download data</span>
-data &lt;-<span class="st"> </span><span class="kw"><a href="reference/bulk-download.html">download_requested</a></span>(requests)</code></pre></div>
-<p>By default, the above queries return the full export of responses. There is however a limit of 1.8GB for exports after which you will need to split your exports using the availble options.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ask an export for all responses after April 1st, 2016 and before April 25 2016</span>
-<span class="kw"><a href="reference/get_survey_responses.html">get_survey_responses</a></span>(surveyId, <span class="dt">startDate=</span><span class="st">"2016-04-01T07:31:43Z"</span>, <span class="dt">endDate=</span><span class="st">"2016-04-25T07:31:43Z"</span>)</code></pre></div>
-<p>where the dates specifications followm the ISO 8601 standard YYYY-MM-DD (more information <a href="https://api.qualtrics.com/docs/dates-and-times">here</a>). There are many more options you can set to retrieve your data. All options xan be found in the corresponding <a href="https://api.qualtrics.com/reference/create-response-export-new">API reference page</a>.</p>
+<div id="what-is-missing" class="section level3">
+<h3 class="hasAnchor">
+<a href="#what-is-missing" class="anchor"></a>What is missing</h3>
+</div>
 </div>
 </div>
   </div>

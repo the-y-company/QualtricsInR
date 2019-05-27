@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Privacy • QualtricsInR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="container template-article">
-      <header><div class="navbar navbar-standard navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -39,16 +39,70 @@
       <ul class="nav navbar-nav">
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Guide
+    Surveys
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/admin.html">Admin Level Functions</a>
+      <a href="../articles/surveys.html">Manipulate Surveys</a>
     </li>
     <li>
-      <a href="../articles/surveys.html">Manipulate Surveys</a>
+      <a href="../articles/survey-response-exports.html">Exporting Responses</a>
+    </li>
+    <li>
+      <a href="../articles/survey-response-imports.html">Importing Responses</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Distribution
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/distributions.html">Survey Distributions</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Contacts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Libraries
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/graphic-library.html">Graphics</a>
+    </li>
+    <li>
+      <a href="../articles/message-library.html">Messages</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Administrator
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/admin.html">Account Administration</a>
     </li>
     <li>
       <a href="../articles/admin-data-privacy.html">Data Privacy</a>
@@ -78,7 +132,7 @@
       <h1>Data Privacy</h1>
                         <h4 class="author">Pierre Saouter</h4>
             
-            <h4 class="date">2019-05-23</h4>
+            <h4 class="date">2019-05-27</h4>
       
       
       <div class="hidden name"><code>admin-data-privacy.Rmd</code></div>
@@ -87,10 +141,47 @@
 
     
     
-<p>In the context of the recent GDPR regulation, one important set of functions provided by the Qualtrics API are the data privacy functions. You can: * Create an erasing request (will erase all data matching an email) * List your erasing requests * Retrieve a given erasing request</p>
+<p>In the context of the recent GDPR regulation, one important set of functions provided by the Qualtrics API are the data privacy functions. You can:</p>
+<ol style="list-style-type: decimal">
+<li>Create an erasure request</li>
+<li>List your erasure requests</li>
+<li>Retrieve a given erasure request</li>
+</ol>
+<p><strong>To use this call you must be a Qualtrics brand administrator.</strong></p>
+<div id="create-an-erasure-request" class="section level2">
+<h2 class="hasAnchor">
+<a href="#create-an-erasure-request" class="anchor"></a>Create an erasure request</h2>
+<p>You must provide a list of customer emails to be deleted. We overwrite the default Qualtrics parameter <code>searh_only=FALSE</code> with a TRUE value. This allows to execute the request as a dry run and not delete an entities. Use FALSE to delete the entities from your QWualtrics account.</p>
+<p>When processed, the request will search for any entities within Qualtrics that match any of the supplied emails; these entities include</p>
+<ul>
+<li>Users</li>
+<li>MailingList &amp; XM Directory contacts</li>
+<li>People For any entity discovered the service will erase any responses to surveys they have submitted, along with any tickets that may have originated from their responses before erasing the entity itself.</li>
+</ul>
+<pre><code><a href="../reference/create_erasure_request.html"># Create a dry run erasure request
+create_erasure_request(c("john.doe@alabama.com", "maria.doe@alabama.coM"))
+# Create a erasure request
+create_erasure_request("john.doe@alabama.com", FALSE)</a></code></pre>
+</div>
+<div id="list-and-retrieve-erasure-requests" class="section level2">
+<h2 class="hasAnchor">
+<a href="#list-and-retrieve-erasure-requests" class="anchor"></a>List and retrieve erasure requests</h2>
+<p>You can list all erasure requests performed by the brand.</p>
+<pre><code>list_erasing_requests()</code></pre>
+<p>This allows you to use the id of a given erasure request to retrieve that request</p>
+<pre><code>get_erasing_request("OP-1234-5678-9333")</code></pre>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#create-an-erasure-request">Create an erasure request</a></li>
+      <li><a href="#list-and-retrieve-erasure-requests">List and retrieve erasure requests</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
