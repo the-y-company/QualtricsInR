@@ -141,6 +141,9 @@
     
 <pre><code>#&gt; No token, setup with set_qualtrics_opts and qualtrics_auth.</code></pre>
 <p>QualtricsInR provide useful functions to manage contacts in Qualtrics. For an organisation dealing with multiple weekly surveys and hundreds of thousands of target respondents, automating contact management is useful and also key to guarantee the highest integrity of the data.</p>
+<div id="mailing-lists" class="section level2">
+<h2 class="hasAnchor">
+<a href="#mailing-lists" class="anchor"></a>Mailing Lists</h2>
 <p>You can list all mailing lists available in your account and upon retrieving the id of the mailing list of interest, retrieve that list, update it or delete it.</p>
 <pre><code>lst_contatcs &lt;- list_mailinglists()
 get_mailinglist(lst_contacts$ID[1])</code></pre>
@@ -148,9 +151,22 @@ get_mailinglist(lst_contacts$ID[1])</code></pre>
 <pre><code><a href="../reference/update_mailinglist.html">update_mailinglist(lst_contacts$ID[1], "UR_0Ndiodj3iudXLSs", "NewName")</a></code></pre>
 <p>You can create a new mailing list by providing the library id under which to create it and its name.</p>
 <pre><code><a href="../reference/create_mailinglist.html">create_mailinglist("UR_0Ndiodj3iudXLSs", "NewName")</a></code></pre>
+</div>
+<div id="contacts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#contacts" class="anchor"></a>Contacts</h2>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#mailing-lists">Mailing Lists</a></li>
+      <li><a href="#contacts">Contacts</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
