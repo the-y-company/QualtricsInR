@@ -96,16 +96,22 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Administrator
+    Brand Administration
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/admin.html">Account Administration</a>
+      <a href="../articles/divisions.html">Divisions</a>
     </li>
     <li>
-      <a href="../articles/admin-data-privacy.html">Data Privacy</a>
+      <a href="../articles/groups.html">Groups</a>
+    </li>
+    <li>
+      <a href="../articles/users.html">Users</a>
+    </li>
+    <li>
+      <a href="../articles/data-privacy.html">Data Privacy</a>
     </li>
   </ul>
 </li>
@@ -132,7 +138,7 @@
       <h1>Admin Calls</h1>
                         <h4 class="author">Pierre Saouter</h4>
             
-            <h4 class="date">2019-05-29</h4>
+            <h4 class="date">2019-07-21</h4>
       
       
       <div class="hidden name"><code>admin.Rmd</code></div>
@@ -150,26 +156,6 @@
 <pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(QualtricsInR)
 get_organization()</a></code></pre>
 </div>
-<div id="create-a-new-division" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-a-new-division" class="anchor"></a>Create a new division</h2>
-<p>You can create a new division at the organization level. The only mandatory paremeter is the name of the new division. You can also pass a list of user ids (see get_users()) with admin rights for this division. Finally, you can define the divisions permissions, otherwise default permissions will be set. The call returns the id of the created division.</p>
-<pre><code>div_id &lt;- create_division("New_Division", list("UR_1234567890AbCdE"))</code></pre>
-<p>You can retrieve or update a given division. The best way to figure out the permissions you have accessible for the first call is to retrieve an exisiting division from Qualtrics and study the json reply below.</p>
-<pre><code>json_rep &lt;- get_division("DV_1234567890AbCdE")
-update_division("DV_1234567890AbCdE", name = "New_Name")</code></pre>
-</div>
-<div id="manage-user-groups" class="section level2">
-<h2 class="hasAnchor">
-<a href="#manage-user-groups" class="anchor"></a>Manage user groups</h2>
-<pre><code>df &lt;- list_groups()</code></pre>
-</div>
-<div id="manage-users" class="section level2">
-<h2 class="hasAnchor">
-<a href="#manage-users" class="anchor"></a>Manage users</h2>
-<p>A useful function is to list all users. This request can take time for large organizations as the query will loop through all paginations available.</p>
-<pre><code>df &lt;- list_users()</code></pre>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -178,9 +164,6 @@ update_division("DV_1234567890AbCdE", name = "New_Name")</code></pre>
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#retrieve-organization-account-information">Retrieve organization account information</a></li>
-      <li><a href="#create-a-new-division">Create a new division</a></li>
-      <li><a href="#manage-user-groups">Manage user groups</a></li>
-      <li><a href="#manage-users">Manage users</a></li>
       </ul>
 </div>
       </div>

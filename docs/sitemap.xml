@@ -250,10 +250,19 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//articles/admin.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/data-privacy.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//articles/distributions.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/divisions.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//articles/graphic-library.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/groups.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//articles/message-library.html</loc>
@@ -269,5 +278,8 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//articles/surveys.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/users.html</loc>
   </url>
 </urlset>

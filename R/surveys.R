@@ -21,7 +21,7 @@ list_surveys <- function() {
     }
 
   offset <- 0
-  getcnt <- .qualtrics_get("surveys", "offset"=offset)
+  getcnt <- .qualtrics_get("surveys", "offset" = offset)
 
   if (length(getcnt$result$elements)>0) {
     df <- .build_surveys_list(getcnt$result$elements)

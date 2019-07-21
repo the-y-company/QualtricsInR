@@ -1,0 +1,37 @@
+---
+title: "divisions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{divisions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(QualtricsInR)
+```
+
+## Create a new division
+
+You can create a new division at the organization level. The only mandatory paremeter is the name of the new division. You can also pass a list of 
+user ids (see get_users()) with admin rights for this division. Finally, you can define the divisions permissions,
+otherwise default permissions will be set. The call returns the id of the created division.
+
+```
+div_id <- create_division("New_Division", list("UR_1234567890AbCdE"))
+```
+
+You can retrieve or update a given division. The best way to figure out the permissions you have accessible for the first call
+is to retrieve an exisiting division from Qualtrics and study the json reply below.
+
+```
+json_rep <- get_division("DV_1234567890AbCdE")
+update_division("DV_1234567890AbCdE", name = "New_Name")
+```

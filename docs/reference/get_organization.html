@@ -130,16 +130,22 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Administrator
+    Brand Administration
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/admin.html">Account Administration</a>
+      <a href="../articles/divisions.html">Divisions</a>
     </li>
     <li>
-      <a href="../articles/admin-data-privacy.html">Data Privacy</a>
+      <a href="../articles/groups.html">Groups</a>
+    </li>
+    <li>
+      <a href="../articles/users.html">Users</a>
+    </li>
+    <li>
+      <a href="../articles/data-privacy.html">Data Privacy</a>
     </li>
   </ul>
 </li>
@@ -175,21 +181,32 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_organization</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>get_organization</span>(<span class='no'>organization_id</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>organization_id</th>
+      <td><p>is the name of the organization</p></td>
+    </tr>
+    </table>
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>data.frame</code></p>
+    <p>A list.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>get_organization</span>()
-<span class='co'># }</span></pre>
+<span class='fu'>get_organization</span>(<span class='st'>"example organization"</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
       

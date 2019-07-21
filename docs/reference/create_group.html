@@ -34,7 +34,8 @@
   
 <meta property="og:title" content="Create a new group — create_group" />
 
-<meta property="og:description" content="Create a new group" />
+<meta property="og:description" content="Currently this is a GAP as you cannot create group types with an API nor
+look them up. But you need that to create a Group." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,16 +131,22 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Administrator
+    Brand Administration
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/admin.html">Account Administration</a>
+      <a href="../articles/divisions.html">Divisions</a>
     </li>
     <li>
-      <a href="../articles/admin-data-privacy.html">Data Privacy</a>
+      <a href="../articles/groups.html">Groups</a>
+    </li>
+    <li>
+      <a href="../articles/users.html">Users</a>
+    </li>
+    <li>
+      <a href="../articles/data-privacy.html">Data Privacy</a>
     </li>
   </ul>
 </li>
@@ -171,7 +178,8 @@
 
     <div class="ref-description">
     
-    <p>Create a new group</p>
+    <p>Currently this is a GAP as you cannot create group types with an API nor
+look them up. But you need that to create a Group.</p>
     
     </div>
 
@@ -182,16 +190,16 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>type</th>
-      <td><p>Group Type. Currently this is a GAP as you cannot create group
-types with an API nor look them up. But you need that to create a Group.</p></td>
+      <td><p>group type.</p></td>
     </tr>
     <tr>
       <th>name</th>
-      <td><p>Name of group to be created</p></td>
+      <td><p>new group name</p></td>
     </tr>
     <tr>
       <th>division_id</th>
-      <td><p>default NULL but specific division id can be specified</p></td>
+      <td><p>default NULL but specific division id can be specified to
+automatically assign the division properties</p></td>
     </tr>
     </table>
     

@@ -29,12 +29,16 @@ navbar:
           href: articles/graphic-library.html
         - text: "Messages"
           href: articles/message-library.html
-    - text: "Administrator"
+    - text: "Brand Administration"
       menu:
-        - text: "Account Administration"
-          href: articles/admin.html
+        - text: "Divisions"
+          href: articles/divisions.html
+        - text: "Groups"
+          href: articles/groups.html
+        - text: "Users"
+          href: articles/users.html
         - text: "Data Privacy"
-          href: articles/admin-data-privacy.html
+          href: articles/data-privacy.html
   right:
     - icon: fa-github fa-lg
       href: https://github.com/ppssphysics/QualtricsInR

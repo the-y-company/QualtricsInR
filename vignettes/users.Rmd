@@ -1,0 +1,28 @@
+---
+title: "users"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{users}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(QualtricsInR)
+```
+
+## Manage users
+
+A useful function is to list all users. This request can take time for large organizations as the query will loop through
+all paginations available.
+
+```
+df <- list_users()
+```

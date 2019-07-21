@@ -4,13 +4,17 @@ pkgdown_sha: ~
 articles:
   admin-data-privacy: admin-data-privacy.html
   admin: admin.html
+  data-privacy: data-privacy.html
   distributions: distributions.html
+  divisions: divisions.html
   graphic-library: graphic-library.html
+  groups: groups.html
   message-library: message-library.html
   research-core-contacts: research-core-contacts.html
   survey-response-exports: survey-response-exports.html
   survey-response-imports: survey-response-imports.html
   surveys: surveys.html
+  users: users.html
 urls:
   reference: https://elegant-thompson-2276b4.netlify.com//reference
   article: https://elegant-thompson-2276b4.netlify.com//articles

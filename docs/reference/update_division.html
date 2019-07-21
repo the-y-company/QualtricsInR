@@ -130,16 +130,22 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Administrator
+    Brand Administration
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/admin.html">Account Administration</a>
+      <a href="../articles/divisions.html">Divisions</a>
     </li>
     <li>
-      <a href="../articles/admin-data-privacy.html">Data Privacy</a>
+      <a href="../articles/groups.html">Groups</a>
+    </li>
+    <li>
+      <a href="../articles/users.html">Users</a>
+    </li>
+    <li>
+      <a href="../articles/data-privacy.html">Data Privacy</a>
     </li>
   </ul>
 </li>
@@ -183,19 +189,19 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>division_id</th>
-      <td><p>id of the division to update</p></td>
+      <td><p>the id of the division to update</p></td>
     </tr>
     <tr>
       <th>name</th>
-      <td><p>New division name</p></td>
+      <td><p>the new division name</p></td>
     </tr>
     <tr>
       <th>status</th>
-      <td><p>New status of the division, can be "Active", "Disabled"</p></td>
+      <td><p>the new status of the division, can be "Active", "Disabled"</p></td>
     </tr>
     <tr>
       <th>permissions</th>
-      <td><p>JSON object with permissions to update</p></td>
+      <td><p>a JSON object with permissions to update</p></td>
     </tr>
     </table>
     
@@ -206,8 +212,15 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>update_division</span>(<span class='st'>"DV_1234567890AbCdE"</span>)
-<span class='co'># }</span></pre>
+<span class='fu'>update_division</span>(<span class='st'>"DV_1234567890AbCdE"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"newdivisionname"</span>)
+<span class='co'># }</span><span class='co'># NOT RUN {</span>
+<span class='no'>perms</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+<span class='st'>"controlPanel"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+  <span class='st'>"surveyPermissions"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+    <span class='st'>"editSurveyFlow"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"state"</span> <span class='kw'>=</span> <span class='st'>"off"</span>))))
+<span class='fu'>update_division</span>(<span class='st'>"DV_1234567890AbCdE"</span>, <span class='kw'>permissions</span> <span class='kw'>=</span> <span class='no'>perms</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

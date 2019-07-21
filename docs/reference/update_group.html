@@ -34,7 +34,8 @@
   
 <meta property="og:title" content="Update group's definition parameters — update_group" />
 
-<meta property="og:description" content="Update group's definition parameters" />
+<meta property="og:description" content="Currently this is a GAP as you cannot create group types with an API nor
+look them up. But you need that to create a Group." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,16 +131,22 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Administrator
+    Brand Administration
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/admin.html">Account Administration</a>
+      <a href="../articles/divisions.html">Divisions</a>
     </li>
     <li>
-      <a href="../articles/admin-data-privacy.html">Data Privacy</a>
+      <a href="../articles/groups.html">Groups</a>
+    </li>
+    <li>
+      <a href="../articles/users.html">Users</a>
+    </li>
+    <li>
+      <a href="../articles/data-privacy.html">Data Privacy</a>
     </li>
   </ul>
 </li>
@@ -171,7 +178,8 @@
 
     <div class="ref-description">
     
-    <p>Update group's definition parameters</p>
+    <p>Currently this is a GAP as you cannot create group types with an API nor
+look them up. But you need that to create a Group.</p>
     
     </div>
 
@@ -182,15 +190,15 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>group_id</th>
-      <td><p>id of group to update</p></td>
+      <td><p>group id, see <code><a href='list_groups.html'>list_groups()</a></code></p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>new group type</p></td>
+      <td><p>the new group type</p></td>
     </tr>
     <tr>
       <th>name</th>
-      <td><p>new name of the group to update</p></td>
+      <td><p>the new group name</p></td>
     </tr>
     <tr>
       <th>division_id</th>

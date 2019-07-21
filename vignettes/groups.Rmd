@@ -1,0 +1,25 @@
+---
+title: "groups"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{groups}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(QualtricsInR)
+```
+
+## Manage user groups
+
+```
+df <- list_groups()
+```
