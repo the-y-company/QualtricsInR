@@ -40,6 +40,7 @@ list_erasure_requests <- function() {
     df <- purrr::map_df(
       list, function(x) {
         dplyr::tibble(
+          "requestid" = .replace_na(x$requestid),
           "status" = .replace_na(x$status),
           "user" = .replace_na(x$user),
           "numEmailsRequested" = .replace_na(x$numEmailsRequested),

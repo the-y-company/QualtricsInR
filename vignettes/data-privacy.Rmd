@@ -21,7 +21,7 @@ Qualtrics API are the data privacy functions. You can:
 ## Create an erasure request
 
 You must provide a list of customer emails to be deleted. We overwrite the default Qualtrics parameter
-`searh_only=FALSE` with a TRUE value. This allows to execute the request as a dry run and not delete an
+`searh_only = FALSE` with a TRUE value. This allows to execute the request as a dry run and not delete an
 entities. Use FALSE to delete the entities from your QWualtrics account.
 
 When processed, the request will search for any entities within Qualtrics that match 
@@ -35,9 +35,9 @@ originated from their responses before erasing the entity itself.
 
 ```
 # Create a dry run erasure request
-create_erasure_request(c("john.doe@alabama.com", "maria.doe@alabama.coM"))
+create_erasure_request(list("john.doe@alabama.com", "maria.doe@alabama.com"))
 # Create a erasure request
-create_erasure_request("john.doe@alabama.com", FALSE)
+create_erasure_request(list("john.doe@alabama.com"), FALSE)
 ```
 
 ## List and retrieve erasure requests
@@ -51,5 +51,10 @@ list_erasing_requests()
 This allows you to use the id of a given erasure request to retrieve that request
 
 ```
-get_erasing_request("OP-1234-5678-9333")
+get_erasing_request("OP-a2c24e5e-d4b1-4bd8-a9e8-9a1c8520c8d2")
 ```
+
+Note that a given erasure request can only be retrieve one that request has been 
+fully processed by Qualtrics. This means that until the status available from the
+`list_erasing_requests` appears as *Completed*, the `get_erasing_request`
+will return an error.

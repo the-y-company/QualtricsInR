@@ -157,7 +157,7 @@
 <div id="create-an-erasure-request" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-an-erasure-request" class="anchor"></a>Create an erasure request</h2>
-<p>You must provide a list of customer emails to be deleted. We overwrite the default Qualtrics parameter <code>searh_only=FALSE</code> with a TRUE value. This allows to execute the request as a dry run and not delete an entities. Use FALSE to delete the entities from your QWualtrics account.</p>
+<p>You must provide a list of customer emails to be deleted. We overwrite the default Qualtrics parameter <code>searh_only = FALSE</code> with a TRUE value. This allows to execute the request as a dry run and not delete an entities. Use FALSE to delete the entities from your QWualtrics account.</p>
 <p>When processed, the request will search for any entities within Qualtrics that match any of the supplied emails; these entities include</p>
 <ul>
 <li>Users</li>
@@ -165,9 +165,9 @@
 <li>People For any entity discovered the service will erase any responses to surveys they have submitted, along with any tickets that may have originated from their responses before erasing the entity itself.</li>
 </ul>
 <pre><code><a href="../reference/create_erasure_request.html"># Create a dry run erasure request
-create_erasure_request(c("john.doe@alabama.com", "maria.doe@alabama.coM"))
+create_erasure_request(list("john.doe@alabama.com", "maria.doe@alabama.com"))
 # Create a erasure request
-create_erasure_request("john.doe@alabama.com", FALSE)</a></code></pre>
+create_erasure_request(list("john.doe@alabama.com"), FALSE)</a></code></pre>
 </div>
 <div id="list-and-retrieve-erasure-requests" class="section level2">
 <h2 class="hasAnchor">
@@ -175,7 +175,8 @@ create_erasure_request("john.doe@alabama.com", FALSE)</a></code></pre>
 <p>You can list all erasure requests performed by the brand.</p>
 <pre><code>list_erasing_requests()</code></pre>
 <p>This allows you to use the id of a given erasure request to retrieve that request</p>
-<pre><code>get_erasing_request("OP-1234-5678-9333")</code></pre>
+<pre><code>get_erasing_request("OP-a2c24e5e-d4b1-4bd8-a9e8-9a1c8520c8d2")</code></pre>
+<p>Note that a given erasure request can only be retrieve one that request has been fully processed by Qualtrics. This means that until the status available from the <code>list_erasing_requests</code> appears as <em>Completed</em>, the <code>get_erasing_request</code> will return an error.</p>
 </div>
   </div>
 

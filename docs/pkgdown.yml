@@ -2,8 +2,6 @@ pandoc: 2.3.1
 pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
-  admin-data-privacy: admin-data-privacy.html
-  admin: admin.html
   data-privacy: data-privacy.html
   distributions: distributions.html
   divisions: divisions.html
