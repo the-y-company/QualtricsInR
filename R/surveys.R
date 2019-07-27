@@ -259,8 +259,8 @@ get_survey_translations <- function(survey_id, language_code) {
 #' @param expiration_dates an array with startDate and endDate (format "2016-01-01T01:00:00Z")
 #'
 #' @examples
-#' \dontrun{update_survey("SV_012345678901234", true)}
-#' \dontrun{update_survey("SV_012345678901234", true, "new_name", c("2016-01-01T01:00:00Z","2016-03-01T01:00:00Z"))}
+#' \dontrun{update_survey("SV_012345678901234", TRUE)}
+#' \dontrun{update_survey("SV_012345678901234", TRUE, "new_name", c("2016-01-01T01:00:00Z","2016-03-01T01:00:00Z"))}
 #' @return A execution status code
 #' @export
 update_survey <- function(
