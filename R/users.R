@@ -52,7 +52,7 @@ get_user <- function(user_id) {
 
 #' Create a new user account
 #'
-#' @params a named list of account parameters
+#' @param params a named list of account parameters
 #' @section Account parameters: user settings that can be possed are user_name,
 #' first_name, last_name, user_type, email, password, language, time_zone,
 #' division_id, account_expiration_date. Currently Qualtrics does not provide

@@ -6,6 +6,9 @@
 \usage{
 create_user(params)
 }
+\arguments{
+\item{params}{a named list of account parameters}
+}
 \value{
 The created user id
 }

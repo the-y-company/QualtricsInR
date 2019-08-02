@@ -1,4 +1,7 @@
 
+globalVariables(c(
+  "op", "erase", "data", "x", "personal"))
+
 #' Create an erasing request
 #'
 #' @param list_emails A vector of emails.
