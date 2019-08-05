@@ -12,7 +12,7 @@ is_success(requests, verbose = FALSE)
 \arguments{
 \item{requests}{Requests, as returned by \code{request_downloads}}
 
-\item{verbose}{prints progress bars for download (set to false by default)}
+\item{verbose}{default FALSE}
 }
 \description{
 Check which request was successful and which was not.

@@ -188,13 +188,12 @@ Export survey responses into R and/or save exported file. Currently single expor
 
     <pre class="usage"><span class='fu'>get_survey_responses</span>(<span class='no'>surveyId</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>, <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>filename</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>startDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>endDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>useLabels</span> <span class='kw'>=</span> <span class='st'>"true"</span>,
-  <span class='kw'>seenUnansweredRecode</span> <span class='kw'>=</span> <span class='st'>"false"</span>,
-  <span class='kw'>multiSelectSeenUnansweredRecode</span> <span class='kw'>=</span> <span class='st'>"false"</span>,
-  <span class='kw'>includeDisplayOrder</span> <span class='kw'>=</span> <span class='st'>"false"</span>, <span class='kw'>formatDecimalAsComma</span> <span class='kw'>=</span> <span class='st'>"false"</span>,
-  <span class='kw'>timeZone</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>newlineReplacement</span> <span class='kw'>=</span> <span class='st'>"\n"</span>, <span class='kw'>questionIds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>embeddedDataIds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>surveyMetadataIds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>compress</span> <span class='kw'>=</span> <span class='st'>"true"</span>)</pre>
+  <span class='kw'>endDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>useLabels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>seenUnansweredRecode</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>multiSelectSeenUnansweredRecode</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>includeDisplayOrder</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>formatDecimalAsComma</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>timeZone</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>newlineReplacement</span> <span class='kw'>=</span> <span class='st'>"\n"</span>, <span class='kw'>questionIds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>embeddedDataIds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>surveyMetadataIds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>compress</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

@@ -49,122 +49,28 @@
   return(data)
 }
 
-#' get_survey_responses exports a survey into R
-#' Export survey responses into R and/or save exported file. Currently single exports calls are limited to 1.8 GB. Above that size, we recommend you split your export accross different date ranges
-#' @param surveyId the id of survey to copy
-#' @param format file format json, by default (can be csv or tsv). We don't provide SPSS yet.
-#' @param saveDir path to a local directory to save the exported file. Default is a temporary file in rds format that is removed as the end of your session. Default name will be the surveyId.
-#' @param filename specify filename for saving. If NULL, uses the survey id
-#' @param verbose prints progress bars for download (set to false by default)
-#' @param startDate only export responses recorded after the specified date (2016-04-01T07:31:43Z) (see \url{https://api.qualtrics.com/docs/dates-and-times})
-#' @param endDate only export responses before the specified date
-#' @param limit maximum number of respones exported
-#' @param useLabels instead of exporting the recode value for the answer choice, export the text of the answer choice (\url{https://www.qualtrics.com/support/survey-platform/survey-module/question-options/recode-values/})
-#' @param seenUnansweredRecode recode seen but unanswered questions with this value.
-#' @param multiSelectSeenUnansweredRecode recode seen but unanswered choices for multi-select questions. Default is seenUnansweredRecode value.
-#' @param includeDisplayOrder include display order information in your export. Useful for surveys with randomization (true or false)
-#' @param formatDecimalAsComma use a comma as a decimal separator instead of a period (true or false)
-#' @param timeZone timezone used to determine response date values (default is UTC/GMT). See \url{https://api.qualtrics.com/docs/time-zones}.
-#' @param newlineReplacement configure the newline delimiter for the export (default is \code{'\n'}.)
-#' @param questionIds JSON array of Question IDs e.g. (\code{["QID1", "QID3", ... , "QID5"]})
-#' @param embeddedDataIds export only specified embeddeddata (array of strings)
-#' @param surveyMetadataIds export only specified survey metadata columns (array of strings)
-#' @param compress compressed by default (set to FALSE if uncompressed file desired)
-#' @seealso \url{https://api.qualtrics.com/docs/getting-survey-responses-new} for more documentation
-#' @examples
-#' \dontrun{get_survey_responses("SV_012345678901234","csv")}
-#' \dontrun{
-#' mysurvey <- getSurvey(surveyID = "SV_012345678901234",
-#'                       startDate = "2017-01-01",
-#'                       endDate = "2017-01-31",
-#'                       limit = 100,
-#'                       useLabels = TRUE,
-#'                       seenUnansweredRecode = "UNANS",
-#'                       verbose = TRUE)
-#'                       }
-#' @return A status code
-#' @export
-get_survey_responses <- function(
-  surveyId,
-  format = "json",
-  saveDir = NULL,
-  filename = NULL,
-  verbose = FALSE,
-  startDate = NULL,
-  endDate = NULL,
-  limit = NULL,
-  useLabels = "true",
-  seenUnansweredRecode = "false",
-  multiSelectSeenUnansweredRecode = "false",
-  includeDisplayOrder = "false",
-  formatDecimalAsComma = "false",
-  timeZone = NULL,
-  newlineReplacement = "\n",
-  questionIds = NULL,
-  embeddedDataIds = NULL,
-  surveyMetadataIds = NULL,
-  compress = "true") {
-
-  # Check input parameters
-  if (!is.null(saveDir)) saveDir <- .check_directory(saveDir)
-
-  # Step 1: Creating Data Export
-  params <- c("surveys", surveyId, "export-responses")
-  body <- list("format" = format)
-  getcnt <- .qualtrics_post(params, NULL, body)
-
-  # Step 2: Checking on Data Export Progress and waiting until export is ready
-
-  if (verbose) pbar <- utils::txtProgressBar(min=0, max=100, style = 3)
-
-  progressVec <- .get_export_status(surveyId, getcnt$result$progressId)
-  while(progressVec[1] != "complete" & progressVec[1]!="failed") {
-    progressVec <- .get_export_status(surveyId, getcnt$result$progressId)
-    Sys.sleep(2)
-  }
-
-  if (verbose) close(pbar)
-
-  #step 2.1: Check for error
-  if (progressVec[1]=="failed")
-    stop("export failed", call. = FALSE)
-
-  # Step 3: Downloading file
-  data <- .get_export_file(surveyId, progressVec[3], format, saveDir, filename)
-
-  return(data)
-
-}
-
 #' Export a survey's responses into R
 #'
+#' @description
 #' Export survey responses into R and/or save exported file. Currently single
 #' exports calls are limited to 1.8 GB. Above that size, we recommend you split
-#' your export accross different date ranges
+#' your export accross different date ranges. When exporting a large number of
+#' surveys successively, we recommend using the more efficient \code{request_downloads} and
+#' \code{download_requested} functions.
 #'
 #' @param survey_id the id of survey to copy
 #' @param format file format json, by default (can be csv or tsv). We don't provide SPSS yet.
 #' @param verbose default FALSE
-#' @param saveDir path to a local directory to save the exported file. Default is a temporary file in rds format that is removed as the end of your session. Default name will be the surveyId.
+#' @param saveDir path to a local directory to save the exported file. Default is a temporary file in rds format that is removed at the end of your session. Default name will be the surveyId.
 #' @param filename specify filename for saving. If NULL, uses the survey id
-#' @param ... a list of named parameters, see
-#'   \url{https://api.qualtrics.com/docs/getting-survey-responses-new} for
-#'   parameter names
+#' @param ... a list of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names
 #' @examples
 #' \dontrun{get_survey_responses("SV_012345678901234", "csv")}
-#' \dontrun{get_survey_responses("SV_012345678901234", "csv", filename = "name_export")}
-#' \dontrun{
-#' mysurvey <- getSurvey(surveyID = "surveyId",
-#'                       startDate = "2017-01-01",
-#'                       endDate = "2017-01-31",
-#'                       limit = 100,
-#'                       useLabels = TRUE,
-#'                       seenUnansweredRecode = "UNANS",
-#'                       verbose = TRUE)
-#'                       }
+#' \dontrun{get_survey_responses("SV_012345678901234", format = "csv", verbose = TRUE, saveDir = "./", filename = "name_export", useLabels = TRUE, limit = 10)}
+#'
 #' @return A status code
 #' @export
-get_survey_responses_new <- function(
+get_survey_responses <- function(
   survey_id,
   format = "json",
   verbose = FALSE,
@@ -177,9 +83,7 @@ get_survey_responses_new <- function(
 
   # Step 1: Creating Data Export
   params <- c("surveys", survey_id, "export-responses")
-  body <- list(
-    "format" = format,
-    ...)
+  body <- list("format" = format, ...)
   getcnt <- .qualtrics_post(params, NULL, body)
 
   # Step 2: Checking on Data Export Progress and waiting until export is ready
@@ -208,14 +112,14 @@ get_survey_responses_new <- function(
 
 #' @export
 print.qualtrics_download <- function(x,...){
-	counts <- table(x$success)
-	t <- unname(counts["TRUE"])
-	f <- unname(counts["FALSE"])
-	cat(
-		"Download Requests:\n",
-		crayon::green(cli::symbol$tick), .na20(t), " Successful\n",
-		crayon::red(cli::symbol$cross), .na20(f), " Unsuccessful\n"
-	)
+  counts <- table(x$success)
+  t <- unname(counts["TRUE"])
+  f <- unname(counts["FALSE"])
+  cat(
+    "Download Requests:\n",
+    crayon::green(cli::symbol$tick), .na20(t), " Successful\n",
+    crayon::red(cli::symbol$cross), .na20(f), " Unsuccessful\n"
+  )
 }
 
 #' Success?
@@ -236,19 +140,19 @@ is_success <- function(requests, verbose = FALSE) UseMethod("is_success")
 #' @method is_success qualtrics_download
 #' @export
 is_success.qualtrics_download <- function(requests, verbose = FALSE){
-	ids <- requests %>%
-		mutate(
-			surveyIds = ifelse(success == TRUE, crayon::green(surveyIds), crayon::red(surveyIds))
-		) %>%
-		pull(surveyIds)
+  ids <- requests %>%
+    mutate(
+      surveyIds = ifelse(success == TRUE, crayon::green(surveyIds), crayon::red(surveyIds))
+    ) %>%
+    pull(surveyIds)
 
-	if(isTRUE(verbose))
-		ids %>%
-			paste0(collapse = "\n") %>%
-			cat("\n")
+  if(isTRUE(verbose))
+    ids %>%
+    paste0(collapse = "\n") %>%
+    cat("\n")
 
-	class(requests) <- "data.frame"
-	return(requests)
+  class(requests) <- "data.frame"
+  return(requests)
 }
 
 #' Request downloads
@@ -285,8 +189,8 @@ is_success.qualtrics_download <- function(requests, verbose = FALSE){
 #' @name bulk-download
 #' @export
 request_downloads <- function(surveyIds) {
-	if(missing(surveyIds))
-		stop("missing surveyIds", call. = FALSE)
+  if(missing(surveyIds))
+    stop("missing surveyIds", call. = FALSE)
 
   requests <- purrr::map(
     surveyIds,
@@ -298,99 +202,96 @@ request_downloads <- function(surveyIds) {
         error = function(e) e
       )
 
-			# convert to logical
+      # convert to logical
       if(inherits(resp, "error"))
         FALSE
       else
         TRUE
     }
   ) %>%
-	unlist()
+    unlist()
 
-	structure(
-		tibble(surveyIds = surveyIds, success = requests),
-		class = c("qualtrics_download", "data.frame")
-	)
+  structure(
+    tibble(surveyIds = surveyIds, success = requests),
+    class = c("qualtrics_download", "data.frame")
+  )
 }
 
 #' @rdname bulk-download
 #' @export
 download_requested <- function(
-	requests,
-	format = "csv",
-	saveDir = NULL,
-	verbose = FALSE,
-	...
-	){
-		UseMethod("download_requested")
+  requests,
+  format = "csv",
+  saveDir = NULL,
+  verbose = FALSE,
+  ...
+){
+  UseMethod("download_requested")
 }
 
 #' @rdname bulk-download
 #' @method download_requested qualtrics_download
 #' @export
 download_requested.qualtrics_download <- function(
-	requests,
-	format = "csv",
-	saveDir = NULL,
-	verbose = FALSE,
-	...
+  requests,
+  format = "csv",
+  saveDir = NULL,
+  verbose = FALSE,
+  ...
 ){
 
-	# Check input parameters
-	if (!is.null(saveDir)) saveDir <- .check_directory(saveDir)
+  # Check input parameters
+  if (!is.null(saveDir)) saveDir <- .check_directory(saveDir)
 
-	valid <- requests %>%
-		filter(success == TRUE)
+  valid <- requests %>%
+    filter(success == TRUE)
 
-	invalid <- requests %>%
-		anti_join(valid, by = "surveyIds")
+  invalid <- requests %>%
+    anti_join(valid, by = "surveyIds")
 
-	if(nrow(invalid))
-		cat(
-			crayon::red(cli::symbol$cross),
-			"Not downloading unsuccessful surveyIds:\n",
-			paste0(invalid$surveyIds, collapse = "\n"), "\n"
-		)
+  if(nrow(invalid))
+    cat(
+      crayon::red(cli::symbol$cross),
+      "Not downloading unsuccessful surveyIds:\n",
+      paste0(invalid$surveyIds, collapse = "\n"), "\n"
+    )
 
-	data <- purrr::map(
-		valid$surveyIds,
-		function(surveyId, format, verbose, opts){
-			# Step 1: Creating Data Export
-			params <- c("surveys",surveyId,"export-responses")
-			body <- list(format = "csv")
-			# body <- append(body, opts)
-			getcnt <- .qualtrics_post(params, NULL, body)
+  data <- purrr::map(
+    valid$surveyIds,
+    function(surveyId, format, verbose, opts){
+      # Step 1: Creating Data Export
+      params <- c("surveys",surveyId,"export-responses")
+      body <- list(format = "csv")
+      # body <- append(body, opts)
+      getcnt <- .qualtrics_post(params, NULL, body)
 
-			# Step 2: Checking on Data Export Progress and waiting until export is ready
+      # Step 2: Checking on Data Export Progress and waiting until export is ready
 
-			if (verbose) pbar <- utils::txtProgressBar(min = 0, max = 100, style = 3)
+      if (verbose) pbar <- utils::txtProgressBar(min = 0, max = 100, style = 3)
 
-			progressVec <- .get_export_status(surveyId, getcnt$result$progressId)
-			while(progressVec[1] != "complete" & progressVec[1]!="failed") {
-				progressVec <- .get_export_status(surveyId, getcnt$result$progressId)
-				Sys.sleep(2)
-			}
+      progressVec <- .get_export_status(surveyId, getcnt$result$progressId)
+      while(progressVec[1] != "complete" & progressVec[1]!="failed") {
+        progressVec <- .get_export_status(surveyId, getcnt$result$progressId)
+        Sys.sleep(2)
+      }
 
-			if (verbose) close(pbar)
+      if (verbose) close(pbar)
 
-			#step 2.1: Check for error
-			if (progressVec[1]=="failed")
-				stop("export failed", call. = FALSE)
+      #step 2.1: Check for error
+      if (progressVec[1]=="failed")
+        stop("export failed", call. = FALSE)
 
-			# Step 3: Downloading file
-			data <- .get_export_file(surveyId, progressVec[3], format, saveDir, NULL)
+      # Step 3: Downloading file
+      data <- .get_export_file(surveyId, progressVec[3], format, saveDir, NULL)
 
-			return(data)
-		},
-		format = format,
-		verbose = verbose,
-		opts = list(...)
-	)
+      return(data)
+    },
+    format = format,
+    verbose = verbose,
+    opts = list(...)
+  )
 
-	names(data) <- valid$surveyIds
+  names(data) <- valid$surveyIds
 
-	return(data)
+  return(data)
 }
-
-
-

@@ -22,9 +22,9 @@ download_requested(requests, format = "csv", saveDir = NULL,
 
 \item{format}{file format json, by default (can be csv or tsv). We don't provide SPSS yet.}
 
-\item{saveDir}{path to a local directory to save the exported file. Default is a temporary file in rds format that is removed as the end of your session. Default name will be the surveyId.}
+\item{saveDir}{path to a local directory to save the exported file. Default is a temporary file in rds format that is removed at the end of your session. Default name will be the surveyId.}
 
-\item{verbose}{prints progress bars for download (set to false by default)}
+\item{verbose}{default FALSE}
 
 \item{...}{Any other option.}
 }
