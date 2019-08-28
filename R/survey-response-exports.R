@@ -258,11 +258,10 @@ download_requested.qualtrics_download <- function(
 
   data <- purrr::map(
     valid$surveyIds,
-    function(surveyId, format, verbose, opts){
+    function(surveyId, format, verbose, ...){
       # Step 1: Creating Data Export
       params <- c("surveys",surveyId,"export-responses")
-      body <- list(format = "csv")
-      # body <- append(body, opts)
+      body <- list(format = "csv", ...)
       getcnt <- .qualtrics_post(params, NULL, body)
 
       # Step 2: Checking on Data Export Progress and waiting until export is ready
@@ -288,7 +287,7 @@ download_requested.qualtrics_download <- function(
     },
     format = format,
     verbose = verbose,
-    opts = list(...)
+    ...
   )
 
   names(data) <- valid$surveyIds
