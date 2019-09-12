@@ -22,6 +22,7 @@ globalVariables(c(
 #' \dontrun{create_erasure_request(c("person1@@themail.com", "person1@@theemail.com"), FALSE)}
 #'
 #' @return A the request id
+#' @export
 create_erasure_request <- function(list_emails, search_only = TRUE) {
   body <- list(
     "emails" = list_emails,
@@ -37,6 +38,7 @@ create_erasure_request <- function(list_emails, search_only = TRUE) {
 #' \dontrun{list_erasing_requests()}
 #'
 #' @return A \code{tibble}.
+#' @export
 list_erasure_requests <- function() {
 
   .build_request <- function(list) {
@@ -86,6 +88,7 @@ list_erasure_requests <- function() {
 #' @examples
 #' \dontrun{get_erasing_request("request_id")}
 #' @return A \code{list}.
+#' @export
 get_erasure_request <- function(request_id) {
 
   .build_request <- function(list) {

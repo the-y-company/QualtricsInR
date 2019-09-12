@@ -19,7 +19,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -133,7 +133,14 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
+    
+
+    
+    
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
+<!-- badges: end -->
 <div id="qualtricsinr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#qualtricsinr" class="anchor"></a>QualtricsInR</h1></div>
@@ -160,7 +167,7 @@
 <h2 class="hasAnchor">
 <a href="#authentication" class="anchor"></a>Authentication</h2>
 <p>We provide two authentication methods to set-up your Qualtrics credentials:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>Using a plain Token</li>
 <li>Using the OAuth 2.0</li>
 </ol>
@@ -168,29 +175,26 @@
 <div id="setting-a-plain-text-api-token" class="section level3">
 <h3 class="hasAnchor">
 <a href="#setting-a-plain-text-api-token" class="anchor"></a>Setting a plain text API Token</h3>
-<p>You can set options for user authentication in your Qualtrics account by generating a new API token. You will also need your data center id. You can then set your authentication credentials with <code>set_qualtrics_opts</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="dt">api_token =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">data_center_id =</span> <span class="st">"my.center"</span>)</a></code></pre></div>
+<p>You can set options for user authentication in your Qualtrics account by generating a new API token. You will also need your data center id if you are running under an entreprise account. You can then set your authentication credentials with <code>set_qualtrics_opts</code>. By default, the function looks for the variables QUALTRICSINR_TOKEN and QUALTRICSINR_DATA_CENTER (optional) in your .Renviron file, but you can specify these as you wish.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># set auth options assuming definition in .Renviron</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>()</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># set auth options by hand</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="st">"983282032932sds2"</span>,<span class="st">"mydatacenter"</span>)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co"># set auth options with custom .Renviron names</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="kw">Sys.getenb</span>(<span class="st">"VAR1"</span>),<span class="kw">Sys.getenb</span>(<span class="st">"VAR2"</span>))</a></code></pre></div>
 <p>If you use this method, you will have set your credentials for every new session.</p>
 </div>
 <div id="setting-up-an-oauth-client-manager" class="section level3">
 <h3 class="hasAnchor">
 <a href="#setting-up-an-oauth-client-manager" class="anchor"></a>Setting-up an OAuth Client Manager</h3>
 <p>To generate an OAuth application, follow the steps below in your Qualtrics account:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>Go to Account Settings</li>
 <li>Create an OAuth application</li>
 <li>Use the client id, client secret, and data center id in <code>qualtrics_auth</code>, as below.</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/oauth.html">qualtrics_auth</a></span>(<span class="dt">id =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">secret =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">data_center =</span> <span class="st">"my.center"</span>)</a></code></pre></div>
 <p>This will authenticate you, returning a bearer token valid for an hour, saving the <em>encrypted</em> credentials in a <code>.qualtrics-oauth</code> file, which will be automatically loaded in all subsequent sessions and automatically refreshed if need be. You should therefore only find the need to run <code>qualtrics_auth</code> once.</p>
-</div>
-<div id="example" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h3>
-</div>
-<div id="what-is-missing" class="section level3">
-<h3 class="hasAnchor">
-<a href="#what-is-missing" class="anchor"></a>What is missing</h3>
 </div>
 </div>
 </div>
@@ -219,8 +223,11 @@
 </ul>
 </div>
 
-  </div>
+
+      </div>
+
 </div>
+
 
       <footer><div class="copyright">
   <p>Developed by Pierre Souter.</p>

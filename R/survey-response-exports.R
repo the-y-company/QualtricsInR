@@ -24,24 +24,22 @@
   status <- .qualtrics_export(params, tmps[[2]])
   file <- utils::unzip(tmps[[2]], exdir = tmps[[1]])
 
-  if (fileType=="json") {
+  if (fileType=="json")
     data <- jsonlite::fromJSON(file)
-  }
   else if (fileType=="csv") {
-    data <- readr::read_csv(file, col_types = readr::cols())
+    data <- readr::read_csv(file, col_types = readr::cols()) %>%
+      dplyr::slice(-1,-2)
   }
-  else if (fileType=="tsv") {
+  else if (fileType=="tsv")
     data <- readr::read_tsv(file)
-  }
 
   if (!is.null(saveDir)) {
-    if (is.null(filename)) {
+
+    if (is.null(filename))
       file.copy(file, paste0(saveDir, surveyId, ".", fileType))
-    }
-    else {
+    else
       file.copy(file, paste0(saveDir, filename, ".", fileType))
-    }
-    cat(paste0("Survey was saved as ", saveDir, surveyId, ".", fileType), "\n")
+
   }
 
   file.remove(tmps[[2]])
@@ -63,7 +61,7 @@
 #' @param verbose default FALSE
 #' @param saveDir path to a local directory to save the exported file. Default is a temporary file in rds format that is removed at the end of your session. Default name will be the surveyId.
 #' @param filename specify filename for saving. If NULL, uses the survey id
-#' @param ... a list of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names
+#' @param ... a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names
 #' @examples
 #' \dontrun{get_survey_responses("SV_012345678901234", "csv")}
 #' \dontrun{get_survey_responses("SV_012345678901234", format = "csv", verbose = TRUE, saveDir = "./", filename = "name_export", useLabels = TRUE, limit = 10)}
@@ -93,7 +91,7 @@ get_survey_responses <- function(
   progressVec <- .get_export_status(survey_id, getcnt$result$progressId)
   while(progressVec[1] != "complete" & progressVec[1]!="failed") {
     progressVec <- .get_export_status(survey_id, getcnt$result$progressId)
-    Sys.sleep(2)
+    Sys.sleep(1)
   }
 
   if (verbose) close(pbar)
@@ -161,7 +159,7 @@ is_success.qualtrics_download <- function(requests, verbose = FALSE){
 #'
 #' @param surveyIds A vector of survey ids.
 #' @param format file format json, by default (can be csv or tsv). We don't provide SPSS yet.
-#' @param ... a list of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names
+#' @param ... a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names
 #'
 #' @details The \href{https://www.qualtrics.com}{Qualtrics} API downloads survey responses in several steps.
 #' First a download is \emph{requested}. Qualtrics prepares the file and \code{\link{download_requested}}
@@ -235,12 +233,14 @@ download_requested <- function(
 #' @param requests the list output of request_downloads
 #' @param format the output file format
 #' @param saveDir the output dir to save the data
+#' @param verbose print progress for heavy downloads (default is FALSE)
 #' @method download_requested qualtrics_download
 #' @export
 download_requested.qualtrics_download <- function(
   requests,
   format = "json",
-  saveDir = NULL
+  saveDir = NULL,
+  verbose = FALSE
 ){
 
   # Check input parameters
@@ -264,14 +264,14 @@ download_requested.qualtrics_download <- function(
     valid$surveyIds, valid$progressIds,
     function(surveyId, progressId, format, saveDir){
 
-      pbar <- utils::txtProgressBar(min = 0, max = 100, style = 3)
+      if (verbose) pbar <- utils::txtProgressBar(min = 0, max = 100, style = 3)
       progressVec <- .get_export_status(surveyId, progressId)
       while(progressVec[1] != "complete" & progressVec[1]!="failed") {
         progressVec <- .get_export_status(surveyId, progressId)
-        Sys.sleep(2)
+        Sys.sleep(1)
       }
 
-      close(pbar)
+      if (verbose) close(pbar)
 
       if (progressVec[1]=="failed")
         stop("export failed", call. = FALSE)

@@ -13,7 +13,8 @@ load_oauth()
 
 refresh_oauth()
 
-set_qualtrics_opts(api_token, data_center = NULL)
+set_qualtrics_opts(api_token = Sys.getenv("QUALTRICSINR_TOKEN"),
+  data_center = Sys.getenv("QUALTRICSINR_DATA_CENTER"))
 }
 \arguments{
 \item{id, secret}{Your client id and secret.}

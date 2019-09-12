@@ -18,7 +18,7 @@ get_survey_responses(survey_id, format = "json", verbose = FALSE,
 
 \item{filename}{specify filename for saving. If NULL, uses the survey id}
 
-\item{...}{a list of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names}
+\item{...}{a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names}
 }
 \value{
 A status code

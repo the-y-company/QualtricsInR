@@ -12,18 +12,20 @@ request_downloads(surveyIds, format = "json", ...)
 download_requested(requests, format = "json", saveDir = NULL)
 
 \method{download_requested}{qualtrics_download}(requests,
-  format = "json", saveDir = NULL)
+  format = "json", saveDir = NULL, verbose = FALSE)
 }
 \arguments{
 \item{surveyIds}{A vector of survey ids.}
 
 \item{format}{file format json, by default (can be csv or tsv). We don't provide SPSS yet.}
 
-\item{...}{a list of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names}
+\item{...}{a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names}
 
 \item{requests}{the list output of request_downloads}
 
 \item{saveDir}{the output dir to save the data}
+
+\item{verbose}{print progress for heavy downloads (default is FALSE)}
 
 \item{format}{the output file format}
 }

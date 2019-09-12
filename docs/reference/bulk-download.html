@@ -8,10 +8,12 @@
 
 <title>Request downloads — bulk-download • QualtricsInR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -32,10 +34,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Request downloads — bulk-download" />
 
+<meta property="og:title" content="Request downloads — bulk-download" />
 <meta property="og:description" content="Request survey response downloads." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -150,7 +153,6 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ppssphysics/QualtricsInR">
@@ -176,20 +178,17 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Request survey response downloads.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>request_downloads</span>(<span class='no'>surveyIds</span>)
+    <pre class="usage"><span class='fu'>request_downloads</span>(<span class='no'>surveyIds</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>, <span class='no'>...</span>)
 
-<span class='fu'>download_requested</span>(<span class='no'>requests</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>, <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+<span class='fu'>download_requested</span>(<span class='no'>requests</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>, <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S3 method for qualtrics_download</span>
-<span class='fu'>download_requested</span>(<span class='no'>requests</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>,
-  <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
-    
+<span class='fu'>download_requested</span>(<span class='no'>requests</span>,
+  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>, <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -198,42 +197,43 @@
       <td><p>A vector of survey ids.</p></td>
     </tr>
     <tr>
-      <th>requests</th>
-      <td><p>Requests, as returned by <code>request_downloads</code></p></td>
-    </tr>
-    <tr>
       <th>format</th>
       <td><p>file format json, by default (can be csv or tsv). We don't provide SPSS yet.</p></td>
     </tr>
     <tr>
+      <th>...</th>
+      <td><p>a vector of named parameters, see <a href='https://api.qualtrics.com/reference'>https://api.qualtrics.com/reference</a> *Create Response Export* for parameter names</p></td>
+    </tr>
+    <tr>
+      <th>requests</th>
+      <td><p>the list output of request_downloads</p></td>
+    </tr>
+    <tr>
       <th>saveDir</th>
-      <td><p>path to a local directory to save the exported file. Default is a temporary file in rds format that is removed as the end of your session. Default name will be the surveyId.</p></td>
+      <td><p>the output dir to save the data</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>prints progress bars for download (set to false by default)</p></td>
+      <td><p>print progress for heavy downloads (default is FALSE)</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Any other option.</p></td>
+      <th>format</th>
+      <td><p>the output file format</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>request_downloads</code> returns object of class <code>qualtrics_download</code> while
 <code>download_requested</code> returns a <code>list</code>.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The <a href='https://www.qualtrics.com'>Qualtrics</a> API takes some time to prepare a downloads, hence
-<code>download_requested</code> taking a some time to download the requested data. What actually happens
-is that first a download is <em>requested</em>, after the request Qualtrics prepares a file that
-<code>download_requested</code> downloads when it is ready. It is therefore more efficient,
-when the user wants to download data from multiple surveys, more efficient to request each and every
-download before checking whether they are ready. Those performances will headvily depend on the number
-of surveys and the amount of data the ultimately user wants to obtain.</p>
-    
+    <p>The <a href='https://www.qualtrics.com'>Qualtrics</a> API downloads survey responses in several steps.
+First a download is <em>requested</em>. Qualtrics prepares the file and <code>download_requested</code>
+can be triggered to download the file when it is ready. When downloading responses from a large nuimber of
+surveys, it is more efficient to request all downloads if a first place, check that the downloads are ready
+and then retrieve all the files. The performances will headvily depend on the number
+of surveys and the amount of data the user ultimately wants to obtain.</p>
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
@@ -241,27 +241,22 @@ of surveys and the amount of data the ultimately user wants to obtain.</p>
 <li><p><code>request_downloads</code>: Request download (prepares files).</p></li>
 <li><p><code>download_requested</code>: Download requested files.</p></li>
 </ul>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>(<span class='no'>requests</span> <span class='kw'>&lt;-</span> <span class='fu'>request_downloads</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>)))</div><div class='output co'>#&gt; Download Requests:
-#&gt;  <span style='color: #00BB00;'>✔</span><span> 0  Successful
-#&gt;  </span><span style='color: #BB0000;'>✖</span><span> 2  Unsuccessful</div><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>download_requested</span>(<span class='no'>requests</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>✖</span><span> Not downloading unsuccessful surveyIds:
-#&gt;  1
-#&gt; 2 </div><div class='input'>
-</div></span></pre>
+    <pre class="examples"># NOT RUN {
+requests <- request_downloads(c(1,2)))
+data <- download_requested(requests)
+# }
+<div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#functions">Functions</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

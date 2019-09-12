@@ -8,10 +8,12 @@
 
 <title>Success? — is_success • QualtricsInR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -32,10 +34,11 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Success? — is_success" />
 
+<meta property="og:title" content="Success? — is_success" />
 <meta property="og:description" content="Check which request was successful and which was not." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -150,7 +153,6 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ppssphysics/QualtricsInR">
@@ -176,41 +178,40 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Check which request was successful and which was not.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>is_success</span>(<span class='no'>requests</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for qualtrics_download</span>
 <span class='fu'>is_success</span>(<span class='no'>requests</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>requests</th>
-      <td><p>Requests, as returned by <code>request_downloads</code></p></td>
+      <td><p>the list output of request_downloads</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>prints progress bars for download (set to false by default)</p></td>
+      <td><p>print progress for heavy downloads (default is FALSE)</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>requests</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bulk-download.html'>request_downloads</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>))
-<span class='no'>success</span> <span class='kw'>&lt;-</span> <span class='fu'>is_success</span>(<span class='no'>requests</span>, <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #BB0000;'>2</span><span> </div><div class='input'>
-</div></span></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>requests</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bulk-download.html'>request_downloads</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>))
+<span class='co'># }</span><span class='co'># NOT RUN {</span>
+<span class='no'>success</span> <span class='kw'>&lt;-</span> <span class='fu'>is_success</span>(<span class='no'>requests</span>, <span class='fl'>TRUE</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

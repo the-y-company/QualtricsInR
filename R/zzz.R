@@ -9,11 +9,10 @@
       QUALTRICS_API_TOKEN = token$token,
       QUALTRICS_TOKEN_TIMEOUT = token$time + token$expires_in
     )
-    packageStartupMessage("Token loaded!")
+    packageStartupMessage(crayon::green("Oauth token successfully loaded!"))
   } else {
-    packageStartupMessage("No token, setup with set_qualtrics_opts and qualtrics_auth.")
+    packageStartupMessage(crayon::green("Remember to setup your token with set_qualtrics_opts()"))
   }
-
 }
 
 .onDetach <- function(libpath = find.package("oRion")) {

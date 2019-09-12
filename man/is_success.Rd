@@ -11,6 +11,8 @@ is_success(requests, verbose = FALSE)
 }
 \arguments{
 \item{requests}{the list output of request_downloads}
+
+\item{verbose}{print progress for heavy downloads (default is FALSE)}
 }
 \description{
 Check which request was successful and which was not.

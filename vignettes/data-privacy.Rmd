@@ -1,7 +1,5 @@
 ---
 title: "Data Privacy"
-author: "Pierre Saouter"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Data Privacy}
@@ -9,7 +7,16 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-In the context of the recent GDPR regulation, one important set of functions provided by the 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+QualtricsInR::set_qualtrics_opts()
+library(QualtricsInR)
+```
+
+In the context of the European Global Data Protection Regulation (GDPR), an important set of functions provided by the 
 Qualtrics API are the data privacy functions. You can:
 
 1. Create an erasure request
@@ -20,9 +27,9 @@ Qualtrics API are the data privacy functions. You can:
 
 ## Create an erasure request
 
-You must provide a list of customer emails to be deleted. We overwrite the default Qualtrics parameter
-`searh_only = FALSE` with a TRUE value. This allows to execute the request as a dry run and not delete an
-entities. Use FALSE to delete the entities from your QWualtrics account.
+You must provide a list of customer emails to be deleted. We set the Qualtrics parameter
+to `searh_only=TRUE` to default a dry run before deciding 
+to erase the information associated to the email (`searh_only = FALSE`)
 
 When processed, the request will search for any entities within Qualtrics that match 
 any of the supplied emails; these entities include 
@@ -30,10 +37,11 @@ any of the supplied emails; these entities include
 - Users 
 - MailingList & XM Directory contacts 
 - People 
+
 For any entity discovered the service will erase any responses to surveys they have submitted, along with any tickets that may have
 originated from their responses before erasing the entity itself.
 
-```
+```r
 # Create a dry run erasure request
 create_erasure_request(list("john.doe@alabama.com", "maria.doe@alabama.com"))
 # Create a erasure request
@@ -44,13 +52,13 @@ create_erasure_request(list("john.doe@alabama.com"), FALSE)
 
 You can list all erasure requests performed by the brand.
 
-```
+```r
 list_erasing_requests()
 ```
 
 This allows you to use the id of a given erasure request to retrieve that request
 
-```
+```r
 get_erasing_request("OP-a2c24e5e-d4b1-4bd8-a9e8-9a1c8520c8d2")
 ```
 

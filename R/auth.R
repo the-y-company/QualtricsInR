@@ -27,7 +27,7 @@
 #' \dontrun{
 #'   # OAUth 2.0
 #'   qualtrics_auth("xXxX0x0X0xxX0", "xXxX0x0X0xxX0", "data.center")
-#' 
+#'
 #'   # Set token and data_center options
 #'   set_qualtrics_opts("xXxX0x0X0xxX0xXxX0x0X0xxX0", "myCenter.eu")
 #' }
@@ -110,26 +110,26 @@ refresh_oauth <- function(){
 
 #' @rdname oauth
 #' @export
-set_qualtrics_opts <- function(api_token, data_center = NULL){
+set_qualtrics_opts <- function(
+  api_token = Sys.getenv("QUALTRICSINR_TOKEN"),
+  data_center = Sys.getenv("QUALTRICSINR_DATA_CENTER")){
 
-  if(missing(api_token))
-    stop("missing token", call. = FALSE)
+  if(nchar(api_token)==0)
+    stop(crayon::red("token variable is undefined"), call. = FALSE)
 
-  if(is.null(data_center))
-    warning("No data_center provided", call. = FALSE)
+  if(nchar(data_center)==0)
+    warning(crayon::yellow("data_center is undefined"), call. = FALSE)
 
   # Added in the event that data_center is not required by API
-  if(!is.null(data_center))
+  if(nchar(data_center)>0)
     data_center <- sprintf("%s.", data_center)
-  else
-    data_center <- ""
 
-  url <- sprintf("https://%squaltrics.com", data_center)
   options(
     QUALTRICS_TOKEN_TIMEOUT = NULL, # set to null to avoid token clash
-    QUALTRICS_BASE_URL = url,
+    QUALTRICS_BASE_URL = sprintf("https://%squaltrics.com", data_center),
     QUALTRICS_API_TOKEN = api_token,
     QUALTRICS_DATA_CENTER = data_center
   )
 
+  invisible()
 }
