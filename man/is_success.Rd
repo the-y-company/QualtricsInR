@@ -10,15 +10,13 @@ is_success(requests, verbose = FALSE)
 \method{is_success}{qualtrics_download}(requests, verbose = FALSE)
 }
 \arguments{
-\item{requests}{Requests, as returned by \code{request_downloads}}
-
-\item{verbose}{default FALSE}
+\item{requests}{the list output of request_downloads}
 }
 \description{
 Check which request was successful and which was not.
 }
 \examples{
-requests <- request_downloads(c(1,2))
-success <- is_success(requests, TRUE)
+\dontrun{requests <- request_downloads(c(1,2))}
+\dontrun{success <- is_success(requests, TRUE)}
 
 }

@@ -12,7 +12,7 @@
 }
 
 .get_export_status <- function(surveyId, exportId) {
-  params <- c("surveys",surveyId,"export-responses",exportId)
+  params <- c("surveys", surveyId, "export-responses", exportId)
   getresp <- .qualtrics_get(params, NULL, NULL)
   return(c(getresp$result$status,getresp$result$percentComplete,getresp$result$fileId))
 }
@@ -36,10 +36,10 @@
 
   if (!is.null(saveDir)) {
     if (is.null(filename)) {
-      file.copy(file, paste0(saveDir,surveyId,".",fileType))
+      file.copy(file, paste0(saveDir, surveyId, ".", fileType))
     }
     else {
-      file.copy(file, paste0(saveDir,filename,".",fileType))
+      file.copy(file, paste0(saveDir, filename, ".", fileType))
     }
     cat(paste0("Survey was saved as ", saveDir, surveyId, ".", fileType), "\n")
   }
@@ -129,8 +129,8 @@ print.qualtrics_download <- function(x,...){
 #' @inheritParams bulk-download
 #'
 #' @examples
-#' requests <- request_downloads(c(1,2))
-#' success <- is_success(requests, TRUE)
+#' \dontrun{requests <- request_downloads(c(1,2))}
+#' \dontrun{success <- is_success(requests, TRUE)}
 #'
 #' @name is_success
 #' @export
@@ -160,17 +160,15 @@ is_success.qualtrics_download <- function(requests, verbose = FALSE){
 #' Request survey response downloads.
 #'
 #' @param surveyIds A vector of survey ids.
-#' @inheritParams get_survey_responses
-#' @param requests Requests, as returned by \code{request_downloads}
-#' @param ... Any other option.
+#' @param format file format json, by default (can be csv or tsv). We don't provide SPSS yet.
+#' @param ... a list of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names
 #'
-#' @details The \href{https://www.qualtrics.com}{Qualtrics} API takes some time to prepare a downloads, hence
-#' \code{\link{download_requested}} taking a some time to download the requested data. What actually happens
-#' is that first a download is \emph{requested}, after the request Qualtrics prepares a file that
-#' \code{\link{download_requested}} downloads when it is ready. It is therefore more efficient,
-#' when the user wants to download data from multiple surveys, more efficient to request each and every
-#' download before checking whether they are ready. Those performances will headvily depend on the number
-#' of surveys and the amount of data the ultimately user wants to obtain.
+#' @details The \href{https://www.qualtrics.com}{Qualtrics} API downloads survey responses in several steps.
+#' First a download is \emph{requested}. Qualtrics prepares the file and \code{\link{download_requested}}
+#' can be triggered to download the file when it is ready. When downloading responses from a large nuimber of
+#' surveys, it is more efficient to request all downloads if a first place, check that the downloads are ready
+#' and then retrieve all the files. The performances will headvily depend on the number
+#' of surveys and the amount of data the user ultimately wants to obtain.
 #'
 #' @section Functions:
 #' \itemize{
@@ -179,8 +177,9 @@ is_success.qualtrics_download <- function(requests, verbose = FALSE){
 #' }
 #'
 #' @examples
-#' (requests <- request_downloads(c(1,2)))
-#' data <- download_requested(requests)
+#' \dontrun{
+#' requests <- request_downloads(c(1,2)))
+#' data <- download_requested(requests)}
 #'
 #' @return A \code{request_downloads} returns object of class \code{qualtrics_download} while
 #' \code{download_requested} returns a \code{list}.
@@ -188,31 +187,36 @@ is_success.qualtrics_download <- function(requests, verbose = FALSE){
 #' @import dplyr
 #' @name bulk-download
 #' @export
-request_downloads <- function(surveyIds) {
+request_downloads <- function(
+  surveyIds,
+  format = "json",
+  ...
+  ) {
+
   if(missing(surveyIds))
     stop("missing surveyIds", call. = FALSE)
 
-  requests <- purrr::map(
+  requests <- do.call(bind_rows, lapply(
     surveyIds,
     function(x){
       params <- c("surveys", x, "export-responses")
-      body <- list(format = "csv")
-      resp <- tryCatch(
-        .qualtrics_post(params, NULL, body),
-        error = function(e) e
-      )
+      body <- list("format" = format, ...)
+      resp <- .qualtrics_post(params, NULL, body)
 
-      # convert to logical
-      if(inherits(resp, "error"))
-        FALSE
-      else
-        TRUE
+      tibble(
+        "surveyId" = x,
+        "progressId" = ifelse(!is.null(resp$result$progressId), resp$result$progressId, NA),
+        "status" = ifelse(resp$meta$httpStatus != "200 - OK", FALSE, TRUE)
+      )
     }
-  ) %>%
-    unlist()
+  ))
 
   structure(
-    tibble(surveyIds = surveyIds, success = requests),
+    tibble(
+      surveyIds = requests$surveyId,
+      progressIds = requests$progressId,
+      success = requests$status
+      ),
     class = c("qualtrics_download", "data.frame")
   )
 }
@@ -221,27 +225,27 @@ request_downloads <- function(surveyIds) {
 #' @export
 download_requested <- function(
   requests,
-  format = "csv",
-  saveDir = NULL,
-  verbose = FALSE,
-  ...
+  format = "json",
+  saveDir = NULL
 ){
   UseMethod("download_requested")
 }
 
 #' @rdname bulk-download
+#' @param requests the list output of request_downloads
+#' @param format the output file format
+#' @param saveDir the output dir to save the data
 #' @method download_requested qualtrics_download
 #' @export
 download_requested.qualtrics_download <- function(
   requests,
-  format = "csv",
-  saveDir = NULL,
-  verbose = FALSE,
-  ...
+  format = "json",
+  saveDir = NULL
 ){
 
   # Check input parameters
-  if (!is.null(saveDir)) saveDir <- .check_directory(saveDir)
+  if (!is.null(saveDir))
+    saveDir <- .check_directory(saveDir)
 
   valid <- requests %>%
     filter(success == TRUE)
@@ -256,38 +260,28 @@ download_requested.qualtrics_download <- function(
       paste0(invalid$surveyIds, collapse = "\n"), "\n"
     )
 
-  data <- purrr::map(
-    valid$surveyIds,
-    function(surveyId, format, verbose, ...){
-      # Step 1: Creating Data Export
-      params <- c("surveys",surveyId,"export-responses")
-      body <- list(format = "csv", ...)
-      getcnt <- .qualtrics_post(params, NULL, body)
+  data <- purrr::map2(
+    valid$surveyIds, valid$progressIds,
+    function(surveyId, progressId, format, saveDir){
 
-      # Step 2: Checking on Data Export Progress and waiting until export is ready
-
-      if (verbose) pbar <- utils::txtProgressBar(min = 0, max = 100, style = 3)
-
-      progressVec <- .get_export_status(surveyId, getcnt$result$progressId)
+      pbar <- utils::txtProgressBar(min = 0, max = 100, style = 3)
+      progressVec <- .get_export_status(surveyId, progressId)
       while(progressVec[1] != "complete" & progressVec[1]!="failed") {
-        progressVec <- .get_export_status(surveyId, getcnt$result$progressId)
+        progressVec <- .get_export_status(surveyId, progressId)
         Sys.sleep(2)
       }
 
-      if (verbose) close(pbar)
+      close(pbar)
 
-      #step 2.1: Check for error
       if (progressVec[1]=="failed")
         stop("export failed", call. = FALSE)
 
-      # Step 3: Downloading file
-      data <- .get_export_file(surveyId, progressVec[3], format, saveDir, NULL)
+      data <- .get_export_file(surveyId, progressVec[3], format, saveDir, filename = NULL)
 
       return(data)
     },
     format = format,
-    verbose = verbose,
-    ...
+    saveDir = saveDir
   )
 
   names(data) <- valid$surveyIds

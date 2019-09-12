@@ -7,26 +7,25 @@
 \alias{download_requested.qualtrics_download}
 \title{Request downloads}
 \usage{
-request_downloads(surveyIds)
+request_downloads(surveyIds, format = "json", ...)
 
-download_requested(requests, format = "csv", saveDir = NULL,
-  verbose = FALSE, ...)
+download_requested(requests, format = "json", saveDir = NULL)
 
-\method{download_requested}{qualtrics_download}(requests, format = "csv",
-  saveDir = NULL, verbose = FALSE, ...)
+\method{download_requested}{qualtrics_download}(requests,
+  format = "json", saveDir = NULL)
 }
 \arguments{
 \item{surveyIds}{A vector of survey ids.}
 
-\item{requests}{Requests, as returned by \code{request_downloads}}
-
 \item{format}{file format json, by default (can be csv or tsv). We don't provide SPSS yet.}
 
-\item{saveDir}{path to a local directory to save the exported file. Default is a temporary file in rds format that is removed at the end of your session. Default name will be the surveyId.}
+\item{...}{a list of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names}
 
-\item{verbose}{default FALSE}
+\item{requests}{the list output of request_downloads}
 
-\item{...}{Any other option.}
+\item{saveDir}{the output dir to save the data}
+
+\item{format}{the output file format}
 }
 \value{
 A \code{request_downloads} returns object of class \code{qualtrics_download} while
@@ -36,13 +35,12 @@ A \code{request_downloads} returns object of class \code{qualtrics_download} whi
 Request survey response downloads.
 }
 \details{
-The \href{https://www.qualtrics.com}{Qualtrics} API takes some time to prepare a downloads, hence
-\code{\link{download_requested}} taking a some time to download the requested data. What actually happens
-is that first a download is \emph{requested}, after the request Qualtrics prepares a file that
-\code{\link{download_requested}} downloads when it is ready. It is therefore more efficient,
-when the user wants to download data from multiple surveys, more efficient to request each and every
-download before checking whether they are ready. Those performances will headvily depend on the number
-of surveys and the amount of data the ultimately user wants to obtain.
+The \href{https://www.qualtrics.com}{Qualtrics} API downloads survey responses in several steps.
+First a download is \emph{requested}. Qualtrics prepares the file and \code{\link{download_requested}}
+can be triggered to download the file when it is ready. When downloading responses from a large nuimber of
+surveys, it is more efficient to request all downloads if a first place, check that the downloads are ready
+and then retrieve all the files. The performances will headvily depend on the number
+of surveys and the amount of data the user ultimately wants to obtain.
 }
 \section{Functions}{
 
@@ -53,7 +51,8 @@ of surveys and the amount of data the ultimately user wants to obtain.
 }
 
 \examples{
-(requests <- request_downloads(c(1,2)))
-data <- download_requested(requests)
+\dontrun{
+requests <- request_downloads(c(1,2)))
+data <- download_requested(requests)}
 
 }
