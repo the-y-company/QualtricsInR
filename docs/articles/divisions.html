@@ -150,11 +150,18 @@
 <div id="create-a-new-division" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-new-division" class="anchor"></a>Create a new division</h2>
-<p>You can create a new division at the organization level. The only mandatory paremeter is the name of the new division. You can also pass a list of user ids (see get_users()) with admin rights for this division. Finally, you can define the divisions permissions, otherwise default permissions will be set. The call returns the id of the created division.</p>
-<pre><code>div_id &lt;- create_division("New_Division", list("UR_1234567890AbCdE"))</code></pre>
-<p>You can retrieve or update a given division. The best way to figure out the permissions you have accessible for the first call is to retrieve an exisiting division from Qualtrics and study the json reply below.</p>
-<pre><code>json_rep &lt;- get_division("DV_1234567890AbCdE")
-update_division("DV_1234567890AbCdE", name = "New_Name")</code></pre>
+<p>You can create a new division at the organization level. The only mandatory parameter is the name of the new division. You can also pass a list of user ids (see <code>get_users</code>) with admin rights for this division. Finally, you can define the division permissions, otherwise default permissions will be set.</p>
+<p>The call returns the id of the created division.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">div_id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_division.html">create_division</a></span>(<span class="st">"New_Division"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"UR_1234567890AbCdE"</span>))</a></code></pre></div>
+<p>You can retrieve or update a given division. Since the division permissions are not documented in the API documentation and do ot always match names of the options seen in the GUI, the time consuming but most reliable appraoch is to retrieve an existing division and study the json file returned.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">div_settings &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_division.html">get_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>)</a></code></pre></div>
+<p>In the below example, we inactivate the <em>editSurveyFlow</em> option for the corresponding division.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">options &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">   <span class="st">"controlPanel"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">     <span class="st">"surveyPermissions"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">       <span class="st">"editSurveyFlow"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"state"</span> =<span class="st"> "off"</span>))))</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw"><a href="../reference/update_division.html">update_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>, <span class="dt">permissions =</span> options)</a></code></pre></div>
+<p>In the future, we would like to document the full list of options and provide convenience functions to manipulate these options (see <code>share_survey</code>)</p>
 </div>
   </div>
 

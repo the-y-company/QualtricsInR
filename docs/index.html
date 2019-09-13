@@ -149,7 +149,6 @@
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#authentication">Authenticatication</a></li>
-<li><a href="#example">Example</a></li>
 <li><a href="#what-is-missing">What’s missing</a></li>
 </ul>
 <p>There are other important R packages available to automate different aspects of survey manipulation in Qualtrics. The <a href="https://github.com/ropensci/qualtRics">qualtRics</a> R package implements the retrieval of survey data using the Qualtrics API and is currently the only package on CRAN that offers such functionality.</p>
@@ -178,10 +177,12 @@
 <p>You can set options for user authentication in your Qualtrics account by generating a new API token. You will also need your data center id if you are running under an entreprise account. You can then set your authentication credentials with <code>set_qualtrics_opts</code>. By default, the function looks for the variables QUALTRICSINR_TOKEN and QUALTRICSINR_DATA_CENTER (optional) in your .Renviron file, but you can specify these as you wish.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># set auth options assuming definition in .Renviron</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>()</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># set auth options by hand</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="st">"983282032932sds2"</span>,<span class="st">"mydatacenter"</span>)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co"># set auth options with custom .Renviron names</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="kw">Sys.getenb</span>(<span class="st">"VAR1"</span>),<span class="kw">Sys.getenb</span>(<span class="st">"VAR2"</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># set auth options by hand</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="st">"983282032932sds2"</span>,<span class="st">"mydatacenter"</span>)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># set auth options with custom .Renviron names</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="kw">Sys.getenb</span>(<span class="st">"VAR1"</span>),<span class="kw">Sys.getenb</span>(<span class="st">"VAR2"</span>))</a></code></pre></div>
 <p>If you use this method, you will have set your credentials for every new session.</p>
 </div>
 <div id="setting-up-an-oauth-client-manager" class="section level3">
@@ -196,6 +197,11 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/oauth.html">qualtrics_auth</a></span>(<span class="dt">id =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">secret =</span> <span class="st">"xXxxX0X0x"</span>, <span class="dt">data_center =</span> <span class="st">"my.center"</span>)</a></code></pre></div>
 <p>This will authenticate you, returning a bearer token valid for an hour, saving the <em>encrypted</em> credentials in a <code>.qualtrics-oauth</code> file, which will be automatically loaded in all subsequent sessions and automatically refreshed if need be. You should therefore only find the need to run <code>qualtrics_auth</code> once.</p>
 </div>
+</div>
+<div id="whats-missing" class="section level2">
+<h2 class="hasAnchor">
+<a href="#whats-missing" class="anchor"></a>What’s missing</h2>
+<p>A number of things.</p>
 </div>
 </div>
   </div>

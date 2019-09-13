@@ -20,18 +20,32 @@ library(QualtricsInR)
 
 ## Create a new division
 
-You can create a new division at the organization level. The only mandatory paremeter is the name of the new division. You can also pass a list of 
-user ids (see get_users()) with admin rights for this division. Finally, you can define the divisions permissions,
-otherwise default permissions will be set. The call returns the id of the created division.
+You can create a new division at the organization level. The only mandatory parameter is the name of the new division. 
+You can also pass a list of user ids (see `get_users`) with admin rights for this division. Finally, you can define the 
+division permissions, otherwise default permissions will be set.
 
-```
+The call returns the id of the created division.
+
+```r
 div_id <- create_division("New_Division", list("UR_1234567890AbCdE"))
 ```
 
-You can retrieve or update a given division. The best way to figure out the permissions you have accessible for the first call
-is to retrieve an exisiting division from Qualtrics and study the json reply below.
+You can retrieve or update a given division. Since the division permissions are not documented in the API documentation and
+do ot always match names of the options seen in the GUI, the time consuming but most reliable appraoch is to retrieve an
+existing division and study the json file returned.
 
+```r
+div_settings <- get_division("DV_1234567890AbCdE")
 ```
-json_rep <- get_division("DV_1234567890AbCdE")
-update_division("DV_1234567890AbCdE", name = "New_Name")
+
+In the below example, we inactivate the *editSurveyFlow* option for the corresponding division.
+
+```r
+options <- list(
+   "controlPanel" = list(
+     "surveyPermissions" = list(
+       "editSurveyFlow" = list("state" = "off"))))
+update_division("DV_1234567890AbCdE", permissions = options)
 ```
+
+In the future, we would like to document the full list of options and provide convenience functions to manipulate these options (see `share_survey`)
