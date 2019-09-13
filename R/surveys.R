@@ -244,21 +244,6 @@ update_survey <- function(
   getcnt$meta$httpStatus
 }
 
-#' Insert embedded data fields into a survey
-#'
-#' @param survey_id the survey id
-#' @param list_fields A list of list
-#'
-#' @examples
-#' \dontrun{insert_embedded_data("SV_012345678901234", "sss")}
-#' @export
-insert_embedded_data <- function(survey_id, list_fields) {
-  params <- c("surveys", survey_id, "embeddeddatafields")
-  body <- list("embeddedDataFields" = list_fields)
-  getcnt <- .qualtrics_post(params, NULL, body)
-  getcnt$meta$httpStatus
-}
-
 #' get_survey_quota retrieves the survey quota information
 #' @param survey_id the survey id
 #' @return A \code{tibble}
@@ -295,4 +280,19 @@ get_survey_quota <- function(survey_id) {
   } else {
     return(NULL)
   }
+}
+
+#' Insert embedded data fields into a survey
+#'
+#' @param survey_id the survey id
+#' @param list_fields A list of list
+#'
+#' @examples
+#' \dontrun{insert_embedded_data("SV_012345678901234", "sss")}
+#' @export
+insert_embedded_data <- function(survey_id, list_fields) {
+  params <- c("surveys", survey_id, "embeddeddatafields")
+  body <- list("embeddedDataFields" = list_fields)
+  getcnt <- .qualtrics_post(params, NULL, body)
+  getcnt$meta$httpStatus
 }
