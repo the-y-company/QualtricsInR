@@ -72,7 +72,7 @@ globalVariables(
   token$secret <- charToRaw(token$secret)
   token$data_center <- charToRaw(token$data_center)
   token$url <- charToRaw(token$url)
-  #return(token)
+  return(token)
 }
 
 #' @rdname encryption
@@ -82,7 +82,7 @@ globalVariables(
   token$secret <- rawToChar(token$secret)
   token$data_center <- rawToChar(token$data_center)
   token$url <- rawToChar(token$url)
-  #return(token)
+  return(token)
 }
 
 #' Check if token file is in working directory

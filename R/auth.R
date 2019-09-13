@@ -34,16 +34,18 @@
 #'
 #' @rdname oauth
 #' @export
-qualtrics_auth <- function(id, secret, data_center = NULL, cache = TRUE){
+qualtrics_auth <- function(id = Sys.getenv("QUALTRICSINR_ID"), 
+  secret = Sys.getenv("QUALTRICSINR_SECRET"), 
+  data_center = Sys.getenv("QUALTRICSINR_DATA_CENTER"), cache = TRUE){
 
-  if(missing(id) || missing(secret))
-    stop("missing id or secret", call. = FALSE)
+  if(!nchar(id) >= 1)
+    stop("missing id", call. = FALSE)
+
+  if(!nchar(secret) >= 1)
+    stop("missing secret", call. = FALSE)
 
   # if data_center not passed, attempts to fetch from general options
-  if(is.null(data_center))
-    data_center <- .get_data_center()
-
-  if(is.null(data_center))
+  if(!nchar(data_center) >= 1)
     stop("missing data_center", call. = FALSE)
 
   # get token
@@ -86,6 +88,7 @@ qualtrics_auth <- function(id, secret, data_center = NULL, cache = TRUE){
     .construct_oauth(token)
   }
 
+  invisible()
 }
 
 #' @rdname oauth

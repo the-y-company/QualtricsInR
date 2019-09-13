@@ -7,7 +7,9 @@
 \alias{set_qualtrics_opts}
 \title{Authenticate}
 \usage{
-qualtrics_auth(id, secret, data_center = NULL, cache = TRUE)
+qualtrics_auth(id = Sys.getenv("QUALTRICSINR_ID"),
+  secret = Sys.getenv("QUALTRICSINR_SECRET"),
+  data_center = Sys.getenv("QUALTRICSINR_DATA_CENTER"), cache = TRUE)
 
 load_oauth()
 

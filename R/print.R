@@ -4,5 +4,8 @@ print.quatrics_token <- function(x, ...){
     token$time + token$expires_in,
     "%d %b %y %H:%M"
   )
-  cat("QualtricsInR token expiring at", t, ...)
+  cat(
+    crayon::blue(cli::symbol$info),
+    "QualtricsInR token expiring at", t, ..., "\n"
+  )
 }
