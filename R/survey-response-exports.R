@@ -64,7 +64,8 @@
 #' @param ... a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names
 #' @examples
 #' \dontrun{get_survey_responses("SV_012345678901234", "csv")}
-#' \dontrun{get_survey_responses("SV_012345678901234", format = "csv", verbose = TRUE, saveDir = "./", filename = "name_export", useLabels = TRUE, limit = 10)}
+#' \dontrun{get_survey_responses("SV_012345678901234", format = "csv",verbose = TRUE,
+#' saveDir = "./", filename = "name_export", useLabels = TRUE, limit = 10)}
 #'
 #' @return A status code
 #' @export

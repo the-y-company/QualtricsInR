@@ -6,7 +6,8 @@
 #' @param resetRecordedDate Default: true - Sets the recorded date to the current
 #' time. If false, the recorded date will be incremented by one millisecond.
 #' @examples
-#' \dontrun{update_response("SV_012345678912345", "R_012345678912345", {"EDField": "EDValue"}, FALSE)}
+#' \dontrun{update_response("SV_012345678912345", "R_012345678912345",
+#' {"EDField": "EDValue"}, FALSE)}
 #' @return A \code{status}.
 #' @export
 update_response <- function(

@@ -24,5 +24,6 @@ Update a surve's name, status or expiration date
 }
 \examples{
 \dontrun{update_survey("SV_012345678901234", TRUE)}
-\dontrun{update_survey("SV_012345678901234", TRUE, "new_name", c("2016-01-01T01:00:00Z","2016-03-01T01:00:00Z"))}
+\dontrun{update_survey("SV_012345678901234", TRUE, "new_name",
+c("2016-01-01T01:00:00Z","2016-03-01T01:00:00Z"))}
 }

@@ -5,3 +5,4 @@
 .qualtrics-oauth
 files
 ^README\.Rmd$
+vignettes

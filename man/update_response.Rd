@@ -24,5 +24,6 @@ A \code{status}.
 Update the value of an embedded data field in a survey response
 }
 \examples{
-\dontrun{update_response("SV_012345678912345", "R_012345678912345", {"EDField": "EDValue"}, FALSE)}
+\dontrun{update_response("SV_012345678912345", "R_012345678912345",
+{"EDField": "EDValue"}, FALSE)}
 }

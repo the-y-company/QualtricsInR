@@ -222,7 +222,8 @@ share_survey <- function(survey_id, user_id, surv_permissions) {
 #'
 #' @examples
 #' \dontrun{update_survey("SV_012345678901234", TRUE)}
-#' \dontrun{update_survey("SV_012345678901234", TRUE, "new_name", c("2016-01-01T01:00:00Z","2016-03-01T01:00:00Z"))}
+#' \dontrun{update_survey("SV_012345678901234", TRUE, "new_name",
+#' c("2016-01-01T01:00:00Z","2016-03-01T01:00:00Z"))}
 #' @return A execution status code
 #' @export
 update_survey <- function(

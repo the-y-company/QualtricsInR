@@ -32,6 +32,7 @@ surveys successively, we recommend using the more efficient \code{request_downlo
 }
 \examples{
 \dontrun{get_survey_responses("SV_012345678901234", "csv")}
-\dontrun{get_survey_responses("SV_012345678901234", format = "csv", verbose = TRUE, saveDir = "./", filename = "name_export", useLabels = TRUE, limit = 10)}
+\dontrun{get_survey_responses("SV_012345678901234", format = "csv",verbose = TRUE,
+saveDir = "./", filename = "name_export", useLabels = TRUE, limit = 10)}
 
 }
