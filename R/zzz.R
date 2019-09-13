@@ -1,6 +1,10 @@
 .onAttach <- function(libname = find.package("oRion"), pkgname = "oRion") {
 
-  if(file.exists(".qualtrics-oauth")) {
+  if (Sys.getenv("QUALTRICSINR_TOKEN") != "") {
+    set_qualtrics_opts()
+    packageStartupMessage(crayon::green("API token successfully loaded!"))
+  }
+  else if(file.exists(".qualtrics-oauth")) {
     token <- get(load(".qualtrics-oauth"))
     token <- .construct_oauth(token)
     token <- .decrypt(token)
