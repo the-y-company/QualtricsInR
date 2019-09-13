@@ -7,7 +7,7 @@
 copy_survey(survey_id, copy_name, user_id = NULL)
 }
 \arguments{
-\item{survey_id}{the survey id to copy}
+\item{survey_id}{the survey id}
 
 \item{copy_name}{the name of the survey copy}
 

@@ -7,7 +7,7 @@
 insert_embedded_data(survey_id, list_fields)
 }
 \arguments{
-\item{survey_id}{The survey ID of the survey you want to insert embedded data fields into.}
+\item{survey_id}{the survey id}
 
 \item{list_fields}{A list of list}
 }

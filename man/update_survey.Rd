@@ -8,7 +8,7 @@ update_survey(survey_id, status, new_name = NULL,
   expiration_dates = NULL)
 }
 \arguments{
-\item{survey_id}{the id of survey to copy}
+\item{survey_id}{the survey id}
 
 \item{status}{is the activity status of the survey (true or false)}
 

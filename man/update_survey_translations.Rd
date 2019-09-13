@@ -7,7 +7,7 @@
 update_survey_translations(survey_id, language_code, survey_field)
 }
 \arguments{
-\item{survey_id}{the id of survey to copy}
+\item{survey_id}{the survey id}
 
 \item{language_code}{the language code}
 

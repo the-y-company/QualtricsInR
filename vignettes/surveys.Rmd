@@ -16,13 +16,15 @@ QualtricsInR::set_qualtrics_opts()
 library(QualtricsInR)
 ```
 
+## Survey Manipulation
+
 Using the Qualtrics API, you can peform a number of manipulations of survey objects in your Qualtrics account:
 
 - [Simple survey manipulation](#Simple survey manipulation)
 - [Copying and sharing surveys](#Copying and sharing surveys)
 - [Importing a survey](#Importing a survey)
 
-## Simple survey manipulation
+### Simple survey manipulation
 
 You can easily retrieve the full list of surveys available in your account:
 
@@ -55,9 +57,9 @@ update_survey(surveys$id[1], status = TRUE)
 update_survey(surveys$id[1], expiration = c("2016-01-01T01:00:00Z","2016-03-01T01:00:00Z"))
 ```
 
-The `delete_survey` function takes the survey id as input.
+Although not a complete overlap, the `update_options` provide many more survey global options (see below).
 
-## Copying and sharing surveys
+### Copying and sharing surveys
 
 You can create a copy of a survey in your own account or in another users account using the user if (see `get_users`):
 
@@ -119,7 +121,7 @@ share_survey(my_surveys[1], user_id, c(15,23))
 share_survey(my_surveys[1], user_id, c(15))
 ```
 
-## Importing a survey
+### Importing a survey
 
 You can import a local survey file into Qualtrics. The accepted file formats are *qsf*, *txt* and *doc* (word document). The *qsf* format stands for *qualtrics survey file* and is usually a file exported from Qualtrics. This is however nothing else than json that is not impossible to build from scratch (be ready to sweat though).
 
@@ -131,3 +133,27 @@ import_survey("name", "./survey.qsf", 1)
 # Import a file from a url
 import_survey("name", "https://www.example.com/mysurvey.qsf", 1)
 ```
+
+## Manipulating Survey Objects
+
+The Qualtrics API provides a number of functionalities to interact directly with a survey's internal structure. There is the possiblity to intereact with:
+
+* Questions
+* Flows
+* Blocks
+* Survey Options
+
+### Flows
+
+Although not part of the flow adminstration itself, a useful relation function allows to insert embedded data fields in your survey `insert_embedded_data`.
+
+
+### Survey Options
+
+A exhaustive list of survey options are configurable through the `update_options` call.
+
+```r
+update_options(surveys$id[1], list("BackButton" = true, "BallotBoxStuffingPrevention" = true))
+```
+
+All available options can be found in the [documention](https://api.qualtrics.com/reference#update-options).

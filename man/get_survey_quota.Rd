@@ -2,16 +2,16 @@
 % Please edit documentation in R/surveys.R
 \name{get_survey_quota}
 \alias{get_survey_quota}
-\title{get_survey_quota retrieves the full translation}
+\title{get_survey_quota retrieves the survey quota information}
 \usage{
 get_survey_quota(survey_id)
 }
 \arguments{
-\item{survey_id}{the id of survey to retrieve quota for}
+\item{survey_id}{the survey id}
 }
 \value{
 A \code{tibble}
 }
 \description{
-get_survey_quota retrieves the full translation
+get_survey_quota retrieves the survey quota information
 }

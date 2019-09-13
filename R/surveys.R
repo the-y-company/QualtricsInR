@@ -45,7 +45,7 @@ list_surveys <- function() {
 #' Default uses the user id returned by \code{\link{who_am_i}} function. When a survey gets
 #' copied it will appear in the 'Uncategorized' folder
 #'
-#' @param survey_id the survey id to copy
+#' @param survey_id the survey id
 #' @param copy_name the name of the survey copy
 #' @param user_id if provided, copies the survey to another account
 #' @examples
@@ -146,7 +146,7 @@ import_survey_fromurl <- function(upload_name, file_url, file_type = "qsf") {
 
 #' Share a survey with another account
 #'
-#' @param survey_id the id of survey to copy
+#' @param survey_id the survey id
 #' @param user_id the user id of the account with whom you are sharing the survey
 #' @param surv_permissions array of numbers for permissions activation
 #'
@@ -215,7 +215,7 @@ share_survey <- function(survey_id, user_id, surv_permissions) {
 
 #' Update a surve's name, status or expiration date
 #'
-#' @param survey_id the id of survey to copy
+#' @param survey_id the survey id
 #' @param status is the activity status of the survey (true or false)
 #' @param new_name is the edited name of the survey
 #' @param expiration_dates an array with startDate and endDate (format "2016-01-01T01:00:00Z")
@@ -246,7 +246,7 @@ update_survey <- function(
 
 #' Insert embedded data fields into a survey
 #'
-#' @param survey_id The survey ID of the survey you want to insert embedded data fields into.
+#' @param survey_id the survey id
 #' @param list_fields A list of list
 #'
 #' @examples
@@ -259,8 +259,8 @@ insert_embedded_data <- function(survey_id, list_fields) {
   getcnt$meta$httpStatus
 }
 
-#' get_survey_quota retrieves the full translation
-#' @param survey_id the id of survey to retrieve quota for
+#' get_survey_quota retrieves the survey quota information
+#' @param survey_id the survey id
 #' @return A \code{tibble}
 #' @export
 get_survey_quota <- function(survey_id) {

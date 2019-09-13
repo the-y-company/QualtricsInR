@@ -7,7 +7,7 @@
 update_survey_languages(survey_id, language_codes)
 }
 \arguments{
-\item{survey_id}{the id of survey to copy}
+\item{survey_id}{the survey id}
 
 \item{language_codes}{Array of language codes to enable}
 }

@@ -1,17 +1,17 @@
 #' Retrieve the list of languages in which a survey is available
-#' @param survey_id the id of survey to copy
+#' @param survey_id the survey id
 #' @examples
 #' \dontrun{get_survey_languages("SV_012345678901234")}
 #' @return A \code{list} of available languages
 #' @export
 get_survey_languages <- function(survey_id) {
-  params <- c("surveys",survey_id,"languages")
+  params <- c("survey-definitions",survey_id,"languages")
   getcnt <- .qualtrics_get(params)
   getcnt$result$AvailableLanguages
 }
 
 #' get_survey_translations retrieves the full translation
-#' @param survey_id the id of survey to copy
+#' @param survey_id the survey id
 #' @param language_code is the code for the language of translation
 #'
 #' @examples
@@ -19,7 +19,7 @@ get_survey_languages <- function(survey_id) {
 #' @return A \code{list} of survey elements in requested language
 #' @export
 get_survey_translations <- function(survey_id, language_code) {
-  params <- c("surveys","id" = survey_id, "translations",language_code)
+  params <- c("survey-definitions","id" = survey_id, "translations",language_code)
   getcnt <- .qualtrics_get(params)
   getcnt$result
 }
@@ -29,7 +29,7 @@ get_survey_translations <- function(survey_id, language_code) {
 #' Enabling a new survey language is needed before being able to add a
 #' translation for that language.
 #'
-#' @param survey_id the id of survey to copy
+#' @param survey_id the survey id
 #' @param language_codes Array of language codes to enable
 #'
 #' @examples
@@ -37,7 +37,7 @@ get_survey_translations <- function(survey_id, language_code) {
 #' @return A \code{status}.
 #' @export
 update_survey_languages <- function(survey_id, language_codes) {
-  params <- c("surveys", survey_id, "languages")
+  params <- c("survey-definitions", survey_id, "languages")
   body <- list("AvailableLanguages" = language_codes)
   getcnt <- .qualtrics_put(params, NULL, body)
   getcnt$meta$httpStatus
@@ -45,7 +45,7 @@ update_survey_languages <- function(survey_id, language_codes) {
 
 #' Update the survey translation for a given language
 #'
-#' @param survey_id the id of survey to copy
+#' @param survey_id the survey id
 #' @param language_code the language code
 #' @param survey_field need to be inferred from retrieving a translation first
 #'
@@ -59,7 +59,7 @@ update_survey_languages <- function(survey_id, language_codes) {
 #' @return A \code{status}.
 #' @export
 update_survey_translations <- function(survey_id, language_code, survey_field) {
-  params <- c("surveys", survey_id, "translations",language_code)
+  params <- c("survey-definitions", survey_id, "translations",language_code)
   body <- survey_field
   getcnt <- .qualtrics_put(params, NULL, body)
   getcnt$meta$httpStatus

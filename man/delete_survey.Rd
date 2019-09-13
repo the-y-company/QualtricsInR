@@ -7,7 +7,7 @@
 delete_survey(survey_id)
 }
 \arguments{
-\item{survey_id}{The survey ID of the survey you want to delete}
+\item{survey_id}{the survey id}
 }
 \value{
 A execution status code

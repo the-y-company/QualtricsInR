@@ -7,7 +7,7 @@
 get_survey_translations(survey_id, language_code)
 }
 \arguments{
-\item{survey_id}{the id of survey to copy}
+\item{survey_id}{the survey id}
 
 \item{language_code}{is the code for the language of translation}
 }

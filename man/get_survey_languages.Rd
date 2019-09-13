@@ -7,7 +7,7 @@
 get_survey_languages(survey_id)
 }
 \arguments{
-\item{survey_id}{the id of survey to copy}
+\item{survey_id}{the survey id}
 }
 \value{
 A \code{list} of available languages

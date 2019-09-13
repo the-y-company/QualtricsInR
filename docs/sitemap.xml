@@ -109,6 +109,9 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_message.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_options.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_organization.html</loc>
   </url>
   <url>
@@ -122,6 +125,9 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_languages.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_meta_data.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_quota.html</loc>
@@ -215,6 +221,9 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_message.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_options.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_response.html</loc>

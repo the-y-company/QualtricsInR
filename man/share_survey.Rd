@@ -7,7 +7,7 @@
 share_survey(survey_id, user_id, surv_permissions)
 }
 \arguments{
-\item{survey_id}{the id of survey to copy}
+\item{survey_id}{the survey id}
 
 \item{user_id}{the user id of the account with whom you are sharing the survey}
 
