@@ -5,7 +5,7 @@
 #' @return A \code{list} of available languages
 #' @export
 get_survey_languages <- function(survey_id) {
-  params <- c("survey-definitions",survey_id,"languages")
+  params <- c("surveys", survey_id, "languages")
   getcnt <- .qualtrics_get(params)
   getcnt$result$AvailableLanguages
 }
@@ -19,7 +19,7 @@ get_survey_languages <- function(survey_id) {
 #' @return A \code{list} of survey elements in requested language
 #' @export
 get_survey_translations <- function(survey_id, language_code) {
-  params <- c("survey-definitions","id" = survey_id, "translations",language_code)
+  params <- c("surveys", survey_id, "translations", language_code)
   getcnt <- .qualtrics_get(params)
   getcnt$result
 }
@@ -37,7 +37,7 @@ get_survey_translations <- function(survey_id, language_code) {
 #' @return A \code{status}.
 #' @export
 update_survey_languages <- function(survey_id, language_codes) {
-  params <- c("survey-definitions", survey_id, "languages")
+  params <- c("surveys", survey_id, "languages")
   body <- list("AvailableLanguages" = language_codes)
   getcnt <- .qualtrics_put(params, NULL, body)
   getcnt$meta$httpStatus
@@ -59,7 +59,7 @@ update_survey_languages <- function(survey_id, language_codes) {
 #' @return A \code{status}.
 #' @export
 update_survey_translations <- function(survey_id, language_code, survey_field) {
-  params <- c("survey-definitions", survey_id, "translations",language_code)
+  params <- c("surveys", survey_id, "translations", language_code)
   body <- survey_field
   getcnt <- .qualtrics_put(params, NULL, body)
   getcnt$meta$httpStatus
