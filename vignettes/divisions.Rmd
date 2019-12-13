@@ -31,8 +31,7 @@ div_id <- create_division("New_Division", list("UR_1234567890AbCdE"))
 ```
 
 You can retrieve or update a given division. Since the division permissions are not documented in the API documentation and
-do ot always match names of the options seen in the GUI, the time consuming but most reliable appraoch is to retrieve an
-existing division and study the json file returned.
+do not always match names of the options seen when interacting with the graphical user interface, the time consuming but most reliable appraoch is to retrieve an existing division and study the json file returned.
 
 ```r
 div_settings <- get_division("DV_1234567890AbCdE")

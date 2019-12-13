@@ -1,5 +1,5 @@
 ---
-title: "groups"
+title: "Groups"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{groups}
@@ -18,8 +18,22 @@ knitr::opts_chunk$set(
 library(QualtricsInR)
 ```
 
-## Manage user groups
+You can inspect all the groups defined for your organisation using the usual list function.
 
 ```
-df <- list_groups()
+lst_groups <- list_groups()
 ```
+
+Using the group id of interest, you can then proceed with a number of operations:
+
+* `get_group()` retrieves group specific information
+* `update_group()`allows to update group specic settings
+* `add_user_group()`
+* `remove_user_group()`
+* `remove_user_group()`
+
+Of course one can also delete a group through the API. 
+
+Finally, although Qualtrics provides a method to create new groups, it requires the specification of a
+group type id. The list of different group type ids don't seem to be found. We will update the documentation when
+ready.

@@ -146,12 +146,46 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(QualtricsInR)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; Remember to setup your token with set_qualtrics_opts()</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; ✔ API token successfully loaded!</span></a></code></pre></div>
 <div id="manage-users" class="section level2">
 <h2 class="hasAnchor">
 <a href="#manage-users" class="anchor"></a>Manage users</h2>
-<p>A useful function is to list all users. This request can take time for large organizations as the query will loop through all paginations available.</p>
-<pre><code>df &lt;- list_users()</code></pre>
+<p>To get started, a useful function lists all the user accounts in the organisaion:</p>
+<pre><code>lst_users &lt;- list_users()</code></pre>
+<p>Once you have access to user ids from the previous call, you can perform a number of actions:</p>
+<ul>
+<li>
+<code>get_user</code> to retrieve user specific information, including permissions</li>
+<li>
+<code>update_user</code> to retrieve user specific information, including permissions</li>
+<li>
+<code>get_user_api_token</code> to retrieve user specific information, including permissions</li>
+<li>
+<code>create_user_api_token</code> to retrieve user specific information, including permissions</li>
+</ul>
+<p>The api token service is quiete useful if you need, as a brand admit, to interect with multiple user accounts through the API. Provided the API is enabled for these accounts, as an administrator, you will be able to retrieve or generate an API token successively through many accounts.</p>
+<p>This can be useful if you building a summary analysis accross all you user accounts, for example. Be cautious of creating new API tokens for API enabled accounts as this will invalidated previously generated tokens by the account user.</p>
+<p>A useful utility function to keep track of where you are is the <code><a href="../reference/who_am_i.html">who_am_i()</a></code> call.</p>
+</div>
+<div id="creating-a-user-account" class="section level2">
+<h2 class="hasAnchor">
+<a href="#creating-a-user-account" class="anchor"></a>Creating a user account</h2>
+<p>To create a user, you must a list of parameters to define the user account properties. An example is given below:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">user_definitions &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="st">"username"</span> =<span class="st"> "firt.last@qualtrics.com"</span>,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="st">"firstName"</span> =<span class="st"> "first name"</span>,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="st">"lastName"</span> =<span class="st"> "last name"</span>,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="st">"userType"</span> =<span class="st"> "UT_012345678912345"</span>,</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="st">"email"</span> =<span class="st"> "firt.last@qualtrics.com"</span>,</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="st">"password"</span> =<span class="st"> "$123456789!"</span>,</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="st">"language"</span> =<span class="st"> "en"</span>,</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="st">"timeZone"</span> =<span class="st"> </span><span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="st">"divisionId"</span> =<span class="st"> </span><span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="st">"accountExpirationDate"</span> =<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  )</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  </a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw"><a href="../reference/create_user.html">create_user</a></span>(user_definitions)</a></code></pre></div>
+<p>One can obviously also delete a user.</p>
 </div>
   </div>
 
@@ -162,6 +196,7 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#manage-users">Manage users</a></li>
+      <li><a href="#creating-a-user-account">Creating a user account</a></li>
       </ul>
 </div>
       </div>

@@ -53,7 +53,8 @@ get_user <- function(user_id) {
 #' Create a new user account
 #'
 #' @param params a named list of account parameters
-#' @section Account parameters: user settings that can be possed are user_name,
+#'
+#' @section Account parameters: user settings that can be passed are user_name,
 #' first_name, last_name, user_type, email, password, language, time_zone,
 #' division_id, account_expiration_date. Currently Qualtrics does not provide
 #' an endpoint to retrieve user types so you must infer them from other calls
@@ -81,19 +82,6 @@ create_user <- function(params) {
   getcnt <- .qualtrics_post("users", NULL, body)
   user_id <- getcnt$result$id
 }
-
-params <- list(
-  "username" = "first.last@weforum.org",
-  "firstName" = "first name",
-  "lastName" = "last name",
-  "userType" = "UT_3dBUKOs5wAT2mLW",
-  "email" = "firt.last@qualtrics.com",
-  "password" = "$123456789!",
-  "language" = "en",
-  "timeZone" = NULL,
-  "divisionId" = NULL,
-  "accountExpirationDate" = NULL
-  )
 
 #' Update a user's account parameters
 #'
@@ -146,6 +134,7 @@ get_user_api_token <- function(user_id) {
 #' @examples
 #' \dontrun{create_user_api_token("UR_012345678912345")}
 #' @return An new api token value
+#' @export
 create_user_api_token <- function(user_id) {
   params <- c("users", user_id, "apitoken")
   getcnt <- .qualtrics_post(params, NULL, NULL)
@@ -158,6 +147,7 @@ create_user_api_token <- function(user_id) {
 #' @examples
 #' \dontrun{who_am_i()}
 #' @return A \code{list} of related account information.
+#' @export
 who_am_i <- function() {
   .qualtrics_get("whoami", NULL, NULL)
 }

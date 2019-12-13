@@ -20,9 +20,45 @@ library(QualtricsInR)
 
 ## Manage users
 
-A useful function is to list all users. This request can take time for large organizations as the query will loop through
-all paginations available.
+To get started, a useful function lists all the user accounts in the organisaion:
 
 ```
-df <- list_users()
+lst_users <- list_users()
 ```
+
+Once you have access to user ids from the previous call, you can perform a number of actions:
+
+* `get_user` to retrieve user specific information, including permissions
+* `update_user` to retrieve user specific information, including permissions
+* `get_user_api_token` to retrieve user specific information, including permissions
+* `create_user_api_token` to retrieve user specific information, including permissions
+
+The api token service is quiete useful if you need, as a brand admit, to interect with multiple user accounts through the API. Provided the
+API is enabled for these accounts, as an administrator, you will be able to retrieve or generate an API token successively through many accounts.
+
+This can be useful if you building a summary analysis accross all you user accounts, for example. Be cautious of creating new API tokens for API enabled accounts as this will invalidated previously generated tokens by the account user.
+
+A useful utility function to keep track of where you are is the `who_am_i()` call.
+
+## Creating a user account
+
+To create a user, you must a list of parameters to define the user account properties. An example is given below:
+
+```r
+user_definitions <- list(
+  "username" = "firt.last@qualtrics.com",
+  "firstName" = "first name",
+  "lastName" = "last name",
+  "userType" = "UT_012345678912345",
+  "email" = "firt.last@qualtrics.com",
+  "password" = "$123456789!",
+  "language" = "en",
+  "timeZone" = NULL,
+  "divisionId" = NULL,
+  "accountExpirationDate" = NULL
+  )
+  
+create_user(user_definitions)
+```
+
+One can obviously also delete a user.

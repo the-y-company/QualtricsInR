@@ -6,3 +6,5 @@
 files
 ^README\.Rmd$
 vignettes
+docs
+pkgdown
