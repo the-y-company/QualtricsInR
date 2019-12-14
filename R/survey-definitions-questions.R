@@ -41,4 +41,3 @@ delete_survey_question <- function(survey_id, question_id) {
   getcnt <- .qualtrics_delete(params)
   getcnt$meta$httpStatus
 }
-

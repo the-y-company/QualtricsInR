@@ -16,7 +16,7 @@ The created user id
 Create a new user account
 }
 \section{Account parameters}{
- user settings that can be possed are user_name,
+ user settings that can be passed are user_name,
 first_name, last_name, user_type, email, password, language, time_zone,
 division_id, account_expiration_date. Currently Qualtrics does not provide
 an endpoint to retrieve user types so you must infer them from other calls

@@ -2,7 +2,7 @@
 % Please edit documentation in R/survey-definitions-flows.R
 \name{get_survey_flow}
 \alias{get_survey_flow}
-\title{Retrieve a survey question}
+\title{Retrieve the flow structure of a survey}
 \usage{
 get_survey_flow(survey_id)
 }
@@ -13,7 +13,9 @@ get_survey_flow(survey_id)
 A list
 }
 \description{
-Retrieve a survey question
+This call will return the complete flow strcuture of your survey as a
+nestedlist of flow elements reflecting all layers of logic built into the
+survey.
 }
 \examples{
 \dontrun{get_survey_flow("SV_012345678901234")}
