@@ -9,8 +9,22 @@ navbar:
   left:
     - text: "Surveys"
       menu:
-        - text: "Manipulate Surveys"
-          href: articles/surveys.html
+        - text: "Survey Questions"
+          href: articles/survey-defs-questions.html
+        - text: "Survey Flow"
+          href: articles/survey-defs-flows.html
+        - text: "Survey Blocks"
+          href: articles/survey-defs-blocks.html
+        - text: "Survey Options"
+          href: articles/survey-defs-options.html
+        - text: "Survey Meta Data"
+          href: articles/survey-defs-meta.html
+        - text: "Survey Languages"
+          href: articles/survey-defs-languages.html
+        - text: "Survey Version"
+          href: articles/survey-defs-versions.html
+    - text: "Responses"
+      menu:
         - text: "Exporting Responses"
           href: articles/survey-response-exports.html
         - text: "Importing Responses"

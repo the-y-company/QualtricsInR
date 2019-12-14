@@ -82,8 +82,35 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/surveys.html">Manipulate Surveys</a>
+      <a href="../articles/survey-defs-questions.html">Survey Questions</a>
     </li>
+    <li>
+      <a href="../articles/survey-defs-flows.html">Survey Flow</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-blocks.html">Survey Blocks</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-options.html">Survey Options</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-meta.html">Survey Meta Data</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-languages.html">Survey Languages</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-versions.html">Survey Version</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Responses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/survey-response-exports.html">Exporting Responses</a>
     </li>
@@ -189,7 +216,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>survey_id</th>
-      <td><p>the id of survey to copy</p></td>
+      <td><p>the survey id</p></td>
     </tr>
     <tr>
       <th>status</th>
@@ -213,7 +240,8 @@
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'>update_survey</span>(<span class='st'>"SV_012345678901234"</span>, <span class='fl'>TRUE</span>)
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
-<span class='fu'>update_survey</span>(<span class='st'>"SV_012345678901234"</span>, <span class='fl'>TRUE</span>, <span class='st'>"new_name"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"2016-01-01T01:00:00Z"</span>,<span class='st'>"2016-03-01T01:00:00Z"</span>))
+<span class='fu'>update_survey</span>(<span class='st'>"SV_012345678901234"</span>, <span class='fl'>TRUE</span>, <span class='st'>"new_name"</span>,
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"2016-01-01T01:00:00Z"</span>,<span class='st'>"2016-03-01T01:00:00Z"</span>))
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

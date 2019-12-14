@@ -80,8 +80,35 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/surveys.html">Manipulate Surveys</a>
+      <a href="../articles/survey-defs-questions.html">Survey Questions</a>
     </li>
+    <li>
+      <a href="../articles/survey-defs-flows.html">Survey Flow</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-blocks.html">Survey Blocks</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-options.html">Survey Options</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-meta.html">Survey Meta Data</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-languages.html">Survey Languages</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-versions.html">Survey Version</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Responses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/survey-response-exports.html">Exporting Responses</a>
     </li>
@@ -257,6 +284,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="create_survey.html">create_survey()</a></code> </p>
+        </td>
+        <td><p>Create a survey</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="create_thankyou_distribution.html">create_thankyou_distribution()</a></code> </p>
         </td>
         <td><p>Create a thank you distribution</p></td>
@@ -320,6 +353,12 @@
           <p><code><a href="delete_survey.html">delete_survey()</a></code> </p>
         </td>
         <td><p>Delete a survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_survey_question.html">delete_survey_question()</a></code> </p>
+        </td>
+        <td><p>Delete a survey question</p></td>
       </tr><tr>
         
         <td>
@@ -404,12 +443,6 @@ Encrypt and decrypt for security, not saving plain credentials to file.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="get_options.html">get_options()</a></code> </p>
-        </td>
-        <td><p>Retrieve Survey Options</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="get_organization.html">get_organization()</a></code> </p>
         </td>
         <td><p>get_organization retrieves organization level information</p></td>
@@ -434,6 +467,12 @@ Encrypt and decrypt for security, not saving plain credentials to file.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="get_survey_flow.html">get_survey_flow()</a></code> </p>
+        </td>
+        <td><p>Retrieve the flow structure of a survey</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="get_survey_languages.html">get_survey_languages()</a></code> </p>
         </td>
         <td><p>Retrieve the list of languages in which a survey is available</p></td>
@@ -443,6 +482,18 @@ Encrypt and decrypt for security, not saving plain credentials to file.</p></td>
           <p><code><a href="get_survey_meta_data.html">get_survey_meta_data()</a></code> </p>
         </td>
         <td><p>Retrieve Survey Meta Data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_survey_options.html">get_survey_options()</a></code> </p>
+        </td>
+        <td><p>Retrieve Survey Options</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_survey_question.html">get_survey_question()</a></code> </p>
+        </td>
+        <td><p>Retrieve a survey question</p></td>
       </tr><tr>
         
         <td>
@@ -548,6 +599,12 @@ Encrypt and decrypt for security, not saving plain credentials to file.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="list_survey_questions.html">list_survey_questions()</a></code> </p>
+        </td>
+        <td><p>List all survey questions</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="list_surveys.html">list_surveys()</a></code> </p>
         </td>
         <td><p>Retrieve the list of surveys for a given user account</p></td>
@@ -609,6 +666,12 @@ Fetches option.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="update_flow_element.html">update_flow_element()</a></code> </p>
+        </td>
+        <td><p>Update a specific survey flow element</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="update_group.html">update_group()</a></code> </p>
         </td>
         <td><p>Update group's definition parameters</p></td>
@@ -627,12 +690,6 @@ Fetches option.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="update_options.html">update_options()</a></code> </p>
-        </td>
-        <td><p>Update Survey Options</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="update_response.html">update_response()</a></code> </p>
         </td>
         <td><p>Update the value of an embedded data field in a survey response</p></td>
@@ -645,9 +702,21 @@ Fetches option.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="update_survey_flow.html">update_survey_flow()</a></code> </p>
+        </td>
+        <td><p>Update the survey flow</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="update_survey_languages.html">update_survey_languages()</a></code> </p>
         </td>
         <td><p>Update the list of available survey languages for a survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="update_survey_options.html">update_survey_options()</a></code> </p>
+        </td>
+        <td><p>Update Survey Options</p></td>
       </tr><tr>
         
         <td>

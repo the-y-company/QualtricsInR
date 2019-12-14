@@ -82,8 +82,35 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/surveys.html">Manipulate Surveys</a>
+      <a href="../articles/survey-defs-questions.html">Survey Questions</a>
     </li>
+    <li>
+      <a href="../articles/survey-defs-flows.html">Survey Flow</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-blocks.html">Survey Blocks</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-options.html">Survey Options</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-meta.html">Survey Meta Data</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-languages.html">Survey Languages</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-versions.html">Survey Version</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Responses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/survey-response-exports.html">Exporting Responses</a>
     </li>
@@ -212,7 +239,8 @@ time. If false, the recorded date will be incremented by one millisecond.</p></t
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>update_response</span>(<span class='st'>"SV_012345678912345"</span>, <span class='st'>"R_012345678912345"</span>, {<span class='st'>"EDField"</span>: <span class='st'>"EDValue"</span>}, <span class='fl'>FALSE</span>)
+<span class='fu'>update_response</span>(<span class='st'>"SV_012345678912345"</span>, <span class='st'>"R_012345678912345"</span>,
+{<span class='st'>"EDField"</span>: <span class='st'>"EDValue"</span>}, <span class='fl'>FALSE</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

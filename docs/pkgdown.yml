@@ -9,6 +9,13 @@ articles:
   groups: groups.html
   message-library: message-library.html
   research-core-contacts: research-core-contacts.html
+  survey-defs-blocks: survey-defs-blocks.html
+  survey-defs-flows: survey-defs-flows.html
+  survey-defs-languages: survey-defs-languages.html
+  survey-defs-meta: survey-defs-meta.html
+  survey-defs-options: survey-defs-options.html
+  survey-defs-questions: survey-defs-questions.html
+  survey-defs-versions: survey-defs-versions.html
   survey-response-exports: survey-response-exports.html
   survey-response-imports: survey-response-imports.html
   surveys: surveys.html

@@ -24,3 +24,7 @@ Imports:
 RoxygenNote: 6.1.1
 License: MIT + file LICENSE
 BugReports: https://github.com/ppssphysics/QualtricsInR/issues
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

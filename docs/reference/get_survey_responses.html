@@ -86,8 +86,35 @@ download_requested functions." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/surveys.html">Manipulate Surveys</a>
+      <a href="../articles/survey-defs-questions.html">Survey Questions</a>
     </li>
+    <li>
+      <a href="../articles/survey-defs-flows.html">Survey Flow</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-blocks.html">Survey Blocks</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-options.html">Survey Options</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-meta.html">Survey Meta Data</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-languages.html">Survey Languages</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-versions.html">Survey Version</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Responses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/survey-response-exports.html">Exporting Responses</a>
     </li>
@@ -229,7 +256,8 @@ surveys successively, we recommend using the more efficient <code>request_downlo
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='fu'>get_survey_responses</span>(<span class='st'>"SV_012345678901234"</span>, <span class='st'>"csv"</span>)
 <span class='co'># }</span><span class='co'># NOT RUN {</span>
-<span class='fu'>get_survey_responses</span>(<span class='st'>"SV_012345678901234"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='st'>"./"</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"name_export"</span>, <span class='kw'>useLabels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='fu'>get_survey_responses</span>(<span class='st'>"SV_012345678901234"</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>,<span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+<span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='st'>"./"</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"name_export"</span>, <span class='kw'>useLabels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

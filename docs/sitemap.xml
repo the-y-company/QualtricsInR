@@ -37,6 +37,9 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_sms_distribution.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_survey.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_thankyou_distribution.html</loc>
   </url>
   <url>
@@ -68,6 +71,9 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/delete_survey.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/delete_survey_question.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/delete_user.html</loc>
@@ -109,9 +115,6 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_message.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_options.html</loc>
-  </url>
-  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_organization.html</loc>
   </url>
   <url>
@@ -124,10 +127,19 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_flow.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_languages.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_meta_data.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_options.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_question.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_quota.html</loc>
@@ -181,6 +193,9 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_sms_distributions.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_survey_questions.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_surveys.html</loc>
   </url>
   <url>
@@ -214,6 +229,9 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_division.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_flow_element.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_group.html</loc>
   </url>
   <url>
@@ -223,16 +241,19 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_message.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_options.html</loc>
-  </url>
-  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_response.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_survey.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_survey_flow.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_survey_languages.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_survey_options.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/update_survey_translations.html</loc>
@@ -269,6 +290,27 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//articles/research-core-contacts.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-defs-blocks.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-defs-flows.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-defs-languages.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-defs-meta.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-defs-options.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-defs-questions.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-defs-versions.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//articles/survey-response-exports.html</loc>

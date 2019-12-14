@@ -45,9 +45,36 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/surveys.html">Manipulate Surveys</a>
+      <a href="../articles/survey-defs-questions.html">Survey Questions</a>
     </li>
     <li>
+      <a href="../articles/survey-defs-flows.html">Survey Flow</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-blocks.html">Survey Blocks</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-options.html">Survey Options</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-meta.html">Survey Meta Data</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-languages.html">Survey Languages</a>
+    </li>
+    <li>
+      <a href="../articles/survey-defs-versions.html">Survey Version</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Responses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
       <a href="../articles/survey-response-exports.html">Exporting Responses</a>
     </li>
     <li>
@@ -162,13 +189,13 @@
 <a class="sourceLine" id="cb1-9" data-line-number="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; # A tibble: 5 x 4</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;   StartDate           EndDate             Status IPAddress     </span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt;   &lt;chr&gt;               &lt;chr&gt;               &lt;chr&gt;  &lt;chr&gt;         </span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; 1 2019-05-08 14:14:24 2019-05-08 14:15:02 0      20.133.7.254  </span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; 2 2019-05-08 14:51:11 2019-05-08 14:52:37 0      201.131.4.101 </span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt; 3 2019-05-08 17:18:07 2019-05-08 17:18:58 0      74.217.93.207 </span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt; 4 2019-05-09 08:13:05 2019-05-09 08:14:09 0      141.143.193.78</span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt; 5 2019-05-10 20:46:33 2019-05-10 20:47:41 0      186.42.213.23</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;   StartDate           EndDate             Status IPAddress      </span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt;   &lt;chr&gt;               &lt;chr&gt;               &lt;chr&gt;  &lt;chr&gt;          </span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; 1 2019-09-27 15:15:07 2019-09-27 15:15:22 0      168.181.11.220 </span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; 2 2019-10-07 23:54:26 2019-10-07 23:56:20 0      190.117.136.225</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt; 3 2019-10-07 23:56:35 2019-10-07 23:56:42 0      190.117.136.225</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt; 4 2019-10-08 00:35:02 2019-10-08 00:35:32 0      190.117.136.225</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt; 5 2019-10-08 19:22:14 2019-10-08 19:23:09 0      190.117.136.225</span></a></code></pre></div>
 <p>A number of <a href="https://api.qualtrics.com/docs/getting-survey-responses-new">optional parameters</a> can be provided to customize your query. Be aware that any download that exceeds 1.8 GB will need to be split in several exports using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD (more information <a href="https://api.qualtrics.com/docs/dates-and-times">here</a>).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># export survey save in ./Data/ with name mysurvey</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(survids<span class="op">$</span>id[<span class="dv">16</span>], <span class="dt">format =</span> <span class="st">"csv"</span>, <span class="dt">saveDir =</span> <span class="st">"~/Desktop/"</span>, <span class="dt">filename =</span> <span class="st">"mysurvey"</span>)</a>
@@ -188,8 +215,8 @@
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># test succsessfully triggered exports</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">is_it &lt;-<span class="st"> </span><span class="kw"><a href="../reference/is_success.html">is_success</a></span>(requests, <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; SV_2uAzZmuCOb7zyYZ</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; SV_1WVdrzYv4QZKY1T</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; SV_4NhCo7zAOY1Kufb</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; SV_0pjuSeHebsZrUrP</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; SV_1WVdrzYv4QZKY1T</span></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co"># download the data</span></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bulk-download.html">download_requested</a></span>(requests, <span class="dt">format =</span> <span class="st">"csv"</span>)</a>

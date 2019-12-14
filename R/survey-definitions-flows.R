@@ -50,8 +50,7 @@ update_survey_flow <- function(survey_id, flow_id, flow_type, flow_properties) {
   body <- c(
     "FlowID" = flow_id,
     "Type" = type,
-    "Properties" = flow_properties,
-    "Flow" = flow_elements
+    "Properties" = flow_properties
   )
   getcnt <- .qualtrics_get(params)
   getcnt$result
