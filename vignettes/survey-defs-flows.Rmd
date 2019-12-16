@@ -12,8 +12,86 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(QualtricsInR)
+QualtricsInR::set_qualtrics_opts()
 ```
 
-```{r setup}
-library(QualtricsInR)
+Manipulating survey flows through the API can be useful but applies only to very
+specific use cases. An example is building through the Qualtrics UI a survey template 
+that will need to be duplicated multiple times, each time with slight updates to 
+the flow of questions, blocks, etc.
+
+Moreover, using the flow related functions are not straightforward and will require 
+additional work to understand the basics and indepensables of a flow structure and 
+how modifying the flow impacts other key strcutural elements.
+
+There are 3 main functions to intereact with survey flows:
+
+* `get_survey_flow` retrieves a survey's flow as a nested list
+* `update_survey_flow` allows to update the complete survey object (removing or adding elements)
+* `update_flow_element` update the details of a specific survey flow element.
+
+As a simple example, we retrieve below the flow for a 2 questions survey, split into 2 blocks.
+
+```{r}
+flow <- get_survey_flow("SV_5haBIVgvUtsvQ1v")
+names(flow)
 ```
+
+The list contains 4 elements which define the key properties of a flow element. 
+
+Flow is the elements that contains the whole flow structure. Here we have 2 seb-elements
+corresponding to our 2 blocks in the survey:
+
+```{r}
+length(flow$Flow)
+```
+
+Properties contain at mimimum the Count variable that tell how many elements make up the flow. 
+Remember the top-level Flow element returned in the list counts as an element so the count here is
+3 (2 blocks and 1 top level flow element).
+
+```{r}
+flow$Properties$Count
+```
+
+FlowID is a unique id for the flow element (written as "FL_")
+
+```{r}
+c(flow$FlowID, flow$Flow[[1]]$FlowID, flow$Flow[[2]]$FlowID)
+```
+
+Type defines different possible type of flow elements. For this survey, we find:
+```{r}
+c(flow$Type, flow$Flow[[1]]$Type, flow$Flow[[2]]$Type)
+```
+
+Each children flow element can have a specific ID that links that flow element to a
+specific object of the survey, for instance, here, block Ids.
+
+Looking at updating the flow, we could for example switch the order of the two flow elements. To, we
+just invert the list order as well as the flow ids to match the new order.
+
+
+```{r}
+flow_1 <- flow$Flow[[2]]
+flow_2 <- flow$Flow[[1]]
+flow_1$FlowID <- flow$Flow[[1]]$FlowID
+flow_2$FlowID <- flow$Flow[[2]]$FlowID
+flow_1$ID <- flow$Flow[[1]]$ID
+flow_2$ID <- flow$Flow[[2]]$ID
+flow$Flow[[1]] <- flow_1
+flow$Flow[[2]] <- flow_2
+```
+
+Sending the updated flow request requires to decouple the flow object in its different elements:
+
+```{r}
+update_survey_flow(
+  "SV_5haBIVgvUtsvQ1v", 
+  as.character(flow$FlowID), 
+  as.character(flow$Type),
+  flow$Flow,
+  flow$Properties)
+```
+

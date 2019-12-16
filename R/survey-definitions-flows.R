@@ -28,13 +28,14 @@ get_survey_flow <- function(survey_id) {
 #' other calls. For a detailed example, see the official package documentation.
 #'
 #' @param survey_id the survey id
-#' @param flow_id the flow element id
-#' @param flow_type the flow element type (see docs for available types)
-#' @param flow_properties the flow element properties
+#' @param flow_id a string the flow element id
+#' @param flow_type a string  the flow element type (see docs for available types)
+#' @param flow_object an object the root flow strcuture
+#' @param flow_properties an object the flow element properties
 #'
 #' @return A list
 #' @export
-update_survey_flow <- function(survey_id, flow_id, flow_type, flow_properties) {
+update_survey_flow <- function(survey_id, flow_id, flow_type, flow_object, flow_properties) {
 
   type <- match.arg(
     flow_type,
@@ -47,12 +48,14 @@ update_survey_flow <- function(survey_id, flow_id, flow_type, flow_properties) {
   )
 
   params <- c("survey-definitions", survey_id, "flow")
-  body <- c(
+  body <- list(
     "FlowID" = flow_id,
     "Type" = type,
+    "Flow" = flow_object,
     "Properties" = flow_properties
   )
-  getcnt <- .qualtrics_get(params)
+
+  getcnt <- .qualtrics_put(params, NULL, body)
   getcnt$result
 }
 
@@ -89,7 +92,7 @@ update_flow_element <- function(survey_id, flow_id, new_flow_id, flow_type) {
     "Type" = type
   )
 
-  getcnt <- .qualtrics_get(params)
+  getcnt <- .qualtrics_get(params, NULL, body)
   getcnt$result
 }
 

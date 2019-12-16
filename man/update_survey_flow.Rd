@@ -4,7 +4,8 @@
 \alias{update_survey_flow}
 \title{Update the survey flow}
 \usage{
-update_survey_flow(survey_id, flow_id, flow_type, flow_properties)
+update_survey_flow(survey_id, flow_id, flow_type, flow_object,
+  flow_properties)
 }
 \arguments{
 \item{survey_id}{the survey id}
@@ -12,6 +13,8 @@ update_survey_flow(survey_id, flow_id, flow_type, flow_properties)
 \item{flow_id}{the flow element id}
 
 \item{flow_type}{the flow element type (see docs for available types)}
+
+\item{flow_object}{the root flow strcuture}
 
 \item{flow_properties}{the flow element properties}
 }
