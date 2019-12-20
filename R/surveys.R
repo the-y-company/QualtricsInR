@@ -300,7 +300,7 @@ insert_embedded_data <- function(survey_id, list_fields) {
 
 
 
-#' Retrieve a survey
+#' Retrieve a survey's response counts by response type
 #'
 #' @param survey_id the survey id
 #' @examples

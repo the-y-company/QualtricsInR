@@ -2,7 +2,7 @@
 % Please edit documentation in R/surveys.R
 \name{get_survey_response_counts}
 \alias{get_survey_response_counts}
-\title{Retrieve a survey}
+\title{Retrieve a survey's response counts by response type}
 \usage{
 get_survey_response_counts(survey_id)
 }
@@ -13,7 +13,7 @@ get_survey_response_counts(survey_id)
 A list of responses by response type
 }
 \description{
-Retrieve a survey
+Retrieve a survey's response counts by response type
 }
 \examples{
 \dontrun{get_survey_response_counts("SV_012345678901234")}
