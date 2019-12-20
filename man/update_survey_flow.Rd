@@ -10,13 +10,13 @@ update_survey_flow(survey_id, flow_id, flow_type, flow_object,
 \arguments{
 \item{survey_id}{the survey id}
 
-\item{flow_id}{the flow element id}
+\item{flow_id}{a string the flow element id}
 
-\item{flow_type}{the flow element type (see docs for available types)}
+\item{flow_type}{a string  the flow element type (see docs for available types)}
 
-\item{flow_object}{the root flow strcuture}
+\item{flow_object}{an object the root flow strcuture}
 
-\item{flow_properties}{the flow element properties}
+\item{flow_properties}{an object the flow element properties}
 }
 \value{
 A list

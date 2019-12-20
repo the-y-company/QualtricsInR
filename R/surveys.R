@@ -297,3 +297,18 @@ insert_embedded_data <- function(survey_id, list_fields) {
   getcnt <- .qualtrics_post(params, NULL, body)
   getcnt$meta$httpStatus
 }
+
+
+
+#' Retrieve a survey
+#'
+#' @param survey_id the survey id
+#' @examples
+#' \dontrun{get_survey_response_counts("SV_012345678901234")}
+#' @return A list of responses by response type
+#' @export
+get_survey_response_counts <- function(survey_id) {
+  params <- c("surveys",survey_id)
+  getcnt <- .qualtrics_get(params)
+  getcnt$result$responseCounts
+}
