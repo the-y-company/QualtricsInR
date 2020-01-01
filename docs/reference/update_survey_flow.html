@@ -216,7 +216,8 @@ refere to survey elements, like Blocks, that exist, i.e. were previously created
 other calls. For a detailed example, see the official package documentation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>update_survey_flow</span>(<span class='no'>survey_id</span>, <span class='no'>flow_id</span>, <span class='no'>flow_type</span>, <span class='no'>flow_properties</span>)</pre>
+    <pre class="usage"><span class='fu'>update_survey_flow</span>(<span class='no'>survey_id</span>, <span class='no'>flow_id</span>, <span class='no'>flow_type</span>, <span class='no'>flow_object</span>,
+  <span class='no'>flow_properties</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -227,15 +228,19 @@ other calls. For a detailed example, see the official package documentation.</p>
     </tr>
     <tr>
       <th>flow_id</th>
-      <td><p>the flow element id</p></td>
+      <td><p>a string the flow element id</p></td>
     </tr>
     <tr>
       <th>flow_type</th>
-      <td><p>the flow element type (see docs for available types)</p></td>
+      <td><p>a string  the flow element type (see docs for available types)</p></td>
+    </tr>
+    <tr>
+      <th>flow_object</th>
+      <td><p>an object the root flow strcuture</p></td>
     </tr>
     <tr>
       <th>flow_properties</th>
-      <td><p>the flow element properties</p></td>
+      <td><p>an object the flow element properties</p></td>
     </tr>
     </table>
 

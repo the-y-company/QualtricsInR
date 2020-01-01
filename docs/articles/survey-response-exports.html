@@ -188,14 +188,9 @@
 <a class="sourceLine" id="cb1-8" data-line-number="8">dt <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-9" data-line-number="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb1-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; # A tibble: 5 x 4</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;   StartDate           EndDate             Status IPAddress      </span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt;   &lt;chr&gt;               &lt;chr&gt;               &lt;chr&gt;  &lt;chr&gt;          </span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; 1 2019-09-27 15:15:07 2019-09-27 15:15:22 0      168.181.11.220 </span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; 2 2019-10-07 23:54:26 2019-10-07 23:56:20 0      190.117.136.225</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt; 3 2019-10-07 23:56:35 2019-10-07 23:56:42 0      190.117.136.225</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt; 4 2019-10-08 00:35:02 2019-10-08 00:35:32 0      190.117.136.225</span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt; 5 2019-10-08 19:22:14 2019-10-08 19:23:09 0      190.117.136.225</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; # A tibble: 0 x 4</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt; # … with 4 variables: StartDate &lt;chr&gt;, EndDate &lt;chr&gt;, Status &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt; #   IPAddress &lt;chr&gt;</span></a></code></pre></div>
 <p>A number of <a href="https://api.qualtrics.com/docs/getting-survey-responses-new">optional parameters</a> can be provided to customize your query. Be aware that any download that exceeds 1.8 GB will need to be split in several exports using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD (more information <a href="https://api.qualtrics.com/docs/dates-and-times">here</a>).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># export survey save in ./Data/ with name mysurvey</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(survids<span class="op">$</span>id[<span class="dv">16</span>], <span class="dt">format =</span> <span class="st">"csv"</span>, <span class="dt">saveDir =</span> <span class="st">"~/Desktop/"</span>, <span class="dt">filename =</span> <span class="st">"mysurvey"</span>)</a>
@@ -223,6 +218,7 @@
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(data)</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; [1] 3</span></a></code></pre></div>
 <p>If <em>saveDir</em> is specified, by default, all survey files will be saved at the specified location using the survey id as a filename.</p>
+<p>Note that the call might fail and return a message indication the survey was not found. This can mean that one of the survey ids does either not exist or corresponds to a survey for which you are missing data export permissions.</p>
 <div id="other-examples" class="section level3">
 <h3 class="hasAnchor">
 <a href="#other-examples" class="anchor"></a>Other examples</h3>

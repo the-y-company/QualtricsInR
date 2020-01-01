@@ -177,7 +177,7 @@ is_success.qualtrics_download <- function(requests, verbose = FALSE){
 #'
 #' @examples
 #' \dontrun{
-#' requests <- request_downloads(c(1,2)))
+#' requests <- request_downloads(c("SV_2uAzZmuCOb7zyYZ","SV_eL2OmawGm5GlzTf")))
 #' data <- download_requested(requests)}
 #'
 #' @return A \code{request_downloads} returns object of class \code{qualtrics_download} while
@@ -262,7 +262,8 @@ download_requested.qualtrics_download <- function(
     )
 
   data <- purrr::map2(
-    valid$surveyIds, valid$progressIds,
+    valid$surveyIds,
+    valid$progressIds,
     function(surveyId, progressId, format, saveDir){
 
       if (verbose) pbar <- utils::txtProgressBar(min = 0, max = 100, style = 3)

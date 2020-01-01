@@ -67,6 +67,8 @@ length(data)
 
 If *saveDir* is specified, by default, all survey files will be saved at the specified location using the survey id as a filename.
 
+Note that the call might fail and return a message indication the survey was not found. This can mean that one of the survey ids does either not exist or corresponds to a survey for which you are missing data export permissions.
+
 ### Other examples 
 
 One useful parameter that was recently added by Qualtrics is the ability to retrieve a survey's *in progress* responses.

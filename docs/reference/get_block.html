@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Request downloads — bulk-download • QualtricsInR</title>
+<title>Retrieve a given survey block — get_block • QualtricsInR</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Request downloads — bulk-download" />
-<meta property="og:description" content="Request survey response downloads." />
+<meta property="og:title" content="Retrieve a given survey block — get_block" />
+<meta property="og:description" content="Retrieve a given survey block" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -199,91 +199,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Request downloads</h1>
+    <h1>Retrieve a given survey block</h1>
     
-    <div class="hidden name"><code>bulk-download.Rd</code></div>
+    <div class="hidden name"><code>get_block.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Request survey response downloads.</p>
+    <p>Retrieve a given survey block</p>
     </div>
 
-    <pre class="usage"><span class='fu'>request_downloads</span>(<span class='no'>surveyIds</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>, <span class='no'>...</span>)
-
-<span class='fu'>download_requested</span>(<span class='no'>requests</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>, <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='co'># S3 method for qualtrics_download</span>
-<span class='fu'>download_requested</span>(<span class='no'>requests</span>,
-  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>, <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_block</span>(<span class='no'>survey_id</span>, <span class='no'>block_id</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>surveyIds</th>
-      <td><p>A vector of survey ids.</p></td>
+      <th>survey_id</th>
+      <td><p>the survey id</p></td>
     </tr>
     <tr>
-      <th>format</th>
-      <td><p>file format json, by default (can be csv or tsv). We don't provide SPSS yet.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>a vector of named parameters, see <a href='https://api.qualtrics.com/reference'>https://api.qualtrics.com/reference</a> *Create Response Export* for parameter names</p></td>
-    </tr>
-    <tr>
-      <th>requests</th>
-      <td><p>the list output of request_downloads</p></td>
-    </tr>
-    <tr>
-      <th>saveDir</th>
-      <td><p>the output dir to save the data</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>print progress for heavy downloads (default is FALSE)</p></td>
-    </tr>
-    <tr>
-      <th>format</th>
-      <td><p>the output file format</p></td>
+      <th>block_id</th>
+      <td><p>the block id</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>request_downloads</code> returns object of class <code>qualtrics_download</code> while
-<code>download_requested</code> returns a <code>list</code>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The <a href='https://www.qualtrics.com'>Qualtrics</a> API downloads survey responses in several steps.
-First a download is <em>requested</em>. Qualtrics prepares the file and <code>download_requested</code>
-can be triggered to download the file when it is ready. When downloading responses from a large nuimber of
-surveys, it is more efficient to request all downloads if a first place, check that the downloads are ready
-and then retrieve all the files. The performances will headvily depend on the number
-of surveys and the amount of data the user ultimately wants to obtain.</p>
-    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
-
-    
-    <ul>
-<li><p><code>request_downloads</code>: Request download (prepares files).</p></li>
-<li><p><code>download_requested</code>: Download requested files.</p></li>
-</ul>
+    <p>A list</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"># NOT RUN {
-requests <- request_downloads(c("SV_2uAzZmuCOb7zyYZ","SV_eL2OmawGm5GlzTf")))
-data <- download_requested(requests)
-# }
-<div class='input'>
-</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>get_block</span>(<span class='st'>"SV_012345678901234"</span>,<span class='st'>"BL_723z35LY23KCZ4p"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#functions">Functions</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

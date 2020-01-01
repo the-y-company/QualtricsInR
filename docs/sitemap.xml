@@ -97,6 +97,9 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/generate_distributionlink.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_block.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_distribution.html</loc>
   </url>
   <url>
@@ -143,6 +146,9 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_quota.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_response_counts.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_survey_responses.html</loc>

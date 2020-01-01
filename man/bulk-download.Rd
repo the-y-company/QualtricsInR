@@ -54,7 +54,7 @@ of surveys and the amount of data the user ultimately wants to obtain.
 
 \examples{
 \dontrun{
-requests <- request_downloads(c(1,2)))
+requests <- request_downloads(c("SV_2uAzZmuCOb7zyYZ","SV_eL2OmawGm5GlzTf")))
 data <- download_requested(requests)}
 
 }
