@@ -195,13 +195,17 @@ request_downloads <- function(
   if(missing(surveyIds))
     stop("missing surveyIds", call. = FALSE)
 
+  wait <- 1
+  if (length(surveyIds) < 15)
+    wait <- 0
+
   requests <- do.call(bind_rows, lapply(
     surveyIds,
     function(x){
       params <- c("surveys", x, "export-responses")
       body <- list("format" = format, ...)
       resp <- .qualtrics_post(params, NULL, body)
-
+      Sys.sleep(wait)
       tibble(
         "surveyId" = x,
         "progressId" = ifelse(!is.null(resp$result$progressId), resp$result$progressId, NA),
