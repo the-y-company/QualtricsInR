@@ -168,3 +168,52 @@ get_contact <- function(mailinglist_id, contact_id) {
   getcnt$result
 }
 
+#' Create a new contact in a mailing list
+#'
+#' @param mailinglist_id ID of the mailing list in which to create the contact
+#' @param first_name contact first name
+#' @param last_name contact last name
+#' @param email contact email
+#' @param external_data_ref external data reference
+#' @param language the language code for the contact (en, es, ...)
+#' @param unsubscribed contact's opt-out state within the mailing list (true or false)
+#' @param embedded_data embedded data values, a list of names parameters (will be transformed to Json object)
+#'
+#' @examples
+#' \dontrun{create_contact(
+#' "ML_0HT4q2Ni634kLhH",
+#' "James",
+#' "Paddignton",
+#' "james.pad@gmail.ww",
+#' "English"
+#' "en",
+#' true,
+#' list("key1"="key_1", "key2"="key_2"))}
+#' @return The id of the created mailing list
+#' @export
+create_contact <- function(
+  mailinglist_id,
+  first_name,
+  last_name,
+  email,
+  external_data_ref,
+  language,
+  unsubscribed,
+  embedded_data
+  ) {
+
+  body <- list(
+    "firstName" = first_name,
+    "lastName" = last_name,
+    "email" = email,
+    "externalDataRef" = external_data_ref,
+    "language" = language,
+    "unsubscribed" = unsubscribed,
+    "embeddedData" = toJSON(embedded_data, auto_unbox = TRUE)
+  )
+
+  params <- list("mailinglists", mailinglist_id, "contacts")
+  getcnt <- .qualtrics_post(params, NULL, body)
+  getcnt$result$id
+}
+
