@@ -4,9 +4,18 @@
 \alias{create_sms_distribution}
 \title{Create a new survey distribution via SMS}
 \usage{
-create_sms_distribution(send_date, method, survey_id, name, mailinglist_id,
-  message_id = NULL, library_id = NULL, messagetext = NULL,
-  contact_id = NULL, parentdistribution_id = NULL)
+create_sms_distribution(
+  send_date,
+  method,
+  survey_id,
+  name,
+  mailinglist_id,
+  message_id = NULL,
+  library_id = NULL,
+  messagetext = NULL,
+  contact_id = NULL,
+  parentdistribution_id = NULL
+)
 }
 \arguments{
 \item{send_date}{date for distribution to be sent}

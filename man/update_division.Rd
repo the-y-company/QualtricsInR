@@ -4,8 +4,7 @@
 \alias{update_division}
 \title{Update a division's settings}
 \usage{
-update_division(division_id, name = NULL, status = NULL,
-  permissions = NULL)
+update_division(division_id, name = NULL, status = NULL, permissions = NULL)
 }
 \arguments{
 \item{division_id}{the id of the division to update}

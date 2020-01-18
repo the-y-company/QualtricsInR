@@ -4,8 +4,7 @@
 \alias{upload_graphic_fromurl}
 \title{upload_graphic_fromurl imports a survey based on a loacl survey file}
 \usage{
-upload_graphic_fromurl(libraryId, name, fileUrl, contentType,
-  folder = NULL)
+upload_graphic_fromurl(libraryId, name, fileUrl, contentType, folder = NULL)
 }
 \arguments{
 \item{libraryId}{the name of the survey where to import responses}

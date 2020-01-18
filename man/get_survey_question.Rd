@@ -9,11 +9,14 @@ get_survey_question(survey_id, question_id)
 \arguments{
 \item{survey_id}{the survey id}
 
-\item{question_id}{the question id (see list_survey_questions)}
+\item{question_id}{the question id see list_survey_questions}
 }
 \value{
 A list
 }
 \description{
 Retrieve a survey question
+}
+\examples{
+\dontrun{get_survey_question("SV_012345678901234","QID1")}
 }

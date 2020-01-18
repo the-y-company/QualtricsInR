@@ -187,19 +187,20 @@ list_distributions <- function(survey_id) {
 
   offset <- 0
   getcnt <- .qualtrics_get("distributions", "surveyId" = survey_id, "offset" = offset)
+  return(getcnt)
 
-  if (length(getcnt$result$elements)>0) {
-    df <- .build_distribution(getcnt$result$elements)
-
-    while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
-      getcnt <- .qualtrics_get("distributions", "surveyId"=survey_id, "offset" = offset)
-      df <- rbind(df,.build_distribution(getcnt$result$elements))
-    }
-    return(df)
-  } else {
-    return(NULL)
-  }
+  # if (length(getcnt$result)>0) {
+  #   df <- .build_distribution(getcnt$result)
+  #
+  #   while (!is.null(getcnt$result$nextPage)) {
+  #     offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+  #     getcnt <- .qualtrics_get("distributions", "surveyId"=survey_id, "offset" = offset)
+  #     df <- rbind(df,.build_distribution(getcnt$result))
+  #   }
+  #   return(df)
+  # } else {
+  #   return(NULL)
+  # }
 
 }
 

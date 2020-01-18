@@ -7,7 +7,7 @@
 #' @export
 list_mailinglists <- function() {
 
-  .build_contact_list <- function(list) {
+  .build_mailing_lists <- function(list) {
     purrr::map_df(
       list, function(x) {
         dplyr::tibble(
@@ -23,12 +23,12 @@ list_mailinglists <- function() {
   getcnt <- .qualtrics_get("mailinglists", "offset"=offset)
 
   if (length(getcnt$result$elements)>0) {
-    df <- .build_contact_list(getcnt$result$elements)
+    df <- .build_mailing_lists(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
       offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("mailinglists", "offset"=offset)
-      df <- rbind(df,.build_contact_list(getcnt$result$elements))
+      df <- rbind(df,.build_mailing_lists(getcnt$result$elements))
     }
 
     return(df)
@@ -104,3 +104,67 @@ delete_mailinglist <- function(mailinglist_id) {
   getcnt <- .qualtrics_post(params, NULL, NULL)
   getcnt$meta$httpStatus
 }
+
+#' Retrieve all contacts in a mailing list
+#'
+#' @param mailinglist_id the id of mailing list to delete
+#' @examples
+#' \dontrun{list_contacts("ML_1234567890AbCdE")}
+#' @return A \code{tibble} of all mailing list contacts
+#' @export
+list_contacts <- function(mailinglist_id) {
+
+  .build_contact_list <- function(list) {
+    purrr::map_df(
+      list, function(x) {
+        dplyr::tibble(
+          "id" = .replace_na(x$id),
+          "firstName" = .replace_na(x$firstName),
+          "lastName" = .replace_na(x$lastName),
+          "email" = .replace_na(x$email),
+          "externalDataReference" = .replace_na(x$externalDataReference),
+          "embeddedData" = .replace_na(x$embeddedData),
+          "language" = .replace_na(x$language),
+          "unsubscribed" = .replace_na(x$unsubscribed),
+          "responseHistory" = .replace_na(x$responseHistory),
+          "emailHistory" = .replace_na(x$emailHistory)
+        )})
+  }
+
+  offset <- 0
+  params <- c("mailinglists", mailinglist_id, "contacts")
+  getcnt <- .qualtrics_get(params, "offset" = offset)
+
+  if (length(getcnt$result$elements)>0) {
+    df <- .build_contact_list(getcnt$result$elements)
+
+    while (!is.null(getcnt$result$nextPage)) {
+      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      getcnt <- .qualtrics_get("mailinglists", "offset"=offset)
+      df <- rbind(df,.build_contact_list(getcnt$result$elements))
+    }
+
+    return(df)
+  } else {
+    return(NULL)
+  }
+}
+
+#' Retrieve a the information related to a certain contact
+#'
+#' @description
+#' This call allows to retrieve all the information regarding a certain contact id. The call returns an
+#' email history for the contact
+#'
+#' @param mailinglist_id the mailing list id
+#' @param contact_id the contact id
+#' @examples
+#' \dontrun{get_contact("ML_0HT4q2Ni634kLhH", "MLRP_bwwuYtDMPdK2Scl")}
+#' @return A \code{list} with the mailing list information
+#' @export
+get_contact <- function(mailinglist_id, contact_id) {
+  params <- list("mailinglists", mailinglist_id, "contacts", contact_id)
+  getcnt <- .qualtrics_get(params)
+  getcnt$result
+}
+

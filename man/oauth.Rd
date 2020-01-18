@@ -7,16 +7,21 @@
 \alias{set_qualtrics_opts}
 \title{Authenticate}
 \usage{
-qualtrics_auth(id = Sys.getenv("QUALTRICSINR_ID"),
+qualtrics_auth(
+  id = Sys.getenv("QUALTRICSINR_ID"),
   secret = Sys.getenv("QUALTRICSINR_SECRET"),
-  data_center = Sys.getenv("QUALTRICSINR_DATA_CENTER"), cache = TRUE)
+  data_center = Sys.getenv("QUALTRICSINR_DATA_CENTER"),
+  cache = TRUE
+)
 
 load_oauth()
 
 refresh_oauth()
 
-set_qualtrics_opts(api_token = Sys.getenv("QUALTRICSINR_TOKEN"),
-  data_center = Sys.getenv("QUALTRICSINR_DATA_CENTER"))
+set_qualtrics_opts(
+  api_token = Sys.getenv("QUALTRICSINR_TOKEN"),
+  data_center = Sys.getenv("QUALTRICSINR_DATA_CENTER")
+)
 }
 \arguments{
 \item{id, secret}{Your client id and secret.}

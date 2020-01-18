@@ -17,9 +17,10 @@ list_survey_questions <- function(survey_id) {
 #' Retrieve a survey question
 #'
 #' @param survey_id the survey id
-#' @param question_id the question id (see list_survey_questions)
+#' @param question_id the question id see list_survey_questions
+#'
 #' @examples
-#' \dontrun{get_survey_question("SV_012345678901234","QID1)}
+#' \dontrun{get_survey_question("SV_012345678901234","QID1")}
 #' @return A list
 #' @export
 get_survey_question <- function(survey_id, question_id) {
@@ -31,9 +32,9 @@ get_survey_question <- function(survey_id, question_id) {
 #' Delete a survey question
 #'
 #' @param survey_id the survey id
-#' @param question_id the question id (see list_survey_questions)
+#' @param question_id the question id see list_survey_questions
 #' @examples
-#' \dontrun{delete_survey_question("SV_012345678901234","QID1)}
+#' \dontrun{delete_survey_question("SV_012345678901234","QID1")}
 #' @return A list
 #' @export
 delete_survey_question <- function(survey_id, question_id) {

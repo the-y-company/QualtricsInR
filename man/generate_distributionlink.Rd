@@ -4,8 +4,14 @@
 \alias{generate_distributionlink}
 \title{Generate a distribution link}
 \usage{
-generate_distributionlink(action, survey_id, mailinglist_id, description,
-  expirationdate, linktype)
+generate_distributionlink(
+  action,
+  survey_id,
+  mailinglist_id,
+  description,
+  expirationdate,
+  linktype
+)
 }
 \arguments{
 \item{action}{To generate transaction distribution links, value must be "CreateTransactionBatchDistribution"}

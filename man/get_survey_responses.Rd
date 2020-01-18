@@ -4,8 +4,14 @@
 \alias{get_survey_responses}
 \title{Export a survey's responses into R}
 \usage{
-get_survey_responses(survey_id, format = "json", verbose = FALSE,
-  saveDir = NULL, filename = NULL, ...)
+get_survey_responses(
+  survey_id,
+  format = "json",
+  verbose = FALSE,
+  saveDir = NULL,
+  filename = NULL,
+  ...
+)
 }
 \arguments{
 \item{survey_id}{the id of survey to copy}

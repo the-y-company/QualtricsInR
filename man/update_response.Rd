@@ -4,8 +4,7 @@
 \alias{update_response}
 \title{Update the value of an embedded data field in a survey response}
 \usage{
-update_response(surveyId, responseId, embeddedData,
-  resetRecordedDate = TRUE)
+update_response(surveyId, responseId, embeddedData, resetRecordedDate = TRUE)
 }
 \arguments{
 \item{surveyId}{the id of survey to copy}

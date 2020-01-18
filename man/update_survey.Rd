@@ -4,8 +4,7 @@
 \alias{update_survey}
 \title{Update a surve's name, status or expiration date}
 \usage{
-update_survey(survey_id, status, new_name = NULL,
-  expiration_dates = NULL)
+update_survey(survey_id, status, new_name = NULL, expiration_dates = NULL)
 }
 \arguments{
 \item{survey_id}{the survey id}

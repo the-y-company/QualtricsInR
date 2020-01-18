@@ -4,8 +4,15 @@
 \alias{send_email_tomailinglist}
 \title{Send Email to Mailing List}
 \usage{
-send_email_tomailinglist(fromEmail, fromName, replyToEmail, subject,
-  messageText, mailingListId, sendDate)
+send_email_tomailinglist(
+  fromEmail,
+  fromName,
+  replyToEmail,
+  subject,
+  messageText,
+  mailingListId,
+  sendDate
+)
 }
 \arguments{
 \item{fromEmail}{To generate transaction distribution links, value must be "CreateTransactionBatchDistribution"}

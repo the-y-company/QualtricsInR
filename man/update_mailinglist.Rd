@@ -4,8 +4,12 @@
 \alias{update_mailinglist}
 \title{Update an existing mailing list}
 \usage{
-update_mailinglist(mailinglist_id, library_id = NULL, name = NULL,
-  category = NULL)
+update_mailinglist(
+  mailinglist_id,
+  library_id = NULL,
+  name = NULL,
+  category = NULL
+)
 }
 \arguments{
 \item{mailinglist_id}{the library_id}

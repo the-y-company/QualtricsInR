@@ -4,10 +4,16 @@
 \alias{create_reminder_distribution}
 \title{Create a reminder distribution}
 \usage{
-create_reminder_distribution(parent_distribution_id,
-  from_email = "noreply@qualtrics.com", from_name = "Qualtrics",
-  reply_to_email = "noreply@qualtrics.com", subject, message_id,
-  library_id, send_date)
+create_reminder_distribution(
+  parent_distribution_id,
+  from_email = "noreply@qualtrics.com",
+  from_name = "Qualtrics",
+  reply_to_email = "noreply@qualtrics.com",
+  subject,
+  message_id,
+  library_id,
+  send_date
+)
 }
 \arguments{
 \item{parent_distribution_id}{id of the library item}

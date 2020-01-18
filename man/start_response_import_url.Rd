@@ -4,8 +4,7 @@
 \alias{start_response_import_url}
 \title{start_response_import_url imports a survey based on a loacl survey file}
 \usage{
-start_response_import_url(surveyId, fileUrl, format = "CSV",
-  charset = "UTF-8")
+start_response_import_url(surveyId, fileUrl, format = "CSV", charset = "UTF-8")
 }
 \arguments{
 \item{surveyId}{the name of the survey where to import responses}

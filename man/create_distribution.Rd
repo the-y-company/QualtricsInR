@@ -4,8 +4,18 @@
 \alias{create_distribution}
 \title{Create a new email distribution}
 \usage{
-create_distribution(survey_id, library_id, message_id, mailing_list_id,
-  from_name, reply_to_email, from_email, subject, type, send_date)
+create_distribution(
+  survey_id,
+  library_id,
+  message_id,
+  mailing_list_id,
+  from_name,
+  reply_to_email,
+  from_email,
+  subject,
+  type,
+  send_date
+)
 }
 \arguments{
 \item{survey_id}{the id of survey to copy}
