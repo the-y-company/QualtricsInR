@@ -206,7 +206,7 @@ share_survey <- function(survey_id, user_id, surv_permissions) {
     )
   }
 
-  params <- c("surveys","id"=survey_id,"permissions","collaborations")
+  params <- c("surveys", survey_id,"permissions","collaborations")
   body <- .build_permissions(user_id, surv_permissions)
   getcnt <- .qualtrics_post(params, NULL, body)
   getcnt$meta$httpStatus
