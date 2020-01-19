@@ -298,7 +298,7 @@ get_sample <- function(mailinglist_id, sample_id) {
     while (!is.null(getcnt$result$nextPage)) {
       offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(params, "offset" = offset)
-      list_sample_contacts <- c(getcnt_tot, getcnt$result)
+      list_sample_contacts <- c(list_sample_contacts, getcnt$result)
     }
 
     return(list_sample_contacts)
