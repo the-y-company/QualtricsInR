@@ -101,7 +101,7 @@ update_mailinglist <- function(mailinglist_id, library_id = NULL, name = NULL, c
 #' @export
 delete_mailinglist <- function(mailinglist_id) {
   params <- c("mailinglists",mailinglist_id)
-  getcnt <- .qualtrics_post(params, NULL, NULL)
+  getcnt <- .qualtrics_delete(params, NULL, NULL)
   getcnt$meta$httpStatus
 }
 
@@ -197,3 +197,113 @@ create_contact <- function(mailinglist_id, contact_options) {
   getcnt$result$id
 }
 
+#' Updates a contact's information in a mailing list
+#'
+#' @description update a contact's information in a mailing list. You can pass a named
+#' list of parameters to define your contact. All parameters are optional but empty parameters
+#' cannot be passed. Parameters are: firstName, lastName, email, externalDataRef, language,
+#' unsubscribed and embeddedData. The embeddedData element must a string representation of a JSON object.
+#'
+#' @param mailinglist_id ID of the mailing list in which to create the contact
+#' @param contact_id ID of the contact to update (see list_contacts)
+#' @param contact_options list of new contact information
+#'
+#' @examples
+#' \dontrun{
+#' updated_contact <- list("firstName" = "James William")
+#' update_contact("ML_0HT4q2Ni634kLhH", "MLRP_eaI7CCX9bxAbRt3", updated_contact)}
+#' @return The status code
+#' @export
+update_contact <- function(mailinglist_id, contact_id, contact_options) {
+
+  body <- contact_options
+
+  params <- list("mailinglists", mailinglist_id, "contacts", contact_id)
+  getcnt <- .qualtrics_put(params, NULL, body)
+  getcnt$meta$httpStatus
+}
+
+
+#' Delete a contact from a mailing list
+#'
+#' @param mailinglist_id the id of mailing list to delete
+#' @param contact_id ID of the contact to update (see list_contacts)
+#'
+#' @examples
+#' \dontrun{delete_contact("ML_1234567890AbCdE","MLRP_eaI7CCX9bxAbRt3")}
+#' @return A status code
+#' @export
+delete_contact <- function(mailinglist_id, contact_id) {
+  params <- list("mailinglists", mailinglist_id, "contacts", contact_id)
+  getcnt <- .qualtrics_delete(params, NULL, NULL)
+  getcnt$meta$httpStatus
+}
+
+
+#' List samples associated with a mailing list
+#'
+#' @param mailinglist_id the id of mailing list to delete
+#' @examples
+#' \dontrun{list_samples("ML_0HT4q2Ni634kLhH")}
+#' @return A \code{tibble} of all samnple ids and names
+#' @export
+list_samples <- function(mailinglist_id) {
+
+  .build_sample_list <- function(list) {
+    purrr::map_df(
+      list, function(x) {
+        dplyr::tibble(
+          "id" = .replace_na(x$id),
+          "name" = .replace_na(x$name)
+        )})
+  }
+
+  offset <- 0
+  params <- c("mailinglists", mailinglist_id, "samples")
+  getcnt <- .qualtrics_get(params, "offset" = offset)
+
+  if (length(getcnt$result$elements)>0) {
+    df <- .build_sample_list(getcnt$result$elements)
+
+    while (!is.null(getcnt$result$nextPage)) {
+      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      getcnt <- .qualtrics_get("mailinglists", "offset"=offset)
+      df <- rbind(df,.build_sample_list(getcnt$result$elements))
+    }
+
+    return(df)
+  } else {
+    return(NULL)
+  }
+}
+
+#' Retrieve a sample from a mailing list
+#'
+#' @param mailinglist_id the mailing list id
+#' @param sample_id the contact id
+#' @examples
+#' \dontrun{get_sample("ML_0HT4q2Ni634kLhH", "PL_8C7RS264INboiMJ")}
+#' @return A \code{list} with all sample contacts and their respective email histories
+#' @export
+get_sample <- function(mailinglist_id, sample_id) {
+
+  offset <- 0
+  params <- list("mailinglists", mailinglist_id, "samples", sample_id)
+  getcnt <- .qualtrics_get(params, "offset" = offset)
+
+  if (length(getcnt$result$elements)>0) {
+
+    list_sample_contacts <- getcnt$result
+
+    while (!is.null(getcnt$result$nextPage)) {
+      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      getcnt <- .qualtrics_get(params, "offset" = offset)
+      list_sample_contacts <- c(getcnt_tot, getcnt$result)
+    }
+
+    return(list_sample_contacts)
+  } else {
+    return(NULL)
+  }
+
+}
