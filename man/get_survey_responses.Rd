@@ -6,7 +6,7 @@
 \usage{
 get_survey_responses(
   survey_id,
-  format = "json",
+  format = "csv",
   verbose = FALSE,
   saveDir = NULL,
   filename = NULL,
@@ -16,7 +16,7 @@ get_survey_responses(
 \arguments{
 \item{survey_id}{the id of survey to copy}
 
-\item{format}{file format json, by default (can be csv or tsv). We don't provide SPSS yet.}
+\item{format}{file format csv, by default (can be json or tsv). We don't provide SPSS yet.}
 
 \item{verbose}{default FALSE}
 

@@ -13,7 +13,7 @@ get_activity_type <- function() {
 
 #' Retrieve the type of logging (activity) events
 #'
-#' @param activity_name
+#' @param activity_name Name of activity to retrieve.
 #' @examples
 #' \dontrun{get_activity_log("session_creations")}
 #' @return A \code{list} with the mailing list information

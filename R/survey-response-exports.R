@@ -57,7 +57,7 @@
 #' \code{download_requested} functions.
 #'
 #' @param survey_id the id of survey to copy
-#' @param format file format json, by default (can be csv or tsv). We don't provide SPSS yet.
+#' @param format file format csv, by default (can be json or tsv). We don't provide SPSS yet.
 #' @param verbose default FALSE
 #' @param saveDir path to a local directory to save the exported file. Default is a temporary file in rds format that is removed at the end of your session. Default name will be the surveyId.
 #' @param filename specify filename for saving. If NULL, uses the survey id
@@ -71,7 +71,7 @@
 #' @export
 get_survey_responses <- function(
   survey_id,
-  format = "json",
+  format = "csv",
   verbose = FALSE,
   saveDir = NULL,
   filename = NULL,
@@ -107,7 +107,6 @@ get_survey_responses <- function(
   return(data)
 
 }
-
 
 #' @export
 print.qualtrics_download <- function(x,...){
@@ -160,7 +159,8 @@ is_success.qualtrics_download <- function(requests, verbose = FALSE){
 #'
 #' @param surveyIds A vector of survey ids.
 #' @param format file format json, by default (can be csv or tsv). We don't provide SPSS yet.
-#' @param ... a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names
+#' @param ... a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names.
+#' @param retryOnRateLimit Whether to retry if initials API call fails.
 #'
 #' @details The \href{https://www.qualtrics.com}{Qualtrics} API downloads survey responses in several steps.
 #' First a download is \emph{requested}. Qualtrics prepares the file and \code{\link{download_requested}}
@@ -189,36 +189,60 @@ is_success.qualtrics_download <- function(requests, verbose = FALSE){
 request_downloads <- function(
   surveyIds,
   format = "json",
-  ...
+  ...,
+  retryOnRateLimit = TRUE
   ) {
 
   if(missing(surveyIds))
     stop("missing surveyIds", call. = FALSE)
 
-  wait <- 1
-  if (length(surveyIds) < 15)
-    wait <- 0
-
-  requests <- do.call(bind_rows, lapply(
+  requests <- purrr::map(
     surveyIds,
     function(x){
       params <- c("surveys", x, "export-responses")
       body <- list("format" = format, ...)
-      resp <- .qualtrics_post(params, NULL, body)
-      Sys.sleep(wait)
+      resp <- tryCatch(.qualtrics_post(params, NULL, body), error = function(e) e)
+
+      if(retryOnRateLimit){
+        cnt <- 1
+        while(inherits(resp, "error")){
+          Sys.sleep(4)
+          cli::cli_alert_warning(paste0("Error on survey '", x, "' - Retry: ", cnt))
+          resp <- tryCatch(.qualtrics_post(params, NULL, body), error = function(e) e)
+
+          if(cnt == 15)
+            break;
+
+          cnt <- cnt + 1
+        }
+      }
+
+      if(inherits(resp, "error")){
+        cli::cli_alert_danger(paste0("Error on survey ", x))
+        return(tibble(
+          "surveyId" = x,
+          "progressId" = NA,
+          "status" = FALSE
+        ))
+      }
+
+      cli::cli_alert_success(paste0("Successfully requested: ", x))
+
       tibble(
         "surveyId" = x,
         "progressId" = ifelse(!is.null(resp$result$progressId), resp$result$progressId, NA),
         "status" = ifelse(resp$meta$httpStatus != "200 - OK", FALSE, TRUE)
       )
     }
-  ))
+  ) %>% 
+    purrr::map_dfr(dplyr::bind_rows)
 
   structure(
     tibble(
       surveyIds = requests$surveyId,
       progressIds = requests$progressId,
-      success = requests$status
+      success = requests$status,
+      format = format
       ),
     class = c("qualtrics_download", "data.frame")
   )
@@ -236,16 +260,17 @@ download_requested <- function(
 
 #' @rdname bulk-download
 #' @param requests the list output of request_downloads
-#' @param format the output file format
 #' @param saveDir the output dir to save the data
 #' @param verbose print progress for heavy downloads (default is FALSE)
+#' @param retryOnRateLimit Whether to retry if initials API call fails.
+#' 
 #' @method download_requested qualtrics_download
 #' @export
 download_requested.qualtrics_download <- function(
   requests,
-  format = "json",
   saveDir = NULL,
-  verbose = FALSE
+  verbose = FALSE,
+  retryOnRateLimit = TRUE
 ){
 
   # Check input parameters
@@ -265,6 +290,8 @@ download_requested.qualtrics_download <- function(
       paste0(invalid$surveyIds, collapse = "\n"), "\n"
     )
 
+  format <- unique(valid$format)
+
   data <- purrr::map2(
     valid$surveyIds,
     valid$progressIds,
@@ -282,9 +309,31 @@ download_requested.qualtrics_download <- function(
       if (progressVec[1]=="failed")
         stop("export failed", call. = FALSE)
 
-      data <- .get_export_file(surveyId, progressVec[3], format, saveDir, filename = NULL)
+      resp <- tryCatch(.get_export_file(surveyId, progressVec[3], format, saveDir, filename = NULL), error = function(e) e)
 
-      return(data)
+      if(retryOnRateLimit){
+        cnt <- 1
+
+        while(inherits(resp, "error")){
+          Sys.sleep(4)
+          cli::cli_alert_warning(paste0("Error on survey '", surveyId, "' - Retry: ", cnt))
+          resp <- tryCatch(.get_export_file(surveyId, progressVec[3], format, saveDir, filename = NULL), error = function(e) e)
+
+          if(cnt == 15)
+            break;
+
+          cnt <- cnt + 1
+        }
+      }
+
+      if(inherits(resp, "error")){
+        cli::cli_alert_danger(paste0("Error on survey ", surveyId))
+        return("Errored")
+      }
+
+      cli::cli_alert_success(paste0("Successfully downloaded: ", surveyId))
+
+      return(resp)
     },
     format = format,
     saveDir = saveDir
@@ -293,4 +342,24 @@ download_requested.qualtrics_download <- function(
   names(data) <- valid$surveyIds
 
   return(data)
+}
+
+#' @rdname bulk-download
+#' @export
+check_status <- function(requests) UseMethod("check_status")
+
+#' @method check_status qualtrics_download
+#' @export
+check_status.qualtrics_download <- function(requests){
+  status <- requests %>% 
+    purrr::transpose() %>% 
+    purrr::map(function(x){
+    .get_export_status(x$surveyId, x$progressId)[1]
+  }) %>% 
+    unlist()
+
+  dplyr::tibble(
+    surveyId = requests$surveyId,
+    status = status
+  )
 }

@@ -5,20 +5,30 @@
 \alias{request_downloads}
 \alias{download_requested}
 \alias{download_requested.qualtrics_download}
+\alias{check_status}
 \title{Request downloads}
 \usage{
-request_downloads(surveyIds, format = "json", ...)
+request_downloads(surveyIds, format = "json", ..., retryOnRateLimit = TRUE)
 
 download_requested(requests, format = "json", saveDir = NULL)
 
-\method{download_requested}{qualtrics_download}(requests, format = "json", saveDir = NULL, verbose = FALSE)
+\method{download_requested}{qualtrics_download}(
+  requests,
+  saveDir = NULL,
+  verbose = FALSE,
+  retryOnRateLimit = TRUE
+)
+
+check_status(requests)
 }
 \arguments{
 \item{surveyIds}{A vector of survey ids.}
 
-\item{format}{the output file format}
+\item{format}{file format json, by default (can be csv or tsv). We don't provide SPSS yet.}
 
-\item{...}{a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names}
+\item{...}{a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names.}
+
+\item{retryOnRateLimit}{Whether to retry if initials API call fails.}
 
 \item{requests}{the list output of request_downloads}
 

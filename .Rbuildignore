@@ -8,3 +8,4 @@ files
 vignettes
 docs
 pkgdown
+test.R
