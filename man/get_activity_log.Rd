@@ -6,6 +6,9 @@
 \usage{
 get_activity_log(activity_name)
 }
+\arguments{
+\item{activity_name}{Name of activity to retrieve.}
+}
 \value{
 A \code{list} with the mailing list information
 }

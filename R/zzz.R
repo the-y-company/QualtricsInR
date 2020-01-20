@@ -1,4 +1,4 @@
-.onAttach <- function(libname = find.package("oRion"), pkgname = "oRion") {
+.onLoad <- function(libname, pkgname) {
 
   if (file.exists(".qualtrics-oauth")) {
     token <- get(load(".qualtrics-oauth"))
@@ -18,6 +18,6 @@
   }
 }
 
-.onDetach <- function(libpath = find.package("oRion")) {
+.onUnload <- function(libpath) {
   options(QUALTRICS_API_TOKEN = NULL, QUALTRICS_BASE_URL = NULL)
 }
