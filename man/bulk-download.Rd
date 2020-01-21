@@ -8,14 +8,25 @@
 \alias{check_status}
 \title{Request downloads}
 \usage{
-request_downloads(surveyIds, format = "json", ..., retryOnRateLimit = TRUE)
+request_downloads(
+  surveyIds,
+  format = "json",
+  ...,
+  verbose = interactive(),
+  retryOnRateLimit = TRUE
+)
 
-download_requested(requests, format = "json", saveDir = NULL)
+download_requested(
+  requests,
+  saveDir = NULL,
+  verbose = interactive(),
+  retryOnRateLimit = TRUE
+)
 
 \method{download_requested}{qualtrics_download}(
   requests,
   saveDir = NULL,
-  verbose = FALSE,
+  verbose = interactive(),
   retryOnRateLimit = TRUE
 )
 
@@ -28,13 +39,13 @@ check_status(requests)
 
 \item{...}{a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names.}
 
+\item{verbose}{print progress for heavy downloads (default is FALSE)}
+
 \item{retryOnRateLimit}{Whether to retry if initials API call fails.}
 
 \item{requests}{the list output of request_downloads}
 
 \item{saveDir}{the output dir to save the data}
-
-\item{verbose}{print progress for heavy downloads (default is FALSE)}
 }
 \value{
 A \code{request_downloads} returns object of class \code{qualtrics_download} while

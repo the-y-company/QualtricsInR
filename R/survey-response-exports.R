@@ -161,6 +161,7 @@ is_success.qualtrics_download <- function(requests, verbose = FALSE){
 #' @param format file format json, by default (can be csv or tsv). We don't provide SPSS yet.
 #' @param ... a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names.
 #' @param retryOnRateLimit Whether to retry if initials API call fails.
+#' @param verbose Whether to print helpful messages to the console.
 #'
 #' @details The \href{https://www.qualtrics.com}{Qualtrics} API downloads survey responses in several steps.
 #' First a download is \emph{requested}. Qualtrics prepares the file and \code{\link{download_requested}}
@@ -190,6 +191,7 @@ request_downloads <- function(
   surveyIds,
   format = "json",
   ...,
+  verbose = interactive(),
   retryOnRateLimit = TRUE
   ) {
 
@@ -207,7 +209,8 @@ request_downloads <- function(
         cnt <- 1
         while(inherits(resp, "error")){
           Sys.sleep(4)
-          cli::cli_alert_warning(paste0("Error on survey '", x, "' - Retry: ", cnt))
+          if(verbose)
+            cli::cli_alert_warning(paste0("Retry #", cnt, " on '", x, "'"))
           resp <- tryCatch(.qualtrics_post(params, NULL, body), error = function(e) e)
 
           if(cnt == 15)
@@ -218,7 +221,8 @@ request_downloads <- function(
       }
 
       if(inherits(resp, "error")){
-        cli::cli_alert_danger(paste0("Error on survey ", x))
+        if(verbose)
+          cli::cli_alert_danger(paste0("Could not request '", x, "'"))
         return(tibble(
           "surveyId" = x,
           "progressId" = NA,
@@ -226,7 +230,8 @@ request_downloads <- function(
         ))
       }
 
-      cli::cli_alert_success(paste0("Successfully requested: ", x))
+      if(verbose)
+        cli::cli_alert_success(paste0("Successfully requested: '", x, "'"))
 
       tibble(
         "surveyId" = x,
@@ -252,8 +257,9 @@ request_downloads <- function(
 #' @export
 download_requested <- function(
   requests,
-  format = "json",
-  saveDir = NULL
+  saveDir = NULL,
+  verbose = interactive(),
+  retryOnRateLimit = TRUE
 ){
   UseMethod("download_requested")
 }
@@ -269,7 +275,7 @@ download_requested <- function(
 download_requested.qualtrics_download <- function(
   requests,
   saveDir = NULL,
-  verbose = FALSE,
+  verbose = interactive(),
   retryOnRateLimit = TRUE
 ){
 
@@ -285,9 +291,8 @@ download_requested.qualtrics_download <- function(
 
   if(nrow(invalid))
     cat(
-      crayon::red(cli::symbol$cross),
-      "Not downloading unsuccessful surveyIds:\n",
-      paste0(invalid$surveyIds, collapse = "\n"), "\n"
+      "Not downloading unsuccessful requests:",
+      paste0("\n", crayon::red(cli::symbol$cross), " '", invalid$surveyIds, "'"), "\n"
     )
 
   format <- unique(valid$format)
@@ -297,14 +302,11 @@ download_requested.qualtrics_download <- function(
     valid$progressIds,
     function(surveyId, progressId, format, saveDir){
 
-      if (verbose) pbar <- utils::txtProgressBar(min = 0, max = 100, style = 3)
       progressVec <- .get_export_status(surveyId, progressId)
       while(progressVec[1] != "complete" & progressVec[1]!="failed") {
         progressVec <- .get_export_status(surveyId, progressId)
         Sys.sleep(1)
       }
-
-      if (verbose) close(pbar)
 
       if (progressVec[1]=="failed")
         stop("export failed", call. = FALSE)
@@ -316,7 +318,8 @@ download_requested.qualtrics_download <- function(
 
         while(inherits(resp, "error")){
           Sys.sleep(4)
-          cli::cli_alert_warning(paste0("Error on survey '", surveyId, "' - Retry: ", cnt))
+          if(verbose)
+            cli::cli_alert_warning(paste0("Retry #", cnt, " on '", surveyId, "'"))
           resp <- tryCatch(.get_export_file(surveyId, progressVec[3], format, saveDir, filename = NULL), error = function(e) e)
 
           if(cnt == 15)
@@ -327,11 +330,13 @@ download_requested.qualtrics_download <- function(
       }
 
       if(inherits(resp, "error")){
-        cli::cli_alert_danger(paste0("Error on survey ", surveyId))
-        return("Errored")
+        if(verbose)
+          cli::cli_alert_danger(paste0("Could not download '", surveyId, "'"))
+        return(list())
       }
 
-      cli::cli_alert_success(paste0("Successfully downloaded: ", surveyId))
+      if(verbose)
+        cli::cli_alert_success(paste0("Successfully downloaded: '", surveyId, "'"))
 
       return(resp)
     },
@@ -354,7 +359,10 @@ check_status.qualtrics_download <- function(requests){
   status <- requests %>% 
     purrr::transpose() %>% 
     purrr::map(function(x){
-    .get_export_status(x$surveyId, x$progressId)[1]
+    tryCatch(
+      .get_export_status(x$surveyId, x$progressId)[1],
+      error = function(e) "error"
+    )
   }) %>% 
     unlist()
 
