@@ -1,5 +1,7 @@
 .onAttach <- function(libname, pkgname) {
 
+  msg <- paste0(crayon::blue(cli::symbol$info)," Remember to setup your token with set_qualtrics_opts()")
+
   if (file.exists(".qualtrics-oauth")) {
     token <- get(load(".qualtrics-oauth"))
     token <- .construct_oauth(token)
@@ -13,8 +15,6 @@
   } else if (Sys.getenv("QUALTRICSINR_TOKEN") != "") {
     set_qualtrics_opts()
     msg <- paste0(crayon::green(cli::symbol$tick), " API token successfully loaded!")
-    } else {
-    msg <- paste0(crayon::blue(cli::symbol$info)," Remember to setup your token with set_qualtrics_opts()")
   }
 
   packageStartupMessage(msg)
