@@ -7,3 +7,4 @@ inst/doc
 .qualtrics-oauth
 data
 test.R
+.vscode

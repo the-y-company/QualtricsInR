@@ -1,3 +1,0 @@
-{"time":"2020-01-20 14:53:35","pid":25711,"command":"attach"} 
-{"time":"2020-01-20 14:55:57","pid":26105,"command":"attach"} 
-{"time":"2020-01-20 15:18:08","pid":26105,"command":"browser","url":"http://127.0.0.1:27094/library/rtweet/html/search_tweets.html"} 
