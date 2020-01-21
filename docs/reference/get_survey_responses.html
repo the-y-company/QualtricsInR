@@ -216,8 +216,14 @@ surveys successively, we recommend using the more efficient <code>request_downlo
 <code>download_requested</code> functions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_survey_responses</span>(<span class='no'>survey_id</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"json"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>filename</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get_survey_responses</span>(
+  <span class='no'>survey_id</span>,
+  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>saveDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>filename</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,7 +234,7 @@ surveys successively, we recommend using the more efficient <code>request_downlo
     </tr>
     <tr>
       <th>format</th>
-      <td><p>file format json, by default (can be csv or tsv). We don't provide SPSS yet.</p></td>
+      <td><p>file format csv, by default (can be json or tsv). We don't provide SPSS yet.</p></td>
     </tr>
     <tr>
       <th>verbose</th>

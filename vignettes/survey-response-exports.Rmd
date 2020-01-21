@@ -15,65 +15,57 @@ knitr::opts_chunk$set(
 QualtricsInR::set_qualtrics_opts()
 library(QualtricsInR)
 ```
-We provide response export functionalities in QualtricsInR for consistency. The [QualtRics](https://github.com/ropensci/qualtRics) package is currently the only package available on CRAN to verify the same functionality.
 
-QualtricsInR also provides an alternative approach that aims to provide a better solution for the download of a large number of surveys in one call. 
+In addition of providing a standard method for exporting the responses of a survey, [QualtricsInR](https://github.com/ppssphysics/QualtricsInR) provides an useful method for efficiently handling the download of multiple surveys.
 
-## Retrieving Survey Responses
+The process to retrieve survey data requires 3 steps: 1) request the data from Qualtrics, 2) wait while the data is being prepared, 3) download the data (more information can be found [here](https://api.qualtrics.com/docs/getting-survey-responses-new)). It may therefore be more efficient, when downloading responses from multiple surveys to 1) request the downloads 2) download the prepared files once they are ready.
 
-You can export the responses from your survey using the `get_survey_responses` function. 
+## Standard Export Method
+
+You can export the responses from your survey using the `get_survey_responses` function.
 
 ```{r}
-# retrieve all survey ids in account
+# retrieve all survey ids from your account
 survids <- list_surveys()
-
-# export survey responses
+head(survids)
+# export survey responses, returned ads a list of all surveys' results
 dt <- get_survey_responses(survids$id[16], format = "csv")
-
-# usual qualtrics type data.frame 
-dt %>%
-  dplyr::select(c(1:4)) %>%
-  head(5)
+head(dt)
 ```
 
-A number of [optional parameters](https://api.qualtrics.com/docs/getting-survey-responses-new) can be provided to customize your query. Be aware that any download that exceeds 1.8 GB will need to be split in several exports using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD (more information [here](https://api.qualtrics.com/docs/dates-and-times)).
+The default file format is json but csv and tsv can be passed. We currently don't provide the SPSS file format as an output option.
+
+A number of [optional parameters](https://api.qualtrics.com/docs/getting-survey-responses-new) can be passed to the function. Be aware that any download that exceeds 1.8 GB will need to be split in several exports using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD (more information [here](https://api.qualtrics.com/docs/dates-and-times)).
 
 ```r
-# export survey save in ./Data/ with name mysurvey
-get_survey_responses(survids$id[16], format = "csv", saveDir = "~/Desktop/", filename = "mysurvey")
-
+# export survey and save it the local folder
+get_survey_responses(survids$id[16], format = "csv", saveDir = "./")
 # ask an export for all responses after April 1st, 2016 and before April 25 2016
 start <- "2016-04-01T07:31:43Z"
 end <- "2016-04-25T07:31:43Z"
 get_survey_responses(survids$id[16], format = "csv", startDate = start, endDate = end)
 ```
 
-The default file format is json but csv and tsv can be specified. We currently don't provide the SPSS file format as an output option. We intend to provide a parser function for the json output in the future.
+By default, Qualtrics will now set the *useLabels* option to FALSE, which exports question results as the recode values of the answer choices. If you want instead to export the text of the answer choice, set the value to TRUE.
 
 ## Retrieving Multiple Surveys
 
-Internally, when using `get_survey_responses`, QualtricsInR has to 1) request the data from Qualtrics, 2) wait while the data is being prepared, 3) download the data (more information can be found [here](https://api.qualtrics.com/docs/getting-survey-responses-new)). It may therefore be more efficient, when downloading responses from multiple surveys to 1) request the downloads 2) download the prepared files once they are ready.
+If you need to download responses from multiple surveys or you have a need to schedule regular automated exports of multiple survey responses, we recommend you use the approach described below:
 
 ```{r}
-requests <- request_downloads(survids$id[1:3], format = "csv")
-
-# test succsessfully triggered exports
-is_it <- is_success(requests, TRUE)
-
+requests <- request_downloads(survids$id[1:5], format = "csv")
+requests
 # download the data
-data <- download_requested(requests, format = "csv")
+data <- download_requested(requests)
 length(data)
 ```
 
-If *saveDir* is specified, by default, all survey files will be saved at the specified location using the survey id as a filename.
+The implementation takes into account the rate limit imposed by Qualtrics for this specific call. Once the limit is attained in looping accross the different survey ids, the procedure waits a few seconds before trying again. You can set the paramter *retryOnRateLimit* to FALSE and the procedure will stop upon the first error returned by Qualtrics.
 
-Note that the call might fail and return a message indication the survey was not found. This can mean that one of the survey ids does either not exist or corresponds to a survey for which you are missing data export permissions.
-
-### Other examples 
+### Download Responses In Progress
 
 One useful parameter that was recently added by Qualtrics is the ability to retrieve a survey's *in progress* responses.
 
 ```r
-# export a surveys responses in progress
-get_survey_responses(survids$id[16], format="csv", exportResponsesInProgress = TRUE)
+dt <- get_survey_responses(survids$id[16], format = "csv", exportResponsesInProgress = TRUE)
 ```

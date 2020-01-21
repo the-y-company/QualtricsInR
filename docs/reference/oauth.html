@@ -208,16 +208,21 @@
     <p>Generate a Qualtrics token valid for an hour.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>qualtrics_auth</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"QUALTRICSINR_ID"</span>),
+    <pre class="usage"><span class='fu'>qualtrics_auth</span>(
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"QUALTRICSINR_ID"</span>),
   <span class='kw'>secret</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"QUALTRICSINR_SECRET"</span>),
-  <span class='kw'>data_center</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"QUALTRICSINR_DATA_CENTER"</span>), <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='kw'>data_center</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"QUALTRICSINR_DATA_CENTER"</span>),
+  <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
 
 <span class='fu'>load_oauth</span>()
 
 <span class='fu'>refresh_oauth</span>()
 
-<span class='fu'>set_qualtrics_opts</span>(<span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"QUALTRICSINR_TOKEN"</span>),
-  <span class='kw'>data_center</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"QUALTRICSINR_DATA_CENTER"</span>))</pre>
+<span class='fu'>set_qualtrics_opts</span>(
+  <span class='kw'>api_token</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"QUALTRICSINR_TOKEN"</span>),
+  <span class='kw'>data_center</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span>(<span class='st'>"QUALTRICSINR_DATA_CENTER"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

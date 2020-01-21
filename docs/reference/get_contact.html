@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Retrieve a survey question — get_survey_question • QualtricsInR</title>
+<title>Retrieve a the information related to a certain contact — get_contact • QualtricsInR</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Retrieve a survey question — get_survey_question" />
-<meta property="og:description" content="Retrieve a survey question" />
+<meta property="og:title" content="Retrieve a the information related to a certain contact — get_contact" />
+<meta property="og:description" content="This call allows to retrieve all the information regarding a certain contact id. The call returns an
+email history for the contact" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -199,37 +200,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Retrieve a survey question</h1>
+    <h1>Retrieve a the information related to a certain contact</h1>
     
-    <div class="hidden name"><code>get_survey_question.Rd</code></div>
+    <div class="hidden name"><code>get_contact.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve a survey question</p>
+    <p>This call allows to retrieve all the information regarding a certain contact id. The call returns an
+email history for the contact</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_survey_question</span>(<span class='no'>survey_id</span>, <span class='no'>question_id</span>)</pre>
+    <pre class="usage"><span class='fu'>get_contact</span>(<span class='no'>mailinglist_id</span>, <span class='no'>contact_id</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>survey_id</th>
-      <td><p>the survey id</p></td>
+      <th>mailinglist_id</th>
+      <td><p>the mailing list id</p></td>
     </tr>
     <tr>
-      <th>question_id</th>
-      <td><p>the question id see list_survey_questions</p></td>
+      <th>contact_id</th>
+      <td><p>the contact id</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list</p>
+    <p>A <code>list</code> with the mailing list information</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>get_survey_question</span>(<span class='st'>"SV_012345678901234"</span>,<span class='st'>"QID1"</span>)
+<span class='fu'>get_contact</span>(<span class='st'>"ML_0HT4q2Ni634kLhH"</span>, <span class='st'>"MLRP_bwwuYtDMPdK2Scl"</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

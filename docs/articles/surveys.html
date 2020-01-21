@@ -188,14 +188,14 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">surveys &lt;-<span class="st"> </span><span class="kw"><a href="../reference/list_surveys.html">list_surveys</a></span>()</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(surveys)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 6</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt;   id       name              ownerId   lastModified  creationDate  isActive</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;             &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;   </span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; 1 SV_2uAz… Frontiers &amp; Worl… UR_8ctTG… 2019-07-26T0… 2019-06-11T1… FALSE   </span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; 2 SV_0pju… Secure Innovatio… UR_0v7jd… 2019-11-20T1… 2019-10-21T1… FALSE   </span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; 3 SV_1WVd… Frontiers &amp; Worl… UR_3Iz3h… 2019-06-05T1… 2019-05-24T1… TRUE    </span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; 4 SV_4NhC… Future Frontiers… UR_ex78D… 2019-10-28T1… 2019-05-24T1… FALSE   </span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; 5 SV_7R5H… Test Scenarios F… UR_cMksF… 2019-12-12T1… 2019-08-05T1… TRUE    </span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; 6 SV_9nLL… Scenarios - VdA   UR_cMksF… 2019-12-19T1… 2019-11-26T1… TRUE</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt;   id        name                 ownerId    lastModified  creationDate  isActive</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;                &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;   </span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; 1 SV_2uAzZ… Frontiers &amp; World E… UR_8ctTGg… 2019-07-26T0… 2019-06-11T1… FALSE   </span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; 2 SV_0pjuS… Secure Innovation C… UR_0v7jd3… 2019-11-20T1… 2019-10-21T1… FALSE   </span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; 3 SV_1WVdr… Frontiers &amp; World E… UR_3Iz3hA… 2019-06-05T1… 2019-05-24T1… TRUE    </span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; 4 SV_4NhCo… Future Frontiers Su… UR_ex78Dl… 2019-10-28T1… 2019-05-24T1… FALSE   </span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; 5 SV_7R5Hs… Test Scenarios Feat… UR_cMksFK… 2020-01-08T1… 2019-08-05T1… TRUE    </span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; 6 SV_9nLLL… Scenarios - VdA      UR_cMksFK… 2020-01-10T0… 2019-11-26T1… TRUE</span></a></code></pre></div>
 <p>Using a survey id, you can retrieve the survey object from your account:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">srv_obj &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_survey.html">get_survey</a></span>(surveys<span class="op">$</span>id[<span class="dv">1</span>])</a></code></pre></div>
 <p>The call returns a list that provides a number of information related to the status of the survey, providing a quick and efficient way to see the number of survey responses for example, instead of going through the more time consuming process of exporting all survey responses through <code>get_survey_responses</code>.</p>

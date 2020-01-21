@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Retrieve a survey question — get_survey_question • QualtricsInR</title>
+<title>List samples associated with a mailing list — list_samples • QualtricsInR</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Retrieve a survey question — get_survey_question" />
-<meta property="og:description" content="Retrieve a survey question" />
+<meta property="og:title" content="List samples associated with a mailing list — list_samples" />
+<meta property="og:description" content="List samples associated with a mailing list" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -199,37 +199,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Retrieve a survey question</h1>
+    <h1>List samples associated with a mailing list</h1>
     
-    <div class="hidden name"><code>get_survey_question.Rd</code></div>
+    <div class="hidden name"><code>list_samples.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve a survey question</p>
+    <p>List samples associated with a mailing list</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_survey_question</span>(<span class='no'>survey_id</span>, <span class='no'>question_id</span>)</pre>
+    <pre class="usage"><span class='fu'>list_samples</span>(<span class='no'>mailinglist_id</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>survey_id</th>
-      <td><p>the survey id</p></td>
-    </tr>
-    <tr>
-      <th>question_id</th>
-      <td><p>the question id see list_survey_questions</p></td>
+      <th>mailinglist_id</th>
+      <td><p>the id of mailing list to delete</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list</p>
+    <p>A <code>tibble</code> of all samnple ids and names</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>get_survey_question</span>(<span class='st'>"SV_012345678901234"</span>,<span class='st'>"QID1"</span>)
+<span class='fu'>list_samples</span>(<span class='st'>"ML_0HT4q2Ni634kLhH"</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
