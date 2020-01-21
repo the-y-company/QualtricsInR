@@ -118,6 +118,8 @@ globalVariables(
   .get_opts("QUALTRICS_DATA_CENTER")
 }
 
+INVALID_TOKEN <- "Invalid token, see `set_qualtrics_opts`"
+
 #' Get Token
 #' Gets token from options.
 #' @details If \code{timeout} options is found then assesses whether refresh is required.
@@ -138,14 +140,24 @@ globalVariables(
     token <- .get_opts("QUALTRICS_API_TOKEN")
   }
 
+  if(is.null(token))
+    stop(INVALID_TOKEN, call. = FALSE)
+
   if(is.null(timeout)) {
     token <- httr::add_headers(`x-api-token` = token)
-  }
-  else {
+  } else {
     token <- httr::add_headers("authorization" = paste("bearer", token))
   }
 
   return(token)
+}
+
+.catch_token_error <- function(obj){
+  if(inherits(obj, "error"))
+    if(isTRUE(obj[1] == INVALID_TOKEN))
+      stop(INVALID_TOKEN, call. = FALSE)
+
+  invisible()
 }
 
 # Print http error message
@@ -153,7 +165,7 @@ globalVariables(
   stop(paste0(
     "call returned HTTP status \"",
     resp$meta$httpStatus,
-    "\" with message \"",
+    "\" with message \"", 
     resp$meta$error$errorMessage,"\""),
     call. = FALSE)
 }
@@ -194,7 +206,6 @@ globalVariables(
 .qualtrics_post <- function(params, my_header, my_body, my_enc = "json") {
 
   token_header <- .get_token()
-
 
   postreq <- httr::POST(
     .build_url(params),

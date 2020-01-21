@@ -205,9 +205,14 @@ request_downloads <- function(
       body <- list("format" = format, ...)
       resp <- tryCatch(.qualtrics_post(params, NULL, body), error = function(e) e)
 
+      .catch_token_error(resp)
+
+      print(resp)
+
       if(retryOnRateLimit){
         cnt <- 1
         while(inherits(resp, "error")){
+
           Sys.sleep(4)
           if(verbose)
             cli::cli_alert_warning(paste0("Retry #", cnt, " on '", x, "'"))
@@ -312,6 +317,8 @@ download_requested.qualtrics_download <- function(
         stop("export failed", call. = FALSE)
 
       resp <- tryCatch(.get_export_file(surveyId, progressVec[3], format, saveDir, filename = NULL), error = function(e) e)
+
+      .catch_token_error(resp)
 
       if(retryOnRateLimit){
         cnt <- 1
