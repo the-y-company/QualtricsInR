@@ -4,6 +4,85 @@ template:
   params:
     bootswatch: lumen
 
+
+reference:
+- title: Admin Level Functions
+  desc: >
+    All administration level functions require you are recognized as a brand adminstrator for your 
+    account/organisation. 
+  contents:
+  - get_organization
+  - create_division
+  - get_division
+  - update_division
+  - list_groups
+  - create_group
+  - get_group
+  - update_group
+  - delete_group
+  - add_user_group
+  - remove_user_group
+  - list_users
+  - get_user
+  - create_user
+  - update_user
+  - delete_user
+  - get_user_api_token
+  - create_user_api_token
+  - who_am_i
+  - create_erasure_request
+  - list_erasure_requests
+  - get_erasure_request
+
+- title: Survey Responses
+  desc: >
+    Function to interact with survey responses. 
+  contents:
+  - get_survey_responses
+  - request_downloads
+  - download_requested
+  - check_status
+  - update_response
+  - delete_response
+  - start_response_import
+  - start_response_import_url
+  - get_response_import_progress
+
+- title: Survey Object Manipulation
+  desc: >
+    Function to interact with survey objects. 
+  contents:
+  - get_survey_flow
+  - update_survey_flow
+  - update_flow_element
+  - get_block
+  - update_survey_options
+  - get_survey
+  - get_survey_meta_data
+  - delete_survey
+  - create_survey
+  - get_survey_languages
+  - get_survey_translations
+  - update_survey_languages
+  - update_survey_translations
+
+- title: Contacts
+  desc: >
+    Function to interact with contacts in the mailing library
+  contents:
+  - list_mailinglists
+  - get_mailinglist
+  - create_mailinglist
+  - update_mailinglist
+  - delete_mailinglist
+  - list_contacts
+  - get_contact
+  - create_contact
+  - update_contact
+  - delete_contact
+  - list_samples
+  - get_sample
+
 navbar:
   title: "QualtricsInR"
   left:

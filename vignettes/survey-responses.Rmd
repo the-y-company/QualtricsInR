@@ -62,10 +62,15 @@ length(data)
 
 The implementation takes into account the rate limit imposed by Qualtrics for this specific call. Once the limit is attained in looping accross the different survey ids, the procedure waits a few seconds before trying again. You can set the paramter *retryOnRateLimit* to FALSE and the procedure will stop upon the first error returned by Qualtrics.
 
-### Download Responses In Progress
+## Download Responses In Progress
 
 One useful parameter that was recently added by Qualtrics is the ability to retrieve a survey's *in progress* responses.
 
 ```r
 dt <- get_survey_responses(survids$id[16], format = "csv", exportResponsesInProgress = TRUE)
 ```
+
+## Importing Responses
+
+The ability to import survey responses can be useful when a survey campaign is split accross multiple clones of a given survey object. One can use the API to retrieve survey responses 
+from one object to import it back into a master version. See the reference functions if you want to use these functions.

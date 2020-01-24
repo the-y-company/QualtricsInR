@@ -197,12 +197,14 @@
 <span id="cb3-8"><a href="#cb3-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(data)</span>
 <span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
 <p>The implementation takes into account the rate limit imposed by Qualtrics for this specific call. Once the limit is attained in looping accross the different survey ids, the procedure waits a few seconds before trying again. You can set the paramter <em>retryOnRateLimit</em> to FALSE and the procedure will stop upon the first error returned by Qualtrics.</p>
-<div id="download-responses-in-progress" class="section level3">
-<h3 class="hasAnchor">
-<a href="#download-responses-in-progress" class="anchor"></a>Download Responses In Progress</h3>
+</div>
+<div id="download-responses-in-progress" class="section level2">
+<h2 class="hasAnchor">
+<a href="#download-responses-in-progress" class="anchor"></a>Download Responses In Progress</h2>
 <p>One useful parameter that was recently added by Qualtrics is the ability to retrieve a survey’s <em>in progress</em> responses.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dt &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(survids<span class="op">$</span>id[<span class="dv">16</span>], <span class="dt">format =</span> <span class="st">"csv"</span>, <span class="dt">exportResponsesInProgress =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-</div>
+<p>## Importing Responses</p>
+<p>The ability to import survey responses can be useful when a survey campaign is split accross multiple clones of a given survey object. One can use the API to retrieve survey responses from one object to import it back into a master version. See the reference functions if you want to use these functions.</p>
 </div>
   </div>
 
@@ -214,6 +216,7 @@
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#standard-export-method">Standard Export Method</a></li>
       <li><a href="#retrieving-multiple-surveys">Retrieving Multiple Surveys</a></li>
+      <li><a href="#download-responses-in-progress">Download Responses In Progress</a></li>
       </ul>
 </div>
       </div>

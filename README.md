@@ -10,8 +10,8 @@
 The **QualtricsInR** package provides a general R wrapper for the
 Qualtrics [API v3 references](https://api.qualtrics.com/reference). The
 package is built accross the main API calls to manipulate survey objects
-and responses, as well as general admnistration functions and access to
-library items.
+and responses, as well as general survey and account admnistration
+functions.
 
 The package was created in order to address the needs of large scale
 survey projects where the management and handling of multiple surveys
