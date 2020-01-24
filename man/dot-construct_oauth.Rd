@@ -14,3 +14,4 @@ Constructs and object for print method}
 Construct Token Object
 Constructs and object for print method
 }
+\keyword{internal}

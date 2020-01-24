@@ -58,6 +58,7 @@ globalVariables(
 #' Construct Token Object
 #' Constructs and object for print method
 #' @param token A list.
+#' @keywords internal
 .construct_oauth <- function(token) {
   structure(token, class = c("list", "quatrics_token"))
 }
@@ -66,6 +67,7 @@ globalVariables(
 #' Encrypt and decrypt for security, not saving plain credentials to file.
 #' @param token A list.
 #' @rdname encryption
+#' @keywords internal
 .encrypt <- function(token) {
   token$access_token <- charToRaw(token$access_token)
   token$id <- charToRaw(token$id)
@@ -75,6 +77,7 @@ globalVariables(
   return(token)
 }
 
+#' @keywords internal
 #' @rdname encryption
 .decrypt <- function(token) {
   token$access_token <- rawToChar(token$access_token)
@@ -103,16 +106,19 @@ globalVariables(
 #' @param opts Name of option.
 #' @details \code{.get_url} and \code{.get_data_center} are simple convenience
 #' as these are used often.
+#' @keywords internal
 #' @rdname options
 .get_opts <- function(opts = NULL) {
   getOption(opts)
 }
 
+#' @keywords internal
 #' @rdname options
 .get_url <- function() {
   .get_opts("QUALTRICS_BASE_URL")
 }
 
+#' @keywords internal
 #' @rdname options
 .get_data_center <- function() {
   .get_opts("QUALTRICS_DATA_CENTER")
@@ -125,6 +131,7 @@ INVALID_TOKEN <- "Invalid token, see `set_qualtrics_opts`"
 #' @details If \code{timeout} options is found then assesses whether refresh is required.
 #' Note that we remove one minute from the current time to allow for small time differences between
 #' token being fetched and call being made.
+#' @keywords internal
 .get_token <- function(){
 
   token <- .get_opts("QUALTRICS_API_TOKEN")
