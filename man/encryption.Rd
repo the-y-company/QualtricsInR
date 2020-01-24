@@ -17,3 +17,4 @@ Encrypt and decrypt for security, not saving plain credentials to file.}
 Encrypt and Decrypt token
 Encrypt and decrypt for security, not saving plain credentials to file.
 }
+\keyword{internal}

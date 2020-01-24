@@ -24,3 +24,4 @@ Fetches option.
 \code{.get_url} and \code{.get_data_center} are simple convenience
 as these are used often.
 }
+\keyword{internal}

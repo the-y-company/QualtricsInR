@@ -16,3 +16,4 @@ If \code{timeout} options is found then assesses whether refresh is required.
 Note that we remove one minute from the current time to allow for small time differences between
 token being fetched and call being made.
 }
+\keyword{internal}
