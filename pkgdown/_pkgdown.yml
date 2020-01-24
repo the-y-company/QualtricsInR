@@ -147,7 +147,7 @@ navbar:
         - text: "Manipulating Survey Objects"
           href: articles/survey-objects.html
         - text: "Suvey Responses"
-          href: articles/survey-response.html
+          href: articles/survey-responses.html
     - text: "Distribution and Contacts"
       menu:
         - text: "Survey Distributions"
