@@ -65,8 +65,8 @@ Data Center ID (optional) in your .Renviron with the names
 loading the QualtricsInR package, your credentials will be automatically
 set as internal *encrypted* parameters.
 
-You can however set your credentials by hand using the
-`set_qualtrics_opts` function:
+You can always set your credentials by calling the
+`set_qualtrics_opts()` function:
 
 ``` r
 # set auth options assuming definition in .Renviron
@@ -104,9 +104,9 @@ need to run `qualtrics_auth` once.
 
 There are close to 200 different API calls provides by Qualtrics. You
 can find the progress of the implementation (including testing the
-calls) [here]().
+calls) [here](%22/articles/progress_table.html%22).
 
-Depending on interest and help from the community, efforts will be
+Depending on interest and demand from the community, efforts will be
 dedicated to the testing and implementation of missing references. Most
 of the XM Directory related calls are not implemented due to not having
 access to this feature in our own account.

@@ -309,6 +309,80 @@ API token or a Qualtrics OAuth access token.</p></td>
           <p><code><a href="get_erasure_request.html">get_erasure_request()</a></code> </p>
         </td>
         <td><p>Retrieve a given erasure request</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_activity_type.html">get_activity_type()</a></code> </p>
+        </td>
+        <td><p>Retrieve the type of logging (activity) events</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_activity_log.html">get_activity_log()</a></code> </p>
+        </td>
+        <td><p>Retrieve the type of logging (activity) events</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-general-survey-administration" class="hasAnchor"><a href="#section-general-survey-administration" class="anchor"></a>General Survey Administration</h2>
+          <p class="section-desc"><p>Function to manipulate surveys within and accross accounts</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="list_surveys.html">list_surveys()</a></code> </p>
+        </td>
+        <td><p>Retrieve the list of surveys for a given user account</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="copy_survey.html">copy_survey()</a></code> </p>
+        </td>
+        <td><p>Create a copy of a survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="import_survey.html">import_survey()</a></code> </p>
+        </td>
+        <td><p>Import a survey into Qualtrics</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="import_survey_fromurl.html">import_survey_fromurl()</a></code> </p>
+        </td>
+        <td><p>Import a survey into Qualtrics based on a file URL</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="share_survey.html">share_survey()</a></code> </p>
+        </td>
+        <td><p>Share a survey with another account</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="update_survey.html">update_survey()</a></code> </p>
+        </td>
+        <td><p>Update a surve's name, status or expiration date</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_survey_quota.html">get_survey_quota()</a></code> </p>
+        </td>
+        <td><p>get_survey_quota retrieves the survey quota information</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="insert_embedded_data.html">insert_embedded_data()</a></code> </p>
+        </td>
+        <td><p>Insert embedded data fields into a survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_survey_response_counts.html">get_survey_response_counts()</a></code> </p>
+        </td>
+        <td><p>Retrieve a survey's response counts by response type</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -363,6 +437,92 @@ API token or a Qualtrics OAuth access token.</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-survey-distribution" class="hasAnchor"><a href="#section-survey-distribution" class="anchor"></a>Survey Distribution</h2>
+          <p class="section-desc"><p>Functions for manipulating survey distribution information</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="create_distribution.html">create_distribution()</a></code> </p>
+        </td>
+        <td><p>Create a new email distribution</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_reminder_distribution.html">create_reminder_distribution()</a></code> </p>
+        </td>
+        <td><p>Create a reminder distribution</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_thankyou_distribution.html">create_thankyou_distribution()</a></code> </p>
+        </td>
+        <td><p>Create a thank you distribution</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_distributions.html">list_distributions()</a></code> </p>
+        </td>
+        <td><p>List all distributions associated to a survey</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_distribution.html">get_distribution()</a></code> </p>
+        </td>
+        <td><p>Retrieve a given survey distribution object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="generate_distributionlink.html">generate_distributionlink()</a></code> </p>
+        </td>
+        <td><p>Generate a distribution link</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_distributionlinks.html">list_distributionlinks()</a></code> </p>
+        </td>
+        <td><p>List the survey links associated with a distribution</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="send_email_tomailinglist.html">send_email_tomailinglist()</a></code> </p>
+        </td>
+        <td><p>Send Email to Mailing List</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_distribution.html">delete_distribution()</a></code> </p>
+        </td>
+        <td><p>Delete a survey distribution</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_sms_distribution.html">create_sms_distribution()</a></code> </p>
+        </td>
+        <td><p>Create a new survey distribution via SMS</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_sms_distribution.html">get_sms_distribution()</a></code> </p>
+        </td>
+        <td><p>Retrieve an sms survey distribution object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_sms_distribution.html">delete_sms_distribution()</a></code> </p>
+        </td>
+        <td><p>Delete an sms survey distribution</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_sms_distributions.html">list_sms_distributions()</a></code> </p>
+        </td>
+        <td><p>List all sms distributions associated to a survey</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-survey-object-manipulation" class="hasAnchor"><a href="#section-survey-object-manipulation" class="anchor"></a>Survey Object Manipulation</h2>
           <p class="section-desc"><p>Function to interact with survey objects.</p></p>
         </th>
@@ -390,7 +550,37 @@ API token or a Qualtrics OAuth access token.</p></td>
         <td>
           <p><code><a href="get_block.html">get_block()</a></code> </p>
         </td>
-        <td><p>Retrieve a given survey block</p></td>
+        <td><p>Retrieve a survey block</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="update_block.html">update_block()</a></code> </p>
+        </td>
+        <td><p>Update a block</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_block.html">delete_block()</a></code> </p>
+        </td>
+        <td><p>Delete a block</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_block.html">create_block()</a></code> </p>
+        </td>
+        <td><p>Create a new block</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_blocks.html">list_blocks()</a></code> </p>
+        </td>
+        <td><p>List all block ids</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="generate_block_id.html">generate_block_id()</a></code> </p>
+        </td>
+        <td><p>Generate a compatible block id</p></td>
       </tr><tr>
         
         <td>
@@ -408,7 +598,7 @@ API token or a Qualtrics OAuth access token.</p></td>
         <td>
           <p><code><a href="get_survey_meta_data.html">get_survey_meta_data()</a></code> </p>
         </td>
-        <td><p>Retrieve Survey Meta Data</p></td>
+        <td><p>Retrieve survey meta data</p></td>
       </tr><tr>
         
         <td>
@@ -445,6 +635,30 @@ API token or a Qualtrics OAuth access token.</p></td>
           <p><code><a href="update_survey_translations.html">update_survey_translations()</a></code> </p>
         </td>
         <td><p>Update the survey translation for a given language</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_survey_options.html">get_survey_options()</a></code> </p>
+        </td>
+        <td><p>Retrieve Survey Options</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_questions.html">list_questions()</a></code> </p>
+        </td>
+        <td><p>List all survey questions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_survey_question.html">get_survey_question()</a></code> </p>
+        </td>
+        <td><p>Retrieve a survey question</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_survey_question.html">delete_survey_question()</a></code> </p>
+        </td>
+        <td><p>Delete a survey question</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -526,6 +740,62 @@ API token or a Qualtrics OAuth access token.</p></td>
         </td>
         <td><p>Retrieve a sample from a mailing list</p></td>
       </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-library" class="hasAnchor"><a href="#section-library" class="anchor"></a>Library</h2>
+          <p class="section-desc"><p>Manipulation of graphic and message library contents</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="list_messages.html">list_messages()</a></code> </p>
+        </td>
+        <td><p>list_messages retrieves a full survey object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_message.html">get_message()</a></code> </p>
+        </td>
+        <td><p>get_message retrieve a message</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_message.html">create_message()</a></code> </p>
+        </td>
+        <td><p>create_message creates a message</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="update_message.html">update_message()</a></code> </p>
+        </td>
+        <td><p>update_message creates a message</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_message.html">delete_message()</a></code> </p>
+        </td>
+        <td><p>delete_message creates a message</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="upload_graphic.html">upload_graphic()</a></code> </p>
+        </td>
+        <td><p>upload_graphic imports a survey based on a loacl survey file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="upload_graphic_fromurl.html">upload_graphic_fromurl()</a></code> </p>
+        </td>
+        <td><p>upload_graphic_fromurl imports a survey based on a loacl survey file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_graphic.html">delete_graphic()</a></code> </p>
+        </td>
+        <td><p>delete_graphic retrieves a full survey object</p></td>
+      </tr>
     </tbody>
     </table>
   </div>
@@ -534,9 +804,12 @@ API token or a Qualtrics OAuth access token.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-admin-level-functions">Admin Level Functions</a></li>
+      <li><a href="#section-general-survey-administration">General Survey Administration</a></li>
       <li><a href="#section-survey-responses">Survey Responses</a></li>
+      <li><a href="#section-survey-distribution">Survey Distribution</a></li>
       <li><a href="#section-survey-object-manipulation">Survey Object Manipulation</a></li>
       <li><a href="#section-contacts">Contacts</a></li>
+      <li><a href="#section-library">Library</a></li>
     </ul>
   </div>
 </div>

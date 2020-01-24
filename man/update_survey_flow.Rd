@@ -23,5 +23,6 @@ A list
 \description{
 This call allows you to modify the existing flow strcuture of a survey. Performing this
 operation through the API requires that you understand the details of the full structure of a
-Qualtrics survey since creating new flow element requires the associated object exists.
+Qualtrics survey since creating new flow element requires the associated object exists. For example, you will need
+to create a new survey block
 }

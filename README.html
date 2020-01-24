@@ -628,7 +628,7 @@ body {
 <p>Both are valid methods. All information on how to retrieve identification parameters and generete tokens from your Qualtrics account can be found <a href="https://api.qualtrics.com/v3/docs/api-general-instructions">here</a>.</p>
 <h3 id="setting-a-plain-text-api-token">Setting a plain text API Token</h3>
 <p>For convenience, we recommend you define your API token and Qualtrics Data Center ID (optional) in your .Renviron with the names <code>QUALTRICSINR_TOKEN</code> and <code>QUALTRICSINR_DATA_CENTER</code> respectively. Upon loading the QualtricsInR package, your credentials will be automatically set as internal <em>encrypted</em> parameters.</p>
-<p>You can however set your credentials by hand using the <code>set_qualtrics_opts</code> function:</p>
+<p>You can always set your credentials by calling the <code>set_qualtrics_opts()</code> function:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># set auth options assuming definition in .Renviron</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">set_qualtrics_opts</span>()</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co"># set auth options by hand</span></span>
@@ -646,8 +646,8 @@ body {
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">qualtrics_auth</span>(<span class="dt">id =</span> <span class="st">&quot;xXxxX0X0x&quot;</span>, <span class="dt">secret =</span> <span class="st">&quot;xXxxX0X0x&quot;</span>, <span class="dt">data_center =</span> <span class="st">&quot;my.center&quot;</span>)</span></code></pre></div>
 <p>This will authenticate you, returning a bearer token valid for one hour, saving the <em>encrypted</em> credentials in a <code>.qualtrics-oauth</code> file, which will be automatically loaded in all subsequent sessions and automatically refreshed if need be. You should therefore only find the need to run <code>qualtrics_auth</code> once.</p>
 <h2 id="development-pipeline">Development pipeline</h2>
-<p>There are close to 200 different API calls provides by Qualtrics. You can find the progress of the implementation (including testing the calls) <a href>here</a>.</p>
-<p>Depending on interest and help from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM Directory related calls are not implemented due to not having access to this feature in our own account.</p>
+<p>There are close to 200 different API calls provides by Qualtrics. You can find the progress of the implementation (including testing the calls) <a href="%22/articles/progress_table.html%22">here</a>.</p>
+<p>Depending on interest and demand from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM Directory related calls are not implemented due to not having access to this feature in our own account.</p>
 
 </body>
 </html>

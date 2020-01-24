@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Retrieve survey meta data — get_survey_meta_data • QualtricsInR</title>
+<title>Create a new block — create_block • QualtricsInR</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Retrieve survey meta data — get_survey_meta_data" />
-<meta property="og:description" content="Retrieve survey meta data" />
+<meta property="og:title" content="Create a new block — create_block" />
+<meta property="og:description" content="To retrieve a specific survey block, you need to pass the survey id and the block id. The latter
+can be retrieved using the get_survey_flow function or the get_survey function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -160,16 +161,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Retrieve survey meta data</h1>
+    <h1>Create a new block</h1>
     
-    <div class="hidden name"><code>get_survey_meta_data.Rd</code></div>
+    <div class="hidden name"><code>create_block.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve survey meta data</p>
+    <p>To retrieve a specific survey block, you need to pass the survey id and the block id. The latter
+can be retrieved using the get_survey_flow function or the get_survey function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_survey_meta_data</span>(<span class='no'>survey_id</span>)</pre>
+    <pre class="usage"><span class='fu'>create_block</span>(<span class='no'>survey_id</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"Standard"</span>, <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"Block"</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,15 +180,34 @@
       <th>survey_id</th>
       <td><p>the survey id</p></td>
     </tr>
+    <tr>
+      <th>type</th>
+      <td><p>block type (Standard, Default or Trash)</p></td>
+    </tr>
+    <tr>
+      <th>description</th>
+      <td><p>block description</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>block options</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list</p>
+    <p>A list with the associated block id and flow id</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>get_options</span>(<span class='st'>"SV_012345678901234"</span>)
+<span class='fu'>create_block</span>(
+<span class='st'>"SV_012345678901234"</span>,
+<span class='st'>"Standard"</span>,
+<span class='st'>"New Block"</span>,
+<span class='st'>"BlockLocking"</span>: <span class='st'>"false"</span>,
+<span class='st'>"RandomizeQuestions"</span>: <span class='st'>"false"</span>,
+<span class='st'>"BlockVisibility"</span>: <span class='st'>"Collapsed"</span>
+)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

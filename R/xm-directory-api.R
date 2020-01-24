@@ -3,7 +3,6 @@
 #' @examples
 #' \dontrun{list_directory_contacts()}
 #' @return A \code{tibble} of all mailing list with properties
-#' @export
 list_directory_contacts <- function() {
 
   .build_list <- function(list) {

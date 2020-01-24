@@ -37,10 +37,9 @@
 
 <meta property="og:title" content="Update the survey flow — update_survey_flow" />
 <meta property="og:description" content="This call allows you to modify the existing flow strcuture of a survey. Performing this
-operation through the API requires you understand the details of the full structure of a
-Qualtrics survey since creating new flow elements, e..g, will require that these elements
-refere to survey elements, like Blocks, that exist, i.e. were previously created through
-other calls. For a detailed example, see the official package documentation." />
+operation through the API requires that you understand the details of the full structure of a
+Qualtrics survey since creating new flow element requires the associated object exists. For example, you will need
+to create a new survey block" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -171,10 +170,9 @@ other calls. For a detailed example, see the official package documentation." />
 
     <div class="ref-description">
     <p>This call allows you to modify the existing flow strcuture of a survey. Performing this
-operation through the API requires you understand the details of the full structure of a
-Qualtrics survey since creating new flow elements, e..g, will require that these elements
-refere to survey elements, like Blocks, that exist, i.e. were previously created through
-other calls. For a detailed example, see the official package documentation.</p>
+operation through the API requires that you understand the details of the full structure of a
+Qualtrics survey since creating new flow element requires the associated object exists. For example, you will need
+to create a new survey block</p>
     </div>
 
     <pre class="usage"><span class='fu'>update_survey_flow</span>(<span class='no'>survey_id</span>, <span class='no'>flow_id</span>, <span class='no'>flow_type</span>, <span class='no'>flow_object</span>, <span class='no'>flow_properties</span>)</pre>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Retrieve survey meta data — get_survey_meta_data • QualtricsInR</title>
+<title>Update a block — update_block • QualtricsInR</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Retrieve survey meta data — get_survey_meta_data" />
-<meta property="og:description" content="Retrieve survey meta data" />
+<meta property="og:title" content="Update a block — update_block" />
+<meta property="og:description" content="You can update an existing block, including the blocks meta information and the the block's elements. 
+If you update the block elements and you add for example a new question, you must make sure the question
+exisists in the survey (see list_questions and create_question)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -160,16 +162,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Retrieve survey meta data</h1>
+    <h1>Update a block</h1>
     
-    <div class="hidden name"><code>get_survey_meta_data.Rd</code></div>
+    <div class="hidden name"><code>update_block.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve survey meta data</p>
+    <p>You can update an existing block, including the blocks meta information and the the block's elements. 
+If you update the block elements and you add for example a new question, you must make sure the question
+exisists in the survey (see list_questions and create_question).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_survey_meta_data</span>(<span class='no'>survey_id</span>)</pre>
+    <pre class="usage"><span class='fu'>update_block</span>(
+  <span class='no'>survey_id</span>,
+  <span class='no'>block_id</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"Standard"</span>,
+  <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"New Block"</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>options</span>,
+  <span class='no'>elements</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,6 +189,30 @@
     <tr>
       <th>survey_id</th>
       <td><p>the survey id</p></td>
+    </tr>
+    <tr>
+      <th>block_id</th>
+      <td><p>the block id</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>block type</p></td>
+    </tr>
+    <tr>
+      <th>description</th>
+      <td><p>block description</p></td>
+    </tr>
+    <tr>
+      <th>id</th>
+      <td><p>a unique block id identifier (should be of form BL_FakeBlockID1234)</p></td>
+    </tr>
+    <tr>
+      <th>options</th>
+      <td><p>list of block options</p></td>
+    </tr>
+    <tr>
+      <th>elements</th>
+      <td><p>list of block elements</p></td>
     </tr>
     </table>
 
@@ -186,7 +222,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>get_options</span>(<span class='st'>"SV_012345678901234"</span>)
+<span class='fu'>update_block</span>(<span class='st'>"SV_012345678901234"</span>, <span class='st'>"BL_723z35LY23KCZ4p"</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

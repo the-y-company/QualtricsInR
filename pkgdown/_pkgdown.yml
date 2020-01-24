@@ -32,6 +32,22 @@ reference:
   - create_erasure_request
   - list_erasure_requests
   - get_erasure_request
+  - get_activity_type
+  - get_activity_log
+
+- title: General Survey Administration
+  desc: >
+    Function to manipulate surveys within and accross accounts
+  contents:
+  - list_surveys
+  - copy_survey
+  - import_survey
+  - import_survey_fromurl
+  - share_survey
+  - update_survey
+  - get_survey_quota
+  - insert_embedded_data
+  - get_survey_response_counts
 
 - title: Survey Responses
   desc: >
@@ -46,6 +62,24 @@ reference:
   - start_response_import
   - start_response_import_url
   - get_response_import_progress
+
+- title: Survey Distribution
+  desc: >
+    Functions for manipulating survey distribution information
+  contents:
+  - create_distribution
+  - create_reminder_distribution
+  - create_thankyou_distribution
+  - list_distributions
+  - get_distribution
+  - generate_distributionlink
+  - list_distributionlinks
+  - send_email_tomailinglist
+  - delete_distribution
+  - create_sms_distribution
+  - get_sms_distribution
+  - delete_sms_distribution
+  - list_sms_distributions
 
 - title: Survey Object Manipulation
   desc: >
@@ -69,6 +103,11 @@ reference:
   - get_survey_translations
   - update_survey_languages
   - update_survey_translations
+  - get_survey_options
+  - update_survey_options
+  - list_questions
+  - get_survey_question
+  - delete_survey_question
 
 - title: Contacts
   desc: >
@@ -86,6 +125,19 @@ reference:
   - delete_contact
   - list_samples
   - get_sample
+
+- title: Library
+  desc: >
+    Manipulation of graphic and message library contents
+  contents:
+  - list_messages
+  - get_message
+  - create_message
+  - update_message
+  - delete_message
+  - upload_graphic
+  - upload_graphic_fromurl
+  - delete_graphic
 
 navbar:
   title: "QualtricsInR"
