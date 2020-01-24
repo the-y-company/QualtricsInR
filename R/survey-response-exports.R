@@ -14,7 +14,7 @@
 .get_export_status <- function(surveyId, exportId) {
   params <- c("surveys", surveyId, "export-responses", exportId)
   getresp <- .qualtrics_get(params, NULL, NULL)
-  return(c(getresp$result$status,getresp$result$percentComplete,getresp$result$fileId))
+  return(c(getresp$result$status,getresp$result$percentComplete, getresp$result$fileId))
 }
 
 .get_export_file <- function(surveyId, fileId, fileType, saveDir, filename) {
@@ -24,13 +24,13 @@
   status <- .qualtrics_export(params, tmps[[2]])
   file <- utils::unzip(tmps[[2]], exdir = tmps[[1]])
 
-  if (fileType=="json")
+  if (fileType == "json")
     data <- jsonlite::fromJSON(file)
-  else if (fileType=="csv") {
+  else if (fileType == "csv") {
     data <- readr::read_csv(file, col_types = readr::cols()) %>%
-      dplyr::slice(-1,-2)
+      dplyr::slice(-1, -2)
   }
-  else if (fileType=="tsv")
+  else if (fileType == "tsv")
     data <- readr::read_tsv(file)
 
   if (!is.null(saveDir)) {
@@ -39,7 +39,6 @@
       file.copy(file, paste0(saveDir, surveyId, ".", fileType))
     else
       file.copy(file, paste0(saveDir, filename, ".", fileType))
-
   }
 
   file.remove(tmps[[2]])
