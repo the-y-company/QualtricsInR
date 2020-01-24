@@ -14,9 +14,12 @@ A list
 }
 \description{
 This call will return the complete flow strcuture of your survey as a
-nestedlist of flow elements reflecting all layers of logic built into the
-survey.
+nested list of flow elements reflecting all layers of the logic built into the
+survey. You can extract block ids from the response to use with the get_block 
+function.
 }
 \examples{
-\dontrun{get_survey_flow("SV_012345678901234")}
+\dontrun{
+get_survey_flow("SV_012345678901234")
+}
 }

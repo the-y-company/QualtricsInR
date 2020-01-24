@@ -2,7 +2,7 @@
 % Please edit documentation in R/survey-definitions-survey.R
 \name{get_survey_meta_data}
 \alias{get_survey_meta_data}
-\title{Retrieve Survey Meta Data}
+\title{Retrieve survey meta data}
 \usage{
 get_survey_meta_data(survey_id)
 }
@@ -13,7 +13,7 @@ get_survey_meta_data(survey_id)
 A list
 }
 \description{
-Retrieve Survey Meta Data
+Retrieve survey meta data
 }
 \examples{
 \dontrun{get_options("SV_012345678901234")}

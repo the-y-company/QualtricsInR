@@ -2,7 +2,7 @@
 % Please edit documentation in R/survey-definitions-blocks.R
 \name{get_block}
 \alias{get_block}
-\title{Retrieve a given survey block}
+\title{Retrieve a survey block}
 \usage{
 get_block(survey_id, block_id)
 }
@@ -15,8 +15,11 @@ get_block(survey_id, block_id)
 A list
 }
 \description{
-Retrieve a given survey block
+To retrieve a specific survey block, you need to pass the survey id and the block id. The latter
+can be retrieved using the get_survey_flow function or the get_survey function.
 }
 \examples{
-\dontrun{get_block("SV_012345678901234","BL_723z35LY23KCZ4p")}
+\dontrun{
+get_block("SV_012345678901234", "BL_723z35LY23KCZ4p")
+}
 }

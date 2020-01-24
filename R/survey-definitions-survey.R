@@ -11,7 +11,7 @@ get_survey <- function(survey_id) {
   getcnt$result
 }
 
-#' Retrieve Survey Meta Data
+#' Retrieve survey meta data
 #'
 #' @param survey_id the survey id
 #'

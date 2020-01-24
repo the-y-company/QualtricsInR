@@ -4,7 +4,6 @@ template:
   params:
     bootswatch: lumen
 
-
 reference:
 - title: Admin Level Functions
   desc: >
@@ -56,6 +55,11 @@ reference:
   - update_survey_flow
   - update_flow_element
   - get_block
+  - update_block
+  - delete_block
+  - create_block
+  - list_blocks
+  - generate_block_id
   - update_survey_options
   - get_survey
   - get_survey_meta_data
@@ -108,8 +112,10 @@ navbar:
           href: articles/users.html
         - text: "Data Privacy"
           href: articles/data-privacy.html
-    - text: "Development"
+    - text: "References"
       menu:
+        - text: "All Functions"
+          href: reference/
         - text: "Progress"
           href: articles/progress_table.html
   right:

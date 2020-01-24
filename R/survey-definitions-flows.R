@@ -4,12 +4,15 @@
 #'
 #' @description
 #' This call will return the complete flow strcuture of your survey as a
-#' nestedlist of flow elements reflecting all layers of logic built into the
-#' survey.
+#' nested list of flow elements reflecting all layers of the logic built into the
+#' survey. You can extract block ids from the response to use with the get_block 
+#' function.
 #'
 #' @param survey_id the survey id
 #' @examples
-#' \dontrun{get_survey_flow("SV_012345678901234")}
+#' \dontrun{
+#' get_survey_flow("SV_012345678901234")
+#' }
 #' @return A list
 #' @export
 get_survey_flow <- function(survey_id) {
@@ -22,10 +25,8 @@ get_survey_flow <- function(survey_id) {
 #'
 #' @description
 #' This call allows you to modify the existing flow strcuture of a survey. Performing this
-#' operation through the API requires you understand the details of the full structure of a
-#' Qualtrics survey since creating new flow elements, e..g, will require that these elements
-#' refere to survey elements, like Blocks, that exist, i.e. were previously created through
-#' other calls. For a detailed example, see the official package documentation.
+#' operation through the API requires that you understand the details of the full structure of a
+#' Qualtrics survey since creating new flow element requires the associated object exists.
 #'
 #' @param survey_id the survey id
 #' @param flow_id a string the flow element id

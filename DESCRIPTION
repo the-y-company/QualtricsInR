@@ -17,6 +17,7 @@ Imports:
   magrittr,
   readr,
 	stringr,
+  stringi,
 	jsonlite,
 	methods,
 	cli,

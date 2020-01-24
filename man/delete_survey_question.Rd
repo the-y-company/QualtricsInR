@@ -9,7 +9,7 @@ delete_survey_question(survey_id, question_id)
 \arguments{
 \item{survey_id}{the survey id}
 
-\item{question_id}{the question id see list_survey_questions}
+\item{question_id}{the question id see list_questions}
 }
 \value{
 A list
