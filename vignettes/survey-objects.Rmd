@@ -1,8 +1,8 @@
 ---
-title: "Survey Flows"
+title: "Survey Objects"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Survey Flows}
+  %\VignetteIndexEntry{Survey Objects}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -1,8 +1,8 @@
 ---
-title: "Response Exports"
+title: "Survey Reponses"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Response Exports}
+  %\VignetteIndexEntry{Survey Reponses}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
