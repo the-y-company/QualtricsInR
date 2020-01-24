@@ -84,7 +84,7 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Distribution
+    Distribution and Contacts
      
     <span class="caret"></span>
   </a>
@@ -92,32 +92,8 @@
 <li>
       <a href="../articles/distributions.html">Survey Distributions</a>
     </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Contacts
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Libraries
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/graphic-library.html">Graphics</a>
-    </li>
     <li>
-      <a href="../articles/message-library.html">Messages</a>
+      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
     </li>
   </ul>
 </li>
@@ -142,6 +118,18 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Development
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/progress_table.html">Progress</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -159,7 +147,7 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+      </header><script src="survey-defs-flows_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Survey Flows</h1>
@@ -184,40 +172,40 @@
 <code>update_flow_element</code> update the details of a specific survey flow element.</li>
 </ul>
 <p>As a simple example, we retrieve below the flow for a 2 questions survey, split into 2 blocks.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">flow &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_survey_flow.html">get_survey_flow</a></span>(<span class="st">"SV_5haBIVgvUtsvQ1v"</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(flow)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#&gt; [1] "FlowID"     "Type"       "Flow"       "Properties"</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>flow &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_survey_flow.html">get_survey_flow</a></span>(<span class="st">"SV_5haBIVgvUtsvQ1v"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(flow)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; [1] "FlowID"     "Type"       "Flow"       "Properties"</span></span></code></pre></div>
 <p>The list contains 4 elements which define the key properties of a flow element.</p>
 <p>Flow is the elements that contains the whole flow structure. Here we have 2 seb-elements corresponding to our 2 blocks in the survey:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(flow<span class="op">$</span>Flow)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; [1] 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(flow<span class="op">$</span>Flow)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
 <p>Properties contain at mimimum the Count variable that tell how many elements make up the flow. Remember the top-level Flow element returned in the list counts as an element so the count here is 3 (2 blocks and 1 top level flow element).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">flow<span class="op">$</span>Properties<span class="op">$</span>Count</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; [1] 3</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>flow<span class="op">$</span>Properties<span class="op">$</span>Count</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
 <p>FlowID is a unique id for the flow element (written as “FL_”)</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(flow<span class="op">$</span>FlowID, flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]<span class="op">$</span>FlowID, flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]<span class="op">$</span>FlowID)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] "FL_1" "FL_2" "FL_3"</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(flow<span class="op">$</span>FlowID, flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]<span class="op">$</span>FlowID, flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]<span class="op">$</span>FlowID)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; [1] "FL_1" "FL_2" "FL_3"</span></span></code></pre></div>
 <p>Type defines different possible type of flow elements. For this survey, we find:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(flow<span class="op">$</span>Type, flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]<span class="op">$</span>Type, flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]<span class="op">$</span>Type)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; [1] "Root"     "Block"    "Standard"</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(flow<span class="op">$</span>Type, flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]<span class="op">$</span>Type, flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]<span class="op">$</span>Type)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; [1] "Root"     "Block"    "Standard"</span></span></code></pre></div>
 <p>Each children flow element can have a specific ID that links that flow element to a specific object of the survey, for instance, here, block Ids.</p>
 <p>Looking at updating the flow, we could for example switch the order of the two flow elements. To, we just invert the list order as well as the flow ids to match the new order.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">flow_<span class="dv">1</span> &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">flow_<span class="dv">2</span> &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">flow_<span class="dv">1</span><span class="op">$</span>FlowID &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]<span class="op">$</span>FlowID</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">flow_<span class="dv">2</span><span class="op">$</span>FlowID &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]<span class="op">$</span>FlowID</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">flow_<span class="dv">1</span><span class="op">$</span>ID &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]<span class="op">$</span>ID</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">flow_<span class="dv">2</span><span class="op">$</span>ID &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]<span class="op">$</span>ID</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">flow<span class="op">$</span>Flow[[<span class="dv">1</span>]] &lt;-<span class="st"> </span>flow_<span class="dv">1</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">flow<span class="op">$</span>Flow[[<span class="dv">2</span>]] &lt;-<span class="st"> </span>flow_<span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>flow_<span class="dv">1</span> &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]</span>
+<span id="cb6-2"><a href="#cb6-2"></a>flow_<span class="dv">2</span> &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]</span>
+<span id="cb6-3"><a href="#cb6-3"></a>flow_<span class="dv">1</span><span class="op">$</span>FlowID &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]<span class="op">$</span>FlowID</span>
+<span id="cb6-4"><a href="#cb6-4"></a>flow_<span class="dv">2</span><span class="op">$</span>FlowID &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]<span class="op">$</span>FlowID</span>
+<span id="cb6-5"><a href="#cb6-5"></a>flow_<span class="dv">1</span><span class="op">$</span>ID &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]<span class="op">$</span>ID</span>
+<span id="cb6-6"><a href="#cb6-6"></a>flow_<span class="dv">2</span><span class="op">$</span>ID &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]<span class="op">$</span>ID</span>
+<span id="cb6-7"><a href="#cb6-7"></a>flow<span class="op">$</span>Flow[[<span class="dv">1</span>]] &lt;-<span class="st"> </span>flow_<span class="dv">1</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>flow<span class="op">$</span>Flow[[<span class="dv">2</span>]] &lt;-<span class="st"> </span>flow_<span class="dv">2</span></span></code></pre></div>
 <p>Sending the updated flow request requires to decouple the flow object in its different elements:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/update_survey_flow.html">update_survey_flow</a></span>(</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="st">"SV_5haBIVgvUtsvQ1v"</span>, </a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(flow<span class="op">$</span>FlowID), </a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(flow<span class="op">$</span>Type),</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">  flow<span class="op">$</span>Flow,</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">  flow<span class="op">$</span>Properties)</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; NULL</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="../reference/update_survey_flow.html">update_survey_flow</a></span>(</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="st">"SV_5haBIVgvUtsvQ1v"</span>, </span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(flow<span class="op">$</span>FlowID), </span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(flow<span class="op">$</span>Type),</span>
+<span id="cb7-5"><a href="#cb7-5"></a>  flow<span class="op">$</span>Flow,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>  flow<span class="op">$</span>Properties)</span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

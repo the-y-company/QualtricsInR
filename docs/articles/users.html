@@ -84,7 +84,7 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Distribution
+    Distribution and Contacts
      
     <span class="caret"></span>
   </a>
@@ -92,32 +92,8 @@
 <li>
       <a href="../articles/distributions.html">Survey Distributions</a>
     </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Contacts
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Libraries
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/graphic-library.html">Graphics</a>
-    </li>
     <li>
-      <a href="../articles/message-library.html">Messages</a>
+      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
     </li>
   </ul>
 </li>
@@ -142,6 +118,18 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Development
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/progress_table.html">Progress</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -159,7 +147,7 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+      </header><script src="users_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>users</h1>
@@ -172,8 +160,8 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(QualtricsInR)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; ✓ API token successfully loaded!</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(QualtricsInR)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#&gt; ✔ API token successfully loaded!</span></span></code></pre></div>
 <div id="manage-users" class="section level2">
 <h2 class="hasAnchor">
 <a href="#manage-users" class="anchor"></a>Manage users</h2>
@@ -198,20 +186,20 @@
 <h2 class="hasAnchor">
 <a href="#creating-a-user-account" class="anchor"></a>Creating a user account</h2>
 <p>To create a user, you must a list of parameters to define the user account properties. An example is given below:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">user_definitions &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="st">"username"</span> =<span class="st"> "firt.last@qualtrics.com"</span>,</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="st">"firstName"</span> =<span class="st"> "first name"</span>,</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="st">"lastName"</span> =<span class="st"> "last name"</span>,</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="st">"userType"</span> =<span class="st"> "UT_012345678912345"</span>,</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="st">"email"</span> =<span class="st"> "firt.last@qualtrics.com"</span>,</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="st">"password"</span> =<span class="st"> "$123456789!"</span>,</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="st">"language"</span> =<span class="st"> "en"</span>,</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="st">"timeZone"</span> =<span class="st"> </span><span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="st">"divisionId"</span> =<span class="st"> </span><span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">  <span class="st">"accountExpirationDate"</span> =<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">  )</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">  </a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw"><a href="../reference/create_user.html">create_user</a></span>(user_definitions)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>user_definitions &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="st">"username"</span> =<span class="st"> "firt.last@qualtrics.com"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="st">"firstName"</span> =<span class="st"> "first name"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="st">"lastName"</span> =<span class="st"> "last name"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="st">"userType"</span> =<span class="st"> "UT_012345678912345"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="st">"email"</span> =<span class="st"> "firt.last@qualtrics.com"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="st">"password"</span> =<span class="st"> "$123456789!"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="st">"language"</span> =<span class="st"> "en"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="st">"timeZone"</span> =<span class="st"> </span><span class="ot">NULL</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="st">"divisionId"</span> =<span class="st"> </span><span class="ot">NULL</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="st">"accountExpirationDate"</span> =<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  )</span>
+<span id="cb3-13"><a href="#cb3-13"></a>  </span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="kw"><a href="../reference/create_user.html">create_user</a></span>(user_definitions)</span></code></pre></div>
 <p>One can obviously also delete a user.</p>
 </div>
   </div>

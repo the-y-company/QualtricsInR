@@ -84,7 +84,7 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Distribution
+    Distribution and Contacts
      
     <span class="caret"></span>
   </a>
@@ -92,32 +92,8 @@
 <li>
       <a href="../articles/distributions.html">Survey Distributions</a>
     </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Contacts
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Libraries
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/graphic-library.html">Graphics</a>
-    </li>
     <li>
-      <a href="../articles/message-library.html">Messages</a>
+      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
     </li>
   </ul>
 </li>
@@ -142,6 +118,18 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Development
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/progress_table.html">Progress</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -159,7 +147,7 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+      </header><script src="divisions_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>divisions</h1>
@@ -172,22 +160,22 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(QualtricsInR)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; ✓ API token successfully loaded!</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(QualtricsInR)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#&gt; ✔ API token successfully loaded!</span></span></code></pre></div>
 <div id="create-a-new-division" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-new-division" class="anchor"></a>Create a new division</h2>
 <p>You can create a new division at the organization level. The only mandatory parameter is the name of the new division. You can also pass a list of user ids (see <code>get_users</code>) with admin rights for this division. Finally, you can define the division permissions, otherwise default permissions will be set.</p>
 <p>The call returns the id of the created division.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">div_id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_division.html">create_division</a></span>(<span class="st">"New_Division"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"UR_1234567890AbCdE"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>div_id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_division.html">create_division</a></span>(<span class="st">"New_Division"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"UR_1234567890AbCdE"</span>))</span></code></pre></div>
 <p>You can retrieve or update a given division. Since the division permissions are not documented in the API documentation and do not always match names of the options seen when interacting with the graphical user interface, the time consuming but most reliable appraoch is to retrieve an existing division and study the json file returned.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">div_settings &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_division.html">get_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>div_settings &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_division.html">get_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>)</span></code></pre></div>
 <p>In the below example, we inactivate the <em>editSurveyFlow</em> option for the corresponding division.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">options &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">   <span class="st">"controlPanel"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">     <span class="st">"surveyPermissions"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">       <span class="st">"editSurveyFlow"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"state"</span> =<span class="st"> "off"</span>))))</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw"><a href="../reference/update_division.html">update_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>, <span class="dt">permissions =</span> options)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>options &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>   <span class="st">"controlPanel"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
+<span id="cb4-3"><a href="#cb4-3"></a>     <span class="st">"surveyPermissions"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
+<span id="cb4-4"><a href="#cb4-4"></a>       <span class="st">"editSurveyFlow"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"state"</span> =<span class="st"> "off"</span>))))</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="kw"><a href="../reference/update_division.html">update_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>, <span class="dt">permissions =</span> options)</span></code></pre></div>
 <p>In the future, we would like to document the full list of options and provide convenience functions to manipulate these options (see <code>share_survey</code>)</p>
 </div>
   </div>

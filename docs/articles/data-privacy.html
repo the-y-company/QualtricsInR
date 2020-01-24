@@ -84,7 +84,7 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Distribution
+    Distribution and Contacts
      
     <span class="caret"></span>
   </a>
@@ -92,32 +92,8 @@
 <li>
       <a href="../articles/distributions.html">Survey Distributions</a>
     </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Contacts
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Libraries
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/graphic-library.html">Graphics</a>
-    </li>
     <li>
-      <a href="../articles/message-library.html">Messages</a>
+      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
     </li>
   </ul>
 </li>
@@ -142,6 +118,18 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Development
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/progress_table.html">Progress</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -159,7 +147,7 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+      </header><script src="data-privacy_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Data Privacy</h1>
@@ -172,37 +160,37 @@
 
     
     
-<p>In the context of the European Global Data Protection Regulation (GDPR), an important set of functions provided by the Qualtrics API are the data privacy functions. You can:</p>
+<p>In the context of the European Global Data Protection Regulation (GDPR), an important set of functions provided by the Qualtrics API are the data privacy functions, which allow the following actions:</p>
 <ol style="list-style-type: decimal">
 <li>Create an erasure request</li>
 <li>List your erasure requests</li>
 <li>Retrieve a given erasure request</li>
 </ol>
-<p><strong>To use this call you must be a Qualtrics brand administrator.</strong></p>
+<p><span class="label label-warning"><i class="fa fa-warning"></i></span> <strong>To use this call you must be a Qualtrics brand administrator.</strong></p>
 <div id="create-an-erasure-request" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-an-erasure-request" class="anchor"></a>Create an erasure request</h2>
-<p>You must provide a list of customer emails to be deleted. We set the Qualtrics parameter to <code>searh_only=TRUE</code> to default a dry run before deciding to erase the information associated to the email (<code>searh_only = FALSE</code>)</p>
-<p>When processed, the request will search for any entities within Qualtrics that match any of the supplied emails; these entities include</p>
+<p>The function <code>create_eraser_request</code> takes a list of emails and searches for all entities within Qualtrics that match any of the supplied emails. The entities include:</p>
 <ul>
 <li>Users</li>
 <li>MailingList &amp; XM Directory contacts</li>
 <li>People</li>
 </ul>
-<p>For any entity discovered the service will erase any responses to surveys they have submitted, along with any tickets that may have originated from their responses before erasing the entity itself.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Create a dry run erasure request</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="../reference/create_erasure_request.html">create_erasure_request</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"john.doe@alabama.com"</span>, <span class="st">"maria.doe@alabama.com"</span>))</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># Create a erasure request</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="../reference/create_erasure_request.html">create_erasure_request</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"john.doe@alabama.com"</span>), <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>For the found entities, the service will erase any responses that have been been submitted, along with any tickets that may have originated from their responses.</p>
+<p>The call is implemented with the parameter <code>searh_only = TRUE</code> to perform a dry run before deciding to erase the information associated to the email with <code>searh_only = FALSE</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Create a dry run erasure request</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="../reference/create_erasure_request.html">create_erasure_request</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"john.doe@alabama.com"</span>, <span class="st">"maria.doe@alabama.com"</span>))</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Create a erasure request</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw"><a href="../reference/create_erasure_request.html">create_erasure_request</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"john.doe@alabama.com"</span>), <span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="list-and-retrieve-erasure-requests" class="section level2">
 <h2 class="hasAnchor">
 <a href="#list-and-retrieve-erasure-requests" class="anchor"></a>List and retrieve erasure requests</h2>
-<p>You can list all erasure requests performed by the brand.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">list_erasing_requests</span>()</a></code></pre></div>
-<p>This allows you to use the id of a given erasure request to retrieve that request</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">get_erasing_request</span>(<span class="st">"OP-a2c24e5e-d4b1-4bd8-a9e8-9a1c8520c8d2"</span>)</a></code></pre></div>
-<p>Note that a given erasure request can only be retrieve one that request has been fully processed by Qualtrics. This means that until the status available from the <code>list_erasing_requests</code> appears as <em>Completed</em>, the <code>get_erasing_request</code> will return an error.</p>
+<p>You can list all erasure requests performed by the brand:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">list_erasing_requests</span>()</span></code></pre></div>
+<p>This allows you to use the id of a given erasure request to retrieve to inspect the request:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">get_erasing_request</span>(<span class="st">"OP-a2c24e5e-d4b1-4bd8-a9e8-9a1c8520c8d2"</span>)</span></code></pre></div>
+<p>Note that a given erasure request can only be retrieve once that request has been fully processed by Qualtrics. This means that until the status available from the <code>list_erasing_requests</code> appears as <em>Completed</em>, the <code>get_erasing_request</code> will return an error.</p>
 </div>
   </div>
 

@@ -18,7 +18,7 @@ library(QualtricsInR)
 
 # QualtricsInR
 
-The **QualtricsInR** package provides a general R wrapper for the Qualtrics v3 API references. The package is built accross the main API calls to manipulate survey objects and responses, as well as general admnistration functions and access to library items.
+The **QualtricsInR** package provides a general R wrapper for the Qualtrics [API v3 references](https://api.qualtrics.com/reference). The package is built accross the main API calls to manipulate survey objects and responses, as well as general admnistration functions and access to library items.
 
 The package was created in order to address the needs of large scale survey projects where the management and handling of multiple surveys can benefit from automation through the API.
 
@@ -29,8 +29,6 @@ The package was created in order to address the needs of large scale survey proj
 There are other important R packages available to automate different aspects of survey manipulation in Qualtrics. The [qualtRics](https://github.com/ropensci/qualtRics) R package implements the retrieval of survey data using the Qualtrics API and is currently the only package on CRAN that offers such functionality.
 
 Other related packages are available through Github. [Jason Bryer's](https://github.com/jbryer/qualtrics) R package to work with the previous version of the Qualtrics API. [QualtricsTools](https://github.com/emmamorgan-tufts/QualtricsTools/) creates automatic reports in shiny and [qsurvey](https://github.com/jamesdunham/qsurvey), by James Dunham, focuses on testing and review of surveys before fielding, as well as the analysis of responses afterward.
-
-**The QualtricsInR package is an effort to provide in one package wrapper functions for all [API v3 references](https://api.qualtrics.com/reference) provided by Qualtrics as well occasional custom utility functions.**
 
 ## Getting Started
 
@@ -52,19 +50,16 @@ generete tokens from your Qualtrics account can be found [here](https://api.qual
 
 ### Setting a plain text API Token
 
-For convenience, we recommend you define your API token and Qualtrics Data Center ID (optional) in your .Renviron with the names QUALTRICSINR_TOKEN and QUALTRICSINR_DATA_CENTER respectively. Upon loading the QualtricsInR package, your credentials will be automatically set as internal encrypted parameters.
+For convenience, we recommend you define your API token and Qualtrics Data Center ID (optional) in your .Renviron with the names `QUALTRICSINR_TOKEN` and `QUALTRICSINR_DATA_CENTER` respectively. 
+Upon loading the QualtricsInR package, your credentials will be automatically set as internal _encrypted_ parameters.
 
 You can however set your credentials by hand using the `set_qualtrics_opts` function:
 
 ```r
 # set auth options assuming definition in .Renviron
 set_qualtrics_opts()
-
 # set auth options by hand
 set_qualtrics_opts("9ssssss83jsl83282032932sds2", "mydatacenter")
-
-# set auth options with custom envrionment variable names in .Renviron
-set_qualtrics_opts(Sys.getenv("VAR1"), Sys.getenv("VAR2"))
 ```
 
 If you use this method, you will have set your credentials for every new session.
@@ -81,19 +76,12 @@ To generate an OAuth application, follow the steps below in your Qualtrics accou
 qualtrics_auth(id = "xXxxX0X0x", secret = "xXxxX0X0x", data_center = "my.center")
 ```
 
-This will authenticate you, returning a bearer token valid for an hour, saving the _encrypted_ credentials in a `.qualtrics-oauth` file, which will be automatically loaded in all subsequent sessions and automatically refreshed if need be. You should therefore only find the need to run `qualtrics_auth` once.
+This will authenticate you, returning a bearer token valid for one hour, saving the _encrypted_ credentials in a `.qualtrics-oauth` file, which will be automatically 
+loaded in all subsequent sessions and automatically refreshed if need be. You should therefore only find the need to run `qualtrics_auth` once.
 
 ## Development pipeline
 
-There are close to 200 different API calls provides by Qualtrics. The table below presents a summary of the status of implementation. Despite certain calls having been implemented, a full testing is sometimes challenging. Depending on interest and help from the community, efforts will be dedicated to the testing and implementation of missing references.
+There are close to 200 different API calls provides by Qualtrics. You can find the progress of the implementation (including testing the calls) [here]().
 
-The XM Directory related calls are not implemented due to not having access to this feature in our own account.
-
-```{r echo = FALSE}
-library(knitr)
-library(kableExtra)
-dt <- openxlsx::readWorkbook("../Qualtrics_API_v3_References.xlsx", sheet = 1)
-kable(dt)
-```
-
-
+Depending on interest and help from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM 
+Directory related calls are not implemented due to not having access to this feature in our own account.
