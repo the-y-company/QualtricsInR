@@ -104,7 +104,7 @@ need to run `qualtrics_auth` once.
 
 There are close to 200 different API calls provides by Qualtrics. You
 can find the progress of the implementation (including testing the
-calls) [here](%22/articles/progress_table.html%22).
+calls) [here](/articles/progress_table.html).
 
 Depending on interest and demand from the community, efforts will be
 dedicated to the testing and implementation of missing references. Most
