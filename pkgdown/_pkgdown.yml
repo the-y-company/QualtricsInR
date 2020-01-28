@@ -108,6 +108,7 @@ reference:
   - list_questions
   - get_survey_question
   - delete_survey_question
+  - get_questions_mapping
 
 - title: Contacts
   desc: >

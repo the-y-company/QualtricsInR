@@ -41,3 +41,33 @@ delete_survey_question <- function(survey_id, question_id) {
   getcnt <- .qualtrics_delete(params)
   getcnt$meta$httpStatus
 }
+
+#' Get survey question mapping
+#' 
+#' @description 
+#' This function returns a tibble formatted result of the list_question result, allowing for an easy
+#' inspection of the relation between question IDs and question export tags.
+#'
+#' @param survey_id the survey id
+#' @examples
+#' \dontrun{get_questions_mapping("SV_012345678901234")}
+#' @return A list
+#' @export
+get_questions_mapping <- function(survey_id) {
+
+  qmap <- list_questions(survey_id)
+
+  do.call(
+    dplyr::bind_rows,
+    lapply(
+        qmap$elements,
+        function(x) {
+            dplyr::tibble(
+                "QuestionID" = x$QuestionID,
+                "DataExportTag" = x$DataExportTag,
+                "QuestionType" = x$QuestionType,
+                "QuestionDescription" = x$QuestionDescription
+            )
+        }))
+
+}
