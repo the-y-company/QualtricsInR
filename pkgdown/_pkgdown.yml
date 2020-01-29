@@ -145,10 +145,10 @@ navbar:
   left:
     - text: "Surveys"
       menu:
-        - text: "Manipulating Survey Objects"
-          href: articles/survey-objects.html
         - text: "Suvey Responses"
           href: articles/survey-responses.html
+        - text: "Manipulating Survey Objects"
+          href: articles/survey-objects.html
     - text: "Distribution and Contacts"
       menu:
         - text: "Survey Distributions"

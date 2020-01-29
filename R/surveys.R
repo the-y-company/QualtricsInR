@@ -58,10 +58,10 @@ copy_survey <- function(survey_id, copy_name, user_id = NULL) {
   body <- list("projectName" = copy_name)
   header <- c(
     "X-COPY-SOURCE" = survey_id,
-    "X-COPY-DESTINATION-OWNER" = ifelse(!is.null(user_id), user_id, who_am_i()$userId)
+    "X-COPY-DESTINATION-OWNER" = ifelse(!is.null(user_id), user_id, who_am_i()$result$userId)
     )
 
-  getcnt <- .qualtrics_post("surveys",header,body)
+  getcnt <- .qualtrics_post("surveys", header, body)
   getcnt$result$id
 
 }
