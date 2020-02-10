@@ -191,7 +191,7 @@ list_distributions <- function(survey_id) {
 
   # if (length(getcnt$result)>0) {
   #   df <- .build_distribution(getcnt$result)
-  #
+  
   #   while (!is.null(getcnt$result$nextPage)) {
   #     offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
   #     getcnt <- .qualtrics_get("distributions", "surveyId"=survey_id, "offset" = offset)
@@ -306,7 +306,7 @@ list_distributionlinks <- function(distribution_id, survey_id) {
 
     while (!is.null(getcnt$result$nextPage)) {
       skip_token <- httr::parse_url(getcnt$result$nextPage)$query$skipToken
-      getcnt <- .qualtrics_get(params, list("surveyId"=survey_id, "skipToken"=skip_token))
+      getcnt <- .qualtrics_get(params, "surveyId" = survey_id, "skipToken" = skip_token)
       df <- rbind(df,.build_distributionlinks(getcnt$result$elements))
     }
 
