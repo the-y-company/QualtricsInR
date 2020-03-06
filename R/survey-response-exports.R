@@ -36,9 +36,9 @@
   if (!is.null(saveDir)) {
 
     if (is.null(filename))
-      file.copy(file, paste0(saveDir, surveyId, ".", fileType))
+      file.copy(file, paste0(saveDir, surveyId, ".", fileType), overwrite = TRUE)
     else
-      file.copy(file, paste0(saveDir, filename, ".", fileType))
+      file.copy(file, paste0(saveDir, filename, ".", fileType), overwrite = TRUE)
   }
 
   file.remove(tmps[[2]])
