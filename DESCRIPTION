@@ -22,7 +22,7 @@ Imports:
 	methods,
 	cli,
 	crayon
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 License: MIT + file LICENSE
 BugReports: https://github.com/ppssphysics/QualtricsInR/issues
 Suggests: 

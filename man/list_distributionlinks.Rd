@@ -18,3 +18,10 @@ A \code{tibble}.
 Distribution Links can only be generated for distribution ids associated
 with mailing lists
 }
+\examples{
+\dontrun{
+ lst_distri <- list_distributions("SV_dg0P0pcZoDYvpNX")
+ df <- list_distributionlinks("EMD_3rrDZa8AQBnACYl", "SV_dg0P0pcZoDYvpNX")   
+}
+
+}

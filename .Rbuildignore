@@ -10,3 +10,4 @@ docs
 pkgdown
 test.R
 ^\.vscode$
+README.html

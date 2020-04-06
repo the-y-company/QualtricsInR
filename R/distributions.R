@@ -139,45 +139,6 @@ create_thankyou_distribution <- function(
   getcnt$result$distributionId
 }
 
-.build_distribution <- function(list) {
-  df <- purrr::map_df(
-    list, function(x) {
-      dplyr::tibble(
-        "id" = .replace_na(x$id),
-        "parentDistributionId" = .replace_na(x$parentDistributionId),
-        "ownerId" = .replace_na(x$ownerId),
-        "organizationId" = .replace_na(x$organizationId),
-        "requestStatus" = .replace_na(x$requestStatus),
-        "requestType" = .replace_na(x$requestType),
-        "sendDate" = .replace_na(x$sendDate),
-        "createdDate" = .replace_na(x$createdDate),
-        "modifiedDate" = .replace_na(x$modifiedDate),
-        "headers.fromEmail" = .replace_na(x$headers$fromEmail),
-        "headers.replyToEmail" = .replace_na(x$headers$replyToEmail),
-        "headers.fromName" = .replace_na(x$headers$fromName),
-        "headers.subject" = .replace_na(x$headers$subject),
-        "recipients.mailingListId" = .replace_na(x$recipients$mailingListId),
-        "recipients.contactId" = .replace_na(x$recipients$contactId),
-        "recipients.libraryId" = .replace_na(x$recipients$libraryId),
-        "recipients.sampleId" = .replace_na(x$recipients$sampleId),
-        "message.libraryId" = .replace_na(x$message$libraryId),
-        "message.messageId" = .replace_na(x$message$messageId),
-        "message.messageText" = .replace_na(x$message$messageText),
-        "surveyLink.surveyId" = .replace_na(x$surveyLink$surveyId),
-        "surveyLink.expirationDate" = .replace_na(x$surveyLink$expirationDate),
-        "surveyLink.linkType" = .replace_na(x$surveyLink$linkType),
-        "stats.sent" = .replace_na(x$stats$sent),
-        "stats.failed" = .replace_na(x$stats$failed),
-        "stats.started" = .replace_na(x$stats$started),
-        "stats.bounced" = .replace_na(x$stats$bounced),
-        "stats.opened" = .replace_na(x$stats$opened),
-        "stats.skipped" = .replace_na(x$stats$skipped),
-        "stats.finished" = .replace_na(x$stats$finished),
-        "stats.complaints" = .replace_na(x$stats$complaints),
-        "stats.blocked" = .replace_na(x$stats$blocked)
-      )})
-}
-
 #' List all distributions associated to a survey
 #'
 #' @param survey_id the id of survey
@@ -185,22 +146,60 @@ create_thankyou_distribution <- function(
 #' @export
 list_distributions <- function(survey_id) {
 
+  .build_distribution <- function(lst) {
+    
+    do.call(
+      dplyr::bind_rows,
+      lapply(
+        lst,
+        function(x) {
+          dplyr::tibble(
+            "id" = .replace_na(x$id),
+            "parentDistributionId" = .replace_na(x$parentDistributionId),
+            "ownerId" = .replace_na(x$ownerId),
+            "organizationId" = .replace_na(x$organizationId),
+            "requestStatus" = .replace_na(x$requestStatus),
+            "requestType" = .replace_na(x$requestType),
+            "createdDate" = .replace_na(x$createdDate),
+            "modifiedDate" = .replace_na(x$modifiedDate),
+            "fromEmail" = .replace_na(x$headers$fromEmail),
+            "replyToEmail" = .replace_na(x$headers$replyToEmail),
+            "fromName" = .replace_na(x$headers$fromName),
+            "mailingListId" = .replace_na(x$recipients$mailingListId),
+            "contactId" = .replace_na(x$recipients$contactId),
+            "libraryId" = .replace_na(x$recipients$libraryId),
+            "surveyId" = .replace_na(x$surveyLink$surveyId),
+            "sampleId" = .replace_na(x$surveyLink$sampleId),
+            "expirationDate" = .replace_na(x$surveyLink$expirationDate),
+            "linkType" = .replace_na(x$surveyLink$linkType),
+            "sent" = .replace_na(x$stats$sent),
+            "failed" = .replace_na(x$stats$failed),
+            "started" = .replace_na(x$stats$started),
+            "bounced" = .replace_na(x$stats$bounced),
+            "opened" = .replace_na(x$stats$opened),
+            "skipped" = .replace_na(x$stats$skipped),
+            "finished" = .replace_na(x$stats$finished),
+            "complaints" = .replace_na(x$stats$complaints),
+            "blocked" = .replace_na(x$stats$blocked)
+          )
+        }
+    ))}
+
   offset <- 0
   getcnt <- .qualtrics_get("distributions", "surveyId" = survey_id, "offset" = offset)
-  return(getcnt)
 
-  # if (length(getcnt$result)>0) {
-  #   df <- .build_distribution(getcnt$result)
+  if (length(getcnt$result)>0) {
+    df <- .build_distribution(getcnt$result$elements)
   
-  #   while (!is.null(getcnt$result$nextPage)) {
-  #     offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
-  #     getcnt <- .qualtrics_get("distributions", "surveyId"=survey_id, "offset" = offset)
-  #     df <- rbind(df,.build_distribution(getcnt$result))
-  #   }
-  #   return(df)
-  # } else {
-  #   return(NULL)
-  # }
+    while (!is.null(getcnt$result$nextPage)) {
+      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      getcnt <- .qualtrics_get("distributions", "surveyId"=survey_id, "offset" = offset)
+      df <- rbind(df,.build_distribution(getcnt$result))
+    }
+    return(df)
+  } else {
+    return(NULL)
+  }
 
 }
 
@@ -212,6 +211,45 @@ list_distributions <- function(survey_id) {
 #' @return A \code{list}.
 #' @export
 get_distribution <- function(distribution_id, survey_id) {
+
+  .build_distribution <- function(list) {
+    df <- purrr::map_df(
+      list, function(x) {
+        dplyr::tibble(
+          "id" = .replace_na(x$id),
+          "parentDistributionId" = .replace_na(x$parentDistributionId),
+          "ownerId" = .replace_na(x$ownerId),
+          "organizationId" = .replace_na(x$organizationId),
+          "requestStatus" = .replace_na(x$requestStatus),
+          "requestType" = .replace_na(x$requestType),
+          "sendDate" = .replace_na(x$sendDate),
+          "createdDate" = .replace_na(x$createdDate),
+          "modifiedDate" = .replace_na(x$modifiedDate),
+          "headers.fromEmail" = .replace_na(x$headers$fromEmail),
+          "headers.replyToEmail" = .replace_na(x$headers$replyToEmail),
+          "headers.fromName" = .replace_na(x$headers$fromName),
+          "headers.subject" = .replace_na(x$headers$subject),
+          "recipients.mailingListId" = .replace_na(x$recipients$mailingListId),
+          "recipients.contactId" = .replace_na(x$recipients$contactId),
+          "recipients.libraryId" = .replace_na(x$recipients$libraryId),
+          "recipients.sampleId" = .replace_na(x$recipients$sampleId),
+          "message.libraryId" = .replace_na(x$message$libraryId),
+          "message.messageId" = .replace_na(x$message$messageId),
+          "message.messageText" = .replace_na(x$message$messageText),
+          "surveyLink.surveyId" = .replace_na(x$surveyLink$surveyId),
+          "surveyLink.expirationDate" = .replace_na(x$surveyLink$expirationDate),
+          "surveyLink.linkType" = .replace_na(x$surveyLink$linkType),
+          "stats.sent" = .replace_na(x$stats$sent),
+          "stats.failed" = .replace_na(x$stats$failed),
+          "stats.started" = .replace_na(x$stats$started),
+          "stats.bounced" = .replace_na(x$stats$bounced),
+          "stats.opened" = .replace_na(x$stats$opened),
+          "stats.skipped" = .replace_na(x$stats$skipped),
+          "stats.finished" = .replace_na(x$stats$finished),
+          "stats.complaints" = .replace_na(x$stats$complaints),
+          "stats.blocked" = .replace_na(x$stats$blocked)
+        )})
+    }
 
   offset <- 0
   params <- c("distributions", distribution_id)
@@ -276,6 +314,13 @@ generate_distributionlink <- function(
 #'
 #' @param distribution_id the distribution id
 #' @param survey_id the id of survey
+#' 
+#' @examples
+#' \dontrun{
+#'  lst_distri <- list_distributions("SV_dg0P0pcZoDYvpNX")
+#'  df <- list_distributionlinks("EMD_3rrDZa8AQBnACYl", "SV_dg0P0pcZoDYvpNX")   
+#' }
+#' 
 #' @return A \code{tibble}.
 #' @export
 list_distributionlinks <- function(distribution_id, survey_id) {
@@ -299,7 +344,7 @@ list_distributionlinks <- function(distribution_id, survey_id) {
 
   skip_token <- 0
   params <- c("distributions", distribution_id, "links")
-  getcnt <- .qualtrics_get(params, "surveyId"=survey_id, "skipToken" = skip_token)
+  getcnt <- .qualtrics_get(params, "surveyId" = survey_id, "skipToken" = skip_token)
 
   if (length(getcnt$result$elements)>0) {
     df <- .build_distributionlinks(getcnt$result$elements)
@@ -307,7 +352,7 @@ list_distributionlinks <- function(distribution_id, survey_id) {
     while (!is.null(getcnt$result$nextPage)) {
       skip_token <- httr::parse_url(getcnt$result$nextPage)$query$skipToken
       getcnt <- .qualtrics_get(params, "surveyId" = survey_id, "skipToken" = skip_token)
-      df <- rbind(df,.build_distributionlinks(getcnt$result$elements))
+      df <- rbind(df, .build_distributionlinks(getcnt$result$elements))
     }
 
     return(df)
