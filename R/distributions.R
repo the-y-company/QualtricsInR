@@ -194,7 +194,7 @@ list_distributions <- function(survey_id) {
     while (!is.null(getcnt$result$nextPage)) {
       offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("distributions", "surveyId"=survey_id, "offset" = offset)
-      df <- rbind(df,.build_distribution(getcnt$result))
+      df <- rbind(df,.build_distribution(getcnt$result$elements))
     }
     return(df)
   } else {
