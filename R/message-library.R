@@ -53,7 +53,9 @@ get_message <- function(library_id, message_id) {
 #' @param messages A JSON object - mapping language codes to messages
 #' @param category invite, inactiveSurvey, reminder, thankYou, endOfSurvey, general, validation, lookAndFeel, emailSubject, smsInvite
 #' @param library_id The Library ID can be one of the following IDs: User ID, Group ID, ThreeSixty ID
+#' 
 #' @return id of created message
+#' 
 #' @export
 create_message <- function(
   description,
@@ -61,7 +63,7 @@ create_message <- function(
   category,
   library_id) {
 
-  params <- c("libraries",library_id,"messages")
+  params <- c("libraries", library_id, "messages")
 
   body <- list(
     "description" = description,

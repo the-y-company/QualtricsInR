@@ -1,16 +1,31 @@
 
-#' Create a new email distribution
+#' Create email distribution or generate distribution links
+#' 
+#' @description 
+#' Using this API call, you can either schedule an email distribution
+#' using the Qualtrics email server, or generate distribution links
+#' that you can then use to share the link to your survey using your own
+#' email solution.
 #'
-#' @param survey_id the id of survey to copy
-#' @param library_id Library ID of the message
+#' @param library_id the library id where the message is saved (see 'list_libraries')
 #' @param message_id id of the message item
-#' @param mailing_list_id id of the contact list for the distribution
+#' @param mailing_list_id mailing list is, or set transaction_batch_id
+#' @param transaction_batch_id transaction batch, or set mailing_list_id
+#' @param contact_id optional, optional contact lookup ID for individual distribution
 #' @param from_name appearing sender name, default is Qualtrics
-#' @param reply_to_email reply email, default is \email{noreply@@qualtrics.com}
+#' @param reply_to_email optional, reply email, default is \email{noreply@@qualtrics.com}
 #' @param from_email sender email, default is \email{noreply@@qualtrics.com}
 #' @param subject email subject, default is "Survey Distribution"
 #' @param type Allowed values: Individual, Multiple, Anonymous
+#' @param survey_id the survey id
+#' @param expiration_date
 #' @param send_date date for distribution to be sent
+#' 
+#' @details
+#' In order to create a new email distribution using the API, you need
+#' to have the body of your email already created as a message in your
+#' Qualtrics message library (see 'list_messages' and 'create_message' 
+#' functions).
 #'
 #' @return The created distribution id
 create_distribution <- function(
@@ -23,7 +38,7 @@ create_distribution <- function(
   from_email,
   subject,
   type,
-  send_date) {
+  send_date = Sys.Date()+1) {
 
   body <- list(
     "message" = list(
@@ -31,6 +46,7 @@ create_distribution <- function(
       "messageId" = message_id
     ),
     "recipients" = list(
+      "contactId" = contact_id,
       "mailingListId" = mailing_list_id
     ),
     "header" = list(
@@ -41,7 +57,8 @@ create_distribution <- function(
     ),
     "surveyLink" = list(
       "surveyId" = survey_id,
-      "type" = type
+      "type" = type,
+      "expiration_date" = expiration_date
     ),
     "sendDate"= send_date
   )
@@ -53,7 +70,9 @@ create_distribution <- function(
 
 #' Create a reminder distribution
 #'
-#' Based on an existing distribution, create a reminder to take a survey
+#' Based on an existing email distribution, create a reminder to 
+#' take a survey for recipients with non completed surveys. 
+#' Recipients who have opted out will not receive the reminder.
 #'
 #' @param parent_distribution_id id of the library item
 #' @param from_email sender email, default is \email{noreply@@qualtrics.com}
@@ -66,7 +85,8 @@ create_distribution <- function(
 #'
 #' @details
 #' The sender email parameter can only be sent from another email if
-#' organization authorizes sends on its behalf.
+#' the organization authorizes a send on its behalf.
+#' 
 #' @return The reminder distribution id
 create_reminder_distribution <- function(
   parent_distribution_id,
