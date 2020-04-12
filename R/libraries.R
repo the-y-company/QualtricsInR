@@ -1,6 +1,6 @@
 #' List all available libraries in the account
 #'
-#' @example
+#' @examples
 #' \dontrun{
 #'  list_libraries()
 #' }
@@ -44,11 +44,11 @@ list_libraries <- function() {
 #'
 #' @param library_id the library id (see 'list_libraries')
 #' 
-#' @example
+#' @examples
 #' \dontrun{
 #'  list_library_blocks("UR_0NXtl92JJWqfWcJ")
 #' }
-#' @return A tibble
+#' @return A \code{tibble}
 #' @export
 list_library_blocks <- function(library_id) {
 
@@ -101,11 +101,11 @@ list_library_blocks <- function(library_id) {
 #'
 #' @param library_id the library id (see 'list_libraries')
 #' 
-#' @example
+#' @examples
 #' \dontrun{
 #'  list_library_questions("UR_0NXtl92JJWqfWcJ")
 #' }
-#' @return A tibble
+#' @return A \code{tibble}
 #' @export
 list_library_questions <- function(library_id) {
 
@@ -158,7 +158,7 @@ list_library_questions <- function(library_id) {
 #'
 #' @param library_id the library id (see 'list_libraries')
 #' 
-#' @example
+#' @examples
 #' \dontrun{
 #'  list_library_surveys("UR_0NXtl92JJWqfWcJ")
 #' }

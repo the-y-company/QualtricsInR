@@ -2,16 +2,27 @@
 % Please edit documentation in R/message-library.R
 \name{list_messages}
 \alias{list_messages}
-\title{list_messages retrieves a full survey object}
+\title{List all messages from a given library}
 \usage{
 list_messages(library_id)
 }
 \arguments{
-\item{library_id}{the library_id}
+\item{library_id}{The library id can be one of the following IDs: User ID, Group ID, ThreeSixty ID (see 'list_libraries')}
 }
 \value{
 A \code{tibble}.
 }
 \description{
-list_messages retrieves a full survey object
+The call returns a list with all available mesage ids,
+descriptions and category.
+}
+\details{
+The library id can be found using the 'list_libraries'
+call.
+}
+\examples{
+\dontrun{
+ list_messages("UR_0NXtl92JJWqfWcJ")
+}
+
 }

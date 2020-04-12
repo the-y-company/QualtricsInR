@@ -2,22 +2,32 @@
 % Please edit documentation in R/message-library.R
 \name{create_message}
 \alias{create_message}
-\title{create_message creates a message}
+\title{Create a new message in the library}
 \usage{
-create_message(description, messages, category, library_id)
+create_message(library_id, category, description, messages)
 }
 \arguments{
-\item{description}{defines a description for the message}
-
-\item{messages}{A JSON object - mapping language codes to messages}
+\item{library_id}{The library id can be one of the following IDs: User ID, Group ID, ThreeSixty ID (see 'list_libraries')}
 
 \item{category}{invite, inactiveSurvey, reminder, thankYou, endOfSurvey, general, validation, lookAndFeel, emailSubject, smsInvite}
 
-\item{library_id}{The Library ID can be one of the following IDs: User ID, Group ID, ThreeSixty ID}
+\item{description}{defines a description for the message}
+
+\item{messages}{A JSON object - mapping language codes to messages}
 }
 \value{
 id of created message
 }
 \description{
-create_message creates a message
+You can create messages with advanced features such as piped text and
+custom look and feel as long as you provide the former using the Qualtrics
+format and html for the second. The best is to use the 'get_message function'
+in order to view the structure of an existing message.
+}
+\examples{
+\dontrun{
+ message = list("en" = "Thank you for taking this survey.", "fr" = "Merci de participer à cette enquête.")
+ create_message("UR_0NXtl92JJWqfWcJ", "invite", "My New Invite Message", message)
+}
+
 }

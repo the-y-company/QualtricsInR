@@ -20,5 +20,5 @@ A status code
 Import a survey into Qualtrics based on a file URL
 }
 \examples{
-\dontrun{import_survey("Test", "https://www.example.com/mysurvey.qsf", 1)}
+\dontrun{import_survey_fromurl("Test", "https://www.example.com/mysurvey.qsf", 1)}
 }

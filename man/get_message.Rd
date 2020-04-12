@@ -2,18 +2,24 @@
 % Please edit documentation in R/message-library.R
 \name{get_message}
 \alias{get_message}
-\title{get_message retrieve a message}
+\title{Retrieve a message from the library}
 \usage{
 get_message(library_id, message_id)
 }
 \arguments{
-\item{library_id}{the library_id}
+\item{library_id}{The library id can be one of the following IDs: User ID, Group ID, ThreeSixty ID (see 'list_libraries')}
 
-\item{message_id}{the message_id}
+\item{message_id}{the message_id
+
+ @examples
+\dontrun{
+ list_messages("UR_0NXtl92JJWqfWcJ", "MS_0fddN2xI3J0nGQZ")
+}}
 }
 \value{
 A \code{list}.
 }
 \description{
-get_message retrieve a message
+The call returns a list with the message category, the message description
+and the message in the various translated languages.
 }

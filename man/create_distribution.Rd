@@ -2,7 +2,7 @@
 % Please edit documentation in R/distributions.R
 \name{create_distribution}
 \alias{create_distribution}
-\title{Create a new email distribution}
+\title{Create email distribution or generate distribution links}
 \usage{
 create_distribution(
   survey_id,
@@ -14,21 +14,21 @@ create_distribution(
   from_email,
   subject,
   type,
-  send_date
+  send_date = Sys.Date() + 1
 )
 }
 \arguments{
-\item{survey_id}{the id of survey to copy}
+\item{survey_id}{the survey id}
 
-\item{library_id}{Library ID of the message}
+\item{library_id}{the library id where the message is saved (see 'list_libraries')}
 
 \item{message_id}{id of the message item}
 
-\item{mailing_list_id}{id of the contact list for the distribution}
+\item{mailing_list_id}{mailing list is, or set transaction_batch_id}
 
 \item{from_name}{appearing sender name, default is Qualtrics}
 
-\item{reply_to_email}{reply email, default is \email{noreply@qualtrics.com}}
+\item{reply_to_email}{optional, reply email, default is \email{noreply@qualtrics.com}}
 
 \item{from_email}{sender email, default is \email{noreply@qualtrics.com}}
 
@@ -37,10 +37,25 @@ create_distribution(
 \item{type}{Allowed values: Individual, Multiple, Anonymous}
 
 \item{send_date}{date for distribution to be sent}
+
+\item{transaction_batch_id}{transaction batch, or set mailing_list_id}
+
+\item{contact_id}{optional, optional contact lookup ID for individual distribution}
+
+\item{expiration_date}{expiration date}
 }
 \value{
 The created distribution id
 }
 \description{
-Create a new email distribution
+Using this API call, you can either schedule an email distribution
+using the Qualtrics email server, or generate distribution links
+that you can then use to share the link to your survey using your own
+email solution.
+}
+\details{
+In order to create a new email distribution using the API, you need
+to have the body of your email already created as a message in your
+Qualtrics message library (see 'list_messages' and 'create_message' 
+functions).
 }

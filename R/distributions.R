@@ -18,7 +18,7 @@
 #' @param subject email subject, default is "Survey Distribution"
 #' @param type Allowed values: Individual, Multiple, Anonymous
 #' @param survey_id the survey id
-#' @param expiration_date
+#' @param expiration_date expiration date
 #' @param send_date date for distribution to be sent
 #' 
 #' @details

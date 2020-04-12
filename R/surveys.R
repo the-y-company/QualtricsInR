@@ -112,7 +112,7 @@ import_survey <- function(upload_name, file_path, file_type = "qsf") {
 #' @param file_url URL to file
 #' @param file_type qsf, txt or doc
 #' @examples
-#' \dontrun{import_survey("Test", "https://www.example.com/mysurvey.qsf", 1)}
+#' \dontrun{import_survey_fromurl("Test", "https://www.example.com/mysurvey.qsf", 1)}
 #' @return A status code
 import_survey_fromurl <- function(upload_name, file_url, file_type = "qsf") {
 

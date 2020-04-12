@@ -36,9 +36,11 @@ create_reminder_distribution(
 The reminder distribution id
 }
 \description{
-Based on an existing distribution, create a reminder to take a survey
+Based on an existing email distribution, create a reminder to 
+take a survey for recipients with non completed surveys. 
+Recipients who have opted out will not receive the reminder.
 }
 \details{
 The sender email parameter can only be sent from another email if
-organization authorizes sends on its behalf.
+the organization authorizes a send on its behalf.
 }

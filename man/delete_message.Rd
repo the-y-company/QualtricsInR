@@ -2,7 +2,7 @@
 % Please edit documentation in R/message-library.R
 \name{delete_message}
 \alias{delete_message}
-\title{delete_message creates a message}
+\title{Delete a library message}
 \usage{
 delete_message(library_id, message_id)
 }
@@ -15,5 +15,5 @@ delete_message(library_id, message_id)
 A \code{tibble}.
 }
 \description{
-delete_message creates a message
+Delete a library message
 }
