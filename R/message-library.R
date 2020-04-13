@@ -22,10 +22,10 @@
 list_messages <- function(library_id) {
 
   .build_message_list <- function(list) {
-    dplyr::tibble(
-      id = purrr::map_chr(list, "id", .default = NA),
-      description = purrr::map_chr(list, "description", .default = NA),
-      category = purrr::map_chr(list, "category")
+    tibble(
+      id = map_chr(list, "id", .default = NA),
+      description = map_chr(list, "description", .default = NA),
+      category = map_chr(list, "category")
     )
   }
 
@@ -36,7 +36,7 @@ list_messages <- function(library_id) {
   if (length(getcnt$result$elements)>0) {
     df <- .build_message_list(getcnt$result$elements)
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(params, "offset"=offset)
       df <- rbind(df,.build_message_list(getcnt$result$elements))
     }

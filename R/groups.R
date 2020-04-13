@@ -8,9 +8,9 @@
 list_groups <- function() {
 
   .build_groups <- function(list) {
-    df <- purrr::map_df(
+    df <- map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "id" = .replace_na(x$id),
           "name" = .replace_na(x$name)
         )
@@ -24,9 +24,9 @@ list_groups <- function() {
     df <- .build_groups(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("groups", "offset"=offset)
-      df <- dplyr::bind_rows(df,.build_groups(getcnt$result$elements))
+      df <- bind_rows(df,.build_groups(getcnt$result$elements))
     }
 
     return(df)

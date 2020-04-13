@@ -22,16 +22,16 @@
   tmps <- .build_temp_dir()
   params <- c("surveys",surveyId,"export-responses",fileId,"file")
   status <- .qualtrics_export(params, tmps[[2]])
-  file <- utils::unzip(tmps[[2]], exdir = tmps[[1]])
+  file <- unzip(tmps[[2]], exdir = tmps[[1]])
 
   if (fileType == "json")
-    data <- jsonlite::fromJSON(file)
+    data <- fromJSON(file)
   else if (fileType == "csv") {
-    data <- readr::read_csv(file, col_types = readr::cols()) %>%
-      dplyr::slice(-1, -2)
+    data <- read_csv(file, col_types = cols()) %>%
+      slice(-1, -2)
   }
   else if (fileType == "tsv")
-    data <- readr::read_tsv(file)
+    data <- read_tsv(file)
 
   if (!is.null(saveDir)) {
 
@@ -86,7 +86,7 @@ get_survey_responses <- function(
 
   # Step 2: Checking on Data Export Progress and waiting until export is ready
 
-  if (verbose) pbar <- utils::txtProgressBar(min=0, max=100, style = 3)
+  if (verbose) pbar <- txtProgressBar(min=0, max=100, style = 3)
 
   progressVec <- .get_export_status(survey_id, getcnt$result$progressId)
   while(progressVec[1] != "complete" & progressVec[1]!="failed") {
@@ -114,8 +114,8 @@ print.qualtrics_download <- function(x,...){
   f <- unname(counts["FALSE"])
   cat(
     "Download Requests:\n",
-    crayon::green(cli::symbol$tick), .na20(t), " Successful\n",
-    crayon::red(cli::symbol$cross), .na20(f), " Unsuccessful\n"
+    crayon::green(symbol$tick), .na20(t), " Successful\n",
+    red(symbol$cross), .na20(f), " Unsuccessful\n"
   )
 }
 
@@ -139,7 +139,7 @@ is_success <- function(requests, verbose = FALSE) UseMethod("is_success")
 is_success.qualtrics_download <- function(requests, verbose = FALSE){
   ids <- requests %>%
     mutate(
-      surveyIds = ifelse(success == TRUE, crayon::green(surveyIds), crayon::red(surveyIds))
+      surveyIds = ifelse(success == TRUE, crayon::green(surveyIds), red(surveyIds))
     ) %>%
     pull(surveyIds)
 
@@ -197,7 +197,7 @@ request_downloads <- function(
   if(missing(surveyIds))
     stop("missing surveyIds", call. = FALSE)
 
-  requests <- purrr::map(
+  requests <- map(
     surveyIds,
     function(x){
       params <- c("surveys", x, "export-responses")
@@ -214,7 +214,7 @@ request_downloads <- function(
 
           Sys.sleep(4)
           if(verbose)
-            cli::cli_alert_warning(paste0("Retry #", cnt, " on '", x, "'"))
+            cli_alert_warning(paste0("Retry #", cnt, " on '", x, "'"))
           resp <- tryCatch(.qualtrics_post(params, NULL, body), error = function(e) e)
 
           if(cnt == 15)
@@ -226,7 +226,7 @@ request_downloads <- function(
 
       if(inherits(resp, "error")){
         if(verbose)
-          cli::cli_alert_danger(paste0("Could not request '", x, "'"))
+          cli_alert_danger(paste0("Could not request '", x, "'"))
         return(tibble(
           "surveyId" = x,
           "progressId" = NA,
@@ -235,7 +235,7 @@ request_downloads <- function(
       }
 
       if(verbose)
-        cli::cli_alert_success(paste0("Successfully requested: '", x, "'"))
+        cli_alert_success(paste0("Successfully requested: '", x, "'"))
 
       tibble(
         "surveyId" = x,
@@ -244,7 +244,7 @@ request_downloads <- function(
       )
     }
   ) %>% 
-    purrr::map_dfr(dplyr::bind_rows)
+    map_dfr(bind_rows)
 
   structure(
     tibble(
@@ -296,12 +296,12 @@ download_requested.qualtrics_download <- function(
   if(nrow(invalid))
     cat(
       "Not downloading unsuccessful requests:",
-      paste0("\n", crayon::red(cli::symbol$cross), " '", invalid$surveyIds, "'"), "\n"
+      paste0("\n", red(symbol$cross), " '", invalid$surveyIds, "'"), "\n"
     )
 
   format <- unique(valid$format)
 
-  data <- purrr::map2(
+  data <- map2(
     valid$surveyIds,
     valid$progressIds,
     function(surveyId, progressId, format, saveDir){
@@ -325,7 +325,7 @@ download_requested.qualtrics_download <- function(
         while(inherits(resp, "error")){
           Sys.sleep(4)
           if(verbose)
-            cli::cli_alert_warning(paste0("Retry #", cnt, " on '", surveyId, "'"))
+            cli_alert_warning(paste0("Retry #", cnt, " on '", surveyId, "'"))
           resp <- tryCatch(.get_export_file(surveyId, progressVec[3], format, saveDir, filename = NULL), error = function(e) e)
 
           if(cnt == 15)
@@ -337,12 +337,12 @@ download_requested.qualtrics_download <- function(
 
       if(inherits(resp, "error")){
         if(verbose)
-          cli::cli_alert_danger(paste0("Could not download '", surveyId, "'"))
+          cli_alert_danger(paste0("Could not download '", surveyId, "'"))
         return(list())
       }
 
       if(verbose)
-        cli::cli_alert_success(paste0("Successfully downloaded: '", surveyId, "'"))
+        cli_alert_success(paste0("Successfully downloaded: '", surveyId, "'"))
 
       return(resp)
     },
@@ -363,8 +363,8 @@ check_status <- function(requests) UseMethod("check_status")
 #' @export
 check_status.qualtrics_download <- function(requests){
   status <- requests %>% 
-    purrr::transpose() %>% 
-    purrr::map(function(x){
+    transpose() %>% 
+    map(function(x){
     tryCatch(
       .get_export_status(x$surveyId, x$progressId)[1],
       error = function(e) "error"
@@ -372,7 +372,7 @@ check_status.qualtrics_download <- function(requests){
   }) %>% 
     unlist()
 
-  dplyr::tibble(
+  tibble(
     surveyId = requests$surveyId,
     status = status
   )

@@ -49,9 +49,9 @@ qualtrics_auth <- function(id = Sys.getenv("QUALTRICSINR_ID"),
     stop("missing data_center", call. = FALSE)
 
   # get token
-  resp <- httr::POST(
+  resp <- POST(
     sprintf("https://%s.qualtrics.com/oauth2/token", data_center),
-    httr::authenticate(
+    authenticate(
       id, secret
     ),
     body = list(
@@ -60,9 +60,9 @@ qualtrics_auth <- function(id = Sys.getenv("QUALTRICSINR_ID"),
     encode = "form"
   )
 
-  httr::stop_for_status(resp) # stop if error
+  stop_for_status(resp) # stop if error
 
-  token <- httr::content(resp)
+  token <- content(resp)
 
   # append extra variables needed for refresh
   extras <- list(
@@ -83,7 +83,7 @@ qualtrics_auth <- function(id = Sys.getenv("QUALTRICSINR_ID"),
   if(isTRUE(cache)){
     token <- .encrypt(token)
     save(token, file = ".qualtrics-oauth")
-    cat(crayon::green(cli::symbol$tick), "Token successfully saved\n")
+    cat(green(symbol$tick), "Token successfully saved\n")
   } else {
     .construct_oauth(token)
   }

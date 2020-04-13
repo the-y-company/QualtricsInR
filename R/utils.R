@@ -9,26 +9,18 @@ globalVariables(
 	)
 )
 
-#' @importFrom purrr discard
-
-# VALID_ENDPOINTS <- c(
-#   "organizations",
-#   "divisions",
-#   "groups",
-#   "users",
-#   "surveys",
-#   "sessions",
-#   "responseexports",
-#   "responses",
-#   "responseimports",
-#   "libraries",
-#   "distributions",
-#   "mailinglists",
-#   "index_edition_series_tree",
-#   "index_edition_data",
-#   "eventsubscriptions",
-#   "op-erase-personal-data"
-#   )
+#' @importFrom httr content upload_file parse_url POST GET DELETE PUT add_headers 
+#' @importFrom httr content_type_json status_code build_url write_disk authenticate
+#' @importFrom httr stop_for_status
+#' @importFrom dplyr bind_rows filter tibble
+#' @importFrom purrr discard map_df map_chr
+#' @importFrom stringr str_sub str_sub
+#' @importFrom stringi stri_rand_strings
+#' @importFrom utils unzip txtProgressBar
+#' @importFrom readr read_csv cols read_tsv
+#' @importFrom jsonlite fromJSON
+#' @importFrom crayon blue green yellow red
+#' @importFrom cli symbol
 
 .replace_na <- function(x) {
   ifelse(is.null(x), NA, x)
@@ -40,7 +32,7 @@ globalVariables(
 
 .check_directory <- function(dir) {
 
-  if (stringr::str_sub(dir, start="-1") != "/") {
+  if (str_sub(dir, start="-1") != "/") {
     dir <- paste0(dir,"/")
   }
   if (!dir.exists(dir)) {
@@ -51,11 +43,11 @@ globalVariables(
 }
 
 .build_url <- function(params, ...) {
-  url <- httr::parse_url(.get_url())
+  url <- parse_url(.get_url())
   url$scheme <- "https"
   url$path <- c("API", "v3", params)
   url$query <- list(...)
-  httr::build_url(url)
+  build_url(url)
 }
 
 #' Construct Token Object
@@ -154,9 +146,9 @@ INVALID_TOKEN <- "Invalid token, see `set_qualtrics_opts`"
     stop(INVALID_TOKEN, call. = FALSE)
 
   if(is.null(timeout)) {
-    token <- httr::add_headers(`x-api-token` = token)
+    token <- add_headers(`x-api-token` = token)
   } else {
-    token <- httr::add_headers("authorization" = paste("bearer", token))
+    token <- add_headers("authorization" = paste("bearer", token))
   }
 
   return(token)
@@ -184,55 +176,55 @@ INVALID_TOKEN <- "Invalid token, see `set_qualtrics_opts`"
 
   token_header <- .get_token()
 
-  postreq <- httr::GET(
+  postreq <- GET(
     .build_url(params, ...),
     token_header
   )
 
-  if (httr::status_code(postreq)!="200") {
-    .qualtrics_http_errors(httr::content(postreq))
+  if (status_code(postreq)!="200") {
+    .qualtrics_http_errors(content(postreq))
   }
 
-  httr::content(postreq)
+  content(postreq)
 }
 
 .qualtrics_export <- function(params, dir) {
 
   token_header <- .get_token()
 
-  postreq <- httr::GET(
+  postreq <- GET(
     .build_url(params),
     token_header,
-    httr::write_disk(dir, overwrite = TRUE)
+    write_disk(dir, overwrite = TRUE)
   )
 
-  if (httr::status_code(postreq)!="200") {
-    .qualtrics_http_errors(httr::content(postreq))
+  if (status_code(postreq)!="200") {
+    .qualtrics_http_errors(content(postreq))
   }
 
-  httr::status_code(postreq)
+  status_code(postreq)
 }
 
 .qualtrics_post <- function(params, my_header, my_body, my_enc = "json") {
 
   token_header <- .get_token()
 
-  postreq <- httr::POST(
+  postreq <- POST(
     .build_url(params),
     token_header,
-    httr::content_type_json(),
-    httr::add_headers(
+    content_type_json(),
+    add_headers(
       .headers = my_header
     ),
     encode = my_enc,
     body = my_body
   )
 
-  if (httr::status_code(postreq)!="200") {
-    .qualtrics_http_errors(httr::content(postreq))
+  if (status_code(postreq)!="200") {
+    .qualtrics_http_errors(content(postreq))
   }
 
-  httr::content(postreq)
+  content(postreq)
 
 }
 
@@ -240,42 +232,42 @@ INVALID_TOKEN <- "Invalid token, see `set_qualtrics_opts`"
 
   token_header <- .get_token()
 
-  postreq <- httr::DELETE(
+  postreq <- DELETE(
     .build_url(params),
     token_header,
-    httr::add_headers(
+    add_headers(
       .headers = my_header
     ),
     encode = "json",
     body = my_body
   )
 
-  if (httr::status_code(postreq)!="200") {
-    .qualtrics_http_errors(httr::content(postreq))
+  if (status_code(postreq)!="200") {
+    .qualtrics_http_errors(content(postreq))
   }
 
-  httr::content(postreq)
+  content(postreq)
 }
 
 .qualtrics_put <- function(params, my_header, my_body) {
 
   token_header <- .get_token()
 
-  postreq <- httr::PUT(
+  postreq <- PUT(
     .build_url(params),
     token_header,
-    httr::add_headers(
+    add_headers(
       .headers = my_header
     ),
     encode = "json",
     body = my_body
   )
 
-  if (httr::status_code(postreq)!="200") {
-    .qualtrics_http_errors(httr::content(postreq))
+  if (status_code(postreq)!="200") {
+    .qualtrics_http_errors(content(postreq))
   }
 
-  httr::content(postreq)
+  content(postreq)
 
 }
 

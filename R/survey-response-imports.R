@@ -18,18 +18,18 @@ start_response_import <- function(surveyId, filePath, format="CSV", charset="UTF
     "charset" = charset
   )
 
-  postreq <- httr::POST(
+  postreq <- POST(
     .build_url(params),
     .get_token(),
     body = list(
-      file = httr::upload_file(filePath)
+      file = upload_file(filePath)
     ),
-    httr::add_headers(
+    add_headers(
       .headers = my_header
     )
   )
 
-  httr::content(postreq$result)
+  content(postreq$result)
 
 }
 
@@ -53,13 +53,13 @@ start_response_import_url <- function(surveyId, fileUrl, format="CSV", charset="
     "fileUrl" = fileUrl
   )
 
-  postreq <- httr::POST(
+  postreq <- POST(
     .build_url(params),
     .get_token(),
     body = my_body
   )
 
-  httr::content(postreq$result)
+  content(postreq$result)
 
 }
 
@@ -75,7 +75,7 @@ get_response_import_progress <- function(surveyId, progressId) {
   params <- c("surveys", surveyId, "import-responses", progressId)
   getcnt <- .qualtrics_get(params, NULL, NULL)
 
-  httr::content(getcnt$result)
+  content(getcnt$result)
 
 }
 

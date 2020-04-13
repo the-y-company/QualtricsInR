@@ -42,9 +42,9 @@ create_erasure_request <- function(list_emails, search_only = TRUE) {
 list_erasure_requests <- function() {
 
   .build_request <- function(list) {
-    df <- purrr::map_df(
+    df <- map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "requestid" = .replace_na(x$requestid),
           "status" = .replace_na(x$status),
           "user" = .replace_na(x$user),
@@ -65,9 +65,9 @@ list_erasure_requests <- function() {
     df <- .build_request(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(op-erase-personal-data)
-      df <- dplyr::bind_rows(df,.build_request(getcnt$result$elements))
+      df <- bind_rows(df,.build_request(getcnt$result$elements))
     }
     return(df)
   } else {
@@ -92,7 +92,7 @@ list_erasure_requests <- function() {
 get_erasure_request <- function(request_id) {
 
   .build_request <- function(list) {
-    df <- dplyr::tibble(
+    df <- tibble(
         "requestid" = .replace_na(x$requestid),
         "status" = .replace_na(x$status),
         "user" = .replace_na(x$user),

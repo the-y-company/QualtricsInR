@@ -18,7 +18,7 @@ upload_graphic <- function(
   params <- c("libraries",libraryId,"graphics")
 
   my_body <- c(
-    file = httr::upload_file(filePath),
+    file = upload_file(filePath),
     "filename" = filename,
     "type" = type,
     "folder" = ifelse(!is.null(folder), folder, NULL)
@@ -26,7 +26,7 @@ upload_graphic <- function(
 
   token_header <- .get_token()
 
-  getcnt <- httr::POST(
+  getcnt <- POST(
     .build_url(params),
     token_header,
     encode = "multipart",
@@ -60,7 +60,7 @@ upload_graphic_fromurl <- function(
   params <- c("libraries",libraryId,"graphics")
 
   my_body <- c(
-    file = httr::upload_file(fileUrl),
+    file = upload_file(fileUrl),
     "name" = name,
     "type" = contentType,
     "folder" = ifelse(!is.null(folder), folder, NULL)
@@ -68,7 +68,7 @@ upload_graphic_fromurl <- function(
 
   token_header <- .get_token()
 
-  getcnt <- httr::POST(
+  getcnt <- POST(
     .build_url(params),
     token_header,
     encode = "multipart",

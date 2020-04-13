@@ -11,11 +11,11 @@ list_libraries <- function() {
   .build_libraries <- function(lst) {
     
     do.call(
-      dplyr::bind_rows,
+      bind_rows,
       lapply(
         lst,
         function(x) {
-          dplyr::tibble(
+          tibble(
             "libraryId" = .replace_na(x$libraryId),
             "libraryName" = .replace_na(x$libraryName)
           )
@@ -29,7 +29,7 @@ list_libraries <- function() {
     df <- .build_libraries(getcnt$result$elements)
   
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("libraries", NULL, "offset" = offset)
       df <- rbind(df,.build_libraries(getcnt$result$elements))
     }
@@ -67,7 +67,7 @@ list_library_blocks <- function(library_id) {
           
           i <<- i+1
 
-          dplyr::tibble(
+          tibble(
             "dir_name" = as.character(x),
             "library_block_id" = names(lst[[i]][[as.character(x)]]),
             "library_block_name" = unlist(lst[[i]][[as.character(x)]])
@@ -86,7 +86,7 @@ list_library_blocks <- function(library_id) {
     df <- .build_df(getcnt$result$elements)
   
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(params, NULL, "offset" = offset)
       df <- rbind(df, .build_df(getcnt$result$elements))
     }
@@ -124,7 +124,7 @@ list_library_questions <- function(library_id) {
           
           i <<- i+1
 
-          dplyr::tibble(
+          tibble(
             "dir_name" = as.character(x),
             "library_question_id" = names(lst[[i]][[as.character(x)]]),
             "library_question_name" = unlist(lst[[i]][[as.character(x)]])
@@ -143,7 +143,7 @@ list_library_questions <- function(library_id) {
     df <- .build_df(getcnt$result$elements)
   
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(params, NULL, "offset" = offset)
       df <- rbind(df,.build_df(getcnt$result$elements))
     }
@@ -181,7 +181,7 @@ list_library_surveys <- function(library_id) {
           
           i <<- i+1
 
-          dplyr::tibble(
+          tibble(
             "dir_name" = as.character(x),
             "library_survey_id" = names(lst[[i]][[as.character(x)]]),
             "library_survey_name" = unlist(lst[[i]][[as.character(x)]])
@@ -200,7 +200,7 @@ list_library_surveys <- function(library_id) {
     df <- .build_df(getcnt$result$elements)
   
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(params, NULL, "offset" = offset)
       df <- rbind(df,.build_df(getcnt$result$elements))
     }

@@ -15,11 +15,11 @@ list_distributions <- function(survey_id) {
   .build_distribution <- function(lst) {
     
     do.call(
-      dplyr::bind_rows,
+      bind_rows,
       lapply(
         lst,
         function(x) {
-          dplyr::tibble(
+          tibble(
             "id" = .replace_na(x$id),
             "parentDistributionId" = .replace_na(x$parentDistributionId),
             "ownerId" = .replace_na(x$ownerId),
@@ -58,7 +58,7 @@ list_distributions <- function(survey_id) {
     df <- .build_distribution(getcnt$result$elements)
   
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("distributions", "surveyId"=survey_id, "offset" = offset)
       df <- rbind(df,.build_distribution(getcnt$result$elements))
     }
@@ -80,9 +80,9 @@ list_distributions <- function(survey_id) {
 get_distribution <- function(distribution_id, survey_id) {
 
   .build_distribution <- function(list) {
-    df <- purrr::map_df(
+    df <- map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "id" = .replace_na(x$id),
           "parentDistributionId" = .replace_na(x$parentDistributionId),
           "ownerId" = .replace_na(x$ownerId),
@@ -126,7 +126,7 @@ get_distribution <- function(distribution_id, survey_id) {
     df <- .build_distribution(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(params, "surveyId"=survey_id)
       df <- rbind(df,.build_distribution(getcnt$result$elements))
     }
@@ -275,7 +275,7 @@ create_email_distribution <- function(
 #' the organization authorizes a send on its behalf.
 #' 
 #' @examples
-#' \dontrum{
+#' \dontrun{
 #'   create_reminder_distribution(
 #'     "EMD_6yYmF6vopfUz4gn",
 #'     library_id = "UR_0NXtl92JJWqfWcJ",
@@ -431,9 +431,9 @@ generate_distribution_links <- function(
 list_distribution_links <- function(distribution_id, survey_id) {
 
   .build_df <- function(list) {
-    df <- purrr::map_df(
+    df <- map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "contactId" = .replace_na(x$contactId),
           "link" = .replace_na(x$link),
           "exceededContactFrequency" = .replace_na(x$exceededContactFrequency),
@@ -455,7 +455,7 @@ list_distribution_links <- function(distribution_id, survey_id) {
     df <- .build_df(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      skip_token <- httr::parse_url(getcnt$result$nextPage)$query$skipToken
+      skip_token <- parse_url(getcnt$result$nextPage)$query$skipToken
       getcnt <- .qualtrics_get(params, "surveyId" = survey_id, "skipToken" = skip_token)
       df <- rbind(df, .build_df(getcnt$result$elements))
     }
@@ -613,9 +613,9 @@ delete_sms_distribution <- function(smsdistribution_id) {
 list_sms_distributions <- function(survey_id) {
 
   .build_sms_distribution <- function(list) {
-    df <- purrr::map_df(
+    df <- map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "id" = .replace_na(x$id),
           "name" = .replace_na(x$name),
           "ownerId" = .replace_na(x$ownerId),
@@ -650,7 +650,7 @@ list_sms_distributions <- function(survey_id) {
     df <- .build_sms_distribution(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(params, "surveyId" = survey_id, "offset" = offset)
       df <- rbind(df,.build_sms_distribution(getcnt$result$elements))
     }

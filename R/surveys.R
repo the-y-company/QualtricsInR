@@ -8,9 +8,9 @@
 list_surveys <- function() {
 
   .build_surveys_list <- function(list) {
-    df <- purrr::map_df(
+    df <- map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "id" = .replace_na(x$id),
           "name" = .replace_na(x$name),
           "ownerId" = .replace_na(x$ownerId),
@@ -27,7 +27,7 @@ list_surveys <- function() {
     df <- .build_surveys_list(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("surveys", "offset"=offset)
       df <- rbind(df,.build_surveys_list(getcnt$result$elements))
     }
@@ -87,11 +87,11 @@ import_survey <- function(upload_name, file_path, file_type = "qsf") {
     e_type <- "application/vnd.qualtrics.survey.doc"
   }
 
-  imp_file <- httr::upload_file(file_path, type = e_type)
+  imp_file <- upload_file(file_path, type = e_type)
 
   token_header <- .get_token()
 
-  postreq <- httr::POST(
+  postreq <- POST(
     .build_url("surveys"),
     token_header,
     encode = "multipart",
@@ -101,7 +101,7 @@ import_survey <- function(upload_name, file_path, file_type = "qsf") {
     )
   )
 
-  httr::content(postreq)$result$id
+  content(postreq)$result$id
 
 }
 
@@ -125,11 +125,11 @@ import_survey_fromurl <- function(upload_name, file_url, file_type = "qsf") {
     e_type <- "application/vnd.qualtrics.survey.doc"
   }
 
-  imp_file <- httr::upload_file(file_url, type = e_type)
+  imp_file <- upload_file(file_url, type = e_type)
 
   token_header <- .get_token()
 
-  postreq <- httr::POST(
+  postreq <- POST(
     .build_url("surveys"),
     token_header,
     encode = "multipart",
@@ -139,7 +139,7 @@ import_survey_fromurl <- function(upload_name, file_url, file_type = "qsf") {
     )
   )
 
-  httr::content(postreq)$result$id
+  content(postreq)$result$id
 
 }
 
@@ -252,9 +252,9 @@ update_survey <- function(
 get_survey_quota <- function(survey_id) {
 
   .build_quota <- function(list) {
-    df <- purrr::map_df(
+    df <- map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "id" = .replace_na(x$id),
           "name" = .replace_na(x$divisionId),
           "count" = .replace_na(x$username),
@@ -271,7 +271,7 @@ get_survey_quota <- function(survey_id) {
     df <- .build_quota(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(params, "offset"=offset)
       df <- rbind(df,.build_quota(getcnt$result$elements))
     }

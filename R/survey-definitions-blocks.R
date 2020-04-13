@@ -158,10 +158,10 @@ list_blocks <- function(survey_id) {
 generate_block_id <- function(survey_id) {
   list_blocks <- list_blocks(survey_id)
 
-  id <- stringi::stri_rand_strings(1, 15, pattern = "[A-Za-z0-9]")
+  id <- stri_rand_strings(1, 15, pattern = "[A-Za-z0-9]")
   
   while(id %in% list_blocks$ID) {
-    id <- stringi::stri_rand_strings(1, 15, pattern = "[A-Za-z0-9]")
+    id <- stri_rand_strings(1, 15, pattern = "[A-Za-z0-9]")
   }
 
   return(paste0("BL_", id))

@@ -58,11 +58,11 @@ get_questions_mapping <- function(survey_id) {
   qmap <- list_questions(survey_id)
 
   do.call(
-    dplyr::bind_rows,
+    bind_rows,
     lapply(
         qmap$elements,
         function(x) {
-            dplyr::tibble(
+            tibble(
                 "QuestionID" = x$QuestionID,
                 "DataExportTag" = x$DataExportTag,
                 "QuestionType" = x$QuestionType,

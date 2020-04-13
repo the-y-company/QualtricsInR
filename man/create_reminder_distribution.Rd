@@ -47,7 +47,7 @@ can only be sent from another email if
 the organization authorizes a send on its behalf.
 }
 \examples{
-\dontrum{
+\dontrun{
   create_reminder_distribution(
     "EMD_6yYmF6vopfUz4gn",
     library_id = "UR_0NXtl92JJWqfWcJ",

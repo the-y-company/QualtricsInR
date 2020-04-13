@@ -8,9 +8,9 @@
 list_mailinglists <- function() {
 
   .build_mailing_lists <- function(list) {
-    purrr::map_df(
+    map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "libraryId" = .replace_na(x$libraryId),
           "id" = .replace_na(x$id),
           "name" = .replace_na(x$name),
@@ -26,7 +26,7 @@ list_mailinglists <- function() {
     df <- .build_mailing_lists(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("mailinglists", "offset"=offset)
       df <- rbind(df,.build_mailing_lists(getcnt$result$elements))
     }
@@ -115,9 +115,9 @@ delete_mailinglist <- function(mailinglist_id) {
 list_contacts <- function(mailinglist_id) {
 
   .build_contact_list <- function(list) {
-    purrr::map_df(
+    map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "id" = .replace_na(x$id),
           "firstName" = .replace_na(x$firstName),
           "lastName" = .replace_na(x$lastName),
@@ -139,7 +139,7 @@ list_contacts <- function(mailinglist_id) {
     df <- .build_contact_list(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("mailinglists", "offset"=offset)
       df <- rbind(df,.build_contact_list(getcnt$result$elements))
     }
@@ -250,9 +250,9 @@ delete_contact <- function(mailinglist_id, contact_id) {
 list_samples <- function(mailinglist_id) {
 
   .build_sample_list <- function(list) {
-    purrr::map_df(
+    map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "id" = .replace_na(x$id),
           "name" = .replace_na(x$name)
         )})
@@ -266,7 +266,7 @@ list_samples <- function(mailinglist_id) {
     df <- .build_sample_list(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("mailinglists", "offset"=offset)
       df <- rbind(df,.build_sample_list(getcnt$result$elements))
     }
@@ -296,7 +296,7 @@ get_sample <- function(mailinglist_id, sample_id) {
     list_sample_contacts <- getcnt$result
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get(params, "offset" = offset)
       list_sample_contacts <- c(list_sample_contacts, getcnt$result)
     }

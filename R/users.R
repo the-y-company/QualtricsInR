@@ -7,9 +7,9 @@
 list_users <- function() {
 
   .build_users_list <- function(list) {
-    df <- purrr::map_df(
+    df <- map_df(
       list, function(x) {
-        dplyr::tibble(
+        tibble(
           "id" = .replace_na(x$id),
           "divisionId" = .replace_na(x$divisionId),
           "username" = .replace_na(x$username),
@@ -27,7 +27,7 @@ list_users <- function() {
     df <- .build_users_list(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("users", "offset"=offset)
       df <- rbind(df,.build_users_list(getcnt$result$elements))
     }

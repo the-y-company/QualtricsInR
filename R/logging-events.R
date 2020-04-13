@@ -29,8 +29,8 @@ get_activity_log <- function(activity_name) {
     total_list_actions <- getcnt$results
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- httr::parse_url(getcnt$result$nextPage)$query$offset
-      #cat(crayon::blue("Retrieved",length(getcnt$result$elements),"elements --> offset",offset,"\n"))
+      offset <- parse_url(getcnt$result$nextPage)$query$offset
+      #cat(blue("Retrieved",length(getcnt$result$elements),"elements --> offset",offset,"\n"))
       getcnt <- .qualtrics_get(params, "activityType" = activity_name, "offset" = offset)
       total_list_actions <- c(total_list_actions, getcnt$result)
     }
