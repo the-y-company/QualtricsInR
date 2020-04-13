@@ -4,9 +4,12 @@ globalVariables(
 		".",
     "token",
 		"success",
-		"surveyIds"
+		"surveyIds",
+    "contact_id"
 	)
 )
+
+#' @importFrom purrr discard
 
 # VALID_ENDPOINTS <- c(
 #   "organizations",

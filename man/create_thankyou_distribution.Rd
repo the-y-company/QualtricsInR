@@ -2,21 +2,27 @@
 % Please edit documentation in R/distributions.R
 \name{create_thankyou_distribution}
 \alias{create_thankyou_distribution}
-\title{Create a thank you distribution}
+\title{Create a thank you distribution for an exisiting email distribution}
 \usage{
 create_thankyou_distribution(
   parent_distribution_id,
+  library_id,
+  message_id,
+  send_date = paste0(Sys.Date() + 1, "T00:00:00Z"),
   from_email = "noreply@qualtrics.com",
   from_name = "Qualtrics",
   reply_to_email = "noreply@qualtrics.com",
-  subject = "Thank you!",
-  message_id,
-  library_id,
-  send_date
+  subject = "Thank you for your participation"
 )
 }
 \arguments{
 \item{parent_distribution_id}{id of the library item}
+
+\item{library_id}{Library ID of the message}
+
+\item{message_id}{id of the message item}
+
+\item{send_date}{date for distribution to be sent}
 
 \item{from_email}{sender email, default is \email{noreply@qualtrics.com}}
 
@@ -24,17 +30,22 @@ create_thankyou_distribution(
 
 \item{reply_to_email}{reply email, default is \email{noreply@qualtrics.com}}
 
-\item{subject}{email subject, default is "Survey Distribution"}
-
-\item{message_id}{id of the message item}
-
-\item{library_id}{Library ID of the message}
-
-\item{send_date}{date for distribution to be sent}
+\item{subject}{email subject, default is "Thank you for your participation"}
 }
 \value{
-The reminder distribution id
+The thank you distribution id
 }
 \description{
-Based on an existing distribution, create a reminder to take a survey
+The thank you email is sent to all respondents who have finished
+the survey.
+}
+\examples{
+\dontrun{
+ create_thankyou_distribution(
+   "EMD_6yYmF6vopfUz4gn",
+   "UR_0NXtl92JJWqfWcJ",
+   "MS_0fddN2xI3J0nGQZ"
+)
+}
+
 }

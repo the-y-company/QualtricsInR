@@ -5,33 +5,38 @@
 \title{Send Email to Mailing List}
 \usage{
 send_email_tomailinglist(
-  fromEmail,
-  fromName,
-  replyToEmail,
-  subject,
-  messageText,
   mailingListId,
-  sendDate
+  sendDate = paste0(Sys.Date() + 1, "T00:00:00Z"),
+  subject = "Take this survey",
+  messageText = "Hello, take this survey",
+  fromEmail = "noreply@qualtrics.com",
+  fromName = "Qualtrics",
+  replyToEmail = "noreply@qualtrics.com"
 )
 }
 \arguments{
-\item{fromEmail}{To generate transaction distribution links, value must be "CreateTransactionBatchDistribution"}
-
-\item{fromName}{the distribution id}
-
-\item{replyToEmail}{the distribution id}
-
-\item{subject}{the distribution id}
-
-\item{messageText}{the id of survey}
-
 \item{mailingListId}{the id of survey}
 
-\item{sendDate}{the id of survey}
+\item{sendDate}{the date to send the email (default is +1 day)}
+
+\item{subject}{the email subject}
+
+\item{messageText}{email text body}
+
+\item{fromEmail}{sender email, default is \email{noreply@qualtrics.com}}
+
+\item{fromName}{the send name default is Qualtrics}
+
+\item{replyToEmail}{reply email, default is \email{noreply@qualtrics.com}}
 }
 \value{
 The email distribution id
 }
 \description{
-Create a new distribution with a custom message
+You can use this call to send an email to a mailing list without
+having to create the email message in Qualtrics first.
+}
+\examples{
+\dontrun{send_email_tomailinglist(mail_id, "2020-04-13T03:26:00Z")}
+
 }

@@ -2,35 +2,35 @@
 % Please edit documentation in R/distributions.R
 \name{create_reminder_distribution}
 \alias{create_reminder_distribution}
-\title{Create a reminder distribution}
+\title{Create a reminder distribution for an existing email distribution}
 \usage{
 create_reminder_distribution(
   parent_distribution_id,
+  library_id,
+  message_id,
+  subject = "Reminder - Participate to the survey",
+  send_date = paste0(Sys.Date() + 1, "T00:00:00Z"),
   from_email = "noreply@qualtrics.com",
   from_name = "Qualtrics",
-  reply_to_email = "noreply@qualtrics.com",
-  subject,
-  message_id,
-  library_id,
-  send_date
+  reply_to_email = "noreply@qualtrics.com"
 )
 }
 \arguments{
 \item{parent_distribution_id}{id of the library item}
+
+\item{library_id}{Library ID of the message}
+
+\item{message_id}{id of the message item}
+
+\item{subject}{email subject, default is "Reminder - Participate to the survey"}
+
+\item{send_date}{date for distribution to be sent (default to time + 1 day)}
 
 \item{from_email}{sender email, default is \email{noreply@qualtrics.com}}
 
 \item{from_name}{appearing sender name, default is Qualtrics}
 
 \item{reply_to_email}{reply email, default is \email{noreply@qualtrics.com}}
-
-\item{subject}{email subject, default is "Survey Distribution"}
-
-\item{message_id}{id of the message item}
-
-\item{library_id}{Library ID of the message}
-
-\item{send_date}{date for distribution to be sent}
 }
 \value{
 The reminder distribution id
@@ -41,6 +41,18 @@ take a survey for recipients with non completed surveys.
 Recipients who have opted out will not receive the reminder.
 }
 \details{
-The sender email parameter can only be sent from another email if
+The parent distribution id can be found using the 
+'list_distributions' call. The sender email parameter 
+can only be sent from another email if
 the organization authorizes a send on its behalf.
+}
+\examples{
+\dontrum{
+  create_reminder_distribution(
+    "EMD_6yYmF6vopfUz4gn",
+    library_id = "UR_0NXtl92JJWqfWcJ",
+    message_id = "MS_0fddN2xI3J0nGQZ"
+)
+}
+
 }

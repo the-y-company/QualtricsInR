@@ -9,12 +9,7 @@ get_message(library_id, message_id)
 \arguments{
 \item{library_id}{The library id can be one of the following IDs: User ID, Group ID, ThreeSixty ID (see 'list_libraries')}
 
-\item{message_id}{the message_id
-
- @examples
-\dontrun{
- list_messages("UR_0NXtl92JJWqfWcJ", "MS_0fddN2xI3J0nGQZ")
-}}
+\item{message_id}{the message_id}
 }
 \value{
 A \code{list}.
@@ -22,4 +17,10 @@ A \code{list}.
 \description{
 The call returns a list with the message category, the message description
 and the message in the various translated languages.
+}
+\examples{
+\dontrun{
+ get_message("UR_0NXtl92JJWqfWcJ", "MS_0fddN2xI3J0nGQZ")
+}
+
 }

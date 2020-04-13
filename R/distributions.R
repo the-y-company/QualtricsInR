@@ -1,168 +1,14 @@
 
-#' Create email distribution or generate distribution links
-#' 
-#' @description 
-#' Using this API call, you can either schedule an email distribution
-#' using the Qualtrics email server, or generate distribution links
-#' that you can then use to share the link to your survey using your own
-#' email solution.
-#'
-#' @param library_id the library id where the message is saved (see 'list_libraries')
-#' @param message_id id of the message item
-#' @param mailing_list_id mailing list is, or set transaction_batch_id
-#' @param transaction_batch_id transaction batch, or set mailing_list_id
-#' @param contact_id optional, optional contact lookup ID for individual distribution
-#' @param from_name appearing sender name, default is Qualtrics
-#' @param reply_to_email optional, reply email, default is \email{noreply@@qualtrics.com}
-#' @param from_email sender email, default is \email{noreply@@qualtrics.com}
-#' @param subject email subject, default is "Survey Distribution"
-#' @param type Allowed values: Individual, Multiple, Anonymous
-#' @param survey_id the survey id
-#' @param expiration_date expiration date
-#' @param send_date date for distribution to be sent
-#' 
-#' @details
-#' In order to create a new email distribution using the API, you need
-#' to have the body of your email already created as a message in your
-#' Qualtrics message library (see 'list_messages' and 'create_message' 
-#' functions).
-#'
-#' @return The created distribution id
-create_distribution <- function(
-  survey_id,
-  library_id,
-  message_id,
-  mailing_list_id,
-  from_name,
-  reply_to_email,
-  from_email,
-  subject,
-  type,
-  send_date = Sys.Date()+1) {
-
-  body <- list(
-    "message" = list(
-      "libraryId" = library_id,
-      "messageId" = message_id
-    ),
-    "recipients" = list(
-      "contactId" = contact_id,
-      "mailingListId" = mailing_list_id
-    ),
-    "header" = list(
-      "fromName" = from_name,
-      "replyToEmail" = reply_to_email,
-      "fromEmail" = from_email,
-      "subject" = subject
-    ),
-    "surveyLink" = list(
-      "surveyId" = survey_id,
-      "type" = type,
-      "expiration_date" = expiration_date
-    ),
-    "sendDate"= send_date
-  )
-
-  getcnt <- .qualtrics_post("distributions", NULL, body)
-  getcnt$result$distributionId
-
-}
-
-#' Create a reminder distribution
-#'
-#' Based on an existing email distribution, create a reminder to 
-#' take a survey for recipients with non completed surveys. 
-#' Recipients who have opted out will not receive the reminder.
-#'
-#' @param parent_distribution_id id of the library item
-#' @param from_email sender email, default is \email{noreply@@qualtrics.com}
-#' @param from_name appearing sender name, default is Qualtrics
-#' @param reply_to_email reply email, default is \email{noreply@@qualtrics.com}
-#' @param subject email subject, default is "Survey Distribution"
-#' @param message_id id of the message item
-#' @param library_id Library ID of the message
-#' @param send_date date for distribution to be sent
-#'
-#' @details
-#' The sender email parameter can only be sent from another email if
-#' the organization authorizes a send on its behalf.
-#' 
-#' @return The reminder distribution id
-create_reminder_distribution <- function(
-  parent_distribution_id,
-  from_email = "noreply@qualtrics.com",
-  from_name = "Qualtrics",
-  reply_to_email = "noreply@qualtrics.com",
-  subject,
-  message_id,
-  library_id,
-  send_date) {
-
-  body <- list(
-    "header" = list(
-      "fromName" = from_name,
-      "replyToEmail" = reply_to_email,
-      "fromEmail" = from_email,
-      "subject" = subject
-    ),
-    "message" = list(
-      "libraryId" = library_id,
-      "messageId" = message_id
-    ),
-    "sendDate"= send_date
-  )
-
-  params <- c("distributions", parent_distribution_id, "reminders")
-  getcnt <- .qualtrics_post(params, NULL, body)
-  return(getcnt$result$distributionId)
-}
-
-#' Create a thank you distribution
-#'
-#' Based on an existing distribution, create a reminder to take a survey
-#'
-#' @param parent_distribution_id id of the library item
-#' @param from_email sender email, default is \email{noreply@@qualtrics.com}
-#' @param from_name appearing sender name, default is Qualtrics
-#' @param reply_to_email reply email, default is \email{noreply@@qualtrics.com}
-#' @param subject email subject, default is "Survey Distribution"
-#' @param message_id id of the message item
-#' @param library_id Library ID of the message
-#' @param send_date date for distribution to be sent
-#' @return The reminder distribution id
-create_thankyou_distribution <- function(
-  parent_distribution_id,
-  from_email = "noreply@qualtrics.com",
-  from_name = "Qualtrics",
-  reply_to_email = "noreply@qualtrics.com",
-  subject = "Thank you!",
-  message_id,
-  library_id,
-  send_date) {
-
-  body <- list(
-    "header" = list(
-      "fromName" = from_name,
-      "replyToEmail" = reply_to_email,
-      "fromEmail" = from_email,
-      "subject" = subject
-    ),
-    "message" = list(
-      "libraryId" = library_id,
-      "messageId" = message_id
-    ),
-    "sendDate"= send_date
-  )
-
-  params <- c("distributions",parent_distribution_id,"thankyous")
-  getcnt <- .qualtrics_post(params, NULL, body)
-  getcnt$result$distributionId
-}
-
 #' List all distributions associated to a survey
 #'
 #' @param survey_id the id of survey
-#' @return A \code{list}.
+#' 
+#' @examples 
+#' \dontrun{
+#'   list_distributions("SV_erkBAsHrvoJyeYB")
+#' }
+#' 
+#' @return A \code{tibble}.
 #' @export
 list_distributions <- function(survey_id) {
 
@@ -223,12 +69,13 @@ list_distributions <- function(survey_id) {
 
 }
 
-
 #' Retrieve a given survey distribution object
 #'
 #' @param distribution_id the distribution id
 #' @param survey_id the id of the associated survey
+#' 
 #' @return A \code{list}.
+#' 
 #' @export
 get_distribution <- function(distribution_id, survey_id) {
 
@@ -290,28 +137,264 @@ get_distribution <- function(distribution_id, survey_id) {
 
 }
 
-#' Generate a distribution link
+#' Delete a survey distribution
 #'
+#' @param distribution_id the distribution id
+#' @examples
+#' \dontrun{delete_distribution("EMD_012345678901234")}
+#' @return A status execution code
+#' @export
+delete_distribution <- function(distribution_id) {
+  params <- c("distributions", distribution_id)
+  getcnt <- .qualtrics_delete(params, NULL, NULL)
+  getcnt$meta$httpStatus
+}
+
+#' Create an email distribution or generate distribution links
+#' 
+#' @description 
+#' Using this API call, you can either schedule an email distribution
+#' using the Qualtrics email server, or generate distribution links
+#' that you can then use to share the link to your survey using your own
+#' email solution.
+#'
+#' @param survey_id the survey id
+#' @param library_id the library id where the message is saved (see 'list_libraries')
+#' @param message_id id of the message item
+#' @param from_email sender email, default is \email{noreply@@qualtrics.com}
+#' @param from_name appearing sender name, default is Qualtrics
+#' @param subject email subject, default is "Survey Distribution"
+#' @param send_date date for distribution to be sent (if not supplied will be set to +1 day)
+#' @param mailing_list_id optional, mailing list is, or set transaction_batch_id
+#' @param transaction_batch_id optional, transaction batch, or set mailing_list_id
+#' @param contact_id optional, optional contact lookup ID for individual distribution
+#' @param reply_to_email optional, reply email, default is \email{noreply@@qualtrics.com}
+#' @param type optional, allowed values: Individual, Multiple, Anonymous
+#' @param expiration_date expiration date
+#' 
+#' @details
+#' In order to create a new email distribution using the API, you need
+#' to have the body of your email already created as a message in your
+#' Qualtrics message library (see 'list_messages'). If you want to send the 
+#' distribution to only one contact in the mailing list, specific the contact_id 
+#' field in addition to the mailing_list_id (see 'list_contacts').
+#' 
+#' @details
+#' Note that our Qualtrics account may be set with a different time zone than your
+#' local environment. Make sure to specificy your date fields accordingly.
+#'
+#' @examples 
+#' \dontrun{
+#'  create_distribution(
+#'    "SV_erkBAsHrvoJyeYB",
+#'    "UR_0NXtl92JJWqfWcJ", 
+#'    "MS_0fddN2xI3J0nGQZ", 
+#'    "ML_7aoriSKinHh8MfP", 
+#'    "john.doe@qualtrics.com", 
+#'    "John Doe", 
+#'    "Participate in this awesome survey")
+#' }
+#' @return The created distribution id
+create_email_distribution <- function(
+  survey_id,
+  library_id,
+  message_id,
+  mailing_list_id,
+  from_email = "noreply@qualtrics.com",
+  from_name = "Qualtrics",
+  subject = "Participate in this survey",
+  send_date = paste0(Sys.Date()+1, "T00:00:00Z"),
+  transaction_batch_id = NULL,
+  contact_id = NULL,
+  reply_to_email = "noreply@qualtrics.com",
+  type = NULL,
+  expiration_date = NULL
+  ) {
+
+  body_message <- list(
+      "libraryId" = library_id,
+      "messageId" = message_id
+    ) %>%
+    discard(is.null)
+
+  body_header <- list(
+      "fromEmail" = from_email,
+      "fromName" = from_name,
+      "replyToEmail" = reply_to_email,
+      "subject" = subject
+    ) %>%
+    discard(is.null)
+
+  body_recipients <- list(
+    "contactId" = contact_id,
+    "mailingListId" = mailing_list_id,
+    "transactionBatchId" = transaction_batch_id
+  ) %>%
+    discard(is.null)
+
+  body_survey_link <- list(
+    "surveyId" = survey_id,
+    "expirationDate" = expiration_date,
+    "type" = type
+  ) %>%
+    discard(is.null)
+
+  body <- list(
+    "message" = body_message,
+    "recipients" = body_recipients,
+    "header" = body_header,
+    "surveyLink" = body_survey_link,
+    "sendDate"= send_date
+  )
+
+  getcnt <- .qualtrics_post("distributions", NULL, body)
+  getcnt$result$id
+
+}
+
+#' Create a reminder distribution for an existing email distribution
+#'
+#' @description 
+#' Based on an existing email distribution, create a reminder to 
+#' take a survey for recipients with non completed surveys. 
+#' Recipients who have opted out will not receive the reminder.
+#'
+#' @param parent_distribution_id id of the library item
+#' @param library_id Library ID of the message
+#' @param message_id id of the message item
+#' @param subject email subject, default is "Reminder - Participate to the survey"
+#' @param send_date date for distribution to be sent (default to time + 1 day)
+#' @param from_email sender email, default is \email{noreply@@qualtrics.com}
+#' @param from_name appearing sender name, default is Qualtrics
+#' @param reply_to_email reply email, default is \email{noreply@@qualtrics.com}
+#'
+#' @details
+#' The parent distribution id can be found using the 
+#' 'list_distributions' call. The sender email parameter 
+#' can only be sent from another email if
+#' the organization authorizes a send on its behalf.
+#' 
+#' @examples
+#' \dontrum{
+#'   create_reminder_distribution(
+#'     "EMD_6yYmF6vopfUz4gn",
+#'     library_id = "UR_0NXtl92JJWqfWcJ",
+#'     message_id = "MS_0fddN2xI3J0nGQZ"
+#' )
+#' }
+#' 
+#' @return The reminder distribution id
+create_reminder_distribution <- function(
+  parent_distribution_id,
+  library_id,
+  message_id,
+  subject = "Reminder - Participate to the survey",
+  send_date = paste0(Sys.Date()+1, "T00:00:00Z"),
+  from_email = "noreply@qualtrics.com",
+  from_name = "Qualtrics",
+  reply_to_email = "noreply@qualtrics.com"
+  ) {
+
+  body <- list(
+    "header" = list(
+      "fromName" = from_name,
+      "replyToEmail" = reply_to_email,
+      "fromEmail" = from_email,
+      "subject" = subject
+    ),
+    "message" = list(
+      "libraryId" = library_id,
+      "messageId" = message_id
+    ),
+    "sendDate"= send_date
+  )
+
+  params <- c("distributions", parent_distribution_id, "reminders")
+  getcnt <- .qualtrics_post(params, NULL, body)
+  return(getcnt$result$distributionId)
+}
+
+#' Create a thank you distribution for an exisiting email distribution
+#' 
+#' @description 
+#' The thank you email is sent to all respondents who have finished
+#' the survey.
+#'
+#' @param parent_distribution_id id of the library item
+#' @param library_id Library ID of the message
+#' @param message_id id of the message item
+#' @param send_date date for distribution to be sent
+#' @param from_email sender email, default is \email{noreply@@qualtrics.com}
+#' @param from_name appearing sender name, default is Qualtrics
+#' @param reply_to_email reply email, default is \email{noreply@@qualtrics.com}
+#' @param subject email subject, default is "Thank you for your participation"
+#' 
+#' @examples 
+#' \dontrun{
+#'  create_thankyou_distribution(
+#'    "EMD_6yYmF6vopfUz4gn",
+#'    "UR_0NXtl92JJWqfWcJ",
+#'    "MS_0fddN2xI3J0nGQZ"
+#' )
+#' }
+#' 
+#' @return The thank you distribution id
+create_thankyou_distribution <- function(
+  parent_distribution_id,
+  library_id,
+  message_id,
+  send_date = paste0(Sys.Date()+1, "T00:00:00Z"),
+  from_email = "noreply@qualtrics.com",
+  from_name = "Qualtrics",
+  reply_to_email = "noreply@qualtrics.com",
+  subject = "Thank you for your participation") {
+
+  body <- list(
+    "header" = list(
+      "fromName" = from_name,
+      "replyToEmail" = reply_to_email,
+      "fromEmail" = from_email,
+      "subject" = subject
+    ),
+    "message" = list(
+      "libraryId" = library_id,
+      "messageId" = message_id
+    ),
+    "sendDate"= send_date
+  )
+
+  params <- c("distributions",parent_distribution_id,"thankyous")
+  getcnt <- .qualtrics_post(params, NULL, body)
+  getcnt$result$distributionId
+}
+
+#' Generate survey distribution links
+#'
+#' @description 
 #' Create a distribution without sending any emails. The created distribution
 #' will be of type "GeneratedInvite". The survey must be active before you can
 #' generate a distribution invite. Refer to the documentation below for further
 #' information regarding usage of this API's result.
 #'
-#' @param action To generate transaction distribution links, value must be "CreateTransactionBatchDistribution"
+#' @param action default is CreateDistribution. To generate transaction distribution links, value must be "CreateTransactionBatchDistribution"
 #' @param survey_id the distribution id
 #' @param mailinglist_id the distribution id
 #' @param description the distribution id
 #' @param expirationdate the id of survey
 #' @param linktype the id of survey
-#' @return A \code{list}.
+#' 
+#' @details 
+#' To retrieve the actual links, use the 'list_distribution_links' call.
+#' 
+#' @return The id of the created distribution
 #' @export
-generate_distributionlink <- function(
-  action,
+generate_distribution_links <- function(
   survey_id,
   mailinglist_id,
-  description,
-  expirationdate,
-  linktype) {
+  description = "Generated Links",
+  linktype = "Individual",
+  action = "CreateDistribution",
+  expirationdate = NULL) {
 
   body <- list(
     "action" = action,
@@ -329,23 +412,25 @@ generate_distributionlink <- function(
 
 #' List the survey links associated with a distribution
 #'
-#' Distribution Links can only be generated for distribution ids associated
-#' with mailing lists
+#' @description 
+#' Distribution links can only be generated for distribution ids associated
+#' with mailing lists. It is not possible to retrieve survey links for
+#' distributions to only one contact id.
 #'
-#' @param distribution_id the distribution id
 #' @param survey_id the id of survey
+#' @param distribution_id the distribution id
 #' 
 #' @examples
 #' \dontrun{
 #'  lst_distri <- list_distributions("SV_dg0P0pcZoDYvpNX")
-#'  df <- list_distributionlinks("EMD_3rrDZa8AQBnACYl", "SV_dg0P0pcZoDYvpNX")   
+#'  df <- list_distribution_links("EMD_3rrDZa8AQBnACYl", "SV_dg0P0pcZoDYvpNX")   
 #' }
 #' 
 #' @return A \code{tibble}.
 #' @export
-list_distributionlinks <- function(distribution_id, survey_id) {
+list_distribution_links <- function(distribution_id, survey_id) {
 
-  .build_distributionlinks <- function(list) {
+  .build_df <- function(list) {
     df <- purrr::map_df(
       list, function(x) {
         dplyr::tibble(
@@ -367,12 +452,12 @@ list_distributionlinks <- function(distribution_id, survey_id) {
   getcnt <- .qualtrics_get(params, "surveyId" = survey_id, "skipToken" = skip_token)
 
   if (length(getcnt$result$elements)>0) {
-    df <- .build_distributionlinks(getcnt$result$elements)
+    df <- .build_df(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
       skip_token <- httr::parse_url(getcnt$result$nextPage)$query$skipToken
       getcnt <- .qualtrics_get(params, "surveyId" = survey_id, "skipToken" = skip_token)
-      df <- rbind(df, .build_distributionlinks(getcnt$result$elements))
+      df <- rbind(df, .build_df(getcnt$result$elements))
     }
 
     return(df)
@@ -384,26 +469,32 @@ list_distributionlinks <- function(distribution_id, survey_id) {
 
 #' Send Email to Mailing List
 #'
-#' Create a new distribution with a custom message
+#' @description 
+#' You can use this call to send an email to a mailing list without
+#' having to create the email message in Qualtrics first.
 #'
-#' @param fromEmail To generate transaction distribution links, value must be "CreateTransactionBatchDistribution"
-#' @param fromName the distribution id
-#' @param replyToEmail the distribution id
-#' @param subject the distribution id
-#' @param messageText the id of survey
 #' @param mailingListId the id of survey
-#' @param sendDate the id of survey
+#' @param sendDate the date to send the email (default is +1 day)
+#' @param fromEmail sender email, default is \email{noreply@@qualtrics.com}
+#' @param fromName the send name default is Qualtrics
+#' @param replyToEmail reply email, default is \email{noreply@@qualtrics.com}
+#' @param subject the email subject
+#' @param messageText email text body
+#' 
+#' @examples
+#' \dontrun{send_email_tomailinglist(mail_id, "2020-04-13T03:26:00Z")}
 #'
 #' @return The email distribution id
 #' @export
 send_email_tomailinglist <- function(
-  fromEmail,
-  fromName,
-  replyToEmail,
-  subject,
-  messageText,
   mailingListId,
-  sendDate) {
+  sendDate = paste0(Sys.Date()+1, "T00:00:00Z"),
+  subject = "Take this survey",
+  messageText = "Hello, take this survey",
+  fromEmail = "noreply@qualtrics.com",
+  fromName = "Qualtrics",
+  replyToEmail = "noreply@qualtrics.com"
+  ) {
 
   body <- list(
     "header" = list(
@@ -422,22 +513,8 @@ send_email_tomailinglist <- function(
   )
 
   getcnt <- .qualtrics_post("distributions", NULL, body)
-  getcnt$result$id
-
-}
-
-
-#' Delete a survey distribution
-#'
-#' @param distribution_id the distribution id
-#' @examples
-#' \dontrun{delete_distribution("EMD_012345678901234")}
-#' @return A status execution code
-#' @export
-delete_distribution <- function(distribution_id) {
-  params <- c("distributions", distribution_id)
-  getcnt <- .qualtrics_delete(params, NULL, NULL)
   getcnt$meta$httpStatus
+
 }
 
 #' Create a new survey distribution via SMS
@@ -510,7 +587,6 @@ create_sms_distribution <- function(
 #' @examples
 #' \dontrun{get_sms_distribution("SMSD_012345678901234", "SV_012345678901234")}
 #' @return A \code{list}
-#' @export
 get_sms_distribution <- function(smsdistribution_id, survey_id) {
   params <- c("distributions","sms", smsdistribution_id)
   .qualtrics_get(params, "surveyId"=survey_id, NULL)
@@ -522,7 +598,6 @@ get_sms_distribution <- function(smsdistribution_id, survey_id) {
 #' @examples
 #' \dontrun{delete_sms_distribution("SMSD_012345678901234")}
 #' @return A status execution code
-#' @export
 delete_sms_distribution <- function(smsdistribution_id) {
   params <- c("distributions","sms", smsdistribution_id)
   getcnt <- .qualtrics_delete(params, NULL, NULL)
@@ -535,7 +610,6 @@ delete_sms_distribution <- function(smsdistribution_id) {
 #' @examples
 #' \dontrun{list_sms_distributions("SV_012345678901234")}
 #' @return A \code{list}
-#' @export
 list_sms_distributions <- function(survey_id) {
 
   .build_sms_distribution <- function(list) {

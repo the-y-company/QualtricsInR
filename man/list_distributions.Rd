@@ -10,8 +10,14 @@ list_distributions(survey_id)
 \item{survey_id}{the id of survey}
 }
 \value{
-A \code{list}.
+A \code{tibble}.
 }
 \description{
 List all distributions associated to a survey
+}
+\examples{
+\dontrun{
+  list_distributions("SV_erkBAsHrvoJyeYB")
+}
+
 }

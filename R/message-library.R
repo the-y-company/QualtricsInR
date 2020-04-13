@@ -57,9 +57,9 @@ list_messages <- function(library_id) {
 #' @param library_id The library id can be one of the following IDs: User ID, Group ID, ThreeSixty ID (see 'list_libraries')
 #' @param message_id the message_id
 #' 
-#'  @examples
+#' @examples
 #' \dontrun{
-#'  list_messages("UR_0NXtl92JJWqfWcJ", "MS_0fddN2xI3J0nGQZ")
+#'  get_message("UR_0NXtl92JJWqfWcJ", "MS_0fddN2xI3J0nGQZ")
 #' }
 #' 
 #' @return A \code{list}.
@@ -89,7 +89,9 @@ get_message <- function(library_id, message_id) {
 #' 
 #' @examples 
 #' \dontrun{
-#'  message = list("en" = "Thank you for taking this survey.", "fr" = "Merci de participer à cette enquête.")
+#'  message = list(
+#'  "en" = "Thank you for taking this survey.", 
+#'  "fr" = "Merci de participer à cette enquête.")
 #'  create_message("UR_0NXtl92JJWqfWcJ", "invite", "My New Invite Message", message)
 #' }
 #' 
@@ -132,8 +134,14 @@ create_message <- function(
 #' 
 #' @examples 
 #'  \dontrun{
-#'    message = list("en" = "Thank you again for taking this survey.", "es" = "Gracias por participar en esta encuesta")
-#'    update_message("UR_0NXtl92JJWqfWcJ", "MS_3qR8d4mAkgD0fKl", "My Most Recent Invite Message", message)
+#'    message = list(
+#'      "en" = "Thank you again for taking this survey.", 
+#'       "es" = "Gracias por participar en esta encuesta")
+#'    update_message(
+#'      "UR_0NXtl92JJWqfWcJ", 
+#'      "MS_3qR8d4mAkgD0fKl", 
+#'      "My Most Recent Invite Message", 
+#'      message)
 #' }
 #' 
 #' @return A \code{tibble}.

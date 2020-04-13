@@ -26,7 +26,9 @@ in order to view the structure of an existing message.
 }
 \examples{
 \dontrun{
- message = list("en" = "Thank you for taking this survey.", "fr" = "Merci de participer à cette enquête.")
+ message = list(
+ "en" = "Thank you for taking this survey.", 
+ "fr" = "Merci de participer à cette enquête.")
  create_message("UR_0NXtl92JJWqfWcJ", "invite", "My New Invite Message", message)
 }
 

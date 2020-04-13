@@ -27,8 +27,14 @@ The message id can be found using the 'list_messages' call.
 }
 \examples{
  \dontrun{
-   message = list("en" = "Thank you again for taking this survey.", "es" = "Gracias por participar en esta encuesta")
-   update_message("UR_0NXtl92JJWqfWcJ", "MS_3qR8d4mAkgD0fKl", "My Most Recent Invite Message", message)
+   message = list(
+     "en" = "Thank you again for taking this survey.", 
+      "es" = "Gracias por participar en esta encuesta")
+   update_message(
+     "UR_0NXtl92JJWqfWcJ", 
+     "MS_3qR8d4mAkgD0fKl", 
+     "My Most Recent Invite Message", 
+     message)
 }
 
 }
