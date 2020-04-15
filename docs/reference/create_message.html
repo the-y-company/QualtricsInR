@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>create_message creates a message — create_message • QualtricsInR</title>
+<title>Create a new message in the library — create_message • QualtricsInR</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,11 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="create_message creates a message — create_message" />
-<meta property="og:description" content="create_message creates a message" />
+<meta property="og:title" content="Create a new message in the library — create_message" />
+<meta property="og:description" content="You can create messages with advanced features such as piped text and
+custom look and feel as long as you provide the former using the Qualtrics
+format and html for the second. The best is to use the 'get_message function'
+in order to view the structure of an existing message." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -82,10 +85,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="../articles/survey-responses.html">Suvey Responses</a>
     </li>
     <li>
-      <a href="../articles/survey-responses.html">Suvey Responses</a>
+      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
     </li>
   </ul>
 </li>
@@ -160,20 +163,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>create_message creates a message</h1>
+    <h1>Create a new message in the library</h1>
     
     <div class="hidden name"><code>create_message.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>create_message creates a message</p>
+    <p>You can create messages with advanced features such as piped text and
+custom look and feel as long as you provide the former using the Qualtrics
+format and html for the second. The best is to use the 'get_message function'
+in order to view the structure of an existing message.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_message</span>(<span class='no'>description</span>, <span class='no'>messages</span>, <span class='no'>category</span>, <span class='no'>library_id</span>)</pre>
+    <pre class="usage"><span class='fu'>create_message</span>(<span class='no'>library_id</span>, <span class='no'>category</span>, <span class='no'>description</span>, <span class='no'>messages</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>library_id</th>
+      <td><p>The library id can be one of the following IDs: User ID, Group ID, ThreeSixty ID (see 'list_libraries')</p></td>
+    </tr>
+    <tr>
+      <th>category</th>
+      <td><p>invite, inactiveSurvey, reminder, thankYou, endOfSurvey, general, validation, lookAndFeel, emailSubject, smsInvite</p></td>
+    </tr>
     <tr>
       <th>description</th>
       <td><p>defines a description for the message</p></td>
@@ -182,26 +196,27 @@
       <th>messages</th>
       <td><p>A JSON object - mapping language codes to messages</p></td>
     </tr>
-    <tr>
-      <th>category</th>
-      <td><p>invite, inactiveSurvey, reminder, thankYou, endOfSurvey, general, validation, lookAndFeel, emailSubject, smsInvite</p></td>
-    </tr>
-    <tr>
-      <th>library_id</th>
-      <td><p>The Library ID can be one of the following IDs: User ID, Group ID, ThreeSixty ID</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>id of created message</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+ <span class='no'>message</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+ <span class='st'>"en"</span> <span class='kw'>=</span> <span class='st'>"Thank you for taking this survey."</span>,
+ <span class='st'>"fr"</span> <span class='kw'>=</span> <span class='st'>"Merci de participer à cette enquête."</span>)
+ <span class='fu'>create_message</span>(<span class='st'>"UR_0NXtl92JJWqfWcJ"</span>, <span class='st'>"invite"</span>, <span class='st'>"My New Invite Message"</span>, <span class='no'>message</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

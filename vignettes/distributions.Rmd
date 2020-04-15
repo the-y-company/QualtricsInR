@@ -7,41 +7,107 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-There is a vast number of distribution related operations you can automate through the Qualtrics API. In this package, we provide the following functions:
+There is a vast number of distribution related operations you can automate through the Qualtrics API. In this package, 
+we provide the following calls:
 
-- `create_distribution`
-- `create_reminder_distribution`
-- `create_thankyou_distribution`
 - `list_distributions`
 - `get_distribution`
-- `generate_distributionlink`
-- `list_distributionlinks`
-- `send_email_tomailinglist`
 - `delete_distribution`
-- `create_sms_distribution`
-- `get_sms_distribution`
-- `delete_sms_distribution`
-- `list_sms_distributions`
+- `create_email_distribution`
+- `create_reminder_distribution`
+- `create_thankyou_distribution`
+- `generate_distribution_links`
+- `list_distribution_links`
+- `send_email_mailinglist`
 
+A number of equivalent calls for sms based distributions are available. Although implemented in the packge, these 
+functions are not yet made available to the user due to our inability to perform any kind of testing.
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup}
+QualtricsInR::set_qualtrics_opts()
 library(QualtricsInR)
 ```
 
-## Standard use cases
+## Sending your survey through an anonymous link
 
-The first important note to mention is that if you are only looking into distributing your survey through a unique public link, you simply need to retrieve the survey id and build the standard URL. For example, if your survey id is *SV_abpmKbFCC9hNLzD*, the publically accessible link for thge survey is https://data_center_id.qualtrics.com/jfe/form/SV_abpmKbFCC9hNLzD where *data_center_id* can be found in your organisation's identification parameters (see [official documentation](https://api.qualtrics.com/v3/docs/api-general-instructions)).
+The first important note to mention is that if you are only looking into distributing your survey through a unique 
+public link, you simply need to retrieve the survey id and build the standard URL. For example, if your survey 
+id is *SV_abpmKbFCC9hNLzD*, the publically accessible link for thge survey is https://data_center_id.qualtrics.com/jfe/form/SV_abpmKbFCC9hNLzD 
+where *data_center_id* can be found in your organisation's identification parameters (see 
+[official documentation](https://api.qualtrics.com/v3/docs/api-general-instructions)).
 
-Traditionally, you will send your survey to a predefined list of target respondents for which you create a conact list in Qualtrics. For scheduling such a call through the API
+## Scheduling a Qualtrics email distribution
 
+The method described below is a standard approach for people sending their survey to a predefined list of participants through the
+Qualtrics emailing service. The use of the API can facilitate the process of managing such distributions for multiple contact lists
+with different mailing strategies, for example.
+
+To create a new email distribution, you will need to have created an email body, saved as a Qualtrics library item in your account 
+(see functions 'list_messages' and 'create_message'). You will also need the id of the contact list to send the survey to (see 
+functions 'list_mailinglists' and 'create_mailinglist').
+
+We show below a step-by-step process to set-up your first email distribution. First, we retrieve the account library id needed
+throughout all steps.
+
+```{r}
+list_libraries()
 ```
-# Create a new distribution for a given survey id
-dist_id <- create_distribution("")
+
+For a simple user account, you will usually have available the account library and the default Qualtrics library. You've probably
+saved your email message in your account library.
+
+You can now list all messages available in the account.
+
+```{r}
+list_messages("UR_0NXtl92JJWqfWcJ")
+```
+
+We will be using the email *email_for_distribution_test* which we now know the id of. Finally, we need to retrieve the contact list
+id for the email recipients.
+
+```{r}
+list_mailinglists()
+```
+
+We will use the contact list *test_api* we now know the id of. We are now ready to create our email distribution for a given survey.
+
+```{r}
+create_email_distribution(
+    "SV_erkBAsHrvoJyeYB", # survey id
+    "UR_0NXtl92JJWqfWcJ", # library id
+    "MS_0fddN2xI3J0nGQZ", # email message id
+    "ML_7aoriSKinHh8MfP", # contact list id
+    "john.doe@qualtrics.com",  # sender email
+    "John Doe", # sender name
+    "Participate in this survey",  # email subject
+    send_date = paste0(Sys.Date()+1, "T00:00:00Z") # send email tomorrow morning at 00:00
+    )
+```
+
+This call will return the id of the newly created distribution which allows you to delete the distribution, 
+create a reminder distribution or schedule an thank you message.
+
+Note that our Qualtrics account may be set with a different time zone than your local environment. Make sure to specificy 
+your date fields accordingly.
+
+There are a number of optional parameters you can find in the function documentation. It is important to note that by the default, 
+the sender email will be set to *noreply@qualtrics.com*. You can only use custom email address if your account is appropriately 
+configured to do so (see [qualtrics documentation](https://www.qualtrics.com/support/survey-platform/distributions-module/email-distribution/using-a-custom-from-address/))
+
+Note that if you do not want to have to create the email message in Qualtrics before sending the email, the you can use the function
+'send_email_mailinglist'.
+
+## Exporting personalized links from Qualtrics
+
+You can also give an instruction for Qualtrics to generate personalized survey links for all contacts of a contact list. You can then
+export these links and distribute them through your own organization email service.
+
+```{r}
+distribution_id <- generate_distribution_links("SV_erkBAsHrvoJyeYB", "ML_7aoriSKinHh8MfP", "Survey Respondents Generated Links")
+print(distribution_id)
+list_distribution_links(distribution_id, "SV_erkBAsHrvoJyeYB")
 ```

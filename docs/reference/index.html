@@ -80,10 +80,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="../articles/survey-responses.html">Suvey Responses</a>
     </li>
     <li>
-      <a href="../articles/survey-responses.html">Suvey Responses</a>
+      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
     </li>
   </ul>
 </li>
@@ -444,21 +444,21 @@ API token or a Qualtrics OAuth access token.</p></td>
       <tr>
         
         <td>
-          <p><code><a href="create_distribution.html">create_distribution()</a></code> </p>
+          <p><code><a href="create_email_distribution.html">create_email_distribution()</a></code> </p>
         </td>
-        <td><p>Create a new email distribution</p></td>
+        <td><p>Create an email distribution or generate distribution links</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="create_reminder_distribution.html">create_reminder_distribution()</a></code> </p>
         </td>
-        <td><p>Create a reminder distribution</p></td>
+        <td><p>Create a reminder distribution for an existing email distribution</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="create_thankyou_distribution.html">create_thankyou_distribution()</a></code> </p>
         </td>
-        <td><p>Create a thank you distribution</p></td>
+        <td><p>Create a thank you distribution for an exisiting email distribution</p></td>
       </tr><tr>
         
         <td>
@@ -474,19 +474,19 @@ API token or a Qualtrics OAuth access token.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="generate_distributionlink.html">generate_distributionlink()</a></code> </p>
+          <p><code><a href="generate_distribution_links.html">generate_distribution_links()</a></code> </p>
         </td>
-        <td><p>Generate a distribution link</p></td>
+        <td><p>Generate survey distribution links</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="list_distributionlinks.html">list_distributionlinks()</a></code> </p>
+          <p><code><a href="list_distribution_links.html">list_distribution_links()</a></code> </p>
         </td>
         <td><p>List the survey links associated with a distribution</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="send_email_tomailinglist.html">send_email_tomailinglist()</a></code> </p>
+          <p><code><a href="send_email_mailinglist.html">send_email_mailinglist()</a></code> </p>
         </td>
         <td><p>Send Email to Mailing List</p></td>
       </tr><tr>
@@ -495,30 +495,6 @@ API token or a Qualtrics OAuth access token.</p></td>
           <p><code><a href="delete_distribution.html">delete_distribution()</a></code> </p>
         </td>
         <td><p>Delete a survey distribution</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_sms_distribution.html">create_sms_distribution()</a></code> </p>
-        </td>
-        <td><p>Create a new survey distribution via SMS</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_sms_distribution.html">get_sms_distribution()</a></code> </p>
-        </td>
-        <td><p>Retrieve an sms survey distribution object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="delete_sms_distribution.html">delete_sms_distribution()</a></code> </p>
-        </td>
-        <td><p>Delete an sms survey distribution</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="list_sms_distributions.html">list_sms_distributions()</a></code> </p>
-        </td>
-        <td><p>List all sms distributions associated to a survey</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -756,33 +732,57 @@ API token or a Qualtrics OAuth access token.</p></td>
       <tr>
         
         <td>
+          <p><code><a href="list_libraries.html">list_libraries()</a></code> </p>
+        </td>
+        <td><p>List all available libraries in the account</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_library_blocks.html">list_library_blocks()</a></code> </p>
+        </td>
+        <td><p>Lists the library blocks for the caller of this API.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_library_questions.html">list_library_questions()</a></code> </p>
+        </td>
+        <td><p>Lists the library questions for the caller of this API.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_library_surveys.html">list_library_surveys()</a></code> </p>
+        </td>
+        <td><p>Lists the library surveys for the caller of this API.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="list_messages.html">list_messages()</a></code> </p>
         </td>
-        <td><p>list_messages retrieves a full survey object</p></td>
+        <td><p>List all messages from a given library</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="get_message.html">get_message()</a></code> </p>
         </td>
-        <td><p>get_message retrieve a message</p></td>
+        <td><p>Retrieve a message from the library</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="create_message.html">create_message()</a></code> </p>
         </td>
-        <td><p>create_message creates a message</p></td>
+        <td><p>Create a new message in the library</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="update_message.html">update_message()</a></code> </p>
         </td>
-        <td><p>update_message creates a message</p></td>
+        <td><p>Update an existing library message</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="delete_message.html">delete_message()</a></code> </p>
         </td>
-        <td><p>delete_message creates a message</p></td>
+        <td><p>Delete a library message</p></td>
       </tr><tr>
         
         <td>

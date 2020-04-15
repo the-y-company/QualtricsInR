@@ -36,7 +36,8 @@
   
 
 <meta property="og:title" content="Send Email to Mailing List — send_email_tomailinglist" />
-<meta property="og:description" content="Create a new distribution with a custom message" />
+<meta property="og:description" content="You can use this call to send an email to a mailing list without
+having to create the email message in Qualtrics first." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -82,10 +83,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="../articles/survey-responses.html">Suvey Responses</a>
     </li>
     <li>
-      <a href="../articles/survey-responses.html">Suvey Responses</a>
+      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
     </li>
   </ul>
 </li>
@@ -166,49 +167,50 @@
     </div>
 
     <div class="ref-description">
-    <p>Create a new distribution with a custom message</p>
+    <p>You can use this call to send an email to a mailing list without
+having to create the email message in Qualtrics first.</p>
     </div>
 
     <pre class="usage"><span class='fu'>send_email_tomailinglist</span>(
-  <span class='no'>fromEmail</span>,
-  <span class='no'>fromName</span>,
-  <span class='no'>replyToEmail</span>,
-  <span class='no'>subject</span>,
-  <span class='no'>messageText</span>,
   <span class='no'>mailingListId</span>,
-  <span class='no'>sendDate</span>
+  <span class='kw'>sendDate</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.Date</a></span>() + <span class='fl'>1</span>, <span class='st'>"T00:00:00Z"</span>),
+  <span class='kw'>subject</span> <span class='kw'>=</span> <span class='st'>"Take this survey"</span>,
+  <span class='kw'>messageText</span> <span class='kw'>=</span> <span class='st'>"Hello, take this survey"</span>,
+  <span class='kw'>fromEmail</span> <span class='kw'>=</span> <span class='st'>"noreply@qualtrics.com"</span>,
+  <span class='kw'>fromName</span> <span class='kw'>=</span> <span class='st'>"Qualtrics"</span>,
+  <span class='kw'>replyToEmail</span> <span class='kw'>=</span> <span class='st'>"noreply@qualtrics.com"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>fromEmail</th>
-      <td><p>To generate transaction distribution links, value must be "CreateTransactionBatchDistribution"</p></td>
-    </tr>
-    <tr>
-      <th>fromName</th>
-      <td><p>the distribution id</p></td>
-    </tr>
-    <tr>
-      <th>replyToEmail</th>
-      <td><p>the distribution id</p></td>
-    </tr>
-    <tr>
-      <th>subject</th>
-      <td><p>the distribution id</p></td>
-    </tr>
-    <tr>
-      <th>messageText</th>
-      <td><p>the id of survey</p></td>
-    </tr>
-    <tr>
       <th>mailingListId</th>
       <td><p>the id of survey</p></td>
     </tr>
     <tr>
       <th>sendDate</th>
-      <td><p>the id of survey</p></td>
+      <td><p>the date to send the email (default is +1 day)</p></td>
+    </tr>
+    <tr>
+      <th>subject</th>
+      <td><p>the email subject</p></td>
+    </tr>
+    <tr>
+      <th>messageText</th>
+      <td><p>email text body</p></td>
+    </tr>
+    <tr>
+      <th>fromEmail</th>
+      <td><p>sender email, default is <a href='mailto:noreply@qualtrics.com'>noreply@qualtrics.com</a></p></td>
+    </tr>
+    <tr>
+      <th>fromName</th>
+      <td><p>the send name default is Qualtrics</p></td>
+    </tr>
+    <tr>
+      <th>replyToEmail</th>
+      <td><p>reply email, default is <a href='mailto:noreply@qualtrics.com'>noreply@qualtrics.com</a></p></td>
     </tr>
     </table>
 
@@ -216,12 +218,18 @@
 
     <p>The email distribution id</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>send_email_tomailinglist</span>(<span class='no'>mail_id</span>, <span class='st'>"2020-04-13T03:26:00Z"</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

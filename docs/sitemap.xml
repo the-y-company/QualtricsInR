@@ -19,10 +19,10 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_contact.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_distribution.html</loc>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_division.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_division.html</loc>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_email_distribution.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/create_erasure_request.html</loc>
@@ -109,7 +109,7 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/generate_block_id.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/generate_distributionlink.html</loc>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/generate_distribution_links.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_activity_log.html</loc>
@@ -214,7 +214,7 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_directory_contacts.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_distributionlinks.html</loc>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_distribution_links.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_distributions.html</loc>
@@ -224,6 +224,18 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_groups.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_libraries.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_library_blocks.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_library_questions.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_library_surveys.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_mailinglists.html</loc>
@@ -259,7 +271,7 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/remove_user_group.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/send_email_tomailinglist.html</loc>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/send_email_mailinglist.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/share_survey.html</loc>

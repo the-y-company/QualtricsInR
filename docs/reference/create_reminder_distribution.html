@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a reminder distribution — create_reminder_distribution • QualtricsInR</title>
+<title>Create a reminder distribution for an existing email distribution — create_reminder_distribution • QualtricsInR</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a reminder distribution — create_reminder_distribution" />
-<meta property="og:description" content="Based on an existing distribution, create a reminder to take a survey" />
+<meta property="og:title" content="Create a reminder distribution for an existing email distribution — create_reminder_distribution" />
+<meta property="og:description" content="Based on an existing email distribution, create a reminder to 
+take a survey for recipients with non completed surveys. 
+Recipients who have opted out will not receive the reminder." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -82,10 +84,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="../articles/survey-responses.html">Suvey Responses</a>
     </li>
     <li>
-      <a href="../articles/survey-responses.html">Suvey Responses</a>
+      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
     </li>
   </ul>
 </li>
@@ -160,24 +162,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a reminder distribution</h1>
+    <h1>Create a reminder distribution for an existing email distribution</h1>
     
     <div class="hidden name"><code>create_reminder_distribution.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Based on an existing distribution, create a reminder to take a survey</p>
+    <p>Based on an existing email distribution, create a reminder to 
+take a survey for recipients with non completed surveys. 
+Recipients who have opted out will not receive the reminder.</p>
     </div>
 
     <pre class="usage"><span class='fu'>create_reminder_distribution</span>(
   <span class='no'>parent_distribution_id</span>,
+  <span class='no'>library_id</span>,
+  <span class='no'>message_id</span>,
+  <span class='kw'>subject</span> <span class='kw'>=</span> <span class='st'>"Reminder - Participate to the survey"</span>,
+  <span class='kw'>send_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Sys.time'>Sys.Date</a></span>() + <span class='fl'>1</span>, <span class='st'>"T00:00:00Z"</span>),
   <span class='kw'>from_email</span> <span class='kw'>=</span> <span class='st'>"noreply@qualtrics.com"</span>,
   <span class='kw'>from_name</span> <span class='kw'>=</span> <span class='st'>"Qualtrics"</span>,
-  <span class='kw'>reply_to_email</span> <span class='kw'>=</span> <span class='st'>"noreply@qualtrics.com"</span>,
-  <span class='no'>subject</span>,
-  <span class='no'>message_id</span>,
-  <span class='no'>library_id</span>,
-  <span class='no'>send_date</span>
+  <span class='kw'>reply_to_email</span> <span class='kw'>=</span> <span class='st'>"noreply@qualtrics.com"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -186,6 +190,22 @@
     <tr>
       <th>parent_distribution_id</th>
       <td><p>id of the library item</p></td>
+    </tr>
+    <tr>
+      <th>library_id</th>
+      <td><p>Library ID of the message</p></td>
+    </tr>
+    <tr>
+      <th>message_id</th>
+      <td><p>id of the message item</p></td>
+    </tr>
+    <tr>
+      <th>subject</th>
+      <td><p>email subject, default is "Reminder - Participate to the survey"</p></td>
+    </tr>
+    <tr>
+      <th>send_date</th>
+      <td><p>date for distribution to be sent (default to time + 1 day)</p></td>
     </tr>
     <tr>
       <th>from_email</th>
@@ -199,22 +219,6 @@
       <th>reply_to_email</th>
       <td><p>reply email, default is <a href='mailto:noreply@qualtrics.com'>noreply@qualtrics.com</a></p></td>
     </tr>
-    <tr>
-      <th>subject</th>
-      <td><p>email subject, default is "Survey Distribution"</p></td>
-    </tr>
-    <tr>
-      <th>message_id</th>
-      <td><p>id of the message item</p></td>
-    </tr>
-    <tr>
-      <th>library_id</th>
-      <td><p>Library ID of the message</p></td>
-    </tr>
-    <tr>
-      <th>send_date</th>
-      <td><p>date for distribution to be sent</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -222,9 +226,20 @@
     <p>The reminder distribution id</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The sender email parameter can only be sent from another email if
-organization authorizes sends on its behalf.</p>
+    <p>The parent distribution id can be found using the 
+'list_distributions' call. The sender email parameter 
+can only be sent from another email if
+the organization authorizes a send on its behalf.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+  <span class='fu'>create_reminder_distribution</span>(
+    <span class='st'>"EMD_6yYmF6vopfUz4gn"</span>,
+    <span class='kw'>library_id</span> <span class='kw'>=</span> <span class='st'>"UR_0NXtl92JJWqfWcJ"</span>,
+    <span class='kw'>message_id</span> <span class='kw'>=</span> <span class='st'>"MS_0fddN2xI3J0nGQZ"</span>
+)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -232,6 +247,7 @@ organization authorizes sends on its behalf.</p>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

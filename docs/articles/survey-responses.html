@@ -45,10 +45,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="../articles/survey-responses.html">Suvey Responses</a>
     </li>
     <li>
-      <a href="../articles/survey-responses.html">Suvey Responses</a>
+      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
     </li>
   </ul>
 </li>
@@ -148,34 +148,31 @@
 <span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; 1 SV_2uAzZ… Frontiers &amp; World E… UR_8ctTGg… 2019-07-26T0… 2019-06-11T1… FALSE   </span></span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; 2 SV_0pjuS… Secure Innovation C… UR_0v7jd3… 2019-11-20T1… 2019-10-21T1… FALSE   </span></span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; 3 SV_1WVdr… Frontiers &amp; World E… UR_3Iz3hA… 2019-06-05T1… 2019-05-24T1… TRUE    </span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; 4 SV_2a7CW… EOS 2020 - 22/01/20… UR_4TwefW… 2020-01-22T1… 2020-01-22T0… TRUE    </span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; 5 SV_4NhCo… Future Frontiers Su… UR_ex78Dl… 2019-10-28T1… 2019-05-24T1… FALSE   </span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt; 6 SV_7R5Hs… Test Scenarios Feat… UR_cMksFK… 2020-01-08T1… 2019-08-05T1… TRUE</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; 4 SV_2a7CW… EOS 2020 - 22/01/20… UR_4TwefW… 2020-01-29T1… 2020-01-22T0… TRUE    </span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; 5 SV_41kul… GSC_AS2017_Final_Sh… UR_9Z6Jmt… 2020-02-18T1… 2017-03-30T0… FALSE   </span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt; 6 SV_4NhCo… Future Frontiers Su… UR_ex78Dl… 2019-10-28T1… 2019-05-24T1… FALSE</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a><span class="co"># export survey responses, returned ads a list of all surveys' results</span></span>
 <span id="cb1-14"><a href="#cb1-14"></a>dt &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(survids<span class="op">$</span>id[<span class="dv">16</span>], <span class="dt">format =</span> <span class="st">"csv"</span>)</span>
 <span id="cb1-15"><a href="#cb1-15"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(dt)</span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt; # A tibble: 0 x 115</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="co">#&gt; # … with 115 variables: StartDate &lt;chr&gt;, EndDate &lt;chr&gt;, Status &lt;chr&gt;,</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt; # A tibble: 0 x 86</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">#&gt; # … with 86 variables: StartDate &lt;chr&gt;, EndDate &lt;chr&gt;, Status &lt;chr&gt;,</span></span>
 <span id="cb1-18"><a href="#cb1-18"></a><span class="co">#&gt; #   IPAddress &lt;chr&gt;, Progress &lt;chr&gt;, `Duration (in seconds)` &lt;chr&gt;,</span></span>
 <span id="cb1-19"><a href="#cb1-19"></a><span class="co">#&gt; #   Finished &lt;chr&gt;, RecordedDate &lt;chr&gt;, ResponseId &lt;chr&gt;,</span></span>
 <span id="cb1-20"><a href="#cb1-20"></a><span class="co">#&gt; #   RecipientLastName &lt;chr&gt;, RecipientFirstName &lt;chr&gt;, RecipientEmail &lt;chr&gt;,</span></span>
 <span id="cb1-21"><a href="#cb1-21"></a><span class="co">#&gt; #   ExternalReference &lt;chr&gt;, LocationLatitude &lt;chr&gt;, LocationLongitude &lt;chr&gt;,</span></span>
 <span id="cb1-22"><a href="#cb1-22"></a><span class="co">#&gt; #   DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;, Q2_1 &lt;chr&gt;, Q2_2 &lt;chr&gt;,</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="co">#&gt; #   Q2_3 &lt;chr&gt;, Q2_4 &lt;chr&gt;, Q2_5 &lt;chr&gt;, Q2_6 &lt;chr&gt;, Q2_7 &lt;chr&gt;, Q3 &lt;chr&gt;,</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="co">#&gt; #   Q4 &lt;chr&gt;, Q5 &lt;chr&gt;, Q6_1 &lt;chr&gt;, Q6_2 &lt;chr&gt;, Q6_3 &lt;chr&gt;, Q6_4 &lt;chr&gt;,</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="co">#&gt; #   Q11_1 &lt;chr&gt;, Q11_2 &lt;chr&gt;, Q11_3 &lt;chr&gt;, Q11_4 &lt;chr&gt;, Q11_5 &lt;chr&gt;,</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="co">#&gt; #   Q11_6 &lt;chr&gt;, Q11_7 &lt;chr&gt;, Q11_8 &lt;chr&gt;, Q11_9 &lt;chr&gt;, Q12 &lt;chr&gt;, Q13_1 &lt;chr&gt;,</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="co">#&gt; #   Q13_2 &lt;chr&gt;, Q13_3 &lt;chr&gt;, Q13_4 &lt;chr&gt;, Q13_5 &lt;chr&gt;, Q13_6 &lt;chr&gt;,</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="co">#&gt; #   Q13_7 &lt;chr&gt;, Q13_8 &lt;chr&gt;, Q13_9 &lt;chr&gt;, Q13_10 &lt;chr&gt;, Q13_11 &lt;chr&gt;,</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a><span class="co">#&gt; #   Q14 &lt;chr&gt;, Q15_1 &lt;chr&gt;, Q15_2 &lt;chr&gt;, Q15_3 &lt;chr&gt;, Q15_4 &lt;chr&gt;, Q15_5 &lt;chr&gt;,</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a><span class="co">#&gt; #   Q15_6 &lt;chr&gt;, Q15_7 &lt;chr&gt;, Q15_8 &lt;chr&gt;, Q15_9 &lt;chr&gt;, Q16 &lt;chr&gt;, Q17_1 &lt;chr&gt;,</span></span>
-<span id="cb1-31"><a href="#cb1-31"></a><span class="co">#&gt; #   Q17_2 &lt;chr&gt;, Q17_3 &lt;chr&gt;, Q17_4 &lt;chr&gt;, Q17_5 &lt;chr&gt;, Q17_6 &lt;chr&gt;,</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="co">#&gt; #   Q17_7 &lt;chr&gt;, Q17_8 &lt;chr&gt;, Q17_9 &lt;chr&gt;, Q17_10 &lt;chr&gt;, Q17_11 &lt;chr&gt;,</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a><span class="co">#&gt; #   Q17_12 &lt;chr&gt;, Q17_13 &lt;chr&gt;, Q18 &lt;chr&gt;, Q19_1 &lt;chr&gt;, Q19_2 &lt;chr&gt;,</span></span>
-<span id="cb1-34"><a href="#cb1-34"></a><span class="co">#&gt; #   Q19_3 &lt;chr&gt;, Q19_4 &lt;chr&gt;, Q19_5 &lt;chr&gt;, Q19_6 &lt;chr&gt;, Q19_7 &lt;chr&gt;,</span></span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="co">#&gt; #   Q19_8 &lt;chr&gt;, Q19_9 &lt;chr&gt;, Q19_10 &lt;chr&gt;, Q19_11 &lt;chr&gt;, Q19_12 &lt;chr&gt;,</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a><span class="co">#&gt; #   Q20 &lt;chr&gt;, Q21_1 &lt;chr&gt;, Q21_2 &lt;chr&gt;, Q21_3 &lt;chr&gt;, Q21_4 &lt;chr&gt;, Q21_5 &lt;chr&gt;,</span></span>
-<span id="cb1-37"><a href="#cb1-37"></a><span class="co">#&gt; #   Q21_6 &lt;chr&gt;, Q22 &lt;chr&gt;, Q23_1 &lt;chr&gt;, Q23_2 &lt;chr&gt;, Q23_3 &lt;chr&gt;, …</span></span></code></pre></div>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="co">#&gt; #   Q2_3 &lt;chr&gt;, Q2_4 &lt;chr&gt;, Q2_5 &lt;chr&gt;, Q2_6 &lt;chr&gt;, Q3 &lt;chr&gt;, Q4 &lt;chr&gt;,</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="co">#&gt; #   Q5 &lt;chr&gt;, Q6_1 &lt;chr&gt;, Q6_2 &lt;chr&gt;, Q6_3 &lt;chr&gt;, Q6_4 &lt;chr&gt;, Q11_1 &lt;chr&gt;,</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co">#&gt; #   Q11_2 &lt;chr&gt;, Q11_3 &lt;chr&gt;, Q11_4 &lt;chr&gt;, Q11_5 &lt;chr&gt;, Q12 &lt;chr&gt;, Q13_1 &lt;chr&gt;,</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a><span class="co">#&gt; #   Q13_2 &lt;chr&gt;, Q13_3 &lt;chr&gt;, Q13_4 &lt;chr&gt;, Q13_5 &lt;chr&gt;, Q13_6 &lt;chr&gt;,</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="co">#&gt; #   Q13_7 &lt;chr&gt;, Q14 &lt;chr&gt;, Q15_1 &lt;chr&gt;, Q15_2 &lt;chr&gt;, Q15_3 &lt;chr&gt;, Q15_4 &lt;chr&gt;,</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="co">#&gt; #   Q15_5 &lt;chr&gt;, Q15_6 &lt;chr&gt;, Q15_7 &lt;chr&gt;, Q15_8 &lt;chr&gt;, Q15_9 &lt;chr&gt;, Q16 &lt;chr&gt;,</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="co">#&gt; #   Q17_1 &lt;chr&gt;, Q17_2 &lt;chr&gt;, Q17_3 &lt;chr&gt;, Q17_4 &lt;chr&gt;, Q17_5 &lt;chr&gt;,</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="co">#&gt; #   Q17_6 &lt;chr&gt;, Q18 &lt;chr&gt;, Q19_1 &lt;chr&gt;, Q19_2 &lt;chr&gt;, Q19_3 &lt;chr&gt;, Q19_4 &lt;chr&gt;,</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="co">#&gt; #   Q19_5 &lt;chr&gt;, Q19_6 &lt;chr&gt;, Q19_7 &lt;chr&gt;, Q20 &lt;chr&gt;, Q21_1 &lt;chr&gt;, Q21_2 &lt;chr&gt;,</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="co">#&gt; #   Q21_3 &lt;chr&gt;, Q21_4 &lt;chr&gt;, Q21_5 &lt;chr&gt;, Q21_6 &lt;chr&gt;, Q21_7 &lt;chr&gt;,</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a><span class="co">#&gt; #   Q21_8 &lt;chr&gt;, Q22 &lt;chr&gt;, Q7 &lt;chr&gt;, Q8 &lt;chr&gt;, Q9 &lt;chr&gt;, Q10 &lt;chr&gt;,</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a><span class="co">#&gt; #   Q_URL &lt;chr&gt;, a &lt;chr&gt;, b &lt;chr&gt;, c &lt;chr&gt;</span></span></code></pre></div>
 <p>The default file format is json but csv and tsv can be passed. We currently don’t provide the SPSS file format as an output option.</p>
 <p>A number of <a href="https://api.qualtrics.com/docs/getting-survey-responses-new">optional parameters</a> can be passed to the function. Be aware that any download that exceeds 1.8 GB will need to be split in several exports using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD (more information <a href="https://api.qualtrics.com/docs/dates-and-times">here</a>).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># export survey and save it the local folder</span></span>
@@ -191,107 +188,14 @@
 <a href="#retrieving-multiple-surveys" class="anchor"></a>Retrieving Multiple Surveys</h2>
 <p>If you need to download responses from multiple surveys or you have a need to schedule regular automated exports of multiple survey responses, we recommend you use the approach described below:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>requests &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bulk-download.html">request_downloads</a></span>(survids<span class="op">$</span>id[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">format =</span> <span class="st">"csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; $result</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; $result$progressId</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; [1] "ES_3yh2LEaiNP3qVrT"</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; </span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; $result$percentComplete</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; </span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; $result$status</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; [1] "inProgress"</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; </span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; </span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; $meta</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; $meta$requestId</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; [1] "60891c1a-1453-45f5-9d83-7a549afdd582"</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; </span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; $meta$httpStatus</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; [1] "200 - OK"</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; </span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; </span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; $result</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; $result$progressId</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; [1] "ES_8cD3zwEhnGMsg29"</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt; </span></span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt; $result$percentComplete</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; </span></span>
-<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; $result$status</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; [1] "inProgress"</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; </span></span>
-<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; </span></span>
-<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; $meta</span></span>
-<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; $meta$requestId</span></span>
-<span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt; [1] "1324417e-f8fc-4bfa-8709-e038cc819782"</span></span>
-<span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt; </span></span>
-<span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt; $meta$httpStatus</span></span>
-<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt; [1] "200 - OK"</span></span>
-<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt; </span></span>
-<span id="cb3-39"><a href="#cb3-39"></a><span class="co">#&gt; </span></span>
-<span id="cb3-40"><a href="#cb3-40"></a><span class="co">#&gt; $result</span></span>
-<span id="cb3-41"><a href="#cb3-41"></a><span class="co">#&gt; $result$progressId</span></span>
-<span id="cb3-42"><a href="#cb3-42"></a><span class="co">#&gt; [1] "ES_51iXoAIDe9uXHSZ"</span></span>
-<span id="cb3-43"><a href="#cb3-43"></a><span class="co">#&gt; </span></span>
-<span id="cb3-44"><a href="#cb3-44"></a><span class="co">#&gt; $result$percentComplete</span></span>
-<span id="cb3-45"><a href="#cb3-45"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb3-46"><a href="#cb3-46"></a><span class="co">#&gt; </span></span>
-<span id="cb3-47"><a href="#cb3-47"></a><span class="co">#&gt; $result$status</span></span>
-<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; [1] "inProgress"</span></span>
-<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; </span></span>
-<span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; </span></span>
-<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; $meta</span></span>
-<span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; $meta$requestId</span></span>
-<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; [1] "a56f33d8-94c3-40b2-bda8-0239d16722a6"</span></span>
-<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; </span></span>
-<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; $meta$httpStatus</span></span>
-<span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt; [1] "200 - OK"</span></span>
-<span id="cb3-57"><a href="#cb3-57"></a><span class="co">#&gt; </span></span>
-<span id="cb3-58"><a href="#cb3-58"></a><span class="co">#&gt; </span></span>
-<span id="cb3-59"><a href="#cb3-59"></a><span class="co">#&gt; $result</span></span>
-<span id="cb3-60"><a href="#cb3-60"></a><span class="co">#&gt; $result$progressId</span></span>
-<span id="cb3-61"><a href="#cb3-61"></a><span class="co">#&gt; [1] "ES_eJ0DfyDWVj3cpV3"</span></span>
-<span id="cb3-62"><a href="#cb3-62"></a><span class="co">#&gt; </span></span>
-<span id="cb3-63"><a href="#cb3-63"></a><span class="co">#&gt; $result$percentComplete</span></span>
-<span id="cb3-64"><a href="#cb3-64"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb3-65"><a href="#cb3-65"></a><span class="co">#&gt; </span></span>
-<span id="cb3-66"><a href="#cb3-66"></a><span class="co">#&gt; $result$status</span></span>
-<span id="cb3-67"><a href="#cb3-67"></a><span class="co">#&gt; [1] "inProgress"</span></span>
-<span id="cb3-68"><a href="#cb3-68"></a><span class="co">#&gt; </span></span>
-<span id="cb3-69"><a href="#cb3-69"></a><span class="co">#&gt; </span></span>
-<span id="cb3-70"><a href="#cb3-70"></a><span class="co">#&gt; $meta</span></span>
-<span id="cb3-71"><a href="#cb3-71"></a><span class="co">#&gt; $meta$requestId</span></span>
-<span id="cb3-72"><a href="#cb3-72"></a><span class="co">#&gt; [1] "d05bc062-d619-4730-87a6-702d27b9f42d"</span></span>
-<span id="cb3-73"><a href="#cb3-73"></a><span class="co">#&gt; </span></span>
-<span id="cb3-74"><a href="#cb3-74"></a><span class="co">#&gt; $meta$httpStatus</span></span>
-<span id="cb3-75"><a href="#cb3-75"></a><span class="co">#&gt; [1] "200 - OK"</span></span>
-<span id="cb3-76"><a href="#cb3-76"></a><span class="co">#&gt; </span></span>
-<span id="cb3-77"><a href="#cb3-77"></a><span class="co">#&gt; </span></span>
-<span id="cb3-78"><a href="#cb3-78"></a><span class="co">#&gt; $result</span></span>
-<span id="cb3-79"><a href="#cb3-79"></a><span class="co">#&gt; $result$progressId</span></span>
-<span id="cb3-80"><a href="#cb3-80"></a><span class="co">#&gt; [1] "ES_4NNN1x6Z5y9Eqrz"</span></span>
-<span id="cb3-81"><a href="#cb3-81"></a><span class="co">#&gt; </span></span>
-<span id="cb3-82"><a href="#cb3-82"></a><span class="co">#&gt; $result$percentComplete</span></span>
-<span id="cb3-83"><a href="#cb3-83"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb3-84"><a href="#cb3-84"></a><span class="co">#&gt; </span></span>
-<span id="cb3-85"><a href="#cb3-85"></a><span class="co">#&gt; $result$status</span></span>
-<span id="cb3-86"><a href="#cb3-86"></a><span class="co">#&gt; [1] "inProgress"</span></span>
-<span id="cb3-87"><a href="#cb3-87"></a><span class="co">#&gt; </span></span>
-<span id="cb3-88"><a href="#cb3-88"></a><span class="co">#&gt; </span></span>
-<span id="cb3-89"><a href="#cb3-89"></a><span class="co">#&gt; $meta</span></span>
-<span id="cb3-90"><a href="#cb3-90"></a><span class="co">#&gt; $meta$requestId</span></span>
-<span id="cb3-91"><a href="#cb3-91"></a><span class="co">#&gt; [1] "3f4cdb10-2031-4ccc-b7b2-628d79d3d638"</span></span>
-<span id="cb3-92"><a href="#cb3-92"></a><span class="co">#&gt; </span></span>
-<span id="cb3-93"><a href="#cb3-93"></a><span class="co">#&gt; $meta$httpStatus</span></span>
-<span id="cb3-94"><a href="#cb3-94"></a><span class="co">#&gt; [1] "200 - OK"</span></span>
-<span id="cb3-95"><a href="#cb3-95"></a>requests</span>
-<span id="cb3-96"><a href="#cb3-96"></a><span class="co">#&gt; Download Requests:</span></span>
-<span id="cb3-97"><a href="#cb3-97"></a><span class="co">#&gt;  ✔ 5  Successful</span></span>
-<span id="cb3-98"><a href="#cb3-98"></a><span class="co">#&gt;  ✖ 0  Unsuccessful</span></span>
-<span id="cb3-99"><a href="#cb3-99"></a><span class="co"># download the data</span></span>
-<span id="cb3-100"><a href="#cb3-100"></a>data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bulk-download.html">download_requested</a></span>(requests)</span>
-<span id="cb3-101"><a href="#cb3-101"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(data)</span>
-<span id="cb3-102"><a href="#cb3-102"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a>requests</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; Download Requests:</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt;  ✔ 5  Successful</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt;  ✖ 0  Unsuccessful</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># download the data</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bulk-download.html">download_requested</a></span>(requests)</span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(data)</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
 <p>The implementation takes into account the rate limit imposed by Qualtrics for this specific call. Once the limit is attained in looping accross the different survey ids, the procedure waits a few seconds before trying again. You can set the paramter <em>retryOnRateLimit</em> to FALSE and the procedure will stop upon the first error returned by Qualtrics.</p>
 </div>
 <div id="download-responses-in-progress" class="section level2">

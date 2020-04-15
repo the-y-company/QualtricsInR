@@ -185,7 +185,7 @@ delete_distribution <- function(distribution_id) {
 #'
 #' @examples 
 #' \dontrun{
-#'  create_distribution(
+#'  create_email_distribution(
 #'    "SV_erkBAsHrvoJyeYB",
 #'    "UR_0NXtl92JJWqfWcJ", 
 #'    "MS_0fddN2xI3J0nGQZ", 
@@ -195,6 +195,7 @@ delete_distribution <- function(distribution_id) {
 #'    "Participate in this awesome survey")
 #' }
 #' @return The created distribution id
+#' @export
 create_email_distribution <- function(
   survey_id,
   library_id,
@@ -386,6 +387,14 @@ create_thankyou_distribution <- function(
 #' @details 
 #' To retrieve the actual links, use the 'list_distribution_links' call.
 #' 
+#'  @examples 
+#' \dontrun{
+#'  generate_distribution_links(
+#'    "SV_erkBAsHrvoJyeYB",
+#'    "ML_7aoriSKinHh8MfP", 
+#'    "Survey Respondents Generated Links"
+#' }
+#' 
 #' @return The id of the created distribution
 #' @export
 generate_distribution_links <- function(
@@ -482,11 +491,17 @@ list_distribution_links <- function(distribution_id, survey_id) {
 #' @param messageText email text body
 #' 
 #' @examples
-#' \dontrun{send_email_tomailinglist(mail_id, "2020-04-13T03:26:00Z")}
+#' \dontrun{
+#'  create_distribution(
+#'    "ML_7aoriSKinHh8MfP", 
+#'    "john.doe@qualtrics.com", 
+#'    "John Doe", 
+#'    "Participate in this awesome survey")
+#' }
 #'
 #' @return The email distribution id
 #' @export
-send_email_tomailinglist <- function(
+send_email_mailinglist <- function(
   mailingListId,
   sendDate = paste0(Sys.Date()+1, "T00:00:00Z"),
   subject = "Take this survey",

@@ -68,7 +68,7 @@ local environment. Make sure to specificy your date fields accordingly.
 }
 \examples{
 \dontrun{
- create_distribution(
+ create_email_distribution(
    "SV_erkBAsHrvoJyeYB",
    "UR_0NXtl92JJWqfWcJ", 
    "MS_0fddN2xI3J0nGQZ", 

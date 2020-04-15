@@ -45,10 +45,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="../articles/survey-responses.html">Suvey Responses</a>
     </li>
     <li>
-      <a href="../articles/survey-responses.html">Suvey Responses</a>
+      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
     </li>
   </ul>
 </li>
@@ -160,7 +160,7 @@
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; [1] "FL_1" "FL_2" "FL_3"</span></span></code></pre></div>
 <p>Type defines different possible type of flow elements. For this survey, we find:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(flow<span class="op">$</span>Type, flow<span class="op">$</span>Flow[[<span class="dv">1</span>]]<span class="op">$</span>Type, flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]<span class="op">$</span>Type)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; [1] "Root"     "Standard" "Block"</span></span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; [1] "Root"     "Block"    "Standard"</span></span></code></pre></div>
 <p>Each children flow element can have a specific ID that links that flow element to a specific object of the survey, for instance, here, block Ids.</p>
 <p>Looking at updating the flow, we could for example switch the order of the two flow elements. To, we just invert the list order as well as the flow ids to match the new order.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>flow_<span class="dv">1</span> &lt;-<span class="st"> </span>flow<span class="op">$</span>Flow[[<span class="dv">2</span>]]</span>

@@ -12,15 +12,15 @@ globalVariables(
 #' @importFrom httr content upload_file parse_url POST GET DELETE PUT add_headers 
 #' @importFrom httr content_type_json status_code build_url write_disk authenticate
 #' @importFrom httr stop_for_status
-#' @importFrom dplyr bind_rows filter tibble
-#' @importFrom purrr discard map_df map_chr
+#' @importFrom dplyr bind_rows filter tibble 
+#' @importFrom purrr discard map_df map_chr map map2 map_dfr transpose
 #' @importFrom stringr str_sub str_sub
 #' @importFrom stringi stri_rand_strings
 #' @importFrom utils unzip txtProgressBar
 #' @importFrom readr read_csv cols read_tsv
 #' @importFrom jsonlite fromJSON
 #' @importFrom crayon blue green yellow red
-#' @importFrom cli symbol
+#' @importFrom cli symbol cli_alert_danger cli_alert_success cli_alert_warning
 
 .replace_na <- function(x) {
   ifelse(is.null(x), NA, x)

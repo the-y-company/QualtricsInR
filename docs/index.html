@@ -45,10 +45,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="articles/survey-responses.html">Suvey Responses</a>
     </li>
     <li>
-      <a href="articles/survey-responses.html">Suvey Responses</a>
+      <a href="articles/survey-objects.html">Manipulating Survey Objects</a>
     </li>
   </ul>
 </li>
@@ -160,7 +160,7 @@
 <h3 class="hasAnchor">
 <a href="#setting-a-plain-text-api-token" class="anchor"></a>Setting a plain text API Token</h3>
 <p>For convenience, we recommend you define your API token and Qualtrics Data Center ID (optional) in your .Renviron with the names <code>QUALTRICSINR_TOKEN</code> and <code>QUALTRICSINR_DATA_CENTER</code> respectively. Upon loading the QualtricsInR package, your credentials will be automatically set as internal <em>encrypted</em> parameters.</p>
-<p>You can always set your credentials by calling the <code><a href="reference/oauth.html">set_qualtrics_opts()</a></code> function:</p>
+<p>You can always custom set your credentials by calling the <code><a href="reference/oauth.html">set_qualtrics_opts()</a></code> function:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># set auth options assuming definition in .Renviron</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="reference/oauth.html">set_qualtrics_opts</a></span>()</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co"># set auth options by hand</span></span>
@@ -184,7 +184,7 @@
 <h2 class="hasAnchor">
 <a href="#development-pipeline" class="anchor"></a>Development pipeline</h2>
 <p>There are close to 200 different API calls provides by Qualtrics. You can find the progress of the implementation (including testing the calls) <a href="/articles/progress_table.html">here</a>.</p>
-<p>Depending on interest and demand from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM Directory related calls are not implemented due to not having access to this feature in our own account.</p>
+<p>Depending on interest, demand, and help from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM Directory related calls are not implemented due to not having access to this feature in our own account.</p>
 </div>
 </div>
   </div>

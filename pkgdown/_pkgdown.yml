@@ -67,14 +67,14 @@ reference:
   desc: >
     Functions for manipulating survey distribution information
   contents:
-  - create_distribution
+  - create_email_distribution
   - create_reminder_distribution
   - create_thankyou_distribution
   - list_distributions
   - get_distribution
-  - generate_distributionlink
-  - list_distributionlinks
-  - send_email_tomailinglist
+  - generate_distribution_links
+  - list_distribution_links
+  - send_email_mailinglist
   - delete_distribution
   - create_sms_distribution
   - get_sms_distribution
@@ -131,6 +131,10 @@ reference:
   desc: >
     Manipulation of graphic and message library contents
   contents:
+  - list_libraries
+  - list_library_blocks
+  - list_library_questions
+  - list_library_surveys
   - list_messages
   - get_message
   - create_message

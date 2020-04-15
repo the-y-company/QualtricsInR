@@ -57,7 +57,7 @@ generete tokens from your Qualtrics account can be found [here](https://api.qual
 For convenience, we recommend you define your API token and Qualtrics Data Center ID (optional) in your .Renviron with the names `QUALTRICSINR_TOKEN` and `QUALTRICSINR_DATA_CENTER` respectively. 
 Upon loading the QualtricsInR package, your credentials will be automatically set as internal _encrypted_ parameters.
 
-You can always set your credentials by calling the `set_qualtrics_opts()` function:
+You can always custom set your credentials by calling the `set_qualtrics_opts()` function:
 
 ```r
 # set auth options assuming definition in .Renviron
@@ -88,5 +88,5 @@ loaded in all subsequent sessions and automatically refreshed if need be. You sh
 There are close to 200 different API calls provides by Qualtrics. You can find the progress of the 
 implementation (including testing the calls) [here](/articles/progress_table.html).
 
-Depending on interest and demand from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM 
+Depending on interest, demand, and help from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM 
 Directory related calls are not implemented due to not having access to this feature in our own account.

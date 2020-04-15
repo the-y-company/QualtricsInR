@@ -45,10 +45,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="../articles/survey-responses.html">Suvey Responses</a>
     </li>
     <li>
-      <a href="../articles/survey-responses.html">Suvey Responses</a>
+      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
     </li>
   </ul>
 </li>
@@ -154,9 +154,9 @@
 <span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt; 1 SV_2uAzZ… Frontiers &amp; World E… UR_8ctTGg… 2019-07-26T0… 2019-06-11T1… FALSE   </span></span>
 <span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; 2 SV_0pjuS… Secure Innovation C… UR_0v7jd3… 2019-11-20T1… 2019-10-21T1… FALSE   </span></span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; 3 SV_1WVdr… Frontiers &amp; World E… UR_3Iz3hA… 2019-06-05T1… 2019-05-24T1… TRUE    </span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; 4 SV_2a7CW… EOS 2020 - 22/01/20… UR_4TwefW… 2020-01-22T1… 2020-01-22T0… TRUE    </span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; 5 SV_4NhCo… Future Frontiers Su… UR_ex78Dl… 2019-10-28T1… 2019-05-24T1… FALSE   </span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; 6 SV_7R5Hs… Test Scenarios Feat… UR_cMksFK… 2020-01-08T1… 2019-08-05T1… TRUE</span></span></code></pre></div>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; 4 SV_2a7CW… EOS 2020 - 22/01/20… UR_4TwefW… 2020-01-29T1… 2020-01-22T0… TRUE    </span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; 5 SV_41kul… GSC_AS2017_Final_Sh… UR_9Z6Jmt… 2020-02-18T1… 2017-03-30T0… FALSE   </span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; 6 SV_4NhCo… Future Frontiers Su… UR_ex78Dl… 2019-10-28T1… 2019-05-24T1… FALSE</span></span></code></pre></div>
 <p>Using a survey id, you can retrieve the survey object from your account:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>srv_obj &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_survey.html">get_survey</a></span>(surveys<span class="op">$</span>id[<span class="dv">1</span>])</span></code></pre></div>
 <p>The call returns a list that provides a number of information related to the status of the survey, providing a quick and efficient way to see the number of survey responses for example, instead of going through the more time consuming process of exporting all survey responses through <code>get_survey_responses</code>.</p>
