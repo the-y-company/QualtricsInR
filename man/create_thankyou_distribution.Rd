@@ -8,7 +8,7 @@ create_thankyou_distribution(
   parent_distribution_id,
   library_id,
   message_id,
-  send_date = paste0(Sys.Date() + 1, "T00:00:00Z"),
+  send_date = paste0(Sys.Date() + 2, "T00:00:00Z"),
   from_email = "noreply@qualtrics.com",
   from_name = "Qualtrics",
   reply_to_email = "noreply@qualtrics.com",

@@ -204,7 +204,7 @@ create_email_distribution <- function(
   from_email = "noreply@qualtrics.com",
   from_name = "Qualtrics",
   subject = "Participate in this survey",
-  send_date = paste0(Sys.Date()+1, "T00:00:00Z"),
+  send_date = paste0(Sys.Date()+2, "T00:00:00Z"),
   transaction_batch_id = NULL,
   contact_id = NULL,
   reply_to_email = "noreply@qualtrics.com",
@@ -285,12 +285,14 @@ create_email_distribution <- function(
 #' }
 #' 
 #' @return The reminder distribution id
+#' 
+#' @export
 create_reminder_distribution <- function(
   parent_distribution_id,
   library_id,
   message_id,
   subject = "Reminder - Participate to the survey",
-  send_date = paste0(Sys.Date()+1, "T00:00:00Z"),
+  send_date = paste0(Sys.Date()+2, "T00:00:00Z"),
   from_email = "noreply@qualtrics.com",
   from_name = "Qualtrics",
   reply_to_email = "noreply@qualtrics.com"
@@ -340,11 +342,13 @@ create_reminder_distribution <- function(
 #' }
 #' 
 #' @return The thank you distribution id
+#' 
+#' @export 
 create_thankyou_distribution <- function(
   parent_distribution_id,
   library_id,
   message_id,
-  send_date = paste0(Sys.Date()+1, "T00:00:00Z"),
+  send_date = paste0(Sys.Date()+2, "T00:00:00Z"),
   from_email = "noreply@qualtrics.com",
   from_name = "Qualtrics",
   reply_to_email = "noreply@qualtrics.com",

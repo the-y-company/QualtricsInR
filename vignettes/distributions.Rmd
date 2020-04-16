@@ -28,8 +28,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-QualtricsInR::set_qualtrics_opts()
 library(QualtricsInR)
+set_qualtrics_opts(Sys.getenv("QUALTRICSINR_TEST_TOKEN"))
 ```
 
 ## Sending your survey through an anonymous link
@@ -60,43 +60,64 @@ list_libraries()
 For a simple user account, you will usually have available the account library and the default Qualtrics library. You've probably
 saved your email message in your account library.
 
-You can now list all messages available in the account.
-
+You can now list all messages available in the account:
 ```{r}
-list_messages("UR_0NXtl92JJWqfWcJ")
+list_messages("UR_1Z96ysDAytOdL2l")
 ```
 
-We will be using the email message *email_for_distribution_test* which we now know the id of. Finally, we need to retrieve the contact list
-id for the email recipients.
+We've prepared three messages to use in the example which we now know the id of. Obviously, we will first create the distribution
+using the *Invitation Email* message.
 
+Finally, we need to retrieve the contact list id for the email recipients.
 ```{r}
 list_mailinglists()
 ```
 
-We will use the contact list *test_api* we now know the id of. We are now ready to create our email distribution for a given survey.
+We will use the contact list *contacts_test_api*. Your can use the 'list_surveys' function to retrieve the survey id for which
+you want to shcedule the distribution:
+```{r}
+list_surveys()
+```
 
+We are now ready to create our email distribution:
 ```{r}
 create_email_distribution(
-    "SV_erkBAsHrvoJyeYB", # survey id
-    "UR_0NXtl92JJWqfWcJ", # library id
-    "MS_0fddN2xI3J0nGQZ", # email message id
-    "ML_7aoriSKinHh8MfP", # contact list id
-    "john.doe@qualtrics.com",  # sender email
-    "John Doe", # sender name
-    "Participate in this survey",  # email subject
-    send_date = paste0(Sys.Date()+1, "T00:00:00Z") # send email tomorrow morning at 00:00
+  "SV_cScDRSV5hsN3YEd", # survey id
+  "UR_1Z96ysDAytOdL2l", # library id
+  "MS_1AMM3cE022E0rUF", # email message id
+  "ML_1ZlloFpR0AOl2GV", # contact list id
+  "john.doe@qualtrics.com",  # sender email
+  "John Doe", # sender name
+  "Participate in this survey",  # email subject
+  "2022-04-01T00:00:00Z" # send date
     )
 ```
 
-This call will return the id of the newly created distribution which allows you to delete the distribution, 
-create a reminder distribution or schedule an thank you message.
+This call will return the id of the newly created distribution which allows you interact with the distribution: 
+create a reminder distribution, schedule an thank you message, etc. Note that you can always recover the distribution 
+id by listing all distributions available for the survey:
 
-Note that our Qualtrics account may be set with a different time zone than your local environment. Make sure to specificy 
-your date fields accordingly.
+```{r}
+list_distributions("SV_cScDRSV5hsN3YEd")
+```
+
+**Note that our Qualtrics account may be set with a different time zone than your local environment. Make sure to specificy 
+your date fields accordingly.**
 
 There are a number of optional parameters you can find in the function documentation. It is important to note that by the default, 
 the sender email will be set to *noreply@qualtrics.com*. You can only use custom email address if your account is appropriately 
 configured to do so (see [qualtrics documentation](https://www.qualtrics.com/support/survey-platform/distributions-module/email-distribution/using-a-custom-from-address/))
+
+We can already schedule a reminder email for the survey using the *Reminder Email* email message id:
+```{r}
+create_reminder_distribution(
+  "EMD_6yYmF6vopfUz4gn", # distribution id
+  "UR_0NXtl92JJWqfWcJ", # library id
+  "MS_0fddN2xI3J0nGQZ", # email message id
+  "Reminder - Participate to the survey", # email subject
+  "2022-04-08T00:00:00Z" # send date
+)
+```
 
 Note that if you do not want to have to create the email message in Qualtrics before sending the email, the you can use the function
 'send_email_mailinglist'.
@@ -107,7 +128,7 @@ You can also give an instruction for Qualtrics to generate personalized survey l
 export these links and distribute them through your own organization email service.
 
 ```{r}
-distribution_id <- generate_distribution_links("SV_erkBAsHrvoJyeYB", "ML_7aoriSKinHh8MfP", "Survey Respondents Generated Links")
+distribution_id <- generate_distribution_links("SV_cScDRSV5hsN3YEd", "ML_1ZlloFpR0AOl2GV", "Survey Respondents Generated Links")
 print(distribution_id)
-list_distribution_links(distribution_id, "SV_erkBAsHrvoJyeYB")
+list_distribution_links(distribution_id, "SV_cScDRSV5hsN3YEd")
 ```
