@@ -387,7 +387,7 @@ create_thankyou_distribution <- function(
 #' @details 
 #' To retrieve the actual links, use the 'list_distribution_links' call.
 #' 
-#'  @examples 
+#' @examples 
 #' \dontrun{
 #'  generate_distribution_links(
 #'    "SV_erkBAsHrvoJyeYB",
@@ -396,6 +396,7 @@ create_thankyou_distribution <- function(
 #' }
 #' 
 #' @return The id of the created distribution
+#' 
 #' @export
 generate_distribution_links <- function(
   survey_id,

@@ -37,12 +37,13 @@ information regarding usage of this API's result.
 }
 \details{
 To retrieve the actual links, use the 'list_distribution_links' call.
-
- @examples 
+}
+\examples{
 \dontrun{
  generate_distribution_links(
    "SV_erkBAsHrvoJyeYB",
    "ML_7aoriSKinHh8MfP", 
    "Survey Respondents Generated Links"
 }
+
 }
