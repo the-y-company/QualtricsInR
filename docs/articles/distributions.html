@@ -45,10 +45,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/survey-responses.html">Exporting Responses</a>
+      <a href="../articles/survey-responses.html">Exporting responses</a>
     </li>
     <li>
-      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="../articles/surveys.html">Basic survey manipulations</a>
+    </li>
+    <li>
+      <a href="../articles/survey-objects.html">Survey structure</a>
     </li>
   </ul>
 </li>
@@ -60,10 +63,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/distributions.html">Survey Distributions</a>
+      <a href="../articles/distributions.html">Survey distributions</a>
     </li>
     <li>
-      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
+      <a href="../articles/research-core-contacts.html">Mailing lists</a>
     </li>
   </ul>
 </li>
@@ -75,7 +78,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/research-core-contacts.html">Survey Distributions</a>
+      <a href="../articles/research-core-contacts.html">Contacts</a>
     </li>
   </ul>
 </li>
@@ -96,7 +99,7 @@
       <a href="../articles/users.html">Users</a>
     </li>
     <li>
-      <a href="../articles/data-privacy.html">Data Privacy</a>
+      <a href="../articles/data-privacy.html">Data privacy</a>
     </li>
   </ul>
 </li>
@@ -233,14 +236,14 @@
 <p>You can also give an instruction for Qualtrics to generate personalized survey links for all contacts of a contact list. You can then export these links and distribute them through your own organization email service.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>distribution_links_id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/generate_distribution_links.html">generate_distribution_links</a></span>(<span class="st">"SV_cScDRSV5hsN3YEd"</span>, <span class="st">"ML_1ZlloFpR0AOl2GV"</span>, <span class="st">"Survey Respondents Generated Links"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(distribution_links_id)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; [1] "EMD_0DiXtuwDp5jPc0I"</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; [1] "EMD_1br3CncVN74Tj8f"</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="kw"><a href="../reference/list_distribution_links.html">list_distribution_links</a></span>(distribution_links_id, <span class="st">"SV_cScDRSV5hsN3YEd"</span>)</span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; # A tibble: 3 x 10</span></span>
 <span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt;   contactId link  exceededContact… linkExpiration status lastName firstName</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;    </span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; 1 MLRP_7UT… http… FALSE            2020-07-17T15… Email… LastNam… FirstNam…</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt; 2 MLRP_5i0… http… FALSE            2020-07-17T15… Email… LastNam… FirstNam…</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; 3 MLRP_1M9… http… FALSE            2020-07-17T15… Email… LastNam… FirstNam…</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; 1 MLRP_7UT… http… FALSE            2020-07-17T16… Email… LastNam… FirstNam…</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt; 2 MLRP_5i0… http… FALSE            2020-07-17T16… Email… LastNam… FirstNam…</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; 3 MLRP_1M9… http… FALSE            2020-07-17T16… Email… LastNam… FirstNam…</span></span>
 <span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; # … with 3 more variables: externalDataReference &lt;lgl&gt;, email &lt;chr&gt;,</span></span>
 <span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; #   unsubscribed &lt;chr&gt;</span></span></code></pre></div>
 </div>

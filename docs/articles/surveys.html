@@ -45,10 +45,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/survey-responses.html">Exporting Responses</a>
+      <a href="../articles/survey-responses.html">Exporting responses</a>
     </li>
     <li>
-      <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
+      <a href="../articles/surveys.html">Basic survey manipulations</a>
+    </li>
+    <li>
+      <a href="../articles/survey-objects.html">Survey structure</a>
     </li>
   </ul>
 </li>
@@ -60,10 +63,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/distributions.html">Survey Distributions</a>
+      <a href="../articles/distributions.html">Survey distributions</a>
     </li>
     <li>
-      <a href="../articles/research-core-contacts.html">Mailing Lists</a>
+      <a href="../articles/research-core-contacts.html">Mailing lists</a>
     </li>
   </ul>
 </li>
@@ -75,7 +78,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/research-core-contacts.html">Survey Distributions</a>
+      <a href="../articles/research-core-contacts.html">Contacts</a>
     </li>
   </ul>
 </li>
@@ -96,7 +99,7 @@
       <a href="../articles/users.html">Users</a>
     </li>
     <li>
-      <a href="../articles/data-privacy.html">Data Privacy</a>
+      <a href="../articles/data-privacy.html">Data privacy</a>
     </li>
   </ul>
 </li>
@@ -160,20 +163,21 @@
 <p>You can easily retrieve the full list of surveys available in your account:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>surveys &lt;-<span class="st"> </span><span class="kw"><a href="../reference/list_surveys.html">list_surveys</a></span>()</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(surveys)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; # A tibble: 6 x 6</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt;   id        name                 ownerId    lastModified  creationDate  isActive</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;                &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;   </span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt; 1 SV_2uAzZ… Frontiers &amp; World E… UR_8ctTGg… 2019-07-26T0… 2019-06-11T1… FALSE   </span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; 2 SV_0pjuS… Secure Innovation C… UR_0v7jd3… 2019-11-20T1… 2019-10-21T1… FALSE   </span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; 3 SV_1WVdr… Frontiers &amp; World E… UR_3Iz3hA… 2019-06-05T1… 2019-05-24T1… TRUE    </span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; 4 SV_2a7CW… EOS 2020 - 22/01/20… UR_4TwefW… 2020-01-29T1… 2020-01-22T0… TRUE    </span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; 5 SV_41kul… GSC_AS2017_Final_Sh… UR_9Z6Jmt… 2020-02-18T1… 2017-03-30T0… FALSE   </span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; 6 SV_4NhCo… Future Frontiers Su… UR_ex78Dl… 2019-10-28T1… 2019-05-24T1… FALSE</span></span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; # A tibble: 3 x 6</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt;   id          name          ownerId     lastModified    creationDate    isActive</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;           &lt;lgl&gt;   </span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt; 1 SV_blW4Huz… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE    </span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; 2 SV_cScDRSV… api_distribu… UR_1Z96ysD… 2020-04-27T11:… 2020-04-16T08:… TRUE    </span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; 3 SV_elpspu2… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE</span></span></code></pre></div>
 <p>Using a survey id, you can retrieve the survey object from your account:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>srv_obj &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_survey.html">get_survey</a></span>(surveys<span class="op">$</span>id[<span class="dv">1</span>])</span></code></pre></div>
-<p>The call returns a list that provides a number of information related to the status of the survey, providing a quick and efficient way to see the number of survey responses for example, instead of going through the more time consuming process of exporting all survey responses through <code>get_survey_responses</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(srv_obj<span class="op">$</span>result)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
+<p>The call returns a list that provides a number of information related to the status of the survey, providing a quick and efficient way to see the number of survey responses for example, instead of going through the more time consuming process of exporting all survey responses through <code><a href="../reference/get_survey_responses.html">get_survey_responses()</a></code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(srv_obj)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt;  [1] "QuestionCount" "SurveyOptions" "SurveyID"      "SurveyName"   </span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt;  [5] "SurveyStatus"  "LastModified"  "BrandID"       "OwnerID"      </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt;  [9] "LastAccessed"  "CreatorID"     "LastActivated" "Questions"    </span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; [13] "Blocks"        "ResponseSets"  "SurveyFlow"    "Scoring"      </span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; [17] "ProjectInfo"   "BrandBaseURL"</span></span></code></pre></div>
 <p>A small number of survey options can be easily updated through the below. These include: the survey name, the activity status, the time range and the owner id.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># set status to active</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw"><a href="../reference/update_survey.html">update_survey</a></span>(surveys<span class="op">$</span>id[<span class="dv">1</span>], <span class="dt">status =</span> <span class="ot">TRUE</span>)</span>
@@ -184,11 +188,11 @@
 <div id="copying-and-sharing-surveys" class="section level3">
 <h3 class="hasAnchor">
 <a href="#copying-and-sharing-surveys" class="anchor"></a>Copying and sharing surveys</h3>
-<p>You can create a copy of a survey in your own account or in another users account using the user if (see <code>get_users</code>):</p>
+<p>You can create a copy of a survey in your own account or in another user’s account using the user if (see <code><a href="../reference/list_users.html">list_users()</a></code>):</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Copy a survey in your own account</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(survey_id, <span class="st">"New_Copy"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="co"># Copy a survey to another user's account</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(survey_id, <span class="st">"New_Copy"</span>,user_id)</span></code></pre></div>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(survey_id, <span class="st">"New_Copy"</span>, user_id)</span></code></pre></div>
 <p>The survey id of the new copy will be returned.</p>
 <p>You might not want to copy a survey into another person’s account but would rather share the project defining a specific set of permissions. By default, without any specification, your project will be shared with all permissions disabled. You can decide which permissions to enable by providing an array of numbers indicating the permissions you want to enable.</p>
 <p>The available options are listed below:</p>
@@ -246,15 +250,10 @@
 <li>Blocks</li>
 <li>Survey Options</li>
 </ul>
-<div id="flows" class="section level3">
-<h3 class="hasAnchor">
-<a href="#flows" class="anchor"></a>Flows</h3>
-<p>Although not part of the flow adminstration itself, a useful relation function allows to insert embedded data fields in your survey <code>insert_embedded_data</code>.</p>
-</div>
 <div id="survey-options" class="section level3">
 <h3 class="hasAnchor">
 <a href="#survey-options" class="anchor"></a>Survey Options</h3>
-<p>A exhaustive list of survey options are configurable through the <code>update_options</code> call.</p>
+<p>A exhaustive list of survey options are configurable through the <code>update_options()</code> call.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">update_options</span>(surveys<span class="op">$</span>id[<span class="dv">1</span>], <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"BackButton"</span> =<span class="st"> </span>true, <span class="st">"BallotBoxStuffingPrevention"</span> =<span class="st"> </span>true))</span></code></pre></div>
 <p>All available options can be found in the <a href="https://api.qualtrics.com/reference#update-options">documention</a>.</p>
 </div>

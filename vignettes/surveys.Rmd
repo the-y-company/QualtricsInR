@@ -2,21 +2,19 @@
 title: "Surveys"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Surveys}
+  %\VignetteIndexEntry{Basic survey manipulations}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-QualtricsInR::set_qualtrics_opts()
 library(QualtricsInR)
+set_qualtrics_opts(Sys.getenv("QUALTRICSINR_TEST_TOKEN"))
 ```
-
-## Survey Manipulation
 
 Using the Qualtrics API, you can peform a number of manipulations of survey objects in your Qualtrics account:
 
@@ -41,10 +39,10 @@ srv_obj <- get_survey(surveys$id[1])
 
 The call returns a list that provides a number of information related to the status of the survey, providing a quick and efficient way 
 to see the number of survey responses for example, instead of going through the more time consuming process of exporting all survey
-responses through `get_survey_responses`.
+responses through `get_survey_responses()`.
 
 ```{r}
-names(srv_obj$result)
+names(srv_obj)
 ```
 
 A small number of survey options can be easily updated through the below. These include: the survey name, the activity status,
@@ -61,20 +59,20 @@ Although not a complete overlap, the `update_options` provide many more survey g
 
 ### Copying and sharing surveys
 
-You can create a copy of a survey in your own account or in another users account using the user if (see `get_users`):
+You can create a copy of a survey in your own account or in another user's account using the user id (if you are a brand administrator, see `list_users()`):
 
 ``` r
 # Copy a survey in your own account
 copy_survey(survey_id, "New_Copy")
 # Copy a survey to another user's account
-copy_survey(survey_id, "New_Copy",user_id)
+copy_survey(survey_id, "New_Copy", user_id)
 ```
 
 The survey id of the new copy will be returned.
 
 You might not want to copy a survey into another person's account but would rather share the project defining a specific set
-of permissions. By default, without any specification, your project will be shared with all permissions disabled. 
-You can decide which permissions to enable by providing an array of numbers indicating the permissions you want to enable. 
+of permissions. By default, without any specification, your project will be shared with all permissions disabled.  You can decide which 
+permissions to enable by providing an array of numbers indicating the permissions you want to enable. 
 
 The available options are listed below:
 
@@ -123,7 +121,9 @@ share_survey(my_surveys[1], user_id, c(15))
 
 ### Importing a survey
 
-You can import a local survey file into Qualtrics. The accepted file formats are *qsf*, *txt* and *doc* (word document). The *qsf* format stands for *qualtrics survey file* and is usually a file exported from Qualtrics. This is however nothing else than json that is not impossible to build from scratch (be ready to sweat though).
+You can import a local survey file into Qualtrics. The accepted file formats are *qsf*, *txt* and *doc* (word document). The *qsf* format 
+stands for *qualtrics survey file* and is usually a file exported from Qualtrics. This is however nothing else than json that is not 
+impossible to build from scratch (be ready to sweat though).
 
 The file can be imported from a local path or directly from a url:
 
@@ -143,14 +143,9 @@ The Qualtrics API provides a number of functionalities to interact directly with
 * Blocks
 * Survey Options
 
-### Flows
-
-Although not part of the flow adminstration itself, a useful relation function allows to insert embedded data fields in your survey `insert_embedded_data`.
-
-
 ### Survey Options
 
-A exhaustive list of survey options are configurable through the `update_options` call.
+A exhaustive list of survey options are configurable through the `update_options()` call.
 
 ```r
 update_options(surveys$id[1], list("BackButton" = true, "BallotBoxStuffingPrevention" = true))

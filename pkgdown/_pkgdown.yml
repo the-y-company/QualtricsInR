@@ -149,19 +149,21 @@ navbar:
   left:
     - text: "Surveys"
       menu:
-        - text: "Exporting Responses"
+        - text: "Exporting responses"
           href: articles/survey-responses.html
-        - text: "Manipulating Survey Objects"
+        - text: "Basic survey manipulations"
+          href: articles/surveys.html
+        - text: "Survey structure"
           href: articles/survey-objects.html
     - text: "Distribution and Contacts"
       menu:
-        - text: "Survey Distributions"
+        - text: "Survey distributions"
           href: articles/distributions.html
-        - text: "Mailing Lists"
+        - text: "Mailing lists"
           href: articles/research-core-contacts.html
     - text: "Libraries"
       menu:
-        - text: "Survey Distributions"
+        - text: "Contacts"
           href: articles/research-core-contacts.html
     - text: "Brand Administration"
       menu:
@@ -171,7 +173,7 @@ navbar:
           href: articles/groups.html
         - text: "Users"
           href: articles/users.html
-        - text: "Data Privacy"
+        - text: "Data privacy"
           href: articles/data-privacy.html
     - text: "References"
       menu:
