@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surveys • QualtricsInR</title>
+<title>Basic survey manipulations • QualtricsInR</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Surveys">
+<meta property="og:title" content="Basic survey manipulations">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -138,7 +138,7 @@
       </header><script src="surveys_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Surveys</h1>
+      <h1>Basic survey manipulations</h1>
             
       
       
@@ -148,18 +148,7 @@
 
     
     
-<div id="survey-manipulation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#survey-manipulation" class="anchor"></a>Survey Manipulation</h2>
-<p>Using the Qualtrics API, you can peform a number of manipulations of survey objects in your Qualtrics account:</p>
-<ul>
-<li><a href="#Simple%20survey%20manipulation">Simple survey manipulation</a></li>
-<li><a href="#Copying%20and%20sharing%20surveys">Copying and sharing surveys</a></li>
-<li><a href="#Importing%20a%20survey">Importing a survey</a></li>
-</ul>
-<div id="simple-survey-manipulation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#simple-survey-manipulation" class="anchor"></a>Simple survey manipulation</h3>
+<p>Using the Qualtrics API, you can peform a number of manipulations of survey objects in your Qualtrics account.</p>
 <p>You can easily retrieve the full list of surveys available in your account:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>surveys &lt;-<span class="st"> </span><span class="kw"><a href="../reference/list_surveys.html">list_surveys</a></span>()</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(surveys)</span>
@@ -183,62 +172,62 @@
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw"><a href="../reference/update_survey.html">update_survey</a></span>(surveys<span class="op">$</span>id[<span class="dv">1</span>], <span class="dt">status =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co"># set time range</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="kw"><a href="../reference/update_survey.html">update_survey</a></span>(surveys<span class="op">$</span>id[<span class="dv">1</span>], <span class="dt">expiration =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"2016-01-01T01:00:00Z"</span>,<span class="st">"2016-03-01T01:00:00Z"</span>))</span></code></pre></div>
-<p>Although not a complete overlap, the <code>update_options</code> provide many more survey global options (see below).</p>
-</div>
-<div id="copying-and-sharing-surveys" class="section level3">
-<h3 class="hasAnchor">
-<a href="#copying-and-sharing-surveys" class="anchor"></a>Copying and sharing surveys</h3>
-<p>You can create a copy of a survey in your own account or in another user’s account using the user if (see <code><a href="../reference/list_users.html">list_users()</a></code>):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Copy a survey in your own account</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(survey_id, <span class="st">"New_Copy"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># Copy a survey to another user's account</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(survey_id, <span class="st">"New_Copy"</span>, user_id)</span></code></pre></div>
+<p>An exhaustive list of survey options are configurable through the <code>update_options()</code> call.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">update_options</span>(surveys<span class="op">$</span>id[<span class="dv">1</span>], <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"BackButton"</span> =<span class="st"> </span>true, <span class="st">"BallotBoxStuffingPrevention"</span> =<span class="st"> </span>true))</span></code></pre></div>
+<p>All available options can be found in the <a href="https://api.qualtrics.com/reference#update-options">documention</a>.</p>
+<div id="copying-and-sharing-surveys" class="section level2">
+<h2 class="hasAnchor">
+<a href="#copying-and-sharing-surveys" class="anchor"></a>Copying and sharing surveys</h2>
+<p>You can create a copy of a survey in your own account or in another user’s account using the user id (if you are a brand administrator, see <code><a href="../reference/list_users.html">list_users()</a></code>):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Copy a survey in your own account</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(survey_id, <span class="st">"New_Copy"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># Copy a survey to another user's account</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="kw"><a href="../reference/copy_survey.html">copy_survey</a></span>(survey_id, <span class="st">"New_Copy"</span>, user_id)</span></code></pre></div>
 <p>The survey id of the new copy will be returned.</p>
 <p>You might not want to copy a survey into another person’s account but would rather share the project defining a specific set of permissions. By default, without any specification, your project will be shared with all permissions disabled. You can decide which permissions to enable by providing an array of numbers indicating the permissions you want to enable.</p>
 <p>The available options are listed below:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="st">"1"</span>=<span class="st">"copySurveyQuestions"</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="st">"2"</span>=<span class="st">"editSurveyFlow"</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="st">"3"</span>=<span class="st">"useBlocks"</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="st">"4"</span>=<span class="st">"useSkipLogic"</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="st">"5"</span>=<span class="st">"useConjoint"</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="st">"6"</span>=<span class="st">"useTriggers"</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="st">"7"</span>=<span class="st">"useQuotas"</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="st">"8"</span>=<span class="st">"setSurveyOptions"</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="st">"9"</span>=<span class="st">"editQuestions"</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="st">"10"</span>=<span class="st">"deleteSurveyQuestions"</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="st">"11"</span>=<span class="st">"editSurveys"</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="st">"12"</span>=<span class="st">"activateSurveys"</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="st">"13"</span>=<span class="st">"deactivateSurveys"</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="st">"14"</span>=<span class="st">"copySurveys"</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="st">"15"</span>=<span class="st">"distributeSurveys"</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="st">"16"</span>=<span class="st">"deleteSurveys"</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="st">"17"</span>=<span class="st">"translateSurveys"</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="st">"18"</span>=<span class="st">"editSurveyResponses"</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="st">"19"</span>=<span class="st">"createResponseSets"</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="st">"20"</span>=<span class="st">"viewResponseId"</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="st">"21"</span>=<span class="st">"useCrossTabs"</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="st">"22"</span>=<span class="st">"downloadSurveyResults"</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="st">"23"</span>=<span class="st">"viewSurveyResults"</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="st">"24"</span>=<span class="st">"filterSurveyResults"</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a><span class="st">"25"</span>=<span class="st">"viewPersonalData"</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="st">"1"</span>=<span class="st">"copySurveyQuestions"</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">"2"</span>=<span class="st">"editSurveyFlow"</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">"3"</span>=<span class="st">"useBlocks"</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="st">"4"</span>=<span class="st">"useSkipLogic"</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="st">"5"</span>=<span class="st">"useConjoint"</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="st">"6"</span>=<span class="st">"useTriggers"</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="st">"7"</span>=<span class="st">"useQuotas"</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="st">"8"</span>=<span class="st">"setSurveyOptions"</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="st">"9"</span>=<span class="st">"editQuestions"</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="st">"10"</span>=<span class="st">"deleteSurveyQuestions"</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="st">"11"</span>=<span class="st">"editSurveys"</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="st">"12"</span>=<span class="st">"activateSurveys"</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="st">"13"</span>=<span class="st">"deactivateSurveys"</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="st">"14"</span>=<span class="st">"copySurveys"</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="st">"15"</span>=<span class="st">"distributeSurveys"</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="st">"16"</span>=<span class="st">"deleteSurveys"</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="st">"17"</span>=<span class="st">"translateSurveys"</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="st">"18"</span>=<span class="st">"editSurveyResponses"</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="st">"19"</span>=<span class="st">"createResponseSets"</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="st">"20"</span>=<span class="st">"viewResponseId"</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="st">"21"</span>=<span class="st">"useCrossTabs"</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="st">"22"</span>=<span class="st">"downloadSurveyResults"</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a><span class="st">"23"</span>=<span class="st">"viewSurveyResults"</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="st">"24"</span>=<span class="st">"filterSurveyResults"</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="st">"25"</span>=<span class="st">"viewPersonalData"</span></span></code></pre></div>
 <p>As an example, to share the survey with only distribution rights enabled, you run the following call:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="dv">15</span>)</span></code></pre></div>
 <p>Previous calls are overridden by any new permissions setting so you must set every permission each time. To add permissions to visualize the data, do:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># enable permissions for distribution and data visualisation</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>,<span class="dv">23</span>))</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co"># remove permission to visualize the data</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># enable permissions for distribution and data visualisation</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>,<span class="dv">23</span>))</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co"># remove permission to visualize the data</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="kw"><a href="../reference/share_survey.html">share_survey</a></span>(my_surveys[<span class="dv">1</span>], user_id, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>))</span></code></pre></div>
 </div>
-<div id="importing-a-survey" class="section level3">
-<h3 class="hasAnchor">
-<a href="#importing-a-survey" class="anchor"></a>Importing a survey</h3>
+<div id="importing-a-survey" class="section level2">
+<h2 class="hasAnchor">
+<a href="#importing-a-survey" class="anchor"></a>Importing a survey</h2>
 <p>You can import a local survey file into Qualtrics. The accepted file formats are <em>qsf</em>, <em>txt</em> and <em>doc</em> (word document). The <em>qsf</em> format stands for <em>qualtrics survey file</em> and is usually a file exported from Qualtrics. This is however nothing else than json that is not impossible to build from scratch (be ready to sweat though).</p>
 <p>The file can be imported from a local path or directly from a url:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Import a local qsf file into Qualtrics</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="kw"><a href="../reference/import_survey.html">import_survey</a></span>(<span class="st">"name"</span>, <span class="st">"./survey.qsf"</span>, <span class="dv">1</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co"># Import a file from a url</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="kw"><a href="../reference/import_survey.html">import_survey</a></span>(<span class="st">"name"</span>, <span class="st">"https://www.example.com/mysurvey.qsf"</span>, <span class="dv">1</span>)</span></code></pre></div>
-</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Import a local qsf file into Qualtrics</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw"><a href="../reference/import_survey.html">import_survey</a></span>(<span class="st">"name"</span>, <span class="st">"./survey.qsf"</span>, <span class="dv">1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co"># Import a file from a url</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="kw"><a href="../reference/import_survey.html">import_survey</a></span>(<span class="st">"name"</span>, <span class="st">"https://www.example.com/mysurvey.qsf"</span>, <span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div id="manipulating-survey-objects" class="section level2">
 <h2 class="hasAnchor">
@@ -250,13 +239,6 @@
 <li>Blocks</li>
 <li>Survey Options</li>
 </ul>
-<div id="survey-options" class="section level3">
-<h3 class="hasAnchor">
-<a href="#survey-options" class="anchor"></a>Survey Options</h3>
-<p>A exhaustive list of survey options are configurable through the <code>update_options()</code> call.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">update_options</span>(surveys<span class="op">$</span>id[<span class="dv">1</span>], <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"BackButton"</span> =<span class="st"> </span>true, <span class="st">"BallotBoxStuffingPrevention"</span> =<span class="st"> </span>true))</span></code></pre></div>
-<p>All available options can be found in the <a href="https://api.qualtrics.com/reference#update-options">documention</a>.</p>
-</div>
 </div>
   </div>
 
@@ -266,7 +248,8 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#survey-manipulation">Survey Manipulation</a></li>
+<li><a href="#copying-and-sharing-surveys">Copying and sharing surveys</a></li>
+      <li><a href="#importing-a-survey">Importing a survey</a></li>
       <li><a href="#manipulating-survey-objects">Manipulating Survey Objects</a></li>
       </ul>
 </div>
