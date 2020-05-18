@@ -180,7 +180,7 @@ delete_distribution <- function(distribution_id) {
 #' field in addition to the mailing_list_id (see 'list_contacts').
 #' 
 #' @details
-#' Note that our Qualtrics account may be set with a different time zone than your
+#' Note that your Qualtrics account may be set with a different time zone than your
 #' local environment. Make sure to specificy your date fields accordingly.
 #'
 #' @examples 

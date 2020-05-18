@@ -63,7 +63,7 @@ Qualtrics message library (see 'list_messages'). If you want to send the
 distribution to only one contact in the mailing list, specific the contact_id 
 field in addition to the mailing_list_id (see 'list_contacts').
 
-Note that our Qualtrics account may be set with a different time zone than your
+Note that your Qualtrics account may be set with a different time zone than your
 local environment. Make sure to specificy your date fields accordingly.
 }
 \examples{

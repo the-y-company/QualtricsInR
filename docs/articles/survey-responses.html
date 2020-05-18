@@ -45,7 +45,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/survey-responses.html">Suvey Responses</a>
+      <a href="../articles/survey-responses.html">Exporting Responses</a>
     </li>
     <li>
       <a href="../articles/survey-objects.html">Manipulating Survey Objects</a>
@@ -64,6 +64,18 @@
     </li>
     <li>
       <a href="../articles/research-core-contacts.html">Mailing Lists</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Libraries
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/research-core-contacts.html">Survey Distributions</a>
     </li>
   </ul>
 </li>
@@ -135,76 +147,97 @@
     
 <p>In addition of providing a standard method for exporting the responses of a survey, <a href="https://github.com/ppssphysics/QualtricsInR">QualtricsInR</a> provides an useful method for efficiently handling the download of multiple surveys.</p>
 <p>The process to retrieve survey data requires 3 steps: 1) request the data from Qualtrics, 2) wait while the data is being prepared, 3) download the data (more information can be found <a href="https://api.qualtrics.com/docs/getting-survey-responses-new">here</a>). It may therefore be more efficient, when downloading responses from multiple surveys to 1) request the downloads 2) download the prepared files once they are ready.</p>
+<div id="finding-your-survey-id" class="section level2">
+<h2 class="hasAnchor">
+<a href="#finding-your-survey-id" class="anchor"></a>Finding your Survey Id</h2>
+<p>You can always find the id of one of your surveys by logging into your Qualtrics account and inspecting the URL when previewing your survey or inspect your Qualtrics IDs account page. Through the API, it is however straightforward to list all the surveys available in your account:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># retrieve all available survey ids from your account</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>lst_surveys &lt;-<span class="st"> </span><span class="kw"><a href="../reference/list_surveys.html">list_surveys</a></span>()</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(lst_surveys)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt; # A tibble: 3 x 6</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt;   id          name          ownerId     lastModified    creationDate    isActive</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;           &lt;lgl&gt;   </span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; 1 SV_blW4Huz… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE    </span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; 2 SV_cScDRSV… api_distribu… UR_1Z96ysD… 2020-04-27T11:… 2020-04-16T08:… TRUE    </span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; 3 SV_elpspu2… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE</span></span></code></pre></div>
+</div>
+<div id="survey-response-status" class="section level2">
+<h2 class="hasAnchor">
+<a href="#survey-response-status" class="anchor"></a>Survey Response Status</h2>
+<p>Rather than exporting the full set of responses from a survey, you might only be interested in checking the current status of total responses:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="../reference/get_survey_response_counts.html">get_survey_response_counts</a></span>(<span class="st">"SV_elpspu2EuJXLEWx"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt; $auditable</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; </span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; $generated</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; $deleted</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<p>The call returns a list with 3 elements corresponding to the valid survey responses (‘auditable’), the responses that were generated or deleted.</p>
+</div>
 <div id="standard-export-method" class="section level2">
 <h2 class="hasAnchor">
 <a href="#standard-export-method" class="anchor"></a>Standard Export Method</h2>
-<p>You can export the responses from your survey using the <code>get_survey_responses</code> function.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># retrieve all survey ids from your account</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>survids &lt;-<span class="st"> </span><span class="kw"><a href="../reference/list_surveys.html">list_surveys</a></span>()</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(survids)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt; # A tibble: 6 x 6</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt;   id        name                 ownerId    lastModified  creationDate  isActive</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;                &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;   </span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; 1 SV_2uAzZ… Frontiers &amp; World E… UR_8ctTGg… 2019-07-26T0… 2019-06-11T1… FALSE   </span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; 2 SV_0pjuS… Secure Innovation C… UR_0v7jd3… 2019-11-20T1… 2019-10-21T1… FALSE   </span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; 3 SV_1WVdr… Frontiers &amp; World E… UR_3Iz3hA… 2019-06-05T1… 2019-05-24T1… TRUE    </span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; 4 SV_2a7CW… EOS 2020 - 22/01/20… UR_4TwefW… 2020-01-29T1… 2020-01-22T0… TRUE    </span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; 5 SV_41kul… GSC_AS2017_Final_Sh… UR_9Z6Jmt… 2020-02-18T1… 2017-03-30T0… FALSE   </span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt; 6 SV_4NhCo… Future Frontiers Su… UR_ex78Dl… 2019-10-28T1… 2019-05-24T1… FALSE</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># export survey responses, returned ads a list of all surveys' results</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>dt &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(survids<span class="op">$</span>id[<span class="dv">16</span>], <span class="dt">format =</span> <span class="st">"csv"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(dt)</span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt; # A tibble: 0 x 86</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="co">#&gt; # … with 86 variables: StartDate &lt;chr&gt;, EndDate &lt;chr&gt;, Status &lt;chr&gt;,</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co">#&gt; #   IPAddress &lt;chr&gt;, Progress &lt;chr&gt;, `Duration (in seconds)` &lt;chr&gt;,</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="co">#&gt; #   Finished &lt;chr&gt;, RecordedDate &lt;chr&gt;, ResponseId &lt;chr&gt;,</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="co">#&gt; #   RecipientLastName &lt;chr&gt;, RecipientFirstName &lt;chr&gt;, RecipientEmail &lt;chr&gt;,</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="co">#&gt; #   ExternalReference &lt;chr&gt;, LocationLatitude &lt;chr&gt;, LocationLongitude &lt;chr&gt;,</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="co">#&gt; #   DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;, Q2_1 &lt;chr&gt;, Q2_2 &lt;chr&gt;,</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="co">#&gt; #   Q2_3 &lt;chr&gt;, Q2_4 &lt;chr&gt;, Q2_5 &lt;chr&gt;, Q2_6 &lt;chr&gt;, Q3 &lt;chr&gt;, Q4 &lt;chr&gt;,</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="co">#&gt; #   Q5 &lt;chr&gt;, Q6_1 &lt;chr&gt;, Q6_2 &lt;chr&gt;, Q6_3 &lt;chr&gt;, Q6_4 &lt;chr&gt;, Q11_1 &lt;chr&gt;,</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="co">#&gt; #   Q11_2 &lt;chr&gt;, Q11_3 &lt;chr&gt;, Q11_4 &lt;chr&gt;, Q11_5 &lt;chr&gt;, Q12 &lt;chr&gt;, Q13_1 &lt;chr&gt;,</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="co">#&gt; #   Q13_2 &lt;chr&gt;, Q13_3 &lt;chr&gt;, Q13_4 &lt;chr&gt;, Q13_5 &lt;chr&gt;, Q13_6 &lt;chr&gt;,</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="co">#&gt; #   Q13_7 &lt;chr&gt;, Q14 &lt;chr&gt;, Q15_1 &lt;chr&gt;, Q15_2 &lt;chr&gt;, Q15_3 &lt;chr&gt;, Q15_4 &lt;chr&gt;,</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="co">#&gt; #   Q15_5 &lt;chr&gt;, Q15_6 &lt;chr&gt;, Q15_7 &lt;chr&gt;, Q15_8 &lt;chr&gt;, Q15_9 &lt;chr&gt;, Q16 &lt;chr&gt;,</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a><span class="co">#&gt; #   Q17_1 &lt;chr&gt;, Q17_2 &lt;chr&gt;, Q17_3 &lt;chr&gt;, Q17_4 &lt;chr&gt;, Q17_5 &lt;chr&gt;,</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a><span class="co">#&gt; #   Q17_6 &lt;chr&gt;, Q18 &lt;chr&gt;, Q19_1 &lt;chr&gt;, Q19_2 &lt;chr&gt;, Q19_3 &lt;chr&gt;, Q19_4 &lt;chr&gt;,</span></span>
-<span id="cb1-31"><a href="#cb1-31"></a><span class="co">#&gt; #   Q19_5 &lt;chr&gt;, Q19_6 &lt;chr&gt;, Q19_7 &lt;chr&gt;, Q20 &lt;chr&gt;, Q21_1 &lt;chr&gt;, Q21_2 &lt;chr&gt;,</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="co">#&gt; #   Q21_3 &lt;chr&gt;, Q21_4 &lt;chr&gt;, Q21_5 &lt;chr&gt;, Q21_6 &lt;chr&gt;, Q21_7 &lt;chr&gt;,</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a><span class="co">#&gt; #   Q21_8 &lt;chr&gt;, Q22 &lt;chr&gt;, Q7 &lt;chr&gt;, Q8 &lt;chr&gt;, Q9 &lt;chr&gt;, Q10 &lt;chr&gt;,</span></span>
-<span id="cb1-34"><a href="#cb1-34"></a><span class="co">#&gt; #   Q_URL &lt;chr&gt;, a &lt;chr&gt;, b &lt;chr&gt;, c &lt;chr&gt;</span></span></code></pre></div>
-<p>The default file format is json but csv and tsv can be passed. We currently don’t provide the SPSS file format as an output option.</p>
-<p>A number of <a href="https://api.qualtrics.com/docs/getting-survey-responses-new">optional parameters</a> can be passed to the function. Be aware that any download that exceeds 1.8 GB will need to be split in several exports using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD (more information <a href="https://api.qualtrics.com/docs/dates-and-times">here</a>).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># export survey and save it the local folder</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(survids<span class="op">$</span>id[<span class="dv">16</span>], <span class="dt">format =</span> <span class="st">"csv"</span>, <span class="dt">saveDir =</span> <span class="st">"./"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># ask an export for all responses after April 1st, 2016 and before April 25 2016</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>start &lt;-<span class="st"> "2016-04-01T07:31:43Z"</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>end &lt;-<span class="st"> "2016-04-25T07:31:43Z"</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="kw"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(survids<span class="op">$</span>id[<span class="dv">16</span>], <span class="dt">format =</span> <span class="st">"csv"</span>, <span class="dt">startDate =</span> start, <span class="dt">endDate =</span> end)</span></code></pre></div>
-<p>By default, Qualtrics will now set the <em>useLabels</em> option to FALSE, which exports question results as the recode values of the answer choices. If you want instead to export the text of the answer choice, set the value to TRUE.</p>
+<p>You can export the responses from your survey using the <code><a href="../reference/get_survey_responses.html">get_survey_responses()</a></code> function. To retrieve the id of your survey, you can use the <code>list_surveys</code> function.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># export survey responses</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(<span class="st">"SV_cScDRSV5hsN3YEd"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; # A tibble: 3 x 19</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt;   StartDate EndDate Status IPAddress Progress `Duration (in s… Finished</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;   </span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; 1 2020-04-… 2020-0… 0      86.220.3… 100      5                1       </span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; 2 2020-04-… 2020-0… 0      86.220.3… 100      10               1       </span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 3 2020-04-… 2020-0… 0      86.220.3… 100      13               1       </span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; # … with 12 more variables: RecordedDate &lt;chr&gt;, ResponseId &lt;chr&gt;,</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; #   RecipientLastName &lt;chr&gt;, RecipientFirstName &lt;chr&gt;, RecipientEmail &lt;chr&gt;,</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; #   ExternalReference &lt;chr&gt;, LocationLatitude &lt;chr&gt;, LocationLongitude &lt;chr&gt;,</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; #   DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;, Q1 &lt;chr&gt;, Q2 &lt;chr&gt;</span></span></code></pre></div>
+<p>By default, the data is not saved on disk. You can save your data in a desired location by using the <em>saveDir</em> argument.</p>
+<pre><code><a href="../reference/get_survey_responses.html">get_survey_responses("SV_cScDRSV5hsN3YEd", format = "csv", saveDir = "./data/", filename = "test_survey")</a></code></pre>
+<p>The default file format is json but csv and tsv can be passed. We currently don’t provide the SPSS file format as an output option. The file is automatically named with the survey id if the parameter <em>filename</em> is not specified.</p>
+<p>A number of <a href="https://api.qualtrics.com/docs/getting-survey-responses-new">optional parameters</a> can be passed to the function. Be aware that any download that exceeds 1.8 GB will need to be split in several exports using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD (more information <a href="https://api.qualtrics.com/docs/dates-and-times">here</a>). For example:</p>
+<pre><code><a href="../reference/get_survey_responses.html">get_survey_responses(
+  "SV_cScDRSV5hsN3YEd", 
+  format = "csv", 
+  startDate = "2020-04-01T07:31:43Z", 
+  endDate = "2020-04-29T07:31:43Z")</a></code></pre>
+<p>Instead of exporting the recode value for the answer choices, you can export the text of the answer choice by setting the parameter *useLabels" to TRUE.</p>
 </div>
-<div id="retrieving-multiple-surveys" class="section level2">
+<div id="retrieving-responses-for-multiple-surveys" class="section level2">
 <h2 class="hasAnchor">
-<a href="#retrieving-multiple-surveys" class="anchor"></a>Retrieving Multiple Surveys</h2>
-<p>If you need to download responses from multiple surveys or you have a need to schedule regular automated exports of multiple survey responses, we recommend you use the approach described below:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>requests &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bulk-download.html">request_downloads</a></span>(survids<span class="op">$</span>id[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">format =</span> <span class="st">"csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>requests</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; Download Requests:</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt;  ✔ 5  Successful</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt;  ✖ 0  Unsuccessful</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># download the data</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bulk-download.html">download_requested</a></span>(requests)</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(data)</span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
-<p>The implementation takes into account the rate limit imposed by Qualtrics for this specific call. Once the limit is attained in looping accross the different survey ids, the procedure waits a few seconds before trying again. You can set the paramter <em>retryOnRateLimit</em> to FALSE and the procedure will stop upon the first error returned by Qualtrics.</p>
+<a href="#retrieving-responses-for-multiple-surveys" class="anchor"></a>Retrieving Responses for Multiple Surveys</h2>
+<p>If you need to download responses from multiple surveys or you have a need to schedule regular automated exports of multiple survey responses, we recommend you use the approach documented below. Instead of looping over each survey, requesting the export and downloading the file from the Qualtrics server, we will send the request to Qualtrics to prepare all the files and then export them.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># request creation of response exports</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>requests &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bulk-download.html">request_downloads</a></span>(lst_surveys<span class="op">$</span>id, <span class="dt">format =</span> <span class="st">"csv"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>requests</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; Download Requests:</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt;  ✔ 3  Successful</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;  ✖ 0  Unsuccessful</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co"># download the response files</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bulk-download.html">download_requested</a></span>(requests)</span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(data)</span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data[[<span class="dv">1</span>]])</span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; # A tibble: 2 x 18</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;   StartDate EndDate Status IPAddress Progress `Duration (in s… Finished</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;   </span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; 1 2020-04-… 2020-0… 0      194.209.… 100      10               1       </span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; 2 2020-04-… 2020-0… 0      194.209.… 100      6                1       </span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; # … with 11 more variables: RecordedDate &lt;chr&gt;, ResponseId &lt;chr&gt;,</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; #   RecipientLastName &lt;chr&gt;, RecipientFirstName &lt;chr&gt;, RecipientEmail &lt;chr&gt;,</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; #   ExternalReference &lt;chr&gt;, LocationLatitude &lt;chr&gt;, LocationLongitude &lt;chr&gt;,</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; #   DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;, Q1 &lt;chr&gt;</span></span></code></pre></div>
+<p>The download will return a list with each element containing the responses for each individual survey.</p>
+<p>The implementation takes into account the rate limit imposed by Qualtrics for this specific call. Once the limit is attained in looping accross the different survey ids, the procedure waits a few seconds before trying again. You can set the parameter <em>retryOnRateLimit</em> to FALSE and the procedure will stop upon the first error returned by Qualtrics.</p>
 </div>
-<div id="download-responses-in-progress" class="section level2">
+<div id="downloading-responses-in-progress" class="section level2">
 <h2 class="hasAnchor">
-<a href="#download-responses-in-progress" class="anchor"></a>Download Responses In Progress</h2>
-<p>One useful parameter that was recently added by Qualtrics is the ability to retrieve a survey’s <em>in progress</em> responses.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dt &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(survids<span class="op">$</span>id[<span class="dv">16</span>], <span class="dt">format =</span> <span class="st">"csv"</span>, <span class="dt">exportResponsesInProgress =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p>## Importing Responses</p>
-<p>The ability to import survey responses can be useful when a survey campaign is split accross multiple clones of a given survey object. One can use the API to retrieve survey responses from one object to import it back into a master version. See the reference functions if you want to use these functions.</p>
+<a href="#downloading-responses-in-progress" class="anchor"></a>Downloading Responses In Progress</h2>
+<p>One useful functionality is the ability to retrieve a survey’s in progress responses.</p>
+<pre><code><a href="../reference/get_survey_responses.html"># for one specific survey
+get_survey_responses(survids$id[16], format = "csv", exportResponsesInProgress = TRUE)
+# looping on multiple survey ids
+request_downloads(survids$id[1:5], format = "csv", exportResponsesInProgress = TRUE)</a></code></pre>
 </div>
   </div>
 
@@ -214,9 +247,11 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#standard-export-method">Standard Export Method</a></li>
-      <li><a href="#retrieving-multiple-surveys">Retrieving Multiple Surveys</a></li>
-      <li><a href="#download-responses-in-progress">Download Responses In Progress</a></li>
+<li><a href="#finding-your-survey-id">Finding your Survey Id</a></li>
+      <li><a href="#survey-response-status">Survey Response Status</a></li>
+      <li><a href="#standard-export-method">Standard Export Method</a></li>
+      <li><a href="#retrieving-responses-for-multiple-surveys">Retrieving Responses for Multiple Surveys</a></li>
+      <li><a href="#downloading-responses-in-progress">Downloading Responses In Progress</a></li>
       </ul>
 </div>
       </div>

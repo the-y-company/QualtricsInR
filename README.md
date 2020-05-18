@@ -44,6 +44,9 @@ You can install QualtricsInR from github using the devtools package.
 devtools::install_github('ppssphysics/QualtricsInR')
 ```
 
+The package is made available on GitHub in order to collect feedback
+from the community before we consider a submission to CRAN.
+
 ### Authentication
 
 We provide two authentication methods to set-up your Qualtrics

@@ -12,8 +12,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-QualtricsInR::set_qualtrics_opts()
 library(QualtricsInR)
+set_qualtrics_opts(Sys.getenv("QUALTRICSINR_TEST_TOKEN"))
 ```
 
 In addition of providing a standard method for exporting the responses of a survey, 
@@ -25,64 +25,96 @@ is being prepared, 3) download the data (more information can be found
 [here](https://api.qualtrics.com/docs/getting-survey-responses-new)). It may therefore be more efficient, when 
 downloading responses from multiple surveys to 1) request the downloads 2) download the prepared files once they are ready.
 
-## Standard Export Method
+## Finding your Survey Id
 
-You can export the responses from your survey using the `get_survey_responses` function.
+You can always find the id of one of your surveys by logging into your Qualtrics account and inspecting the URL when 
+previewing your survey or inspect your Qualtrics IDs account page. Through the API, it is however straightforward to list all
+the surveys available in your account:
 
 ```{r}
-# retrieve all survey ids from your account
-survids <- list_surveys()
-head(survids)
-# export survey responses, returned ads a list of all surveys' results
-dt <- get_survey_responses(survids$id[16], format = "csv")
-head(dt)
+# retrieve all available survey ids from your account
+lst_surveys <- list_surveys()
+print(lst_surveys)
+```
+
+## Survey Response Status
+
+Rather than exporting the full set of responses from a survey, you might only be interested in checking the current status of total responses:
+
+```{r}
+get_survey_response_counts("SV_elpspu2EuJXLEWx")
+```
+
+The call returns a list with 3 elements corresponding to the valid survey responses ('auditable'), the responses that were
+generated or deleted.
+
+## Standard Export Method
+
+You can export the responses from your survey using the `get_survey_responses()` function. To retrieve the id of your
+survey, you can use the `list_surveys` function.
+
+```{r}
+# export survey responses
+get_survey_responses("SV_cScDRSV5hsN3YEd")
+```
+
+By default, the data is not saved on disk. You can save your data in a desired location by using the *saveDir* argument.
+
+```
+get_survey_responses("SV_cScDRSV5hsN3YEd", format = "csv", saveDir = "./data/", filename = "test_survey")
 ```
 
 The default file format is json but csv and tsv can be passed. We currently don't provide the SPSS file 
-format as an output option.
+format as an output option. The file is automatically named with the survey id if the parameter *filename* is not
+specified.
 
 A number of [optional parameters](https://api.qualtrics.com/docs/getting-survey-responses-new) can be passed 
 to the function. Be aware that any download that exceeds 1.8 GB will need to be split in several exports 
 using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD 
-(more information [here](https://api.qualtrics.com/docs/dates-and-times)).
+(more information [here](https://api.qualtrics.com/docs/dates-and-times)). For example:
 
-```r
-# export survey and save it the local folder
-get_survey_responses(survids$id[16], format = "csv", saveDir = "./")
-# ask an export for all responses after April 1st, 2016 and before April 25 2016
-start <- "2016-04-01T07:31:43Z"
-end <- "2016-04-25T07:31:43Z"
-get_survey_responses(survids$id[16], format = "csv", startDate = start, endDate = end)
+```
+get_survey_responses(
+  "SV_cScDRSV5hsN3YEd", 
+  format = "csv", 
+  startDate = "2020-04-01T07:31:43Z", 
+  endDate = "2020-04-29T07:31:43Z")
 ```
 
-By default, Qualtrics will now set the *useLabels* option to FALSE, which exports question results as the recode 
-values of the answer choices. If you want instead to export the text of the answer choice, set the value to TRUE.
+Instead of exporting the recode value for the answer choices, you can export the text of the answer choice by setting the
+parameter *useLabels" to TRUE.
 
-## Retrieving Multiple Surveys
+## Retrieving Responses for Multiple Surveys
 
 If you need to download responses from multiple surveys or you have a need to schedule regular automated exports 
-of multiple survey responses, we recommend you use the approach described below:
+of multiple survey responses, we recommend you use the approach documented below. Instead of looping over each 
+survey, requesting the export and downloading the file from the Qualtrics server, we will send the request to Qualtrics
+to prepare all the files and then export them.
 
 ```{r}
-requests <- request_downloads(survids$id[1:5], format = "csv")
+# request creation of response exports
+requests <- request_downloads(lst_surveys$id, format = "csv")
 requests
-# download the data
+# download the response files
 data <- download_requested(requests)
 length(data)
+head(data[[1]])
 ```
+
+The download will return a list with each element containing the responses for each individual survey.
 
 The implementation takes into account the rate limit imposed by Qualtrics for this specific call. Once the limit 
-is attained in looping accross the different survey ids, the procedure waits a few seconds before trying again. You can set the paramter *retryOnRateLimit* to FALSE and the procedure will stop upon the first error returned by Qualtrics.
+is attained in looping accross the different survey ids, the procedure waits a few seconds before trying again. 
+You can set the parameter *retryOnRateLimit* to FALSE and the procedure will stop upon the first error returned 
+by Qualtrics.
 
-## Download Responses In Progress
+## Downloading Responses In Progress
 
-One useful parameter that was recently added by Qualtrics is the ability to retrieve a survey's *in progress* responses.
+One useful functionality is the ability to retrieve a survey's in progress responses.
 
-```r
-dt <- get_survey_responses(survids$id[16], format = "csv", exportResponsesInProgress = TRUE)
 ```
-
-## Importing Responses
-
-The ability to import survey responses can be useful when a survey campaign is split accross multiple clones of a given survey object. One can use the API to retrieve survey responses 
-from one object to import it back into a master version. See the reference functions if you want to use these functions.
+# for one specific survey
+get_survey_responses(survids$id[16], format = "csv", exportResponsesInProgress = TRUE)
+# looping on multiple survey ids
+request_downloads(survids$id[1:5], format = "csv", exportResponsesInProgress = TRUE)
+```

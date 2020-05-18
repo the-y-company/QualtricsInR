@@ -7,11 +7,11 @@
 #' \dontrun{start_response_import("SV_012345678912345", "./data.csv", "CSV")}
 #' @return A status code
 #' @export
-start_response_import <- function(surveyId, filePath, format="CSV", charset="UTF-8") {
+start_response_import <- function(surveyId, filePath, format = "CSV", charset = "UTF-8") {
 
   params <- c("surveys",surveyId,"import-responses")
   e_format <- "text/csv"
-  if (format=="TSV") e_format <- "text/tsv"
+  if (format == "TSV") e_format <- "text/tsv"
 
   my_header <- c(
     "Content-Type" = e_format,

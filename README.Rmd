@@ -12,8 +12,8 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%")
-QualtricsInR::set_qualtrics_opts()
 library(QualtricsInR)
+set_qualtrics_opts(Sys.getenv("QUALTRICSINR_TEST_TOKEN"))
 ```
 
 # QualtricsInR
@@ -41,6 +41,8 @@ You can install QualtricsInR from github using the devtools package.
 ``` r
 devtools::install_github('ppssphysics/QualtricsInR')
 ```
+
+The package is made available on GitHub in order to collect feedback from the community before we consider a submission to CRAN.
 
 ### Authentication
 

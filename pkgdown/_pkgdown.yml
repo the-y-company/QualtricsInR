@@ -149,7 +149,7 @@ navbar:
   left:
     - text: "Surveys"
       menu:
-        - text: "Suvey Responses"
+        - text: "Exporting Responses"
           href: articles/survey-responses.html
         - text: "Manipulating Survey Objects"
           href: articles/survey-objects.html
@@ -158,6 +158,10 @@ navbar:
         - text: "Survey Distributions"
           href: articles/distributions.html
         - text: "Mailing Lists"
+          href: articles/research-core-contacts.html
+    - text: "Libraries"
+      menu:
+        - text: "Survey Distributions"
           href: articles/research-core-contacts.html
     - text: "Brand Administration"
       menu:
