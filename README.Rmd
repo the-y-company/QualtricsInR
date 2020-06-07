@@ -16,6 +16,8 @@ library(QualtricsInR)
 set_qualtrics_opts(Sys.getenv("QUALTRICSINR_TEST_TOKEN"))
 ```
 
+Find the official documentation [here](https://qualtrics.psaouter.com/).
+
 # QualtricsInR
 
 The **QualtricsInR** package provides a general R wrapper for the Qualtrics [API v3 references](https://api.qualtrics.com/reference). The package is built accross the main API calls 

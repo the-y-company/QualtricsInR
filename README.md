@@ -5,6 +5,8 @@
 
 <!-- badges: end -->
 
+Find the official documentation [here](https://qualtrics.psaouter.com/).
+
 # QualtricsInR
 
 The **QualtricsInR** package provides a general R wrapper for the
