@@ -31,12 +31,12 @@ either Invite, Interactive, Reminder or Thankyou.}
 Invite and Interactive method. Cannot be provided for Reminder and Thankyou}
 
 \item{message_id}{ID of the message. The messageId is required in conjunction
- with the libraryId if no messageText is supplied. A message object is only
+with the libraryId if no messageText is supplied. A message object is only
 required with the Invite, Reminder, and Thankyou methods.}
 
 \item{library_id}{Library ID of the message. libraryId is required in
 conjunction with the messageId if no messageText is supplied. A message
- object is only required by "Invite" method.}
+object is only required by "Invite" method.}
 
 \item{messagetext}{Custom message text. Either messageText or messageId must
 be provided but not both. A message object is only required with the Invite,

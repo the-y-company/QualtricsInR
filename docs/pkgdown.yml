@@ -1,5 +1,5 @@
-pandoc: 2.9.1.1
-pkgdown: 1.3.0
+pandoc: '2.10'
+pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   data-privacy: data-privacy.html
@@ -15,6 +15,7 @@ articles:
   survey-responses: survey-responses.html
   surveys: surveys.html
   users: users.html
+last_built: 2020-07-20T07:02Z
 urls:
   reference: https://elegant-thompson-2276b4.netlify.com//reference
   article: https://elegant-thompson-2276b4.netlify.com//articles

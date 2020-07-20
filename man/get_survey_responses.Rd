@@ -24,7 +24,7 @@ get_survey_responses(
 
 \item{filename}{specify filename for saving. If NULL, uses the survey id}
 
-\item{...}{a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names}
+\item{...}{a vector of named parameters, see all parameters in reference documentation.}
 }
 \value{
 A status code

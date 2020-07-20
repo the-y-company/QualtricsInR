@@ -12,15 +12,11 @@
 #' @export
 list_distributions <- function(survey_id) {
 
-  .build_distribution <- function(lst) {
-    
-    do.call(
-      bind_rows,
-      lapply(
-        lst,
-        function(x) {
-          tibble(
-            "id" = .replace_na(x$id),
+  .build_distribution <- function(list) {
+    df <- map_df(
+      list, function(x) {
+        tibble(
+          "id" = .replace_na(x$id),
             "parentDistributionId" = .replace_na(x$parentDistributionId),
             "ownerId" = .replace_na(x$ownerId),
             "organizationId" = .replace_na(x$organizationId),
@@ -47,9 +43,8 @@ list_distributions <- function(survey_id) {
             "finished" = .replace_na(x$stats$finished),
             "complaints" = .replace_na(x$stats$complaints),
             "blocked" = .replace_na(x$stats$blocked)
-          )
-        }
-    ))}
+        )
+      })}
 
   offset <- 0
   getcnt <- .qualtrics_get("distributions", "surveyId" = survey_id, "offset" = offset)
@@ -59,8 +54,8 @@ list_distributions <- function(survey_id) {
   
     while (!is.null(getcnt$result$nextPage)) {
       offset <- parse_url(getcnt$result$nextPage)$query$offset
-      getcnt <- .qualtrics_get("distributions", "surveyId"=survey_id, "offset" = offset)
-      df <- rbind(df,.build_distribution(getcnt$result$elements))
+      getcnt <- .qualtrics_get("distributions", "surveyId" = survey_id, "offset" = offset)
+      df <- bind_rows(df, .build_distribution(getcnt$result$elements))
     }
     return(df)
   } else {

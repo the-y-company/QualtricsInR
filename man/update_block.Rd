@@ -33,7 +33,7 @@ update_block(
 A list
 }
 \description{
-You can update an existing block, including the blocks meta information and the the block's elements. 
+You can update an existing block, including the blocks meta information and the the block's elements.
 If you update the block elements and you add for example a new question, you must make sure the question
 exisists in the survey (see list_questions and create_question).
 }

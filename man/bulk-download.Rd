@@ -37,7 +37,7 @@ check_status(requests)
 
 \item{format}{file format json, by default (can be csv or tsv). We don't provide SPSS yet.}
 
-\item{...}{a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names.}
+\item{...}{a vector of named parameters, see \url{https://api.qualtrics.com/reference} \emph{Create Response Export} for parameter names.}
 
 \item{verbose}{print progress for heavy downloads (default is FALSE)}
 
@@ -65,8 +65,8 @@ of surveys and the amount of data the user ultimately wants to obtain.
 \section{Functions}{
 
 \itemize{
-  \item{\code{request_downloads}: Request download (prepares files).}
-  \item{\code{download_requested}: Download requested files.}
+\item{\code{request_downloads}: Request download (prepares files).}
+\item{\code{download_requested}: Download requested files.}
 }
 }
 

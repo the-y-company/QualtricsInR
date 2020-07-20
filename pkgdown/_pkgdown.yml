@@ -10,7 +10,7 @@ reference:
     All administration level functions require you are recognized as a brand adminstrator for your 
     account/organisation. 
   contents:
-  - get_organization
+  - get_organization_information
   - create_division
   - get_division
   - update_division
@@ -32,8 +32,11 @@ reference:
   - create_erasure_request
   - list_erasure_requests
   - get_erasure_request
-  - get_activity_type
-  - get_activity_log
+  - list_event_types
+  - get_logins_events
+  - get_session_creations_events
+  - get_session_terminations_events
+  - get_password_resets_events
 
 - title: General Survey Administration
   desc: >
@@ -127,6 +130,12 @@ reference:
   - list_samples
   - get_sample
 
+- title: Directories
+  desc: >
+    The Directories endpoint allows you to retrieve a list of Directories within your Brand.
+  contents:
+  - list_directory_contacts
+
 - title: Library
   desc: >
     Manipulation of graphic and message library contents
@@ -175,6 +184,8 @@ navbar:
           href: articles/users.html
         - text: "Data privacy"
           href: articles/data-privacy.html
+        - text: "Audit"
+          href: articles/audit.html
     - text: "References"
       menu:
         - text: "All Functions"

@@ -48,10 +48,10 @@ will be automatically loaded in future sessions, and refreshed if needed.
 \section{Functions}{
 
 \itemize{
-  \item{\code{qualtrics_auth}: Authenticate.}
-  \item{\code{load_oauth}: Load locally saved token.}
-  \item{\code{refresh_oauth}: Refresh locally saved token.}
-  \item{\code{set_qualtrics_opts}: Set \code{token} and \code{data_center} options.}
+\item{\code{qualtrics_auth}: Authenticate.}
+\item{\code{load_oauth}: Load locally saved token.}
+\item{\code{refresh_oauth}: Refresh locally saved token.}
+\item{\code{set_qualtrics_opts}: Set \code{token} and \code{data_center} options.}
 }
 }
 

@@ -60,7 +60,8 @@
 #' @param verbose default FALSE
 #' @param saveDir path to a local directory to save the exported file. Default is a temporary file in rds format that is removed at the end of your session. Default name will be the surveyId.
 #' @param filename specify filename for saving. If NULL, uses the survey id
-#' @param ... a vector of named parameters, see \url{https://api.qualtrics.com/reference} *Create Response Export* for parameter names
+#' @param ... a vector of named parameters, see all parameters in reference documentation.
+#' 
 #' @examples
 #' \dontrun{get_survey_responses("SV_012345678901234", "csv")}
 #' \dontrun{get_survey_responses("SV_012345678901234", format = "csv",verbose = TRUE,
@@ -76,6 +77,12 @@ get_survey_responses <- function(
   filename = NULL,
   ...) {
 
+  # Check consistency filename and dir specified
+  if (!is.null(filename) & (is.null(saveDir) || saveDir == "")) {
+    saveDir <- "./"
+    cat("Saving files in local directory", saveDir, "\n")
+  }
+  
   # Check input parameters
   if (!is.null(saveDir)) saveDir <- .check_directory(saveDir)
 
@@ -86,7 +93,7 @@ get_survey_responses <- function(
 
   # Step 2: Checking on Data Export Progress and waiting until export is ready
 
-  if (verbose) pbar <- txtProgressBar(min=0, max=100, style = 3)
+  if (verbose) pbar <- txtProgressBar(min = 0, max = 100, style = 3)
 
   progressVec <- .get_export_status(survey_id, getcnt$result$progressId)
   while(progressVec[1] != "complete" & progressVec[1]!="failed") {

@@ -36,13 +36,13 @@ create_reminder_distribution(
 The reminder distribution id
 }
 \description{
-Based on an existing email distribution, create a reminder to 
-take a survey for recipients with non completed surveys. 
+Based on an existing email distribution, create a reminder to
+take a survey for recipients with non completed surveys.
 Recipients who have opted out will not receive the reminder.
 }
 \details{
-The parent distribution id can be found using the 
-'list_distributions' call. The sender email parameter 
+The parent distribution id can be found using the
+'list_distributions' call. The sender email parameter
 can only be sent from another email if
 the organization authorizes a send on its behalf.
 }

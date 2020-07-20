@@ -59,8 +59,8 @@ email solution.
 \details{
 In order to create a new email distribution using the API, you need
 to have the body of your email already created as a message in your
-Qualtrics message library (see 'list_messages'). If you want to send the 
-distribution to only one contact in the mailing list, specific the contact_id 
+Qualtrics message library (see 'list_messages'). If you want to send the
+distribution to only one contact in the mailing list, specific the contact_id
 field in addition to the mailing_list_id (see 'list_contacts').
 
 Note that your Qualtrics account may be set with a different time zone than your

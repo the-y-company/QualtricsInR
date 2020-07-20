@@ -2,7 +2,7 @@
 title: "Groups"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{groups}
+  %\VignetteIndexEntry{Groups}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

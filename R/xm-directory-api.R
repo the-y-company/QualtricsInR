@@ -1,9 +1,18 @@
-#' List all directory contacts
+#' List Directories for a Brand
+#' 
+#' @description 
+#' Using this API, the client can retrieve a list of directories with summary information for each directory.
+#' This API is paginated, but currently returns a single page of up to 5 results and a null next page token.
+#' Pagination is handled automatically.
 #'
+#' @param page_size The maximum number of items to return per request (max and default is 5)
+#' 
 #' @examples
 #' \dontrun{list_directory_contacts()}
+#' 
 #' @return A \code{tibble} of all mailing list with properties
-list_directory_contacts <- function() {
+#' @export
+list_directory_contacts <- function(page_size = 5) {
 
   .build_list <- function(list) {
     map_df(
@@ -22,14 +31,14 @@ list_directory_contacts <- function() {
   }
 
   offset <- 0
-  getcnt <- .qualtrics_get("directories", "offset"=offset)
+  getcnt <- .qualtrics_get("directories", "pageSize" = page_size)
 
   if (length(getcnt$result$elements)>0) {
     df <- .build_list(getcnt$result$elements)
 
     while (!is.null(getcnt$result$nextPage)) {
-      offset <- parse_url(getcnt$result$nextPage)$query$offset
-      getcnt <- .qualtrics_get("directories", "offset" = offset)
+      skip_token <- as.character(getcnt$result$nextPage)
+      getcnt <- .qualtrics_get("directories", "pageSize" = page_size, "skipToken" = skip_token)
       df <- rbind(df, .build_list(getcnt$result$elements))
     }
 

@@ -8,30 +8,25 @@
 #' @export
 list_libraries <- function() {
 
-  .build_libraries <- function(lst) {
-    
-    do.call(
-      bind_rows,
-      lapply(
-        lst,
-        function(x) {
-          tibble(
-            "libraryId" = .replace_na(x$libraryId),
-            "libraryName" = .replace_na(x$libraryName)
-          )
-        }
-    ))}
+  .build_df <- function(list) {
+    df <- map_df(
+      list, function(x) {
+        tibble(
+          "libraryId" = .replace_na(x$libraryId),
+          "libraryName" = .replace_na(x$libraryName)
+        )
+      })}
 
   offset <- 0
   getcnt <- .qualtrics_get("libraries", NULL, "offset" = offset)
 
   if (length(getcnt$result)>0) {
-    df <- .build_libraries(getcnt$result$elements)
+    df <- .build_df(getcnt$result$elements)
   
     while (!is.null(getcnt$result$nextPage)) {
       offset <- parse_url(getcnt$result$nextPage)$query$offset
       getcnt <- .qualtrics_get("libraries", NULL, "offset" = offset)
-      df <- rbind(df,.build_libraries(getcnt$result$elements))
+      df <- rbind(df, .build_df(getcnt$result$elements))
     }
     return(df)
   } else {

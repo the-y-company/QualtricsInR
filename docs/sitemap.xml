@@ -112,12 +112,6 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/generate_distribution_links.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_activity_log.html</loc>
-  </url>
-  <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_activity_type.html</loc>
-  </url>
-  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_block.html</loc>
   </url>
   <url>
@@ -136,13 +130,19 @@
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_group.html</loc>
   </url>
   <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_logins_events.html</loc>
+  </url>
+  <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_mailinglist.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_message.html</loc>
   </url>
   <url>
-    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_organization.html</loc>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_organization_information.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_password_resets_events.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_questions_mapping.html</loc>
@@ -152,6 +152,12 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_sample.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_session_creations_events.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_session_terminations_events.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/get_sms_distribution.html</loc>
@@ -221,6 +227,9 @@
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_erasure_requests.html</loc>
+  </url>
+  <url>
+    <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_event_types.html</loc>
   </url>
   <url>
     <loc>https://elegant-thompson-2276b4.netlify.com//reference/list_groups.html</loc>

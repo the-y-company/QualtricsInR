@@ -17,12 +17,14 @@ A the request id
 \description{
 When processed, the request will search for any entities within Qualtrics that
 match any of the supplied emails; these entities include
-- Users
-- MailingList & XM Directory contacts
-- People
+\itemize{
+\item Users
+\item MailingList & XM Directory contacts
+\item People
 For any entity discovered the service will erase any responses to surveys
 they have submitted, along with any tickets that may have originated from
 their responses before erasing the entity itself.
+}
 }
 \examples{
 \dontrun{create_erasure_request("ddd@hotmail.com")}
