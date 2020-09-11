@@ -619,7 +619,7 @@ body {
 <p>Other related packages are available through Github. <a href="https://github.com/jbryer/qualtrics">Jason Bryer’s</a> R package to work with the previous version of the Qualtrics API. <a href="https://github.com/emmamorgan-tufts/QualtricsTools/">QualtricsTools</a> creates automatic reports in shiny and <a href="https://github.com/jamesdunham/qsurvey">qsurvey</a>, by James Dunham, focuses on testing and review of surveys before fielding, as well as the analysis of responses afterward.</p>
 <h2 id="getting-started">Getting Started</h2>
 <p>You can install QualtricsInR from github using the devtools package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&#39;ppssphysics/QualtricsInR&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&#39;ppssphysics/QualtricsInR&#39;</span>)</span></code></pre></div>
 <p>The package is made available on GitHub in order to collect feedback from the community before we consider a submission to CRAN.</p>
 <h3 id="authentication">Authentication</h3>
 <p>We provide two authentication methods to set-up your Qualtrics credentials:</p>
@@ -631,10 +631,10 @@ body {
 <h3 id="setting-a-plain-text-api-token">Setting a plain text API Token</h3>
 <p>For convenience, we recommend you define your API token and Qualtrics Data Center ID (optional) in your .Renviron with the names <code>QUALTRICSINR_TOKEN</code> and <code>QUALTRICSINR_DATA_CENTER</code> respectively. Upon loading the QualtricsInR package, your credentials will be automatically set as internal <em>encrypted</em> parameters.</p>
 <p>You can always custom set your credentials by calling the <code>set_qualtrics_opts()</code> function:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># set auth options assuming definition in .Renviron</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">set_qualtrics_opts</span>()</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># set auth options by hand</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">set_qualtrics_opts</span>(<span class="st">&quot;9ssssss83jsl83282032932sds2&quot;</span>, <span class="st">&quot;mydatacenter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># set auth options assuming definition in .Renviron</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">set_qualtrics_opts</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co"># set auth options by hand</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">set_qualtrics_opts</span>(<span class="st">&quot;9ssssss83jsl83282032932sds2&quot;</span>, <span class="st">&quot;mydatacenter&quot;</span>)</span></code></pre></div>
 <p>If you use this method, you will have set your credentials for every new session.</p>
 <h3 id="setting-up-an-oauth-client-manager">Setting-up an OAuth Client Manager</h3>
 <p>To generate an OAuth application, follow the steps below in your Qualtrics account:</p>
@@ -645,11 +645,10 @@ body {
 </ol>
 <!-- end list -->
 
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">qualtrics_auth</span>(<span class="dt">id =</span> <span class="st">&quot;xXxxX0X0x&quot;</span>, <span class="dt">secret =</span> <span class="st">&quot;xXxxX0X0x&quot;</span>, <span class="dt">data_center =</span> <span class="st">&quot;my.center&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">qualtrics_auth</span>(<span class="dt">id =</span> <span class="st">&quot;xXxxX0X0x&quot;</span>, <span class="dt">secret =</span> <span class="st">&quot;xXxxX0X0x&quot;</span>, <span class="dt">data_center =</span> <span class="st">&quot;my.center&quot;</span>)</span></code></pre></div>
 <p>This will authenticate you, returning a bearer token valid for one hour, saving the <em>encrypted</em> credentials in a <code>.qualtrics-oauth</code> file, which will be automatically loaded in all subsequent sessions and automatically refreshed if need be. You should therefore only find the need to run <code>qualtrics_auth</code> once.</p>
 <h2 id="development-pipeline">Development pipeline</h2>
-<p>There are close to 200 different API calls provides by Qualtrics. You can find the progress of the implementation (including testing the calls) <a href="/articles/progress_table.html">here</a>.</p>
-<p>Depending on interest, demand, and help from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM Directory related calls are not implemented due to not having access to this feature in our own account.</p>
+<p>There are close to 200 different API calls provides by Qualtrics. Depending on interest, demand, and help from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM Directory related calls are not implemented due to not having access to this feature in our own account.</p>
 
 </body>
 </html>

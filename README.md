@@ -107,10 +107,7 @@ need to run `qualtrics_auth` once.
 
 ## Development pipeline
 
-There are close to 200 different API calls provides by Qualtrics. You
-can find the progress of the implementation (including testing the
-calls) [here](/articles/progress_table.html).
-
+There are close to 200 different API calls provides by Qualtrics.
 Depending on interest, demand, and help from the community, efforts will
 be dedicated to the testing and implementation of missing references.
 Most of the XM Directory related calls are not implemented due to not
