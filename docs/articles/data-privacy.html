@@ -171,18 +171,24 @@
 </ul>
 <p>For the found entities, the service will erase any responses that have been been submitted, along with any tickets that may have originated from their responses.</p>
 <p>The call is implemented with the parameter <code>searh_only = TRUE</code> to perform a dry run before deciding to erase the information associated to the email with <code>searh_only = FALSE</code>.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># Create a dry run erasure request</span>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># Create a dry run erasure request</span>
 <span class="fu"><a href="../reference/create_erasure_request.html">create_erasure_request</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"john.doe@alabama.com"</span>, <span class="st">"maria.doe@alabama.com"</span>))
 <span class="co"># Create a erasure request</span>
-<span class="fu"><a href="../reference/create_erasure_request.html">create_erasure_request</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"john.doe@alabama.com"</span>), <span class="fl">FALSE</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/create_erasure_request.html">create_erasure_request</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"john.doe@alabama.com"</span>), <span class="fl">FALSE</span>)
+</pre></div>
 </div>
 <div id="list-and-retrieve-erasure-requests" class="section level2">
 <h2 class="hasAnchor">
 <a href="#list-and-retrieve-erasure-requests" class="anchor"></a>List and retrieve erasure requests</h2>
 <p>You can list all erasure requests performed by the brand:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu">list_erasing_requests</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu">list_erasing_requests</span>()
+</pre></div>
 <p>This allows you to use the id of a given erasure request to retrieve to inspect the request:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu">get_erasing_request</span>(<span class="st">"OP-a2c24e5e-d4b1-4bd8-a9e8-9a1c8520c8d2"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu">get_erasing_request</span>(<span class="st">"OP-a2c24e5e-d4b1-4bd8-a9e8-9a1c8520c8d2"</span>)
+</pre></div>
 <p>Note that a given erasure request can only be retrieve once that request has been fully processed by Qualtrics. This means that until the status available from the <code>list_erasing_requests</code> appears as <em>Completed</em>, the <code>get_erasing_request</code> will return an error.</p>
 </div>
   </div>
@@ -202,7 +208,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

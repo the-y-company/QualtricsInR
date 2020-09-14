@@ -165,40 +165,54 @@
 <code>update_flow_element</code> update the details of a specific survey flow element.</li>
 </ul>
 <p>As a simple example, we retrieve below the flow for a 2 questions survey, split into 2 blocks.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">flow</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_survey_flow.html">get_survey_flow</a></span>(<span class="st">"SV_5haBIVgvUtsvQ1v"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">flow</span>)
-<span class="co">#&gt; [1] "FlowID"     "Type"       "Flow"       "Properties"</span></pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">flow</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_survey_flow.html">get_survey_flow</a></span>(<span class="st">"SV_5haBIVgvUtsvQ1v"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">flow</span>)
+<span class="co">#&gt; [1] "FlowID"     "Type"       "Flow"       "Properties"</span>
+</pre></div>
 <p>The list contains 4 elements which define the key properties of a flow element.</p>
 <p>Flow is the elements that contains the whole flow structure. Here we have 2 seb-elements corresponding to our 2 blocks in the survey:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">flow</span>$<span class="no">Flow</span>)
-<span class="co">#&gt; [1] 2</span></pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>)
+<span class="co">#&gt; [1] 2</span>
+</pre></div>
 <p>Properties contain at mimimum the Count variable that tell how many elements make up the flow. Remember the top-level Flow element returned in the list counts as an element so the count here is 3 (2 blocks and 1 top level flow element).</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">flow</span>$<span class="no">Properties</span>$<span class="no">Count</span>
-<span class="co">#&gt; [1] 3</span></pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">flow</span><span class="op">$</span><span class="kw">Properties</span><span class="op">$</span><span class="kw">Count</span>
+<span class="co">#&gt; [1] 3</span>
+</pre></div>
 <p>FlowID is a unique id for the flow element (written as “FL_”)</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">flow</span>$<span class="no">FlowID</span>, <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">FlowID</span>, <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">2</span>]]$<span class="no">FlowID</span>)
-<span class="co">#&gt; [1] "FL_1" "FL_2" "FL_3"</span></pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">flow</span><span class="op">$</span><span class="kw">FlowID</span>, <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">1</span>]]<span class="op">$</span><span class="kw">FlowID</span>, <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">2</span>]]<span class="op">$</span><span class="kw">FlowID</span>)
+<span class="co">#&gt; [1] "FL_1" "FL_2" "FL_3"</span>
+</pre></div>
 <p>Type defines different possible type of flow elements. For this survey, we find:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">flow</span>$<span class="no">Type</span>, <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">Type</span>, <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">2</span>]]$<span class="no">Type</span>)
-<span class="co">#&gt; [1] "Root"     "Standard" "Block"</span></pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">flow</span><span class="op">$</span><span class="kw">Type</span>, <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">1</span>]]<span class="op">$</span><span class="kw">Type</span>, <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">2</span>]]<span class="op">$</span><span class="kw">Type</span>)
+<span class="co">#&gt; [1] "Root"     "Standard" "Block"</span>
+</pre></div>
 <p>Each children flow element can have a specific ID that links that flow element to a specific object of the survey, for instance, here, block Ids.</p>
 <p>Looking at updating the flow, we could for example switch the order of the two flow elements. To, we just invert the list order as well as the flow ids to match the new order.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">flow_1</span> <span class="kw">&lt;-</span> <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">2</span>]]
-<span class="no">flow_2</span> <span class="kw">&lt;-</span> <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">1</span>]]
-<span class="no">flow_1</span>$<span class="no">FlowID</span> <span class="kw">&lt;-</span> <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">FlowID</span>
-<span class="no">flow_2</span>$<span class="no">FlowID</span> <span class="kw">&lt;-</span> <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">2</span>]]$<span class="no">FlowID</span>
-<span class="no">flow_1</span>$<span class="no">ID</span> <span class="kw">&lt;-</span> <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">ID</span>
-<span class="no">flow_2</span>$<span class="no">ID</span> <span class="kw">&lt;-</span> <span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">2</span>]]$<span class="no">ID</span>
-<span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">1</span>]] <span class="kw">&lt;-</span> <span class="no">flow_1</span>
-<span class="no">flow</span>$<span class="no">Flow</span><span class="kw">[[</span><span class="fl">2</span>]] <span class="kw">&lt;-</span> <span class="no">flow_2</span></pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">flow_1</span> <span class="op">&lt;-</span> <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">2</span>]]
+<span class="kw">flow_2</span> <span class="op">&lt;-</span> <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">1</span>]]
+<span class="kw">flow_1</span><span class="op">$</span><span class="kw">FlowID</span> <span class="op">&lt;-</span> <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">1</span>]]<span class="op">$</span><span class="kw">FlowID</span>
+<span class="kw">flow_2</span><span class="op">$</span><span class="kw">FlowID</span> <span class="op">&lt;-</span> <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">2</span>]]<span class="op">$</span><span class="kw">FlowID</span>
+<span class="kw">flow_1</span><span class="op">$</span><span class="kw">ID</span> <span class="op">&lt;-</span> <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">1</span>]]<span class="op">$</span><span class="kw">ID</span>
+<span class="kw">flow_2</span><span class="op">$</span><span class="kw">ID</span> <span class="op">&lt;-</span> <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">2</span>]]<span class="op">$</span><span class="kw">ID</span>
+<span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">1</span>]] <span class="op">&lt;-</span> <span class="kw">flow_1</span>
+<span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">2</span>]] <span class="op">&lt;-</span> <span class="kw">flow_2</span>
+</pre></div>
 <p>Sending the updated flow request requires to decouple the flow object in its different elements:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/update_survey_flow.html">update_survey_flow</a></span>(
-  <span class="st">"SV_5haBIVgvUtsvQ1v"</span>,
-  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="no">flow</span>$<span class="no">FlowID</span>),
-  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="no">flow</span>$<span class="no">Type</span>),
-  <span class="no">flow</span>$<span class="no">Flow</span>,
-  <span class="no">flow</span>$<span class="no">Properties</span>)
-<span class="co">#&gt; NULL</span></pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/update_survey_flow.html">update_survey_flow</a></span>(
+  <span class="st">"SV_5haBIVgvUtsvQ1v"</span>, 
+  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="kw">flow</span><span class="op">$</span><span class="kw">FlowID</span>), 
+  <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="kw">flow</span><span class="op">$</span><span class="kw">Type</span>),
+  <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>,
+  <span class="kw">flow</span><span class="op">$</span><span class="kw">Properties</span>)
+<span class="co">#&gt; NULL</span>
+</pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -214,7 +228,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -153,22 +153,30 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">QualtricsInR</span>)
-<span class="co">#&gt; ✔ API token successfully loaded!</span></pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">QualtricsInR</span>)
+<span class="co">#&gt; ✔ API token successfully loaded!</span>
+</pre></div>
 <div id="create-a-new-division" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-new-division" class="anchor"></a>Create a new division</h2>
 <p>You can create a new division at the organization level. The only mandatory parameter is the name of the new division. You can also pass a list of user ids (see <code>get_users</code>) with admin rights for this division. Finally, you can define the division permissions, otherwise default permissions will be set.</p>
 <p>The call returns the id of the created division.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">div_id</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/create_division.html">create_division</a></span>(<span class="st">"New_Division"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"UR_1234567890AbCdE"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">div_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_division.html">create_division</a></span>(<span class="st">"New_Division"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"UR_1234567890AbCdE"</span>))
+</pre></div>
 <p>You can retrieve or update a given division. Since the division permissions are not documented in the API documentation and do not always match names of the options seen when interacting with the graphical user interface, the time consuming but most reliable appraoch is to retrieve an existing division and study the json file returned.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">div_settings</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_division.html">get_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">div_settings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_division.html">get_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>)
+</pre></div>
 <p>In the below example, we inactivate the <em>editSurveyFlow</em> option for the corresponding division.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">options</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-   <span class="st">"controlPanel"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-     <span class="st">"surveyPermissions"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-       <span class="st">"editSurveyFlow"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"state"</span> <span class="kw">=</span> <span class="st">"off"</span>))))
-<span class="fu"><a href="../reference/update_division.html">update_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>, <span class="kw">permissions</span> <span class="kw">=</span> <span class="no">options</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+   <span class="st">"controlPanel"</span> = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+     <span class="st">"surveyPermissions"</span> = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+       <span class="st">"editSurveyFlow"</span> = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"state"</span> = <span class="st">"off"</span>))))
+<span class="fu"><a href="../reference/update_division.html">update_division</a></span>(<span class="st">"DV_1234567890AbCdE"</span>, permissions = <span class="kw">options</span>)
+</pre></div>
 <p>In the future, we would like to document the full list of options and provide convenience functions to manipulate these options (see <code>share_survey</code>)</p>
 </div>
   </div>
@@ -188,7 +196,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

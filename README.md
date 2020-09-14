@@ -5,7 +5,8 @@
 
 <!-- badges: end -->
 
-Find the official documentation [here](https://qualtrics.psaouter.com/).
+You can find the official documentation
+[here](https://qualtrics.psaouter.com/).
 
 # QualtricsInR
 

@@ -160,7 +160,9 @@
 <h2 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting Started</h2>
 <p>You can install QualtricsInR from github using the devtools package.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">'ppssphysics/QualtricsInR'</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">'ppssphysics/QualtricsInR'</span>)
+</pre></div>
 <p>The package is made available on GitHub in order to collect feedback from the community before we consider a submission to CRAN.</p>
 <div id="authentication" class="section level3">
 <h3 class="hasAnchor">
@@ -176,11 +178,13 @@
 <h3 class="hasAnchor">
 <a href="#setting-a-plain-text-api-token" class="anchor"></a>Setting a plain text API Token</h3>
 <p>For convenience, we recommend you define your API token and Qualtrics Data Center ID (optional) in your .Renviron with the names <code>QUALTRICSINR_TOKEN</code> and <code>QUALTRICSINR_DATA_CENTER</code> respectively. Upon loading the QualtricsInR package, your credentials will be automatically set as internal <em>encrypted</em> parameters.</p>
-<p>You can always custom set your credentials by calling the <code><a href="reference/oauth.html">set_qualtrics_opts()</a></code> function:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># set auth options assuming definition in .Renviron</span>
-<span class="fu"><a href="reference/oauth.html">set_qualtrics_opts</a></span>()
+<p>You can always custom set your credentials by calling the <code><a href="reference/qualtrics_auth.html">set_qualtrics_opts()</a></code> function:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># set auth options assuming definition in .Renviron</span>
+<span class="fu"><a href="reference/qualtrics_auth.html">set_qualtrics_opts</a></span>()
 <span class="co"># set auth options by hand</span>
-<span class="fu"><a href="reference/oauth.html">set_qualtrics_opts</a></span>(<span class="st">"9ssssss83jsl83282032932sds2"</span>, <span class="st">"mydatacenter"</span>)</pre></div>
+<span class="fu"><a href="reference/qualtrics_auth.html">set_qualtrics_opts</a></span>(<span class="st">"9ssssss83jsl83282032932sds2"</span>, <span class="st">"mydatacenter"</span>)
+</pre></div>
 <p>If you use this method, you will have set your credentials for every new session.</p>
 </div>
 <div id="setting-up-an-oauth-client-manager" class="section level3">
@@ -192,15 +196,16 @@
 <li>Create an OAuth application</li>
 <li>Use the client id, client secret, and data center id in <code>qualtrics_auth</code>, as below.</li>
 </ol>
-<!-- end list --><div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/oauth.html">qualtrics_auth</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">"xXxxX0X0x"</span>, <span class="kw">secret</span> <span class="kw">=</span> <span class="st">"xXxxX0X0x"</span>, <span class="kw">data_center</span> <span class="kw">=</span> <span class="st">"my.center"</span>)</pre></div>
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="reference/qualtrics_auth.html">qualtrics_auth</a></span>(id = <span class="st">"xXxxX0X0x"</span>, secret = <span class="st">"xXxxX0X0x"</span>, data_center = <span class="st">"my.center"</span>)
+</pre></div>
 <p>This will authenticate you, returning a bearer token valid for one hour, saving the <em>encrypted</em> credentials in a <code>.qualtrics-oauth</code> file, which will be automatically loaded in all subsequent sessions and automatically refreshed if need be. You should therefore only find the need to run <code>qualtrics_auth</code> once.</p>
 </div>
 </div>
 <div id="development-pipeline" class="section level2">
 <h2 class="hasAnchor">
 <a href="#development-pipeline" class="anchor"></a>Development pipeline</h2>
-<p>There are close to 200 different API calls provides by Qualtrics. You can find the progress of the implementation (including testing the calls) <a href="/articles/progress_table.html">here</a>.</p>
-<p>Depending on interest, demand, and help from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM Directory related calls are not implemented due to not having access to this feature in our own account.</p>
+<p>There are close to 200 different API calls provides by Qualtrics. Depending on interest, demand, and help from the community, efforts will be dedicated to the testing and implementation of missing references. Most of the XM Directory related calls are not implemented due to not having access to this feature in our own account.</p>
 </div>
 </div>
 
@@ -240,7 +245,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

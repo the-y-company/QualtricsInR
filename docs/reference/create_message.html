@@ -200,7 +200,7 @@ format and html for the second. The best is to use the 'get_message function'
 in order to view the structure of an existing message.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_message</span>(<span class='no'>library_id</span>, <span class='no'>category</span>, <span class='no'>description</span>, <span class='no'>messages</span>)</pre>
+    <pre class="usage"><span class='fu'>create_message</span>(<span class='kw'>library_id</span>, <span class='kw'>category</span>, <span class='kw'>description</span>, <span class='kw'>messages</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,12 +228,14 @@ in order to view the structure of an existing message.</p>
     <p>id of created message</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
- <span class='no'>message</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
- <span class='st'>"en"</span> <span class='kw'>=</span> <span class='st'>"Thank you for taking this survey."</span>,
- <span class='st'>"fr"</span> <span class='kw'>=</span> <span class='st'>"Merci de participer à cette enquête."</span>)
- <span class='fu'>create_message</span>(<span class='st'>"UR_0NXtl92JJWqfWcJ"</span>, <span class='st'>"invite"</span>, <span class='st'>"My New Invite Message"</span>, <span class='no'>message</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+ <span class='kw'>message</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+ <span class='st'>"en"</span> = <span class='st'>"Thank you for taking this survey."</span>, 
+ <span class='st'>"fr"</span> = <span class='st'>"Merci de participer à cette enquête."</span>)
+ <span class='fu'>create_message</span>(<span class='st'>"UR_0NXtl92JJWqfWcJ"</span>, <span class='st'>"invite"</span>, <span class='st'>"My New Invite Message"</span>, <span class='kw'>message</span>)
+}
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -249,7 +251,7 @@ in order to view the structure of an existing message.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

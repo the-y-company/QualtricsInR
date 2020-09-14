@@ -199,14 +199,14 @@ Recipients who have opted out will not receive the reminder.</p>
     </div>
 
     <pre class="usage"><span class='fu'>create_reminder_distribution</span>(
-  <span class='no'>parent_distribution_id</span>,
-  <span class='no'>library_id</span>,
-  <span class='no'>message_id</span>,
-  <span class='kw'>subject</span> <span class='kw'>=</span> <span class='st'>"Reminder - Participate to the survey"</span>,
-  <span class='kw'>send_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>() + <span class='fl'>2</span>, <span class='st'>"T00:00:00Z"</span>),
-  <span class='kw'>from_email</span> <span class='kw'>=</span> <span class='st'>"noreply@qualtrics.com"</span>,
-  <span class='kw'>from_name</span> <span class='kw'>=</span> <span class='st'>"Qualtrics"</span>,
-  <span class='kw'>reply_to_email</span> <span class='kw'>=</span> <span class='st'>"noreply@qualtrics.com"</span>
+  <span class='kw'>parent_distribution_id</span>,
+  <span class='kw'>library_id</span>,
+  <span class='kw'>message_id</span>,
+  subject = <span class='st'>"Reminder - Participate to the survey"</span>,
+  send_date = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>() <span class='op'>+</span> <span class='fl'>2</span>, <span class='st'>"T00:00:00Z"</span>),
+  from_email = <span class='st'>"noreply@qualtrics.com"</span>,
+  from_name = <span class='st'>"Qualtrics"</span>,
+  reply_to_email = <span class='st'>"noreply@qualtrics.com"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -257,13 +257,15 @@ can only be sent from another email if
 the organization authorizes a send on its behalf.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
   <span class='fu'>create_reminder_distribution</span>(
     <span class='st'>"EMD_6yYmF6vopfUz4gn"</span>,
-    <span class='kw'>library_id</span> <span class='kw'>=</span> <span class='st'>"UR_0NXtl92JJWqfWcJ"</span>,
-    <span class='kw'>message_id</span> <span class='kw'>=</span> <span class='st'>"MS_0fddN2xI3J0nGQZ"</span>
+    library_id = <span class='st'>"UR_0NXtl92JJWqfWcJ"</span>,
+    message_id = <span class='st'>"MS_0fddN2xI3J0nGQZ"</span>
 )
-}</div></pre>
+}
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -279,7 +281,7 @@ the organization authorizes a send on its behalf.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

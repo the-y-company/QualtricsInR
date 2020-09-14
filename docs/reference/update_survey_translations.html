@@ -194,7 +194,7 @@
     <p>Update the survey translation for a given language</p>
     </div>
 
-    <pre class="usage"><span class='fu'>update_survey_translations</span>(<span class='no'>survey_id</span>, <span class='no'>language_code</span>, <span class='no'>survey_field</span>)</pre>
+    <pre class="usage"><span class='fu'>update_survey_translations</span>(<span class='kw'>survey_id</span>, <span class='kw'>language_code</span>, <span class='kw'>survey_field</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -223,7 +223,8 @@ most simple approach is to run the get_survey_translations function for the
 corresponding language and built the list of fields the response.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>update_survey_translations</span>(<span class='no'>id</span>, <span class='st'>"EN"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"QID1_QuestionText"</span> <span class='kw'>=</span> <span class='st'>"Uno"</span>))</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>update_survey_translations</span>(<span class='kw'>id</span>, <span class='st'>"EN"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"QID1_QuestionText"</span> = <span class='st'>"Uno"</span>))
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -239,7 +240,7 @@ corresponding language and built the list of fields the response.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

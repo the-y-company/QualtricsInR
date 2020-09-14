@@ -194,7 +194,7 @@
     <p>Update a division's settings</p>
     </div>
 
-    <pre class="usage"><span class='fu'>update_division</span>(<span class='no'>division_id</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>permissions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>update_division</span>(<span class='kw'>division_id</span>, name = <span class='kw'>NULL</span>, status = <span class='kw'>NULL</span>, permissions = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -222,14 +222,16 @@
     <p>id of created message</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>update_division</span>(<span class='st'>"DV_1234567890AbCdE"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"newdivisionname"</span>)
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>perms</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-<span class='st'>"controlPanel"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-  <span class='st'>"surveyPermissions"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='st'>"editSurveyFlow"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"state"</span> <span class='kw'>=</span> <span class='st'>"off"</span>))))
-<span class='fu'>update_division</span>(<span class='st'>"DV_1234567890AbCdE"</span>, <span class='kw'>permissions</span> <span class='kw'>=</span> <span class='no'>perms</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>update_division</span>(<span class='st'>"DV_1234567890AbCdE"</span>, name = <span class='st'>"newdivisionname"</span>)
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>perms</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+<span class='st'>"controlPanel"</span> = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+  <span class='st'>"surveyPermissions"</span> = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='st'>"editSurveyFlow"</span> = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"state"</span> = <span class='st'>"off"</span>))))
+<span class='fu'>update_division</span>(<span class='st'>"DV_1234567890AbCdE"</span>, permissions = <span class='kw'>perms</span>)
+}
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -245,7 +247,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

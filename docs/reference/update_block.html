@@ -199,13 +199,13 @@ exisists in the survey (see list_questions and create_question).</p>
     </div>
 
     <pre class="usage"><span class='fu'>update_block</span>(
-  <span class='no'>survey_id</span>,
-  <span class='no'>block_id</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"Standard"</span>,
-  <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"New Block"</span>,
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>options</span>,
-  <span class='no'>elements</span>
+  <span class='kw'>survey_id</span>,
+  <span class='kw'>block_id</span>,
+  type = <span class='st'>"Standard"</span>,
+  description = <span class='st'>"New Block"</span>,
+  id = <span class='kw'>NULL</span>,
+  <span class='kw'>options</span>,
+  <span class='kw'>elements</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -246,9 +246,10 @@ exisists in the survey (see list_questions and create_question).</p>
     <p>A list</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'>update_block</span>(<span class='st'>"SV_012345678901234"</span>, <span class='st'>"BL_723z35LY23KCZ4p"</span>)
-}</div></pre>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -264,7 +265,7 @@ exisists in the survey (see list_questions and create_question).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

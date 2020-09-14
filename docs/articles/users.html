@@ -153,8 +153,10 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">QualtricsInR</span>)
-<span class="co">#&gt; ✔ API token successfully loaded!</span></pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">QualtricsInR</span>)
+<span class="co">#&gt; ✔ API token successfully loaded!</span>
+</pre></div>
 <div id="manage-users" class="section level2">
 <h2 class="hasAnchor">
 <a href="#manage-users" class="anchor"></a>Manage users</h2>
@@ -179,20 +181,22 @@
 <h2 class="hasAnchor">
 <a href="#creating-a-user-account" class="anchor"></a>Creating a user account</h2>
 <p>To create a user, you must a list of parameters to define the user account properties. An example is given below:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">user_definitions</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="st">"username"</span> <span class="kw">=</span> <span class="st">"firt.last@qualtrics.com"</span>,
-  <span class="st">"firstName"</span> <span class="kw">=</span> <span class="st">"first name"</span>,
-  <span class="st">"lastName"</span> <span class="kw">=</span> <span class="st">"last name"</span>,
-  <span class="st">"userType"</span> <span class="kw">=</span> <span class="st">"UT_012345678912345"</span>,
-  <span class="st">"email"</span> <span class="kw">=</span> <span class="st">"firt.last@qualtrics.com"</span>,
-  <span class="st">"password"</span> <span class="kw">=</span> <span class="st">"$123456789!"</span>,
-  <span class="st">"language"</span> <span class="kw">=</span> <span class="st">"en"</span>,
-  <span class="st">"timeZone"</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="st">"divisionId"</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="st">"accountExpirationDate"</span> <span class="kw">=</span> <span class="kw">NULL</span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">user_definitions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+  <span class="st">"username"</span> = <span class="st">"firt.last@qualtrics.com"</span>,
+  <span class="st">"firstName"</span> = <span class="st">"first name"</span>,
+  <span class="st">"lastName"</span> = <span class="st">"last name"</span>,
+  <span class="st">"userType"</span> = <span class="st">"UT_012345678912345"</span>,
+  <span class="st">"email"</span> = <span class="st">"firt.last@qualtrics.com"</span>,
+  <span class="st">"password"</span> = <span class="st">"$123456789!"</span>,
+  <span class="st">"language"</span> = <span class="st">"en"</span>,
+  <span class="st">"timeZone"</span> = <span class="kw">NULL</span>,
+  <span class="st">"divisionId"</span> = <span class="kw">NULL</span>,
+  <span class="st">"accountExpirationDate"</span> = <span class="kw">NULL</span>
   )
-
-<span class="fu"><a href="../reference/create_user.html">create_user</a></span>(<span class="no">user_definitions</span>)</pre></body></html></div>
+  
+<span class="fu"><a href="../reference/create_user.html">create_user</a></span>(<span class="kw">user_definitions</span>)
+</pre></div>
 <p>One can obviously also delete a user.</p>
 </div>
   </div>
@@ -212,7 +216,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

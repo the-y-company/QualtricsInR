@@ -198,7 +198,7 @@ with mailing lists. It is not possible to retrieve survey links for
 distributions to only one contact id.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>list_distribution_links</span>(<span class='no'>distribution_id</span>, <span class='no'>survey_id</span>)</pre>
+    <pre class="usage"><span class='fu'>list_distribution_links</span>(<span class='kw'>distribution_id</span>, <span class='kw'>survey_id</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -218,10 +218,12 @@ distributions to only one contact id.</p>
     <p>A <code>tibble</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
- <span class='no'>lst_distri</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='list_distributions.html'>list_distributions</a></span>(<span class='st'>"SV_dg0P0pcZoDYvpNX"</span>)
- <span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>list_distribution_links</span>(<span class='st'>"EMD_3rrDZa8AQBnACYl"</span>, <span class='st'>"SV_dg0P0pcZoDYvpNX"</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+ <span class='kw'>lst_distri</span> <span class='op'>&lt;-</span> <span class='fu'><a href='list_distributions.html'>list_distributions</a></span>(<span class='st'>"SV_dg0P0pcZoDYvpNX"</span>)
+ <span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'>list_distribution_links</span>(<span class='st'>"EMD_3rrDZa8AQBnACYl"</span>, <span class='st'>"SV_dg0P0pcZoDYvpNX"</span>)   
+}
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -237,7 +239,7 @@ distributions to only one contact id.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -376,12 +376,12 @@ create_thankyou_distribution <- function(
 #' generate a distribution invite. Refer to the documentation below for further
 #' information regarding usage of this API's result.
 #'
+#' @param survey_id the survey id
+#' @param mailinglist_id the mailing list id
+#' @param description name of the created ditribution (default is *Generated Links*)
+#' @param linktype the link type (default is Individual. Can be Multiple or Anonymous)
 #' @param action default is CreateDistribution. To generate transaction distribution links, value must be "CreateTransactionBatchDistribution"
-#' @param survey_id the distribution id
-#' @param mailinglist_id the distribution id
-#' @param description the distribution id
 #' @param expirationdate the id of survey
-#' @param linktype the id of survey
 #' 
 #' @details 
 #' To retrieve the actual links, use the 'list_distribution_links' call.
@@ -390,8 +390,12 @@ create_thankyou_distribution <- function(
 #' \dontrun{
 #'  generate_distribution_links(
 #'    "SV_erkBAsHrvoJyeYB",
+#'    "ML_7aoriSKinHh8MfP")
+#' generate_distribution_links(
+#'    "SV_erkBAsHrvoJyeYB",
 #'    "ML_7aoriSKinHh8MfP", 
 #'    "Survey Respondents Generated Links"
+#'    "Multiple"
 #' }
 #' 
 #' @return The id of the created distribution

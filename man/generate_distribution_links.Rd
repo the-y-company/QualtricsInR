@@ -14,13 +14,13 @@ generate_distribution_links(
 )
 }
 \arguments{
-\item{survey_id}{the distribution id}
+\item{survey_id}{the survey id}
 
-\item{mailinglist_id}{the distribution id}
+\item{mailinglist_id}{the mailing list id}
 
-\item{description}{the distribution id}
+\item{description}{name of the created ditribution (default is \emph{Generated Links})}
 
-\item{linktype}{the id of survey}
+\item{linktype}{the link type (default is Individual. Can be Multiple or Anonymous)}
 
 \item{action}{default is CreateDistribution. To generate transaction distribution links, value must be "CreateTransactionBatchDistribution"}
 
@@ -42,8 +42,12 @@ To retrieve the actual links, use the 'list_distribution_links' call.
 \dontrun{
  generate_distribution_links(
    "SV_erkBAsHrvoJyeYB",
+   "ML_7aoriSKinHh8MfP")
+generate_distribution_links(
+   "SV_erkBAsHrvoJyeYB",
    "ML_7aoriSKinHh8MfP", 
    "Survey Respondents Generated Links"
+   "Multiple"
 }
 
 }

@@ -197,13 +197,13 @@ having to create the email message in Qualtrics first.</p>
     </div>
 
     <pre class="usage"><span class='fu'>send_email_mailinglist</span>(
-  <span class='no'>mailingListId</span>,
-  <span class='kw'>sendDate</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>() + <span class='fl'>1</span>, <span class='st'>"T00:00:00Z"</span>),
-  <span class='kw'>subject</span> <span class='kw'>=</span> <span class='st'>"Take this survey"</span>,
-  <span class='kw'>messageText</span> <span class='kw'>=</span> <span class='st'>"Hello, take this survey"</span>,
-  <span class='kw'>fromEmail</span> <span class='kw'>=</span> <span class='st'>"noreply@qualtrics.com"</span>,
-  <span class='kw'>fromName</span> <span class='kw'>=</span> <span class='st'>"Qualtrics"</span>,
-  <span class='kw'>replyToEmail</span> <span class='kw'>=</span> <span class='st'>"noreply@qualtrics.com"</span>
+  <span class='kw'>mailingListId</span>,
+  sendDate = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>() <span class='op'>+</span> <span class='fl'>1</span>, <span class='st'>"T00:00:00Z"</span>),
+  subject = <span class='st'>"Take this survey"</span>,
+  messageText = <span class='st'>"Hello, take this survey"</span>,
+  fromEmail = <span class='st'>"noreply@qualtrics.com"</span>,
+  fromName = <span class='st'>"Qualtrics"</span>,
+  replyToEmail = <span class='st'>"noreply@qualtrics.com"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -244,13 +244,15 @@ having to create the email message in Qualtrics first.</p>
     <p>The email distribution id</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
  <span class='fu'>create_distribution</span>(
-   <span class='st'>"ML_7aoriSKinHh8MfP"</span>,
-   <span class='st'>"john.doe@qualtrics.com"</span>,
-   <span class='st'>"John Doe"</span>,
+   <span class='st'>"ML_7aoriSKinHh8MfP"</span>, 
+   <span class='st'>"john.doe@qualtrics.com"</span>, 
+   <span class='st'>"John Doe"</span>, 
    <span class='st'>"Participate in this awesome survey"</span>)
-}</div></pre>
+}
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -266,7 +268,7 @@ having to create the email message in Qualtrics first.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

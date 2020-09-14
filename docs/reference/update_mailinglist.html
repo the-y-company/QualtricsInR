@@ -195,10 +195,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>update_mailinglist</span>(
-  <span class='no'>mailinglist_id</span>,
-  <span class='kw'>library_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>category</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>mailinglist_id</span>,
+  library_id = <span class='kw'>NULL</span>,
+  name = <span class='kw'>NULL</span>,
+  category = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -227,7 +227,8 @@
     <p>A <code>list</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>update_mailinglist</span>(<span class='st'>"ML_1234567890AbCdE"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"New Name"</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>update_mailinglist</span>(<span class='st'>"ML_1234567890AbCdE"</span>, name = <span class='st'>"New Name"</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -243,7 +244,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

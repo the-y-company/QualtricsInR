@@ -202,7 +202,7 @@ the organization level, then it will be disabled at the division level
 regardless of its state.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_division</span>(<span class='no'>name</span>, <span class='kw'>division_admins</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>permissions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>create_division</span>(<span class='kw'>name</span>, division_admins = <span class='kw'>NULL</span>, permissions = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,11 +226,12 @@ regardless of its state.</p>
     <p>The id of the created division</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>create_division</span>(<span class='st'>"newdivision"</span>, <span class='st'>"DV_1234567890AbCdE"</span>)
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>admins</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"UR_1234567890AbCdE"</span>, <span class='st'>"UR_1234567890AbCdS"</span>)
-<span class='fu'>create_division</span>(<span class='st'>"newdivision"</span>, <span class='st'>"DV_1234567890AbCdE"</span>, <span class='no'>admins</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>create_division</span>(<span class='st'>"newdivision"</span>, <span class='st'>"DV_1234567890AbCdE"</span>)
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>admins</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"UR_1234567890AbCdE"</span>, <span class='st'>"UR_1234567890AbCdS"</span>)
+<span class='fu'>create_division</span>(<span class='st'>"newdivision"</span>, <span class='st'>"DV_1234567890AbCdE"</span>, <span class='kw'>admins</span>)
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -246,7 +247,7 @@ regardless of its state.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

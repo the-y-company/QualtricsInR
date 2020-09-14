@@ -194,10 +194,10 @@
     <p>Check which request was successful and which was not.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_success</span>(<span class='no'>requests</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>is_success</span>(<span class='kw'>requests</span>, verbose = <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for qualtrics_download</span>
-<span class='fu'>is_success</span>(<span class='no'>requests</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>is_success</span>(<span class='kw'>requests</span>, verbose = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -214,8 +214,10 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='no'>requests</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bulk-download.html'>request_downloads</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>))
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='no'>success</span> <span class='kw'>&lt;-</span> <span class='fu'>is_success</span>(<span class='no'>requests</span>, <span class='fl'>TRUE</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='kw'>requests</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bulk-download.html'>request_downloads</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>))
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='kw'>success</span> <span class='op'>&lt;-</span> <span class='fu'>is_success</span>(<span class='kw'>requests</span>, <span class='fl'>TRUE</span>)
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -231,7 +233,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

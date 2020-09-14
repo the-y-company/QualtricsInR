@@ -177,31 +177,38 @@
 <p>The method described below is a standard approach for people sending their survey to a predefined list of participants through the Qualtrics emailing service. The use of the API can facilitate the process of managing such distributions for multiple contact lists with different mailing strategies, for example.</p>
 <p>To create a new email distribution, you will need to have created an email body, saved as a Qualtrics library item in your account (see functions <code>list_messages</code> and <code>create_message</code>). You will also need the id of the contact list to send the survey to (see functions <code>list_mailinglists</code> and <code>create_mailinglist</code>).</p>
 <p>We show below a step-by-step process to set-up your first email distribution. First, we retrieve the account library id needed throughout all steps.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/list_libraries.html">list_libraries</a></span>()
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="../reference/list_libraries.html">list_libraries</a></span>()
 <span class="co">#&gt; # A tibble: 2 x 2</span>
 <span class="co">#&gt;   libraryId          libraryName      </span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;chr&gt;            </span>
 <span class="co">#&gt; 1 UR_1Z96ysDAytOdL2l Qualtrics in R   </span>
-<span class="co">#&gt; 2 GR_8jjjgh5XPTwmjit Qualtrics Library</span></pre></body></html></div>
+<span class="co">#&gt; 2 GR_8jjjgh5XPTwmjit Qualtrics Library</span>
+</pre></div>
 <p>For a simple user account, you will usually have available the account library and the default Qualtrics library. You’ve probably saved your email message in your account library.</p>
 <p>You can now list all messages available in the account:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/list_messages.html">list_messages</a></span>(<span class="st">"UR_1Z96ysDAytOdL2l"</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="../reference/list_messages.html">list_messages</a></span>(<span class="st">"UR_1Z96ysDAytOdL2l"</span>)
 <span class="co">#&gt; # A tibble: 3 x 3</span>
 <span class="co">#&gt;   id                 description      category</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;chr&gt;            &lt;chr&gt;   </span>
 <span class="co">#&gt; 1 MS_1AMM3cE022E0rUF Invitation Email invite  </span>
 <span class="co">#&gt; 2 MS_bvFkAsjp0Womse1 Thank You Email  thankYou</span>
-<span class="co">#&gt; 3 MS_5oNdvwUJhJBHq5L Reminder Email   reminder</span></pre></body></html></div>
+<span class="co">#&gt; 3 MS_5oNdvwUJhJBHq5L Reminder Email   reminder</span>
+</pre></div>
 <p>We’ve prepared three messages to use in the example which we now know the id of. Obviously, we will first create the distribution using the <em>Invitation Email</em> message.</p>
 <p>Finally, we need to retrieve the contact list id for the email recipients.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/list_mailinglists.html">list_mailinglists</a></span>()
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="../reference/list_mailinglists.html">list_mailinglists</a></span>()
 <span class="co">#&gt; # A tibble: 2 x 5</span>
 <span class="co">#&gt;   libraryId         id               name                    category  folder   </span>
 <span class="co">#&gt;   &lt;chr&gt;             &lt;chr&gt;            &lt;chr&gt;                   &lt;chr&gt;     &lt;chr&gt;    </span>
 <span class="co">#&gt; 1 UR_1Z96ysDAytOdL… ML_1ZlloFpR0AOl… contacts_test_api       api_tests /api_tes…</span>
-<span class="co">#&gt; 2 GR_8jjjgh5XPTwmj… ML_eer9soMmLieC… y5r2 cc radio placemen… Unassign… &lt;NA&gt;</span></pre></body></html></div>
+<span class="co">#&gt; 2 GR_8jjjgh5XPTwmj… ML_eer9soMmLieC… y5r2 cc radio placemen… Unassign… &lt;NA&gt;</span>
+</pre></div>
 <p>We will use the contact list <em>contacts_test_api</em>. Your can use the <code>list_surveys</code> function to retrieve the survey id for which you want to shcedule the distribution:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/list_surveys.html">list_surveys</a></span>()
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="../reference/list_surveys.html">list_surveys</a></span>()
 <span class="co">#&gt; # A tibble: 9 x 6</span>
 <span class="co">#&gt;   id          name          ownerId     lastModified    creationDate    isActive</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;           &lt;lgl&gt;   </span>
@@ -213,9 +220,11 @@
 <span class="co">#&gt; 6 SV_blW4Huz… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE    </span>
 <span class="co">#&gt; 7 SV_cScDRSV… api_distribu… UR_1Z96ysD… 2020-06-10T08:… 2020-04-16T08:… TRUE    </span>
 <span class="co">#&gt; 8 SV_elpspu2… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE    </span>
-<span class="co">#&gt; 9 SV_esXQqpy… api_copy_dem… UR_1Z96ysD… 2020-06-11T08:… 2020-06-11T08:… FALSE</span></pre></body></html></div>
+<span class="co">#&gt; 9 SV_esXQqpy… api_copy_dem… UR_1Z96ysD… 2020-06-11T08:… 2020-06-11T08:… FALSE</span>
+</pre></div>
 <p>We are now ready to create our email distribution:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">distribution_id</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/create_email_distribution.html">create_email_distribution</a></span>(
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">distribution_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_email_distribution.html">create_email_distribution</a></span>(
   <span class="st">"SV_cScDRSV5hsN3YEd"</span>, <span class="co"># survey id</span>
   <span class="st">"UR_1Z96ysDAytOdL2l"</span>, <span class="co"># library id</span>
   <span class="st">"MS_1AMM3cE022E0rUF"</span>, <span class="co"># email message id</span>
@@ -225,38 +234,43 @@
   <span class="st">"Participate in this survey"</span>,  <span class="co"># email subject</span>
   <span class="st">"2022-04-01T00:00:00Z"</span> <span class="co"># send date</span>
     )
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">distribution_id</span>)
-<span class="co">#&gt; [1] "EMD_ozvuOhvfj3PVyiZ"</span></pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">distribution_id</span>)
+<span class="co">#&gt; [1] "EMD_vqCmWNsqeO2cApi"</span>
+</pre></div>
 <p>This call will return the id of the newly created distribution which allows you interact with the distribution: create a reminder distribution, schedule an thank you message, etc. Note that you can always recover the distribution id by listing all distributions using the <code>list_distributions</code> function.</p>
 <p><strong>Note that our Qualtrics account may be set with a different time zone than your local environment. Make sure to specificy your date fields accordingly.</strong></p>
 <p>There are a number of optional parameters you can find in the function documentation. It is important to note that by the default, the sender email will be set to <em><a href="mailto:noreply@qualtrics.com" class="email">noreply@qualtrics.com</a></em>. You can only use custom email address if your account is appropriately configured to do so (see <a href="https://www.qualtrics.com/support/survey-platform/distributions-module/email-distribution/using-a-custom-from-address/">qualtrics documentation</a>)</p>
 <p>We can already schedule a reminder email for the survey using the <em>Reminder Email</em> email message id:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/create_reminder_distribution.html">create_reminder_distribution</a></span>(
-  <span class="no">distribution_id</span>, <span class="co"># parent distribution id</span>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="../reference/create_reminder_distribution.html">create_reminder_distribution</a></span>(
+  <span class="kw">distribution_id</span>, <span class="co"># parent distribution id</span>
   <span class="st">"UR_1Z96ysDAytOdL2l"</span>, <span class="co"># library id</span>
   <span class="st">"MS_5oNdvwUJhJBHq5L"</span>, <span class="co"># email message id</span>
   <span class="st">"Reminder - Participate to the survey"</span>, <span class="co"># email subject</span>
   <span class="st">"2022-04-08T00:00:00Z"</span> <span class="co"># send date</span>
 )
-<span class="co">#&gt; [1] "EMD_vjdp61WYk7t9IUE"</span></pre></body></html></div>
+<span class="co">#&gt; [1] "EMD_xkLoNOjuMh4urYN"</span>
+</pre></div>
 <p>Note that if you do not want to have to create the email message in Qualtrics before sending the email, the you can use the function <code>send_email_mailinglist</code>.</p>
 </div>
 <div id="exporting-personalized-links-from-qualtrics" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exporting-personalized-links-from-qualtrics" class="anchor"></a>Exporting personalized links from Qualtrics</h2>
 <p>You can also give an instruction for Qualtrics to generate personalized survey links for all contacts of a contact list. You can then export these links and distribute them through your own organization email service.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">distribution_links_id</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/generate_distribution_links.html">generate_distribution_links</a></span>(<span class="st">"SV_cScDRSV5hsN3YEd"</span>, <span class="st">"ML_1ZlloFpR0AOl2GV"</span>, <span class="st">"Survey Respondents Generated Links"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">distribution_links_id</span>)
-<span class="co">#&gt; [1] "EMD_y535HFACPHxDZ8b"</span>
-<span class="fu"><a href="../reference/list_distribution_links.html">list_distribution_links</a></span>(<span class="no">distribution_links_id</span>, <span class="st">"SV_cScDRSV5hsN3YEd"</span>)
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">distribution_links_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_distribution_links.html">generate_distribution_links</a></span>(<span class="st">"SV_cScDRSV5hsN3YEd"</span>, <span class="st">"ML_1ZlloFpR0AOl2GV"</span>, <span class="st">"Survey Respondents Generated Links"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">distribution_links_id</span>)
+<span class="co">#&gt; [1] "EMD_RjMt3l8Qo2EajEU"</span>
+<span class="fu"><a href="../reference/list_distribution_links.html">list_distribution_links</a></span>(<span class="kw">distribution_links_id</span>, <span class="st">"SV_cScDRSV5hsN3YEd"</span>)
 <span class="co">#&gt; # A tibble: 3 x 10</span>
 <span class="co">#&gt;   contactId link  exceededContact… linkExpiration status lastName firstName</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 MLRP_7UT… http… FALSE            2020-09-18T07… Email… LastNam… FirstNam…</span>
-<span class="co">#&gt; 2 MLRP_5i0… http… FALSE            2020-09-18T07… Email… LastNam… FirstNam…</span>
-<span class="co">#&gt; 3 MLRP_1M9… http… FALSE            2020-09-18T07… Email… LastNam… FirstNam…</span>
+<span class="co">#&gt; 1 MLRP_7UT… http… FALSE            2020-11-13T07… Email… LastNam… FirstNam…</span>
+<span class="co">#&gt; 2 MLRP_5i0… http… FALSE            2020-11-13T07… Email… LastNam… FirstNam…</span>
+<span class="co">#&gt; 3 MLRP_1M9… http… FALSE            2020-11-13T07… Email… LastNam… FirstNam…</span>
 <span class="co">#&gt; # … with 3 more variables: externalDataReference &lt;lgl&gt;, email &lt;chr&gt;,</span>
-<span class="co">#&gt; #   unsubscribed &lt;chr&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   unsubscribed &lt;chr&gt;</span>
+</pre></div>
 </div>
   </div>
 
@@ -275,7 +289,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

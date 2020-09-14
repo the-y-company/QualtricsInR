@@ -159,9 +159,10 @@
 <h2 class="hasAnchor">
 <a href="#finding-your-survey-id" class="anchor"></a>Finding your Survey Id</h2>
 <p>You can always find the id of one of your surveys by logging into your Qualtrics account and inspecting the URL when previewing your survey or inspect your Qualtrics IDs account page. Through the API, it is however straightforward to list all the surveys available in your account:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># retrieve all available survey ids from your account</span>
-<span class="no">lst_surveys</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/list_surveys.html">list_surveys</a></span>()
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">lst_surveys</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># retrieve all available survey ids from your account</span>
+<span class="kw">lst_surveys</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/list_surveys.html">list_surveys</a></span>()
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">lst_surveys</span>)
 <span class="co">#&gt; # A tibble: 9 x 6</span>
 <span class="co">#&gt;   id          name          ownerId     lastModified    creationDate    isActive</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;           &lt;lgl&gt;   </span>
@@ -173,13 +174,15 @@
 <span class="co">#&gt; 6 SV_blW4Huz… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE    </span>
 <span class="co">#&gt; 7 SV_cScDRSV… api_distribu… UR_1Z96ysD… 2020-06-10T08:… 2020-04-16T08:… TRUE    </span>
 <span class="co">#&gt; 8 SV_elpspu2… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE    </span>
-<span class="co">#&gt; 9 SV_esXQqpy… api_copy_dem… UR_1Z96ysD… 2020-06-11T08:… 2020-06-11T08:… FALSE</span></pre></body></html></div>
+<span class="co">#&gt; 9 SV_esXQqpy… api_copy_dem… UR_1Z96ysD… 2020-06-11T08:… 2020-06-11T08:… FALSE</span>
+</pre></div>
 </div>
 <div id="survey-response-status" class="section level2">
 <h2 class="hasAnchor">
 <a href="#survey-response-status" class="anchor"></a>Survey Response Status</h2>
 <p>Rather than exporting the full set of responses from a survey, you might only be interested in checking the current status of total responses:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/get_survey_response_counts.html">get_survey_response_counts</a></span>(<span class="st">"SV_elpspu2EuJXLEWx"</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="../reference/get_survey_response_counts.html">get_survey_response_counts</a></span>(<span class="st">"SV_elpspu2EuJXLEWx"</span>)
 <span class="co">#&gt; $auditable</span>
 <span class="co">#&gt; [1] 3</span>
 <span class="co">#&gt; </span>
@@ -187,14 +190,16 @@
 <span class="co">#&gt; [1] 0</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $deleted</span>
-<span class="co">#&gt; [1] 0</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0</span>
+</pre></div>
 <p>The call returns a list with 3 elements corresponding to the valid survey responses (‘auditable’), the responses that were generated or deleted.</p>
 </div>
 <div id="standard-export-method" class="section level2">
 <h2 class="hasAnchor">
 <a href="#standard-export-method" class="anchor"></a>Standard Export Method</h2>
 <p>You can export the responses from your survey using the <code><a href="../reference/get_survey_responses.html">get_survey_responses()</a></code> function. To retrieve the id of your survey, you can use the <code>list_surveys</code> function.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># export survey responses</span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># export survey responses</span>
 <span class="fu"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(<span class="st">"SV_cScDRSV5hsN3YEd"</span>)
 <span class="co">#&gt; # A tibble: 3 x 19</span>
 <span class="co">#&gt;   StartDate EndDate Status IPAddress Progress `Duration (in s… Finished</span>
@@ -205,7 +210,8 @@
 <span class="co">#&gt; # … with 12 more variables: RecordedDate &lt;chr&gt;, ResponseId &lt;chr&gt;,</span>
 <span class="co">#&gt; #   RecipientLastName &lt;chr&gt;, RecipientFirstName &lt;chr&gt;, RecipientEmail &lt;chr&gt;,</span>
 <span class="co">#&gt; #   ExternalReference &lt;chr&gt;, LocationLatitude &lt;chr&gt;, LocationLongitude &lt;chr&gt;,</span>
-<span class="co">#&gt; #   DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;, Q1 &lt;chr&gt;, Q2 &lt;chr&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;, Q1 &lt;chr&gt;, Q2 &lt;chr&gt;</span>
+</pre></div>
 <p>By default, the data is not saved on disk. You can save your data in a desired location by using the <em>saveDir</em> argument.</p>
 <pre><code><a href="../reference/get_survey_responses.html">get_survey_responses("SV_cScDRSV5hsN3YEd", format = "csv", saveDir = "./data/", filename = "test_survey")</a></code></pre>
 <p>The default file format is json but csv and tsv can be passed. We currently don’t provide the SPSS file format as an output option. The file is automatically named with the survey id if the parameter <em>filename</em> is not specified.</p>
@@ -221,17 +227,18 @@
 <h2 class="hasAnchor">
 <a href="#retrieving-responses-for-multiple-surveys" class="anchor"></a>Retrieving Responses for Multiple Surveys</h2>
 <p>If you need to download responses from multiple surveys or you have a need to schedule regular automated exports of multiple survey responses, we recommend you use the approach documented below. Instead of looping over each survey, requesting the export and downloading the file from the Qualtrics server, we will send the request to Qualtrics to prepare all the files and then export them.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># request creation of response exports</span>
-<span class="no">requests</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bulk-download.html">request_downloads</a></span>(<span class="no">lst_surveys</span>$<span class="no">id</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"csv"</span>)
-<span class="no">requests</span>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="co"># request creation of response exports</span>
+<span class="kw">requests</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bulk-download.html">request_downloads</a></span>(<span class="kw">lst_surveys</span><span class="op">$</span><span class="kw">id</span>, format = <span class="st">"csv"</span>)
+<span class="kw">requests</span>
 <span class="co">#&gt; Download Requests:</span>
 <span class="co">#&gt;  ✔ 9  Successful</span>
 <span class="co">#&gt;  ✖ 0  Unsuccessful</span>
 <span class="co"># download the response files</span>
-<span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/bulk-download.html">download_requested</a></span>(<span class="no">requests</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">data</span>)
+<span class="kw">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bulk-download.html">download_requested</a></span>(<span class="kw">requests</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">data</span>)
 <span class="co">#&gt; [1] 9</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span><span class="kw">[[</span><span class="fl">1</span>]])
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">data</span>[[<span class="fl">1</span>]])
 <span class="co">#&gt; # A tibble: 1 x 19</span>
 <span class="co">#&gt;   StartDate EndDate Status IPAddress Progress `Duration (in s… Finished</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;   </span>
@@ -239,7 +246,8 @@
 <span class="co">#&gt; # … with 12 more variables: RecordedDate &lt;chr&gt;, ResponseId &lt;chr&gt;,</span>
 <span class="co">#&gt; #   RecipientLastName &lt;chr&gt;, RecipientFirstName &lt;chr&gt;, RecipientEmail &lt;chr&gt;,</span>
 <span class="co">#&gt; #   ExternalReference &lt;chr&gt;, LocationLatitude &lt;chr&gt;, LocationLongitude &lt;chr&gt;,</span>
-<span class="co">#&gt; #   DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;, Q1 &lt;chr&gt;, Q2 &lt;chr&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;, Q1 &lt;chr&gt;, Q2 &lt;chr&gt;</span>
+</pre></div>
 <p>The download will return a list with each element containing the responses for each individual survey.</p>
 <p>The implementation takes into account the rate limit imposed by Qualtrics for this specific call. Once the limit is attained in looping accross the different survey ids, the procedure waits a few seconds before trying again. You can set the parameter <em>retryOnRateLimit</em> to FALSE and the procedure will stop upon the first error returned by Qualtrics.</p>
 </div>
@@ -269,7 +277,7 @@ request_downloads(survids$id[1:5], format = "csv", exportResponsesInProgress = T
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
