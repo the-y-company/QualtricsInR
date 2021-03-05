@@ -17,4 +17,5 @@ Retrieve the list of languages in which a survey is available
 }
 \examples{
 \dontrun{get_survey_languages("SV_012345678901234")}
+
 }

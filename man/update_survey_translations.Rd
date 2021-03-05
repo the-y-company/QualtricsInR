@@ -2,28 +2,34 @@
 % Please edit documentation in R/survey-definitions-languages.R
 \name{update_survey_translations}
 \alias{update_survey_translations}
-\title{Update the survey translation for a given language}
+\title{Update survey translation}
 \usage{
-update_survey_translations(survey_id, language_code, survey_field)
+update_survey_translations(survey_id, language_code, survey_translation)
 }
 \arguments{
 \item{survey_id}{the survey id}
 
 \item{language_code}{the language code}
 
-\item{survey_field}{need to be inferred from retrieving a translation first}
+\item{survey_translation}{list with all translated survey fields (see \code{get_survey_translations})}
 }
 \value{
 A \code{status}.
 }
 \description{
-Update the survey translation for a given language
+Update survey translation
 }
 \details{
-To understand which the field names to provide as translated input, the
-most simple approach is to run the get_survey_translations function for the
-corresponding language and built the list of fields the response.
+Update a surveys translation by provind a list of survey elements' translations for a
+given language.
 }
 \examples{
-\dontrun{update_survey_translations(id, "EN", list("QID1_QuestionText" = "Uno"))}
+\dontrun{
+# retrieve translation from a survey
+srv_transl_pt <- get_survey_translations("SV_dnEGNjwrSTQXxiZ", "PT")
+# create pt translation in other survey
+update_survey_languages("SV_6fj3YgWt6ocXL1A", "PT")
+# update the PT translation
+update_survey_translations(id, "EN", srv_transl_pt)
+}
 }

@@ -1,8 +1,12 @@
 #' Retrieve the list of languages in which a survey is available
+#' 
 #' @param survey_id the survey id
+#' 
 #' @examples
 #' \dontrun{get_survey_languages("SV_012345678901234")}
+#' 
 #' @return A \code{list} of available languages
+#' 
 #' @export
 get_survey_languages <- function(survey_id) {
   params <- c("surveys", survey_id, "languages")
@@ -43,24 +47,30 @@ update_survey_languages <- function(survey_id, language_codes) {
   getcnt$meta$httpStatus
 }
 
-#' Update the survey translation for a given language
+#' Update survey translation
 #'
 #' @param survey_id the survey id
 #' @param language_code the language code
-#' @param survey_field need to be inferred from retrieving a translation first
+#' @param survey_translation list with all translated survey fields (see `get_survey_translations`)
 #'
 #' @details
-#' To understand which the field names to provide as translated input, the
-#' most simple approach is to run the get_survey_translations function for the
-#' corresponding language and built the list of fields the response.
+#' Update a surveys translation by provind a list of survey elements' translations for a
+#' given language.
 #'
 #' @examples
-#' \dontrun{update_survey_translations(id, "EN", list("QID1_QuestionText" = "Uno"))}
+#' \dontrun{
+#' # retrieve translation from a survey
+#' srv_transl_pt <- get_survey_translations("SV_dnEGNjwrSTQXxiZ", "PT")
+#' # create pt translation in other survey
+#' update_survey_languages("SV_6fj3YgWt6ocXL1A", "PT")
+#' # update the PT translation
+#' update_survey_translations(id, "EN", srv_transl_pt)
+#' }
 #' @return A \code{status}.
 #' @export
-update_survey_translations <- function(survey_id, language_code, survey_field) {
+update_survey_translations <- function(survey_id, language_code, survey_translation) {
   params <- c("surveys", survey_id, "translations", language_code)
-  body <- survey_field
+  body <- survey_translation
   getcnt <- .qualtrics_put(params, NULL, body)
   getcnt$meta$httpStatus
 }
