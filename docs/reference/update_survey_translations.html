@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Update the survey translation for a given language — update_survey_translations • QualtricsInR</title>
+<title>Update survey translation — update_survey_translations • QualtricsInR</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Update the survey translation for a given language — update_survey_translations" />
-<meta property="og:description" content="Update the survey translation for a given language" />
+<meta property="og:title" content="Update survey translation — update_survey_translations" />
+<meta property="og:description" content="Update survey translation" />
 
 
 
@@ -168,7 +168,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ppssphysics/QualtricsInR">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -185,16 +185,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Update the survey translation for a given language</h1>
+    <h1>Update survey translation</h1>
     <small class="dont-index">Source: <a href='https://github.com/ppssphysics/QualtricsInR/blob/master/R/survey-definitions-languages.R'><code>R/survey-definitions-languages.R</code></a></small>
     <div class="hidden name"><code>update_survey_translations.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Update the survey translation for a given language</p>
+    <p>Update survey translation</p>
     </div>
 
-    <pre class="usage"><span class='fu'>update_survey_translations</span>(<span class='kw'>survey_id</span>, <span class='kw'>language_code</span>, <span class='kw'>survey_field</span>)</pre>
+    <pre class="usage"><span class='fu'>update_survey_translations</span>(<span class='kw'>survey_id</span>, <span class='kw'>language_code</span>, <span class='kw'>survey_translation</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -208,8 +208,8 @@
       <td><p>the language code</p></td>
     </tr>
     <tr>
-      <th>survey_field</th>
-      <td><p>need to be inferred from retrieving a translation first</p></td>
+      <th>survey_translation</th>
+      <td><p>list with all translated survey fields (see <code>get_survey_translations</code>)</p></td>
     </tr>
     </table>
 
@@ -218,12 +218,18 @@
     <p>A <code>status</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>To understand which the field names to provide as translated input, the
-most simple approach is to run the get_survey_translations function for the
-corresponding language and built the list of fields the response.</p>
+    <p>Update a surveys translation by provind a list of survey elements' translations for a
+given language.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'>update_survey_translations</span>(<span class='kw'>id</span>, <span class='st'>"EN"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"QID1_QuestionText"</span> = <span class='st'>"Uno"</span>))
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># retrieve translation from a survey</span>
+<span class='kw'>srv_transl_pt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_survey_translations.html'>get_survey_translations</a></span>(<span class='st'>"SV_dnEGNjwrSTQXxiZ"</span>, <span class='st'>"PT"</span>)
+<span class='co'># create pt translation in other survey</span>
+<span class='fu'><a href='update_survey_languages.html'>update_survey_languages</a></span>(<span class='st'>"SV_6fj3YgWt6ocXL1A"</span>, <span class='st'>"PT"</span>)
+<span class='co'># update the PT translation</span>
+<span class='fu'>update_survey_translations</span>(<span class='kw'>id</span>, <span class='st'>"PT"</span>, <span class='kw'>srv_transl_pt</span>)
+}
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

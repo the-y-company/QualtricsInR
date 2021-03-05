@@ -134,6 +134,34 @@ import_survey("name", "./survey.qsf", 1)
 import_survey("name", "https://www.example.com/mysurvey.qsf", 1)
 ```
 
+## Languages and Translations
+
+You can check the languages currently enabled for the survey with `get_survey_languages`. You 
+can update available languages, for example adding Spanish and Portuguese to the base english
+survey:
+
+```r
+update_survey_languages("SV_1873930DS2", c("EN", "ES", "PT"))
+```
+
+You can retrieve a given translation, which will return a list of all survey textual items that can
+be translated.
+
+```r
+srv_transl_pt <- get_survey_translations("SV_1873930DS2", "PT")
+```
+
+This can be useful if you want to handle your translation process outide of Qualtrics. Provide you keep the
+item references and struture of the list untouched, you will thn be able to update the survey translation back
+into Qualtrics:
+
+```r
+update_survey_translations(id, "PT", srv_transl_pt)
+```
+
+Another compelling use case is to export different languages from multiple clones of a
+survey and import it back into the master version.
+
 ## Manipulating Survey Objects
 
 The Qualtrics API provides a number of functionalities to interact directly with a survey's internal structure. There is the possiblity to intereact with:

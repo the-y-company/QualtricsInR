@@ -126,7 +126,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ppssphysics/QualtricsInR">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,7 +140,7 @@
 
       
 
-      </header><script src="distributions_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
+      </header><script src="distributions_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Distributing Surveys</h1>
@@ -235,7 +235,7 @@
   <span class="st">"2022-04-01T00:00:00Z"</span> <span class="co"># send date</span>
     )
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">distribution_id</span>)
-<span class="co">#&gt; [1] "EMD_vqCmWNsqeO2cApi"</span>
+<span class="co">#&gt; [1] "EMD_UwDnFPyFaqLesc3"</span>
 </pre></div>
 <p>This call will return the id of the newly created distribution which allows you interact with the distribution: create a reminder distribution, schedule an thank you message, etc. Note that you can always recover the distribution id by listing all distributions using the <code>list_distributions</code> function.</p>
 <p><strong>Note that our Qualtrics account may be set with a different time zone than your local environment. Make sure to specificy your date fields accordingly.</strong></p>
@@ -249,7 +249,7 @@
   <span class="st">"Reminder - Participate to the survey"</span>, <span class="co"># email subject</span>
   <span class="st">"2022-04-08T00:00:00Z"</span> <span class="co"># send date</span>
 )
-<span class="co">#&gt; [1] "EMD_xkLoNOjuMh4urYN"</span>
+<span class="co">#&gt; [1] "EMD_4cnhBrjRajxJbOe"</span>
 </pre></div>
 <p>Note that if you do not want to have to create the email message in Qualtrics before sending the email, the you can use the function <code>send_email_mailinglist</code>.</p>
 </div>
@@ -260,14 +260,14 @@
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">distribution_links_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_distribution_links.html">generate_distribution_links</a></span>(<span class="st">"SV_cScDRSV5hsN3YEd"</span>, <span class="st">"ML_1ZlloFpR0AOl2GV"</span>, <span class="st">"Survey Respondents Generated Links"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">distribution_links_id</span>)
-<span class="co">#&gt; [1] "EMD_RjMt3l8Qo2EajEU"</span>
+<span class="co">#&gt; [1] "EMD_Q8CfHXgbzX070LC"</span>
 <span class="fu"><a href="../reference/list_distribution_links.html">list_distribution_links</a></span>(<span class="kw">distribution_links_id</span>, <span class="st">"SV_cScDRSV5hsN3YEd"</span>)
 <span class="co">#&gt; # A tibble: 3 x 10</span>
-<span class="co">#&gt;   contactId link  exceededContact… linkExpiration status lastName firstName</span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 MLRP_7UT… http… FALSE            2020-11-13T07… Email… LastNam… FirstNam…</span>
-<span class="co">#&gt; 2 MLRP_5i0… http… FALSE            2020-11-13T07… Email… LastNam… FirstNam…</span>
-<span class="co">#&gt; 3 MLRP_1M9… http… FALSE            2020-11-13T07… Email… LastNam… FirstNam…</span>
+<span class="co">#&gt;   contactId  link      exceededContact… linkExpiration status lastName firstName</span>
+<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 MLRP_7UTD… https://… FALSE            2021-05-04T07… Email… LastNam… FirstNam…</span>
+<span class="co">#&gt; 2 MLRP_5i0c… https://… FALSE            2021-05-04T07… Email… LastNam… FirstNam…</span>
+<span class="co">#&gt; 3 MLRP_1M92… https://… FALSE            2021-05-04T07… Email… LastNam… FirstNam…</span>
 <span class="co">#&gt; # … with 3 more variables: externalDataReference &lt;lgl&gt;, email &lt;chr&gt;,</span>
 <span class="co">#&gt; #   unsubscribed &lt;chr&gt;</span>
 </pre></div>

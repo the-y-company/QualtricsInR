@@ -64,7 +64,7 @@ update_survey_languages <- function(survey_id, language_codes) {
 #' # create pt translation in other survey
 #' update_survey_languages("SV_6fj3YgWt6ocXL1A", "PT")
 #' # update the PT translation
-#' update_survey_translations(id, "EN", srv_transl_pt)
+#' update_survey_translations(id, "PT", srv_transl_pt)
 #' }
 #' @return A \code{status}.
 #' @export

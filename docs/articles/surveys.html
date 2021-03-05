@@ -126,7 +126,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ppssphysics/QualtricsInR">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,7 +140,7 @@
 
       
 
-      </header><script src="surveys_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
+      </header><script src="surveys_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Basic survey manipulations</h1>
@@ -256,6 +256,23 @@
 <span class="co"># Import a file from a url</span>
 <span class="fu"><a href="../reference/import_survey.html">import_survey</a></span>(<span class="st">"name"</span>, <span class="st">"https://www.example.com/mysurvey.qsf"</span>, <span class="fl">1</span>)
 </pre></div>
+</div>
+<div id="languages-and-translations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#languages-and-translations" class="anchor"></a>Languages and Translations</h2>
+<p>You can check the languages currently enabled for the survey with <code>get_survey_languages</code>. You can update available languages, for example adding Spanish and Portuguese to the base english survey:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="../reference/update_survey_languages.html">update_survey_languages</a></span>(<span class="st">"SV_1873930DS2"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EN"</span>, <span class="st">"ES"</span>, <span class="st">"PT"</span>))
+</pre></div>
+<p>You can retrieve a given translation, which will return a list of all survey textual items that can be translated.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="kw">srv_transl_pt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_survey_translations.html">get_survey_translations</a></span>(<span class="st">"SV_1873930DS2"</span>, <span class="st">"PT"</span>)
+</pre></div>
+<p>This can be useful if you want to handle your translation process outide of Qualtrics. Provide you keep the item references and struture of the list untouched, you will thn be able to update the survey translation back into Qualtrics:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu"><a href="../reference/update_survey_translations.html">update_survey_translations</a></span>(<span class="kw">id</span>, <span class="st">"PT"</span>, <span class="kw">srv_transl_pt</span>)
+</pre></div>
+<p>Another compelling use case is to export different languages from multiple clones of a survey and import it back into the master version.</p>
 </div>
 <div id="manipulating-survey-objects" class="section level2">
 <h2 class="hasAnchor">

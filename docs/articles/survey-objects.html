@@ -126,7 +126,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ppssphysics/QualtricsInR">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,7 +140,7 @@
 
       
 
-      </header><script src="survey-objects_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
+      </header><script src="survey-objects_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Survey Objects</h1>
@@ -174,12 +174,12 @@
 <p>Flow is the elements that contains the whole flow structure. Here we have 2 seb-elements corresponding to our 2 blocks in the survey:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>)
-<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; [1] 3</span>
 </pre></div>
 <p>Properties contain at mimimum the Count variable that tell how many elements make up the flow. Remember the top-level Flow element returned in the list counts as an element so the count here is 3 (2 blocks and 1 top level flow element).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="kw">flow</span><span class="op">$</span><span class="kw">Properties</span><span class="op">$</span><span class="kw">Count</span>
-<span class="co">#&gt; [1] 3</span>
+<span class="co">#&gt; [1] 4</span>
 </pre></div>
 <p>FlowID is a unique id for the flow element (written as “FL_”)</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
@@ -189,7 +189,7 @@
 <p>Type defines different possible type of flow elements. For this survey, we find:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">flow</span><span class="op">$</span><span class="kw">Type</span>, <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">1</span>]]<span class="op">$</span><span class="kw">Type</span>, <span class="kw">flow</span><span class="op">$</span><span class="kw">Flow</span>[[<span class="fl">2</span>]]<span class="op">$</span><span class="kw">Type</span>)
-<span class="co">#&gt; [1] "Root"     "Standard" "Block"</span>
+<span class="co">#&gt; [1] "Root"     "Block"    "Standard"</span>
 </pre></div>
 <p>Each children flow element can have a specific ID that links that flow element to a specific object of the survey, for instance, here, block Ids.</p>
 <p>Looking at updating the flow, we could for example switch the order of the two flow elements. To, we just invert the list order as well as the flow ids to match the new order.</p>
