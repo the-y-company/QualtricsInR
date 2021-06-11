@@ -68,7 +68,7 @@ The default file format is json but csv and tsv can be passed. We currently don'
 format as an output option. The file is automatically named with the survey id if the parameter *filename* is not
 specified.
 
-A number of [optional parameters](https://api.qualtrics.com/docs/getting-survey-responses-new) can be passed 
+A number of [optional parameters](https://api.qualtrics.com/api-reference/reference/responseImportsExports.json/paths/~1surveys~1%7BsurveyId%7D~1export-responses/post) can be passed 
 to the function. Be aware that any download that exceeds 1.8 GB will need to be split in several exports 
 using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD 
 (more information [here](https://api.qualtrics.com/docs/dates-and-times)). For example:
@@ -82,7 +82,14 @@ get_survey_responses(
 ```
 
 Instead of exporting the recode value for the answer choices, you can export the text of the answer choice by setting the
-parameter *useLabels" to TRUE.
+parameter *useLabels* to TRUE:
+
+```
+get_survey_responses(
+  "SV_cScDRSV5hsN3YEd", 
+  format = "csv", 
+  useLabels = TRUE)
+```
 
 ## Retrieving Responses for Multiple Surveys
 

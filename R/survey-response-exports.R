@@ -34,7 +34,6 @@
     data <- read_tsv(file)
 
   if (!is.null(saveDir)) {
-
     if (is.null(filename))
       file.copy(file, paste0(saveDir, surveyId, ".", fileType), overwrite = TRUE)
     else

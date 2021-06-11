@@ -215,19 +215,23 @@
 <p>By default, the data is not saved on disk. You can save your data in a desired location by using the <em>saveDir</em> argument.</p>
 <pre><code><a href="../reference/get_survey_responses.html">get_survey_responses("SV_cScDRSV5hsN3YEd", format = "csv", saveDir = "./data/", filename = "test_survey")</a></code></pre>
 <p>The default file format is json but csv and tsv can be passed. We currently don’t provide the SPSS file format as an output option. The file is automatically named with the survey id if the parameter <em>filename</em> is not specified.</p>
-<p>A number of <a href="https://api.qualtrics.com/docs/getting-survey-responses-new">optional parameters</a> can be passed to the function. Be aware that any download that exceeds 1.8 GB will need to be split in several exports using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD (more information <a href="https://api.qualtrics.com/docs/dates-and-times">here</a>). For example:</p>
+<p>A number of <a href="https://api.qualtrics.com/api-reference/reference/responseImportsExports.json/paths/~1surveys~1%7BsurveyId%7D~1export-responses/post">optional parameters</a> can be passed to the function. Be aware that any download that exceeds 1.8 GB will need to be split in several exports using different time intervals (dates specifications follow the ISO 8601 standard YYYY-MM-DD (more information <a href="https://api.qualtrics.com/docs/dates-and-times">here</a>). For example:</p>
 <pre><code><a href="../reference/get_survey_responses.html">get_survey_responses(
   "SV_cScDRSV5hsN3YEd", 
   format = "csv", 
   startDate = "2020-04-01T07:31:43Z", 
   endDate = "2020-04-29T07:31:43Z")</a></code></pre>
-<p>Instead of exporting the recode value for the answer choices, you can export the text of the answer choice by setting the parameter *useLabels" to TRUE.</p>
+<p>Instead of exporting the recode value for the answer choices, you can export the text of the answer choice by setting the parameter <em>useLabels</em> to TRUE:</p>
+<pre><code><a href="../reference/get_survey_responses.html">get_survey_responses(
+  "SV_cScDRSV5hsN3YEd", 
+  format = "csv", 
+  useLabels = TRUE)</a></code></pre>
 </div>
 <div id="retrieving-responses-for-multiple-surveys" class="section level2">
 <h2 class="hasAnchor">
 <a href="#retrieving-responses-for-multiple-surveys" class="anchor"></a>Retrieving Responses for Multiple Surveys</h2>
 <p>If you need to download responses from multiple surveys or you have a need to schedule regular automated exports of multiple survey responses, we recommend you use the approach documented below. Instead of looping over each survey, requesting the export and downloading the file from the Qualtrics server, we will send the request to Qualtrics to prepare all the files and then export them.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
+<div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="co"># request creation of response exports</span>
 <span class="kw">requests</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bulk-download.html">request_downloads</a></span>(<span class="kw">lst_surveys</span><span class="op">$</span><span class="kw">id</span>, format = <span class="st">"csv"</span>)
 <span class="kw">requests</span>
