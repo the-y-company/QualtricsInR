@@ -163,18 +163,18 @@
 <span class="co"># retrieve all available survey ids from your account</span>
 <span class="kw">lst_surveys</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/list_surveys.html">list_surveys</a></span>()
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">lst_surveys</span>)
-<span class="co">#&gt; # A tibble: 9 x 6</span>
-<span class="co">#&gt;   id          name          ownerId     lastModified    creationDate    isActive</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;           &lt;lgl&gt;   </span>
-<span class="co">#&gt; 1 SV_39rgGRE… api_copy_demo UR_1Z96ysD… 2020-06-11T08:… 2020-06-10T08:… TRUE    </span>
-<span class="co">#&gt; 2 SV_3fmfHkd… api_copy_dem… UR_1Z96ysD… 2020-06-11T08:… 2020-06-11T08:… FALSE   </span>
-<span class="co">#&gt; 3 SV_6WpcSqt… api_copy_dem… UR_1Z96ysD… 2020-06-11T08:… 2020-06-11T08:… FALSE   </span>
-<span class="co">#&gt; 4 SV_9Ak7vCh… api_copy_dem… UR_1Z96ysD… 2020-06-11T08:… 2020-06-11T08:… FALSE   </span>
-<span class="co">#&gt; 5 SV_aYwagyE… api_copy_dem… UR_1Z96ysD… 2020-06-11T08:… 2020-06-11T08:… FALSE   </span>
-<span class="co">#&gt; 6 SV_blW4Huz… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE    </span>
-<span class="co">#&gt; 7 SV_cScDRSV… api_distribu… UR_1Z96ysD… 2020-06-10T08:… 2020-04-16T08:… TRUE    </span>
-<span class="co">#&gt; 8 SV_elpspu2… api_export_r… UR_1Z96ysD… 2020-04-16T18:… 2020-04-16T18:… TRUE    </span>
-<span class="co">#&gt; 9 SV_esXQqpy… api_copy_dem… UR_1Z96ysD… 2020-06-11T08:… 2020-06-11T08:… FALSE</span>
+<span class="co">#&gt; # A tibble: 9 × 6</span>
+<span class="co">#&gt;   id                 name       ownerId    lastModified   creationDate  isActive</span>
+<span class="co">#&gt;   &lt;chr&gt;              &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;chr&gt;         &lt;lgl&gt;   </span>
+<span class="co">#&gt; 1 SV_39rgGREdlmzH63X api_copy_… UR_1Z96ys… 2020-06-11T08… 2020-06-10T0… TRUE    </span>
+<span class="co">#&gt; 2 SV_3fmfHkdddhnRbKJ api_copy_… UR_1Z96ys… 2020-06-11T08… 2020-06-11T0… FALSE   </span>
+<span class="co">#&gt; 3 SV_6WpcSqtVBsibNcN api_copy_… UR_1Z96ys… 2020-06-11T08… 2020-06-11T0… FALSE   </span>
+<span class="co">#&gt; 4 SV_9Ak7vCha9W42Twp api_copy_… UR_1Z96ys… 2020-06-11T08… 2020-06-11T0… FALSE   </span>
+<span class="co">#&gt; 5 SV_aYwagyEbamVLpFX api_copy_… UR_1Z96ys… 2020-06-11T08… 2020-06-11T0… FALSE   </span>
+<span class="co">#&gt; 6 SV_blW4HuzdeqLiTJ3 api_expor… UR_1Z96ys… 2020-04-16T18… 2020-04-16T1… TRUE    </span>
+<span class="co">#&gt; 7 SV_cScDRSV5hsN3YEd api_distr… UR_1Z96ys… 2020-06-10T08… 2020-04-16T0… TRUE    </span>
+<span class="co">#&gt; 8 SV_elpspu2EuJXLEWx api_expor… UR_1Z96ys… 2020-04-16T18… 2020-04-16T1… TRUE    </span>
+<span class="co">#&gt; 9 SV_esXQqpyoyNFeW69 api_copy_… UR_1Z96ys… 2020-06-11T08… 2020-06-11T0… FALSE</span>
 </pre></div>
 </div>
 <div id="survey-response-status" class="section level2">
@@ -201,7 +201,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="co"># export survey responses</span>
 <span class="fu"><a href="../reference/get_survey_responses.html">get_survey_responses</a></span>(<span class="st">"SV_cScDRSV5hsN3YEd"</span>)
-<span class="co">#&gt; # A tibble: 3 x 19</span>
+<span class="co">#&gt; # A tibble: 3 × 19</span>
 <span class="co">#&gt;   StartDate    EndDate     Status IPAddress  Progress `Duration (in se… Finished</span>
 <span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;             &lt;chr&gt;   </span>
 <span class="co">#&gt; 1 2020-04-16 … 2020-04-16… 0      86.220.39… 100      5                 1       </span>
@@ -243,7 +243,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">data</span>)
 <span class="co">#&gt; [1] 9</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">data</span>[[<span class="fl">1</span>]])
-<span class="co">#&gt; # A tibble: 1 x 19</span>
+<span class="co">#&gt; # A tibble: 1 × 19</span>
 <span class="co">#&gt;   StartDate     EndDate    Status IPAddress Progress `Duration (in sec… Finished</span>
 <span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;              &lt;chr&gt;   </span>
 <span class="co">#&gt; 1 2020-06-10 1… 2020-06-1… 1      &lt;NA&gt;      100      2                  1       </span>

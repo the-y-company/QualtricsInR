@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/ppssphysics/QualtricsInR/workflows/R-CMD-check/badge.svg)](https://github.com/ppssphysics/QualtricsInR/actions)
 <!-- badges: end -->
 
 You can find the official documentation
