@@ -69,7 +69,7 @@ update_block <- function(survey_id, block_id, type = "Standard", description = "
 #' @export
 delete_block <- function(survey_id, block_id) {
   params <- c("survey-definitions", survey_id, "blocks", block_id)
-  getcnt <- .qualtrics_delete(params)
+  getcnt <- .qualtrics_delete(params, NULL, NULL)
   getcnt$result
 }
 
