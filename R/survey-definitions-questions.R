@@ -38,7 +38,7 @@ get_survey_question <- function(survey_id, question_id) {
 #' @export
 delete_survey_question <- function(survey_id, question_id) {
   params <- c("survey-definitions", survey_id, "questions", question_id)
-  getcnt <- .qualtrics_delete(params)
+  getcnt <- .qualtrics_delete(params, NULL, NULL)
   getcnt$meta$httpStatus
 }
 
