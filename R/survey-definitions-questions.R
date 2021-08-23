@@ -60,14 +60,14 @@ get_questions_mapping <- function(survey_id) {
   do.call(
     bind_rows,
     lapply(
-        qmap$elements,
-        function(x) {
-            tibble(
-                "QuestionID" = x$QuestionID,
-                "DataExportTag" = x$DataExportTag,
-                "QuestionType" = x$QuestionType,
-                "QuestionDescription" = x$QuestionDescription
-            )
-        }))
+      qmap$elements,
+      function(x) {
+        tibble(
+          "QuestionID" = x$QuestionID,
+          "DataExportTag" = x$DataExportTag,
+          "QuestionType" = x$QuestionType,
+          "QuestionDescription" = x$QuestionDescription
+        )
+      }))
 
 }
